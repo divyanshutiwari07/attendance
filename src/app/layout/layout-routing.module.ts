@@ -18,8 +18,7 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: () => import('./blank-page/blank-page.module').then(m => m.BlankPageModule) },
             { path: 'google-map', loadChildren: () => import('./google-map/google-map.module').then(m => m.GoogleMapModule) },
             { path: 'poc-form-app', loadChildren: () => import('./poc-form-app/poc-form-app.module').then(m => m.PocFormAppModule) },
-
-
+            { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then(m => m.AttendanceModule) },
         ]
     }
 ];

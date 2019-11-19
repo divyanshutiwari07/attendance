@@ -1,0 +1,15 @@
+.record {
+    table {
+        border: 1px solid;
+
+        td, th {
+            padding: 5px 8px;
+            border: 1px solid;
+            min-width: 15px;
+        }
+
+        td.present {
+            background-color: green;
+        }
+    }
+}
