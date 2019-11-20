@@ -1,0 +1,17 @@
+{
+  "presentEmployees": [
+    {
+      "empId": 1,
+      "empName": "Abhinav Raheja",
+      "inTime": "10:20 AM",
+      "outTime": "16:15 PM"
+    },
+    {
+      "empId": 2,
+      "empName": "Mohan Tiwari",
+      "inTime": "10:10 AM",
+      "outTime": "16:35 PM"
+    }
+  ],
+  "totalEmployeeCount": 20
+}
