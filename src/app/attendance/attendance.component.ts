@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./attendance.component.scss', './attendance-table.scss']
 })
 export class AttendanceComponent implements OnInit {
+  collapedSideBar: boolean;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  receiveCollapsed($event) {
+    this.collapedSideBar = $event;
   }
 
 }
