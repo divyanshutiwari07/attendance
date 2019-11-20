@@ -1,0 +1,45 @@
+<p>todays-report works! completed
+
+</p> 
+<!-- <app-emp-detail-modal></app-emp-detail-modal> -->
+<!-- <app-emp-list></app-emp-list> -->
+
+<ngb-tabset #t="ngbTabset">
+  <ngb-tab id="tab-selectbyid1" title="present on premises">
+    <ng-template ngbTabContent>
+      <!-- <app-emp-list></app-emp-list> -->
+
+      <flx-ui-datatable
+        [headers]="['Pictrue','Mobile','Gender','Description','Color']"
+        [dataKeys]="['PICTURE','MOBILENUMBER','GENDER','DESCRIPTION','DESCRIPTION']"
+        [dataSrcKey]="'data'"
+        [limit]="10"
+        [hasAddButton]="true"
+        [hasActionButtons]="true"
+        spinnerSrc="'Your ajax loader gif"
+        searchPlaceholder="Enter description, fullname, or mobile to search"
+        [actionButtons]="[{text:'',tooltip:'View info',tooltipPosition:'right',icon:'fa fa-edit',class:'btn-default'},{text:'',tooltip:'Edit info',icon:'fa fa-eye',class:'btn-secondary'},{text:'',tooltip:'Delete item',tooltipPosition:'left',icon:'fa fa-trash',iconPosition:'right',class:'btn-danger'}]"
+        [dataUrl]="'your apiUrl (If lazyloading is enabled url should be http://domain/api?something=something)'"
+        (firstActionButtonClicked)="firstButtonClicked($event)"
+        (secondActionButtonClicked)="secondButtonClicked($event)"
+        [classes]="{addButton:'btn btn-primary',tableHeader:'table-header'}"
+        (addButtonClicked)="addButtonClick()">
+      </flx-ui-datatable>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab id="tab-selectbyid2">
+    <ng-template ngbTabTitle><b>Absent</b> </ng-template>
+    <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+      <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+      craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+      cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+      yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+      shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+      sint qui sapiente accusamus tattooed echo park.</p>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+<p>
+  <button class="btn btn-outline-primary" (click)="t.select('tab-selectbyid2')">Selected tab with "tab-selectbyid2" id</button>
+</p>
