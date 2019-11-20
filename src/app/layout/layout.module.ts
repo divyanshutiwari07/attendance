@@ -5,10 +5,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+//import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AttendanceComponent } from './attendance/attendance.component';
-
 
 
 @NgModule({
@@ -21,7 +19,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 
     ],
     bootstrap: [LayoutComponent],
-    declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LayoutComponent, AttendanceComponent ],
+    declarations: [LayoutComponent, HeaderComponent, LayoutComponent ],
 
 })
 export class LayoutModule {}
