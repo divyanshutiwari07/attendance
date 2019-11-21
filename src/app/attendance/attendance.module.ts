@@ -13,12 +13,16 @@ import { EmpDetailModalComponent } from './components/emp-detail-modal/emp-detai
 // import { HeaderComponent } from './components/header/header.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { FlxUiDatatableModule, FlxUiDataTable } from 'flx-ui-datatable';
+
 import { RegisterComponent } from './components/register/register.component';
 
 import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {HeaderComponent} from './components/header/header.component';
-import {AttendanceComponent} from './attendance.component'
+import {AttendanceComponent} from './attendance.component';
+import { FormsModule } from '@angular/forms';
+import { AttendanceStatsComponent } from './components/attendance-stats/attendance-stats.component';
+
+
 
 @NgModule({
   declarations: [
@@ -31,15 +35,19 @@ import {AttendanceComponent} from './attendance.component'
     SidebarComponent,
     HeaderComponent,
     AttendanceComponent,
+    AttendanceStatsComponent,
+
+
   ],
   imports: [
     CommonModule,
     AttendanceRoutingModule,
-    NgbModule,
-    FlxUiDatatableModule,
-    TranslateModule
+    NgbModule.forRoot(),
+    TranslateModule,
+    FormsModule
   ],
   bootstrap: [AttendanceComponent],
-  providers: [ FlxUiDataTable],
+  entryComponents: [RegisterComponent],
+  providers: [ ],
 })
 export class AttendanceModule { }
