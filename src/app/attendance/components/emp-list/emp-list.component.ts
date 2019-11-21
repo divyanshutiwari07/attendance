@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-emp-list',
@@ -9,7 +10,7 @@ export class EmpListComponent implements OnInit {
 
   employees: any;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
     this.employees = [
@@ -20,6 +21,10 @@ export class EmpListComponent implements OnInit {
       {name: 'Mohani', inTime: '10:20:AM', outTime: '07:20:PM'},
       {name: 'Radha', inTime: '10:20:AM', outTime: '07:20:PM'},
     ];
+  }
+
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
   }
 
 }

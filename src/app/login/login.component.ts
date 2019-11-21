@@ -21,15 +21,20 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        if ( this.loginDetails.email === 'awiros@awiros.com' && this.loginDetails.password === 'awisys555' ) {
-            localStorage.setItem('isLoggedin', 'true');
-            this.router.navigateByUrl('/attendance');
-        } else {
-            alert('wrong credential or register firstly');
-        }
-        console.log(this.loginDetails);
+        // if ( this.loginDetails.email === 'awiros@awiros.com' && this.loginDetails.password === 'awisys555' ) {
+        //     localStorage.setItem('isLoggedin', 'true');
+        //     this.router.navigateByUrl('/attendance');
+        // } else {
+        //     alert('wrong credential or register firstly');
+        // }
+        // console.log(this.loginDetails);
 
-        // this.apiService.test(this.loginDetails).subscribe(val => console.log(val));
+        this.apiService.test(this.loginDetails).subscribe((loginRes) => {
+            console.log(loginRes);
+            if( loginRes.status ) {
+                console.log("Write here to save the login");
+            }
+        });
     }
 }
 
