@@ -21,3 +21,7 @@ export class ApiService {
      return this.http.post(config.GET_JSON,obj);
   }
 
+  todaysAttendance(obj): Observable <any> {
+     return this.http.post(config.TODAYS_ATTENDANCE,obj);
+  }
+}

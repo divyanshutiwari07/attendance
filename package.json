@@ -15,7 +15,7 @@
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0",
-    "@angular/animations": "8.0.0",
+    "@angular/animations": "^8.0.0",
     "@angular/common": "8.0.0",
     "@angular/compiler": "8.0.0",
     "@angular/core": "8.0.0",
@@ -38,6 +38,7 @@
     "ng5-validation": "^1.0.0",
     "ngx-bootstrap": "^5.2.0",
     "ngx-perfect-scrollbar": "^8.0.0",
+    "ngx-toastr": "^11.2.1",
     "rxjs": "6.5.2",
     "tslib": "^1.9.0",
     "yarn": "1.16.0",

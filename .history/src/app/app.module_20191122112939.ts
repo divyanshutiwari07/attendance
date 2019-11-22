@@ -10,8 +10,6 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { FormsModule } from '@angular/forms';
 
-import { ToastrModule } from 'ngx-toastr';
-
 
 
 @NgModule({
@@ -23,7 +21,6 @@ import { ToastrModule } from 'ngx-toastr';
         LanguageTranslationModule,
         AppRoutingModule,
         FormsModule,
-        ToastrModule.forRoot()
 
     ],
     declarations: [AppComponent],

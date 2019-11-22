@@ -20,5 +20,8 @@ export class ApiService {
   test(obj): Observable <any> {
      return this.http.post(config.LOGIN_URL, obj);
   }
+  todaysAttendance(obj): Observable <any> {
+     return this.http.post(config.TODAYS_ATTENDANCE, obj);
+  }
 }
 

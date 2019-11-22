@@ -30,9 +30,14 @@ export class LoginComponent implements OnInit {
         // console.log(this.loginDetails);
 
         this.apiService.test(this.loginDetails).subscribe((loginRes) => {
-            console.log(loginRes);
-            if( loginRes.status ) {
-                console.log("Write here to save the login");
+            // console.log(loginRes);
+            if( loginRes.success ) {
+                localStorage.setItem('isLoggedin', loginRes.token);
+                // localStorage.setItem('loginToken', JSON.stringify( loginRes.token ));
+                this.router.navigateByUrl('/attendance');
+            }
+            else {
+                console.log(loginRes.msg);
             }
         });
     }

@@ -1,4 +1,6 @@
-
+.flexStyle {
+  
+}
 
 .emp-detail {
   padding: 5px 25px;  
@@ -18,7 +20,7 @@
 
   .column.avatar {
     flex: 0.3;
-    align-items: center;  
+    align-items: center;
     img {
       width: 60px;
     }
@@ -28,6 +30,3 @@
     // align-items: center;
   }
 }
-
-
-

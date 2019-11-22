@@ -1,0 +1,25 @@
+.emp-list-head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #bbb;
+
+    .column {
+        display: flex;
+        align-items: center;
+        flex: 1;
+    }
+    .column.filters {
+        flex: 2;        
+        > * {
+            margin-right: 5px;
+        }
+    }
+    .column.sorts > * {
+        margin-right: 5px;
+    }
+    .column.action {
+        flex: 0.5;
+    }
+
+}

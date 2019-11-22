@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-sidebar',
@@ -12,10 +13,11 @@ export class SidebarComponent implements OnInit {
     collapsed: boolean;
     showMenu: string;
     pushRightClass: string;
+    register: any = {};
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService, public router: Router , private modalService: NgbModal) {
         this.router.events.subscribe(val => {
             if (
                 val instanceof NavigationEnd &&
@@ -62,16 +64,22 @@ export class SidebarComponent implements OnInit {
         dom.classList.toggle(this.pushRightClass);
     }
 
-    rltAndLtr() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle('rtl');
-    }
+    // rltAndLtr() {
+    //     const dom: any = document.querySelector('body');
+    //     dom.classList.toggle('rtl');
+    // }
 
-    changeLang(language: string) {
-        this.translate.use(language);
-    }
+    // changeLang(language: string) {
+    //     this.translate.use(language);
+    // }
 
-    onLoggedout() {
-        localStorage.removeItem('isLoggedin');
-    }
+    // onLoggedout() {
+    //     localStorage.removeItem('isLoggedin');
+    // }
+
+
+    openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
 }
