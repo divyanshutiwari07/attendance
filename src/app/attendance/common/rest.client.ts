@@ -10,13 +10,13 @@ export class RestClient {
     constructor(private http: HttpClient) {
         this.httpOptions = {
             headers: new HttpHeaders({
-              'Content-Type':  'application/xml',              
+              'Content-Type':  'application/json',              
               'token': localStorage.getItem("token")
             })
         };
     }
 
-    get(url: string, payload: Object = {}) {
+    get(url: string, payload: Object = null) {
         
         if(isNullOrUndefined(payload)) {
             return this.http.get(url, this.httpOptions);

@@ -22,6 +22,8 @@ import {AttendanceComponent} from './attendance.component';
 import { FormsModule } from '@angular/forms';
 import { AttendanceStatsComponent } from './components/attendance-stats/attendance-stats.component';
 import {ngfModule} from 'angular-file';
+import { MonthlyReportComponent } from './components/monthly-report/monthly-report.component';
+import { YearlyReportComponent } from './components/yearly-report/yearly-report.component';
 
 
 @NgModule({
@@ -36,8 +38,8 @@ import {ngfModule} from 'angular-file';
     HeaderComponent,
     AttendanceComponent,
     AttendanceStatsComponent,
-
-
+    MonthlyReportComponent,
+    YearlyReportComponent,
   ],
   imports: [
     CommonModule,

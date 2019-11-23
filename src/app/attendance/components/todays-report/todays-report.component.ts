@@ -20,17 +20,20 @@ export class TodaysReportComponent implements OnInit {
     let startTime = Date.parse(new Date().toISOString().slice(0, 10));
     let endTime = Date.parse(new Date().toISOString().slice(0, 10) + " " + "23:59:59");
     this.apiService.getPresentEmployeesForDate({"start_time":startTime,"end_time":endTime })
-    .subscribe(val => this.empList = this.extractData(val));
+    .subscribe(response => this.empList = this.extractData(response));
   }
 
   private extractData(response): Array<object> { 
     let data = [];   
-    response.data.forEach(element => {
-      let row = {inTime: null, outTime: null, photo: null, name: null};
+    response.data.forEach((element, key) => {
+      let row = {inTime: null, outTime: null, photo: null, name: null, id: 0};
       
       row.inTime = element.first_presence;
       row.outTime = element.last_presence;
       row.name = element.awi_label;
+
+      //Hard code emp Id
+      row.id = 123+key;
 
       let imgKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
       row.photo = element.awi_data.awi_app_data.awi_blobs[imgKey].img_base64;

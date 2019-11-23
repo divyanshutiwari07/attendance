@@ -29,5 +29,16 @@
   }
 }
 
+.report {
+  .report-data {
+    margin-top: 20px;
+  }
+}
 
+::ng-deep .modal-xl-custom {
+  .modal-dialog {
+    max-width: 90%;
+    width: 90%;
+  }
+}
 

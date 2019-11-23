@@ -10,14 +10,10 @@ export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
 
-  constructor(private modalService: NgbModal) { }
+  constructor() { }
 
   ngOnChanges() {    
     console.log(this.employees);
   }
-
-  // openVerticallyCentered(content) {
-  //   this.modalService.open(content, { centered: true });
-  // }
 
 }
