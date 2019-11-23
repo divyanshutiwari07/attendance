@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -10,16 +12,33 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class TodaysReportComponent implements OnInit {
 
+  public empList = [];
+
   constructor(private apiService: ApiService , private notifyService: NotificationService) { }
 
   ngOnInit() {
-    
+    let startTime = Date.parse(new Date().toISOString().slice(0, 10));
+    let endTime = Date.parse(new Date().toISOString().slice(0, 10) + " " + "23:59:59");
+    this.apiService.getPresentEmployeesForDate({"start_time":startTime,"end_time":endTime })
+    .subscribe(val => this.empList = this.extractData(val));
+  }
 
-    // this.apiService.getPresentEmployeesForDate().subscribe(val => console.log(val));
-    // const getjson = this.apiService.getPresentEmployeesForDate();
-    // console.log(getjson);
+  private extractData(response): Array<object> { 
+    let data = [];   
+    response.data.forEach(element => {
+      let row = {inTime: null, outTime: null, photo: null, name: null};
+      
+      row.inTime = element.first_presence;
+      row.outTime = element.last_presence;
+      row.name = element.awi_label;
 
-    this.apiService.todaysAttendance({"start_time":1574188200000,"end_time":1574314498000 ,"token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXdpX2NsaWVudF9pZCI6MiwiYXdpcm9zIjoicGl5dXNoQGF3aWRpdC5jb20iLCJsZXZlbCI6ImF3aV91c2VyIiwiaWF0IjoxNTc0NDE1MzU1LCJleHAiOjE1NzQ1MDE3NTV9.uFkIrv3bK167iJncOI-xnKQQj7Kw3Wcwe3YpLftdM3w"}).subscribe(val => console.log(val));
+      let imgKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
+      row.photo = element.awi_data.awi_app_data.awi_blobs[imgKey].img_base64;
+
+      data.push(row);
+    });
+    console.log(response);    
+    return data;
   }
 
   successToaster() {

@@ -1,0 +1,324 @@
+{
+    "success": true,
+    "msg": "Data Found",
+    "data": [
+        {
+            "timestamp": "21-11-2019",
+            "awi_label": "Taufizul",
+            "awi_data": {
+                "cam_no": 1,
+                "awi_app_data": {
+                    "awi_name": "awi_app_data",
+                    "awi_blobs": {
+                        "awi_blob_names": [
+                            "awi_face"
+                        ],
+                        "awi_blob_labels": [
+                            "Taufizul"
+                        ],
+                        "awi_blob_ids": [
+                            "awi_250"
+                        ],
+                        "awi_250": {
+                            "img_base64": "http://localhost:3000/detections/48522/2116/48522_2116_4193_awi_250.jpg",
+                            "classification": {
+                                "status": true,
+                                "awi_url_db": "url",
+                                "awi_max_match_idx": 0,
+                                "awi_label": "Taufizul",
+                                "awi_descriptor": "",
+                                "awi_conf": 0.6993393229268732,
+                                "awi_class": "awi_face",
+                                "awi_blob_db": [
+                                    {
+                                        "imgs": [
+                                            "http://localhost:3000/objects/5dd50d32495bfd005a620281_0.jpg"
+                                        ],
+                                        "img_url": [
+                                            "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d32495bfd005a620281_0.jpg"
+                                        ],
+                                        "img_base64": "base64",
+                                        "awi_subclass": "Engineer",
+                                        "awi_severity": 3,
+                                        "awi_label": "Taufizul",
+                                        "awi_id": 2137,
+                                        "awi_conf": 0.6993393229268732,
+                                        "awi_class": "awi_face",
+                                        "__v": 0
+                                    }
+                                ],
+                                "awi_attributes": {
+                                    "awi_gender": "",
+                                    "awi_emotion": "",
+                                    "awi_age": ""
+                                },
+                                "__v": 0
+                            },
+                            "awi_coords": [
+                                {
+                                    "y": 0.2477777749300003,
+                                    "x": 0.49916666746139526
+                                },
+                                {
+                                    "y": 0.2477777749300003,
+                                    "x": 0.5649999976158142
+                                },
+                                {
+                                    "y": 0.36444443464279175,
+                                    "x": 0.5649999976158142
+                                },
+                                {
+                                    "y": 0.36444443464279175,
+                                    "x": 0.49916666746139526
+                                }
+                            ]
+                        }
+                    },
+                    "awi_app_param": {
+                        "awi_time_senstivity": 10,
+                        "awi_time_frequency": 10,
+                        "awi_space_senstivity_y": 5,
+                        "awi_space_senstivity_x": 5,
+                        "awi_name": "awi_app_param"
+                    },
+                    "awi_app": {
+                        "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+                        "color": "#A57E5D",
+                        "awi_name": "Facial Recognition",
+                        "awi_app_name": "awi_facial_recognition",
+                        "awi_app_id": 0,
+                        "awi_app_credits": 100,
+                        "awi_app_API_key": "34"
+                    }
+                },
+                "timestamp": "2019-11-21T05:30:29.039Z",
+                "location": "HW",
+                "awi_camid": 2116,
+                "awi_terminal_id": 48522,
+                "awi_client_id": 2,
+                "id": 4193,
+                "awi_severity": "awi_critical",
+                "add_to_train": false,
+                "transaction_id": "0",
+                "is_read": false,
+                "awi_site_id": 48515,
+                "s_name": "Office",
+                "__v": 0
+            },
+            "first_presence": "2019-11-21T05:30:29.039Z",
+            "last_presence": "2019-11-21T05:30:29.039Z"
+        },
+        {
+            "timestamp": "20-11-2019",
+            "awi_label": "Taufizul",
+            "awi_data": {
+                "cam_no": 1,
+                "awi_app_data": {
+                    "awi_name": "awi_app_data",
+                    "awi_blobs": {
+                        "awi_blob_names": [
+                            "awi_face"
+                        ],
+                        "awi_blob_labels": [
+                            "Taufizul"
+                        ],
+                        "awi_blob_ids": [
+                            "awi_120"
+                        ],
+                        "awi_120": {
+                            "img_base64": "http://localhost:3000/detections/48522/2116/48522_2116_4139_awi_120.jpg",
+                            "classification": {
+                                "status": true,
+                                "awi_url_db": "url",
+                                "awi_max_match_idx": 0,
+                                "awi_label": "Taufizul",
+                                "awi_descriptor": "",
+                                "awi_conf": 0.699265099153184,
+                                "awi_class": "awi_face",
+                                "awi_blob_db": [
+                                    {
+                                        "imgs": [
+                                            "http://localhost:3000/objects/5dd50d32495bfd005a620281_0.jpg"
+                                        ],
+                                        "img_url": [
+                                            "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d32495bfd005a620281_0.jpg"
+                                        ],
+                                        "img_base64": "base64",
+                                        "awi_subclass": "Engineer",
+                                        "awi_severity": 3,
+                                        "awi_label": "Taufizul",
+                                        "awi_id": 2137,
+                                        "awi_conf": 0.699265099153184,
+                                        "awi_class": "awi_face",
+                                        "__v": 0
+                                    }
+                                ],
+                                "awi_attributes": {
+                                    "awi_gender": "",
+                                    "awi_emotion": "",
+                                    "awi_age": ""
+                                },
+                                "__v": 0
+                            },
+                            "awi_coords": [
+                                {
+                                    "y": 0.32555556297302246,
+                                    "x": 0.6541666388511658
+                                },
+                                {
+                                    "y": 0.32555556297302246,
+                                    "x": 0.7308333516120911
+                                },
+                                {
+                                    "y": 0.4566666781902313,
+                                    "x": 0.7308333516120911
+                                },
+                                {
+                                    "y": 0.4566666781902313,
+                                    "x": 0.6541666388511658
+                                }
+                            ]
+                        }
+                    },
+                    "awi_app_param": {
+                        "awi_time_senstivity": 10,
+                        "awi_time_frequency": 10,
+                        "awi_space_senstivity_y": 5,
+                        "awi_space_senstivity_x": 5,
+                        "awi_name": "awi_app_param"
+                    },
+                    "awi_app": {
+                        "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+                        "color": "#A57E5D",
+                        "awi_name": "Facial Recognition",
+                        "awi_app_name": "awi_facial_recognition",
+                        "awi_app_id": 0,
+                        "awi_app_credits": 100,
+                        "awi_app_API_key": "34"
+                    }
+                },
+                "timestamp": "2019-11-20T13:29:37.372Z",
+                "location": "HW",
+                "awi_camid": 2116,
+                "awi_terminal_id": 48522,
+                "awi_client_id": 2,
+                "id": 4139,
+                "awi_severity": "awi_critical",
+                "add_to_train": false,
+                "transaction_id": "0",
+                "is_read": false,
+                "awi_site_id": 48515,
+                "s_name": "Office",
+                "__v": 0
+            },
+            "first_presence": "2019-11-20T13:29:37.372Z",
+            "last_presence": "2019-11-20T13:29:37.954Z"
+        },
+        {
+            "timestamp": "20-11-2019",
+            "awi_label": "vikram",
+            "awi_data": {
+                "cam_no": 1,
+                "awi_app_data": {
+                    "awi_name": "awi_app_data",
+                    "awi_blobs": {
+                        "awi_blob_names": [
+                            "awi_face"
+                        ],
+                        "awi_blob_labels": [
+                            "vikram"
+                        ],
+                        "awi_blob_ids": [
+                            "awi_40"
+                        ],
+                        "awi_40": {
+                            "img_base64": "http://localhost:3000/detections/48522/2116/48522_2116_4115_awi_40.jpg",
+                            "classification": {
+                                "status": true,
+                                "awi_url_db": "url",
+                                "awi_max_match_idx": 0,
+                                "awi_label": "vikram",
+                                "awi_descriptor": "",
+                                "awi_conf": 0.72012090279215,
+                                "awi_class": "awi_face",
+                                "awi_blob_db": [
+                                    {
+                                        "imgs": [
+                                            "http://localhost:3000/objects/5dd50d14495bfd005a62027f_0.jpg"
+                                        ],
+                                        "img_url": [
+                                            "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d14495bfd005a62027f_0.jpg"
+                                        ],
+                                        "img_base64": "base64",
+                                        "awi_subclass": "Engineer",
+                                        "awi_severity": 2,
+                                        "awi_label": "vikram",
+                                        "awi_id": 2135,
+                                        "awi_conf": 0.72012090279215,
+                                        "awi_class": "awi_face",
+                                        "__v": 0
+                                    }
+                                ],
+                                "awi_attributes": {
+                                    "awi_gender": "",
+                                    "awi_emotion": "",
+                                    "awi_age": ""
+                                },
+                                "__v": 0
+                            },
+                            "awi_coords": [
+                                {
+                                    "y": 0.10000000149011612,
+                                    "x": 0.5249999761581421
+                                },
+                                {
+                                    "y": 0.10000000149011612,
+                                    "x": 0.6358333230018616
+                                },
+                                {
+                                    "y": 0.30666667222976685,
+                                    "x": 0.6358333230018616
+                                },
+                                {
+                                    "y": 0.30666667222976685,
+                                    "x": 0.5249999761581421
+                                }
+                            ]
+                        }
+                    },
+                    "awi_app_param": {
+                        "awi_time_senstivity": 10,
+                        "awi_time_frequency": 10,
+                        "awi_space_senstivity_y": 5,
+                        "awi_space_senstivity_x": 5,
+                        "awi_name": "awi_app_param"
+                    },
+                    "awi_app": {
+                        "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+                        "color": "#A57E5D",
+                        "awi_name": "Facial Recognition",
+                        "awi_app_name": "awi_facial_recognition",
+                        "awi_app_id": 0,
+                        "awi_app_credits": 100,
+                        "awi_app_API_key": "34"
+                    }
+                },
+                "timestamp": "2019-11-20T09:58:25.134Z",
+                "location": "HW",
+                "awi_camid": 2116,
+                "awi_terminal_id": 48522,
+                "awi_client_id": 2,
+                "id": 4115,
+                "awi_severity": "awi_high",
+                "add_to_train": false,
+                "transaction_id": "0",
+                "is_read": false,
+                "awi_site_id": 48515,
+                "s_name": "Office",
+                "__v": 0
+            },
+            "first_presence": "2019-11-20T09:58:25.134Z",
+            "last_presence": "2019-11-20T09:58:25.134Z"
+        }
+    ]
+}

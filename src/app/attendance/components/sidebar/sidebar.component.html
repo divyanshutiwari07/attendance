@@ -31,7 +31,26 @@
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="uploadImage" class='forLabel'>Upload Image<span class="required"> *</span></label>
-                        <button type="file" class="btn btn-default not-focusable" required>Browse</button>
+                        <button ngfSelect class="btn btn-default not-focusable" [(file)]="register.profilePhoto"                         
+                            accept="image/*" multiple="1">
+                            Browse
+                        </button>                    
+                        
+                        <ngfFormData
+                        [files]      = "files"
+                        [(FormData)] = "myFormData"
+                        postName     = "file"
+                        ></ngfFormData>
+                        
+                        <ngfUploadStatus
+                        [(percent)] = "uploadPercent"
+                        [httpEvent] = "httpEvent"
+                        ></ngfUploadStatus>
+                        
+                        <div *ngIf="uploadPercent">
+                        Upload Progress: {{ uploadPercent }}%
+                        </div>
+                        <!-- <button type="file" class="btn btn-default not-focusable" required>Browse</button> -->
                       </div>
                     </div>
                     <div class="row">
@@ -62,8 +81,8 @@
                       </div>
                     </div>
                     <div class="footer-btn">
-                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click')" >Close</button>
-                      <button type="button" class="btn btn-dark" disabled >Close</button>
+                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click'); " >Close</button>
+                      <button type="button" class="btn btn-dark" (click)="registerUser()" >Register</button>
                     </div> 
                   </form>
               </div>                  

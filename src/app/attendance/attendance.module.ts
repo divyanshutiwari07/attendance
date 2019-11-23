@@ -21,7 +21,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {AttendanceComponent} from './attendance.component';
 import { FormsModule } from '@angular/forms';
 import { AttendanceStatsComponent } from './components/attendance-stats/attendance-stats.component';
-
+import {ngfModule} from 'angular-file';
 
 
 @NgModule({
@@ -44,7 +44,8 @@ import { AttendanceStatsComponent } from './components/attendance-stats/attendan
     AttendanceRoutingModule,
     NgbModule.forRoot(),
     TranslateModule,
-    FormsModule
+    FormsModule,
+    ngfModule
   ],
   bootstrap: [AttendanceComponent],
   entryComponents: [RegisterComponent],

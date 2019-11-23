@@ -3,6 +3,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ngfModule, ngf } from "angular-file"
+import { Subscription } from 'rxjs';
+import { HttpRequest } from '@angular/common/http';
+
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -80,6 +84,15 @@ export class SidebarComponent implements OnInit {
 
     openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true });
+  }
+  
+  registerUser() {
+      console.log(this.register);
+  }
+ 
+  uploadFiles(files:File[]) {
+    console.log("Files: ", files);
+    console.log("Gonna upload");
   }
 
 }

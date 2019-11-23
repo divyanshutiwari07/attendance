@@ -29,10 +29,10 @@ export class LoginComponent implements OnInit {
         // }
         // console.log(this.loginDetails);
 
-        this.apiService.test(this.loginDetails).subscribe((loginRes) => {
+        this.apiService.login(this.loginDetails).subscribe((loginRes) => {
             // console.log(loginRes);
             if( loginRes.success ) {
-                localStorage.setItem('isLoggedin', loginRes.token);
+                localStorage.setItem('token', loginRes.token);
                 // localStorage.setItem('loginToken', JSON.stringify( loginRes.token ));
                 this.router.navigateByUrl('/attendance');
             }

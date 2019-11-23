@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { config } from '../../config';
-
+import { RestClient } from '../common/rest.client';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: RestClient) { }
 
-
-  // getPresentEmployeesForDate(): Observable <any> {
-
-  //   return this.http.get(config.GET_JSON);
-  // }
-
-  test(obj): Observable <any> {
-     return this.http.post(config.LOGIN_URL, obj);
+  login(obj): Observable <any> {
+    return this.http.post(config.LOGIN_URL, obj);
   }
-  todaysAttendance(obj): Observable <any> {
-     return this.http.post(config.TODAYS_ATTENDANCE, obj);
+  
+  getPresentEmployeesForDate(obj): Observable <any> {
+    return this.http.get(config.TODAYS_ATTENDANCE, obj);
   }
+  
 }
 
