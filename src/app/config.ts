@@ -1,6 +1,14 @@
 const SERVER_URL = 'HTTP://192.168.0.16:';
 const PORT = '4000';
 
+// export const config = {
+//   TODAYS_ATTENDANCE : SERVER_URL + PORT + '/awiros_ms/attendence/api/console_data',
+//   LOGIN_URL : SERVER_URL + PORT + '/login'
+// };
+
+// +++++++++++++++++++++++++++++++++++++++++
+
+
 const LOCAL_HOST_SERVER = "http://localhost:3000";
 
 //const devMode = "ON_PREMISE";
@@ -10,6 +18,7 @@ const devMode = "LOCALHOST";
 const configs = {
   ON_PREMISE: {
     TODAYS_ATTENDANCE : SERVER_URL + PORT + '/awiros_ms/attendence/api/console_data',
+    LOGIN_URL : SERVER_URL + PORT + '/login'
   },
   LOCALHOST: {
     TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',

@@ -8,7 +8,6 @@ const routes: Routes = [
     { path: '', loadChildren: () => import('./attendance/attendance.module').then(m => m.AttendanceModule) },
     { path: 'attendance', loadChildren: () => import('./attendance/attendance.module').then(m => m.AttendanceModule) },
     { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-    { path: 'error', loadChildren: () => import('./server-error/server-error.module').then(m => m.ServerErrorModule) },
 
 ];
 
