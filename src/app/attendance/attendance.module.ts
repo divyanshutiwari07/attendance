@@ -19,7 +19,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {SidebarComponent} from './components/sidebar/sidebar.component';
 import {HeaderComponent} from './components/header/header.component';
 import {AttendanceComponent} from './attendance.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AttendanceStatsComponent } from './components/attendance-stats/attendance-stats.component';
 import {ngfModule} from 'angular-file';
 import { MonthlyReportComponent } from './components/monthly-report/monthly-report.component';
@@ -47,7 +47,8 @@ import { YearlyReportComponent } from './components/yearly-report/yearly-report.
     NgbModule.forRoot(),
     TranslateModule,
     FormsModule,
-    ngfModule
+    ngfModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AttendanceComponent],
   entryComponents: [RegisterComponent],

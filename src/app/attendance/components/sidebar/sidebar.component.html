@@ -21,6 +21,11 @@
             <span>{{ 'Register' }}</span>
         </a>
         <hr >
+        <!-- Links
+        https://codecraft.tv/courses/angular/forms/model-driven-validation/ 
+        https://www.intertech.com/Blog/angular-reactive-forms-tutorial/
+        https://www.techiediaries.com/angular-formdata/
+        -->
 
         <!-- modal -->    
         <ng-template #content let-modal>
@@ -29,22 +34,23 @@
                 
             </div>
             <div class="modal-body">
-                
+                <!-- (ngSubmit)='registerForm.form.valid && onSubmit()' -->
               <div class="container">
-                  <form class="register-object"  name='form' #registerForm="ngForm" (ngSubmit)='registerForm.form.valid && onSubmit()'> 
+                  <form class="register-object" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="uploadImage" class='forLabel'>Upload Image<span class="required"> *</span></label>
-                        <button ngfSelect class="btn btn-default not-focusable" [(file)]="register.profilePhoto"                         
+                        <button ngfSelect type="button" class="btn btn-default not-focusable" [(files)]="files"                         
                             accept="image/*" multiple="1" required>
                             Browse
-                        </button>                    
+                        </button>                           
                         
                         <!-- <ngfFormData
                         [files]      = 'files'
-                        [(FormData)] = 'myFormData'
+                        [(FormData)] = 'registerForm'
                         postName     = "file"
-                        ></ngfFormData>
+                        ></ngfFormData> -->
+                        <!-- 
                         
                         <ngfUploadStatus
                         [(percent)] = "uploadPercent",
@@ -60,19 +66,19 @@
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="label" class='forLabel'>Label<span class="required"> *</span></label>
-                        <input type="text" autocomplete="off" placeholder="Give a label to an object" class="form-control" name='label' #label="ngModel" 
-                          [(ngModel)]="register.label" [ngClass]="{ 'is-invalid': registerForm.submitted && label.invalid }" required>
-                        <div *ngIf="registerForm.submitted && label.invalid" class="invalid-feedback">
-                            <div *ngIf="label.errors['required']">Label is required</div>
-                        </div>
+                        <input type="text" autocomplete="off" placeholder="Give a label to an object" class="form-control" formControlName="label" 
+                            [ngClass]="{ 'is-invalid': registerFormSubmitted && label.invalid }" required>                            
+                        <div *ngIf="registerFormSubmitted && label.invalid" class="invalid-feedback">
+                            <div *ngIf="label.errors.required">Label is required</div>
+                        </div>                        
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="subClass" class='forLabel'>Subclass<span class="required"> *</span></label>
-                        <input type="text" autocomplete="off" placeholder="categories object in subclasses" class="form-control" name="subClass" #subClass="ngModel"
-                          [(ngModel)]="register.subclass" [ngClass]="{ 'is-invalid': registerForm.submitted && subClass.invalid }" required>
-                        <div *ngIf="registerForm.submitted && subClass.invalid" class="invalid-feedback">
+                        <input type="text" autocomplete="off" placeholder="categories object in subclasses" class="form-control" formControlName="subClass" 
+                          [ngClass]="{ 'is-invalid': registerFormSubmitted && subClass.invalid }" required>
+                        <div *ngIf="registerFormSubmitted && subClass.invalid" class="invalid-feedback">
                             <div *ngIf="subClass.errors['required']">Subclass is required</div>
                         </div>
                       </div>
@@ -80,15 +86,15 @@
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="Severity" class='forLabel'>Severity<span class="required"> *</span></label>
-                        <select class="form-control" name="severity" #severity="ngModel"
-                           [(ngModel)]="register.severity" [ngClass]="{ 'is-invalid': registerForm.submitted && severity.invalid }"  required>
-                          <option value="undefined" selected disabled hidden >Select Severity</option>
-                          <option value="critical">Critical</option>
-                          <option value="high">High</option>
-                          <option value="medium">Medium</option>
-                          <option value="low">Low</option>
+                        <select class="form-control" formControlName="severity" 
+                           [ngClass]="{ 'is-invalid': registerFormSubmitted && severity.invalid }"  required>
+                          <option [value]="" selected disabled >Select Severity</option>
+                          <option [value]="critical">Critical</option>
+                          <option [value]="high">High</option>
+                          <option [value]="medium">Medium</option>
+                          <option [value]="low">Low</option>
                         </select>
-                        <div *ngIf="registerForm.submitted && severity.invalid" class="invalid-feedback">
+                        <div *ngIf="registerFormSubmitted && severity.invalid" class="invalid-feedback">
                             <div *ngIf="severity.errors['required']">Severity is required</div>
                         </div> 
                       </div>

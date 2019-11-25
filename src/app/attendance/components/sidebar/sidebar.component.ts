@@ -4,10 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
-
-import { ngfModule, ngf } from 'angular-file'
-import { Subscription } from 'rxjs';
-import { HttpRequest } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-sidebar',
@@ -21,6 +18,14 @@ export class SidebarComponent implements OnInit {
     pushRightClass: string;
     register: any = {};
     modalReference = null;
+    registerForm: FormGroup;
+
+    subClass: FormControl;
+    label: FormControl;
+    severity: FormControl;
+    objectPhotos: FormControl;
+
+    private registerFormSubmitted;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
@@ -29,7 +34,8 @@ export class SidebarComponent implements OnInit {
         public router: Router ,
         private modalService: NgbModal,
         private notifyService: NotificationService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private formBuilder: FormBuilder
         ) {
         this.router.events.subscribe(val => {
             if (
@@ -39,6 +45,33 @@ export class SidebarComponent implements OnInit {
             ) {
                 this.toggleSidebar();
             }
+        });
+
+        this.createFormControls();
+        this.createForm();
+        
+
+        // this.registerForm = this.formBuilder.group({
+        //     'label': [null, Validators.required],
+        //     'subClass': [null, Validators.required],
+        //     'severity': [null, Validators.required]
+        // });
+
+        this.registerFormSubmitted = false;
+    }
+
+    createFormControls() {
+        this.label = new FormControl('', Validators.required);
+        this.subClass = new FormControl('', Validators.required);    
+        this.severity = new FormControl('', Validators.required);
+        this.objectPhotos = new FormControl('', Validators.required);
+    }
+
+    createForm() {
+        this.registerForm = new FormGroup({
+            label: this.label,
+            subClass: this.subClass,
+            severity: this.severity,
         });
     }
 
@@ -89,10 +122,32 @@ export class SidebarComponent implements OnInit {
 //   }
 
   onSubmit() {
-    console.log(this.register);
-    this.modalReference.close();
-    this.successToaster();
-    this.apiService.getPresentEmployeesForDate(this.register).subscribe(response => console.log(response));
+        console.log(this.register, this.files);
+      this.registerFormSubmitted = true;
+    if(this.registerForm.valid) {
+        const formData = new FormData();
+        formData.append('label', this.registerForm.get('label').value);
+        formData.append('severity', this.registerForm.get('severity').value);
+        formData.append('subClass', this.registerForm.get('subClass').value);
+
+        this.files.forEach((file, key) => {
+            formData.append('file_'+key, file);
+        });
+
+        console.log(this.registerForm);
+        console.log(formData);
+        this.modalReference.close();
+        this.successToaster();
+        this.apiService.getPresentEmployeesForDate(this.register).subscribe(response => console.log(response));
+    } else {
+
+    }
+    
+  }
+
+  isFieldValid(field: string) {
+    return (!this.registerForm.get(field).valid && this.registerForm.get(field).touched) ||
+      (this.registerForm.get(field).untouched && this.registerFormSubmitted);
   }
 
   successToaster() {
