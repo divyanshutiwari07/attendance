@@ -1,0 +1,32 @@
+
+
+.emp-detail {
+  padding: 5px 25px;  
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid #bbb;
+
+  .column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    > div {
+      padding: 10px 0px;
+    }
+  }
+
+  .column.avatar {
+    flex: 0.3;
+    align-items: center;  
+    img {
+      width: 60px;
+    }
+  }
+   
+
+  
+}
+
+
+
