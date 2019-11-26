@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
+import { isNullOrUndefined } from 'util';
 
 
 
@@ -30,6 +31,11 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractData(response): Array<object> {
+    if(isNullOrUndefined(response) || isNullOrUndefined(response.data)) {
+      alert("No data found");
+      return [];
+    }
+
     const data = [];
     response.data.forEach((element) => {
       const row = {inTime: null, outTime: null, photo: null, name: null, id: 0};

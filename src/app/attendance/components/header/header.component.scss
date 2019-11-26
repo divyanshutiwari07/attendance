@@ -52,3 +52,7 @@ $topnav-background-color: #dedede;
     //     }
     // }
 }
+.dropdown-menu[x-placement="bottom-right"] {
+    right: 0;
+    left: auto;
+}
