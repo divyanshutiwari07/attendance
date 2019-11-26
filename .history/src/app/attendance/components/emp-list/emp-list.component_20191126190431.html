@@ -1,0 +1,46 @@
+    <div class="emp-list-head" >
+        <div class='column heading'>
+            <h4>EMPLOYEE LIST</h4>
+        </div>
+        <div class='column sorts'>
+            <div>Sort By: </div>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="latest_entry_time" ngbDropdownToggle>Latest Entry Time</button>
+                <div ngbDropdownMenu aria-labelledby="latest_entry_time">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>        
+        </div>
+        <div class='column filters'>            
+            <div>Filter by: </div>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="all_departments" ngbDropdownToggle>All Departments</button>
+                <div ngbDropdownMenu aria-labelledby="all_departments">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>        
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-secondary" id="arrival_time" ngbDropdownToggle>Arrival Time</button>
+                <div ngbDropdownMenu aria-labelledby="arrival_time">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>        
+        </div>
+        <div class='column action'>            
+            <div><button class="btn btn-outline-primary">Export CSV</button></div>
+        </div>
+    </div>
+
+    <!-- <div *ngFor="let employee of employees" app-emp-row [employee]="employee"></div> -->
+
+    <div class="card">
+        <div class="card-body" >
+            <div *ngFor="let employee of employees" app-emp-row [employee]="employee"></div>
+        </div>
+    </div>
