@@ -1,0 +1,115 @@
+
+
+.emp-detail {
+  padding: 5px 25px;  
+  display: flex;
+  flex-direction: row;
+  border-bottom: 2px solid #bbb;
+
+  .column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    > div {
+      padding: 10px 0px;
+    }
+  }
+
+  .column.avatar {
+    flex: 0.3;
+    align-items: center;  
+    img {
+      width: 60px;
+    }
+  }
+}
+
+
+.report {
+  padding: 8px 25px;  
+  .d-flex {
+    padding: 8px 17px;
+    
+    .column.avatar {
+      display: flex;
+      flex: 0.07; 
+      img {
+        width: 60px;
+      }
+    }
+    .column {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      > div {
+        padding: 9px 0px;
+      }
+    }
+    .report-data {
+      margin-top: 20px;
+    }
+  }
+}
+
+
+
+::ng-deep .modal-xl-custom {
+  .modal-dialog {
+    max-width: 90%;
+    width: 90%;
+  }
+}
+
+
+.not-focusable:focus {
+  outline: none;
+  box-shadow: none;
+}   
+
+
+.btn.btn-default {
+   background-color: black;
+   margin-left: 10px;
+   color:white;
+   /*justify-content: flex-start;*/
+}
+.btn {
+   border-radius: 0;   
+}
+.btn.btn-outline-dark:hover {
+  background-color: white;
+  color:#343a40;
+  
+  /*display: flex;
+  justify-content: flex-start;*/
+
+}
+.footer-btn{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  
+  .btn {  
+      flex: 0.3;
+  }
+}
+
+.btn:hover {
+  color:white; 
+}
+
+.row {
+  padding-bottom: 12px;
+}
+.forLabel {
+  font-weight: bold;
+}
+
+select {
+  padding-left: 8px;
+  select.option :disabled {
+      color: #ced4da;
+    } 
+}
