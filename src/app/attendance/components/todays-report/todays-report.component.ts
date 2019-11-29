@@ -27,7 +27,7 @@ export class TodaysReportComponent implements OnInit {
     // this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
     // .subscribe(response => console.log(response));
     this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
-    .subscribe(response => console.log(response));
+    .subscribe(response => this.empList = this.extractData(response));
   }
 
   private extractData(response): Array<object> {
@@ -57,7 +57,6 @@ export class TodaysReportComponent implements OnInit {
     console.log(response);
     return data;
   }
-
   // errorToaster() {
   //   this.notifyService.showError('Data Clear successfully !!',  'PoC');
   // }

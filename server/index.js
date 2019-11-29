@@ -8,6 +8,8 @@ app.use(bodyParser.json());
 
 var empData = require('./employee.json');
 
+var empRecord = require('./emp-record.json');
+
 app.listen(3000, () => {
  console.log("Server running on port 3000");
 });
@@ -19,5 +21,13 @@ app.post("/employee-attendance", (req, res, next) => {
 
     console.log("============ Header ==============");
     console.log(JSON.stringify(req.headers));
-    res.json(empData);
+
+    console.log(req.body.awi_label);
+
+    if( req.body.awi_label ) {
+        res.json(empRecord);
+    } else {
+        res.json(empData);
+    }
+
 });

@@ -38,10 +38,6 @@ export class EmpRowComponent implements OnInit {
   }
 
   openVerticallyCentered(content) {
-    // tslint:disable-next-line:max-line-length
-    this.apiService.getPresentEmployeesForDate({'start_time': this.getYearFirstDayStartTime, 'end_time': this.getYearLastDayEndTime, 'awi_label': this.employee.name })
-    .subscribe((response) => this.empRecord = response.data);
-
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
   }
 }

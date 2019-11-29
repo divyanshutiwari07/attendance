@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-yearly-report',
@@ -7,113 +8,62 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class YearlyReportComponent implements OnInit {
 
-  employeeYearReport: any;
   months: any;
   days: any;
+  fetching: any;
 
-  @Input() empId: any = [] ;
+  @Input() empName ;
 
   public reportMode;
 
   public employeeMonthReport;
+  public employeeYearReport;
 
-  constructor() { }
-
-  ngOnInit() {
-    this.reportMode = 'Y';
-    console.log('YearlyReportComponent::ngOnInit', 'empId:', this.empId );
-    // this.employeeYearReport = {
-    //   'Jan' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     4: null
-    //   },
-    //   'Feb' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Mar' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     25: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Apr' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     15: {inTime: '12', outTime: '233'}
-    //   },
-    //   'May' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     4: null
-    //   },
-    //   'Jun' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Jul' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     25: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Aug' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     15: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Sep' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     4: null
-    //   },
-    //   'Oct' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Nov' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     25: {inTime: '12', outTime: '233'}
-    //   },
-    //   'Dec' : {
-    //     1: {inTime: '12', outTime: '233'},
-    //     2: null,
-    //     3: {inTime: '12', outTime: '233'},
-    //     5: {inTime: '12', outTime: '233'},
-    //     15: {inTime: '12', outTime: '233'}
-    //   },
-    // };
-
-    // this.months = Object.keys(this.employeeYearReport);
-    this.days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
+  constructor(private apiService: ApiService) {
+    this.days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   }
 
-  // showMonthlyReport(month) {
-  //   this.employeeMonthReport = {
-  //     month: month,
-  //     report: this.employeeYearReport[month]
-  //   };
-  //   this.reportMode = 'M';
-  // }
+  ngOnInit() {
+    this.fetching = 1;
+    this.reportMode = 'Y';
+    console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
+    //  first and last day of current year
+
+    const yearFirstDay = (new Date(new Date().getFullYear(), 0, 1 )).setHours(0, 0, 0, 0);
+    const yearLastDay = (new Date(new Date().getFullYear(), 11, 31)).setHours(23, 59, 59, 999);
+
+    // this.months = Object.keys(this.employeeYearReport);
+    // tslint:disable-next-line:max-line-length
+    this.apiService.getPresentEmployeesForDate({
+      'start_time': yearFirstDay, 'end_time': yearLastDay, 'awi_label': this.empName
+    }).subscribe((response) => {
+      this.fetching = 0;
+      this.employeeYearReport = response.data;
+    });
+  }
+
+  showMonthlyReport(month) {
+    this.employeeMonthReport = {
+      month: month,
+      report: this.employeeYearReport[month]
+    };
+    this.reportMode = 'M';
+  }
+
+
+  getMonthNumber(monthName) {
+    const monthNumber = ('JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(monthName) / 3) + 1;
+    return String('0' + monthNumber).slice(-2);
+
+  }
+
+  checkIfPresentOnThisDate(day, monthName) {
+    let monthNumber = this.getMonthNumber(monthName);
+    return this.employeeYearReport.find(o => {
+      return o.timestamp === (day + '-' + monthNumber + '-2019');
+    });
+  }
+
 
 }
