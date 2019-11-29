@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "msg": "Data Found",
+  "data": [
+    {
+      "timestamp": "29-11-2019",
+      "week": 47,
+      "day_of_week": 6,
+      "day_of_year": 333,
+      "day_of_month": 29,
+      "awi_label": "piyush",
+      "first_presence": "2019-11-29T05:53:45.593Z",
+      "last_presence": "2019-11-29T07:01:21.343Z"
+    },
+    {
+      "timestamp": "26-11-2019",
+      "week": 47,
+      "day_of_week": 3,
+      "day_of_year": 330,
+      "day_of_month": 26,
+      "awi_label": "piyush",
+      "first_presence": "2019-11-26T12:41:25.430Z",
+      "last_presence": "2019-11-26T13:39:37.865Z"
+    },
+    {
+      "timestamp": "25-11-2019",
+      "week": 47,
+      "day_of_week": 2,
+      "day_of_year": 329,
+      "day_of_month": 25,
+      "awi_label": "piyush",
+      "first_presence": "2019-11-25T08:20:27.373Z",
+      "last_presence": "2019-11-25T08:20:27.887Z"
+    }
+  ]
+}
+
+
