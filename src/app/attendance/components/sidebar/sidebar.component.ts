@@ -134,48 +134,31 @@ export class SidebarComponent implements OnInit {
 //   }
 
   onSubmit() {
-        // console.log(this.register);
-        console.log(this.files);
-      this.registerFormSubmitted = true;
-        console.log(this.registerForm);
-     if (this.registerForm.valid) {
+    console.log(this.files);
+    this.registerFormSubmitted = true;
+    console.log(this.registerForm);
+    if (this.registerForm.valid && this.files) {
         const formData = new FormData();
         formData.append('awi_label', this.registerForm.get('label').value);
         formData.append('awi_class', 'awi_face');
         formData.append('awi_severity', this.registerForm.get('severity').value);
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
 
-        if ( isNullOrUndefined(this.files)) {
-            console.log('image is not choosen');
-        } else {
-            this.files.forEach((file) => {
-            formData.append('file', file);
-        });
-        }
-
-
-        // show data in formData
-        // for (var key of formData.entries()) {
-        //     console.log(key[0] + ': ' + key[1]);
-        // }
+         this.files.forEach((file) => {
+             formData.append('file', file);
+         });
 
         this.modalReference.close();
         this.successToaster();
         this.apiService.register(formData).subscribe(response => console.log(response));
-    } else {
-
     }
 
   }
 
-//   isFieldValid(field: string) {
-//     return (!this.registerForm.get(field).valid && this.registerForm.get(field).touched) ||
-//       (this.registerForm.get(field).untouched && this.registerFormSubmitted);
-//   }
-
   successToaster() {
     this.notifyService.showSuccess('New Register Object is saved !!',  'Register Object');
   }
+
   check() {
       console.log('worked');
   }
