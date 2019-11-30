@@ -1,0 +1,29 @@
+<div class="col-md-12 monthly-report">
+    <div class="header d-flex">
+        <div class="column">Total leaves this month: 6%</div>
+        <div class="column">{{monthReport.month}}</div>
+        <div class="column">Attendance % this month: 94%</div>            
+    </div>
+    <div class="record table-responsive">
+        <table class="table">
+            <thead>
+                <th>Date</th>
+                <th>In Time</th>
+                <th>Out Time</th>                    
+            </thead>
+            <tr *ngFor="let day of days" >
+                <td >
+                    {{day}} {{monthReport.month}} 
+                </td>
+                <td>
+                        {{ checkIfPresentOnThisDate(day, monthReport.month) ? checkIfPresentOnThisDates(day, monthReport.month) : 'A'}}
+                    <!-- {{monthReport.report[day] != null ? monthReport.report[day].inTime : '-'}} -->
+                </td>
+                <td>
+                        {{ checkIfPresentOnThisDate(day, monthReport.month) ? 'P' : 'A'}}
+                    <!-- {{monthReport.report[day] != null ? monthReport.report[day].outTime : '-'}} -->
+                </td>                    
+            </tr>
+        </table>    
+    </div>
+</div>
