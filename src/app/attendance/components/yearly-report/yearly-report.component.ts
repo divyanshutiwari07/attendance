@@ -18,6 +18,7 @@ export class YearlyReportComponent implements OnInit {
 
   public employeeMonthReport;
   public employeeYearReport;
+  private selectedYear;
 
   constructor(private apiService: ApiService) {
     // tslint:disable-next-line:max-line-length
@@ -26,6 +27,7 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.selectedYear = '2019';
     this.fetching = 1;
     this.reportMode = 'Y';
     console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
@@ -47,9 +49,17 @@ export class YearlyReportComponent implements OnInit {
   showMonthlyReport(month) {
     this.employeeMonthReport = {
       month: month,
-      report: this.employeeYearReport,
+      year: this.selectedYear,
+      report: this.getMonthReport(month),
     };
     this.reportMode = 'M';
+  }
+
+  getMonthReport(month) {
+    const monthNumber = this.getMonthNumber(month);
+    return this.employeeYearReport.filter(o => {
+      return o.timestamp.split('-')[1] === monthNumber && o.timestamp.split('-')[2] === this.selectedYear;
+    });
   }
 
 

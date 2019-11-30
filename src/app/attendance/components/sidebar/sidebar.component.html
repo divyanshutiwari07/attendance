@@ -27,10 +27,19 @@
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="uploadImage" class='forLabel'>Upload Image<span class="required"> *</span></label>
-                        <button ngfSelect type="button" class="btn btn-default not-focusable" [(files)]="files"                         
+                        <button ngfSelect type="button" class="btn btn-default not-focusable" [(files)]="files"
                             accept="image/*" multiple="1" required>
                             Browse
-                        </button>        
+                        </button>
+<!--                      <div *ngIf="registerFormSubmitted && !files" class="invalid-feedback">-->
+<!--                          <div *ngIf="registerFormSubmitted && !files">Label is required</div>-->
+<!--                      </div>-->
+                      <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && !files}">
+                          <div>Atleast 1 file is required</div>
+                      </div>
+
+
+<!--                          {{registerFormSubmitted ? files.length : "sdfdsf"}}-->
                                            
                         
                         <!-- <ngfFormData
