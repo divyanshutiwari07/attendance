@@ -34,7 +34,7 @@ export class MonthlyReportComponent implements OnInit {
 
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = this.getMonthNumber(monthName);
-    return this.monthReport.report.find(o => {
+    return this.monthReport.find(o => {
       return o.timestamp === (day + '-' + monthNumber + '-2019');
     });
   }

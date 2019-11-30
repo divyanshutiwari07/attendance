@@ -11,18 +11,18 @@
                 <th>In Time</th>
                 <th>Out Time</th>                    
             </thead>
-            <tr *ngFor="let day of days" >
+            <tr *ngFor="let month of monthReport.report" >
                 <td >
-                    {{day}} {{monthReport.month}} 
+                    {{month.month}} 
                 </td>
                 <td>
-                        {{ checkIfPresentOnThisDate(day, monthReport.month) ? 'P' : 'A'}}
+                        <!-- {{ checkIfPresentOnThisDate(index + 1, monthReport.month) ? "P" : 'A'}} -->
                     <!-- {{monthReport.report[day] != null ? monthReport.report[day].inTime : '-'}} -->
                 </td>
                 <td>
                     <!-- {{monthReport.report[day] != null ? monthReport.report[day].outTime : '-'}} -->
                 </td>                    
             </tr>
-        </table>    
+        </table>
     </div>
 </div>

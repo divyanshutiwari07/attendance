@@ -30,6 +30,6 @@ const configs = {
   PRODUCTION: {
     TODAYS_ATTENDANCE : SERVER_URL + PORT + '/awiros_ms/attendence/api/console_data'
   }
-};
+}
 
 export const config = configs[devMode];

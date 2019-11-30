@@ -47,7 +47,7 @@ export class YearlyReportComponent implements OnInit {
   showMonthlyReport(month) {
     this.employeeMonthReport = {
       month: month,
-      report: this.employeeYearReport,
+      report: this.employeeYearReport
     };
     this.reportMode = 'M';
   }
