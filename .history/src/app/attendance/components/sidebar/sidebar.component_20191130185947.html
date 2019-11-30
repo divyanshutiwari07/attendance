@@ -10,14 +10,14 @@
         </a>
         <a role="button" class="list-group-item" (click)="openVerticallyCentered(content)">
             <i class="fa fa-fw  fa-registered"></i>&nbsp;
-            <span>{{ 'New Register' }}</span>
+            <span>{{ 'Register' }}</span>
         </a>
         <hr >
 
         <!-- modal -->    
         <ng-template #content let-modal>
             <div class="modal-header">
-                <h4 class="modal-title">New Register</h4>
+                <h4 class="modal-title">Register Objects</h4>
                 
             </div>
             <div class="modal-body">
@@ -62,21 +62,21 @@
                     </div>
                     <div class="row">
                       <div class="col-md-12" >
-                        <label for="label" class='forLabel'>Name<span class="required"> *</span></label>
-                        <input type="text" autocomplete="off" placeholder="enter your name" class="form-control" name='lebel' id='lebel' formControlName="label" 
+                        <label for="label" class='forLabel'>Label<span class="required"> *</span></label>
+                        <input type="text" autocomplete="off" placeholder="give a label to an object" class="form-control" name='lebel' id='lebel' formControlName="label" 
                             [ngClass]="{ 'is-invalid': registerFormSubmitted && label.invalid }" required>                            
                         <div *ngIf="registerFormSubmitted && label.invalid" class="invalid-feedback">
-                            <div *ngIf="label.errors['required']">Name is required</div>
+                            <div *ngIf="label.errors['required']">Label is required</div>
                         </div>                        
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12" >
-                        <label for="subClass" class='forLabel'>Department<span class="required"> *</span></label>
-                        <input type="text" autocomplete="off" placeholder="department" class="form-control" formControlName="subClass" name='subClass' id='subClass'
+                        <label for="subClass" class='forLabel'>Subclass<span class="required"> *</span></label>
+                        <input type="text" autocomplete="off" placeholder="categories object in subclasses" class="form-control" formControlName="subClass" name='subClass' id='subClass'
                           [ngClass]="{ 'is-invalid': registerFormSubmitted && subClass.invalid }" required>
                         <div *ngIf="registerFormSubmitted && subClass.invalid" class="invalid-feedback">
-                            <div *ngIf="subClass.errors['required']">Department is required</div>
+                            <div *ngIf="subClass.errors['required']">Subclass is required</div>
                         </div>
                       </div>
                     </div>
