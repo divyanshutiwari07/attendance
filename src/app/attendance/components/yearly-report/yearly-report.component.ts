@@ -113,7 +113,7 @@ export class YearlyReportComponent implements OnInit {
   getMonthReport(month) {
     const monthNumber = this.getMonthNumber(month);
     return this.employeeYearReport.filter(o => {
-      return o.timestamp.split('-')[1] === monthNumber && o.timestamp.split('-')[2] === this.selectedYear;
+      return o.timestamp.split('-')[1] === monthNumber && o.timestamp.split('-')[2] === this.selectedYear.year.toString();
     });
   }
 

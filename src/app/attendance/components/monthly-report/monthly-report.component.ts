@@ -14,12 +14,14 @@ export class MonthlyReportComponent implements OnInit {
   @Input() monthReport;
 
   private month;
+  private formattedReport;
 
   constructor() {}
 
   ngOnInit() {
     console.log(this.monthReport);
-    this.days = Utils.getDateObjectsInMonth( parseInt(Utils.getMonthNumber(this.monthReport.month), 0) - 1, this.monthReport.year);
+
+    this.days = Utils.getDateObjectsInMonth( parseInt(Utils.getMonthNumber(this.monthReport.month), 0) - 1, this.monthReport.year.year);
 
     const monthReport = [];
     this.days.forEach((day) => {
@@ -30,14 +32,14 @@ export class MonthlyReportComponent implements OnInit {
         monthReport.push({day_of_month: day.getDate()});
       }
     });
-    this.monthReport.report = monthReport;
+    this.formattedReport = monthReport;
 
   }
 
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = Utils.getMonthNumber(monthName);
     return this.monthReport.report.find(o => {
-      return o.timestamp === (day + '-' + monthNumber + '-' + this.monthReport.year);
+      return o.timestamp === (day + '-' + monthNumber + '-' + this.monthReport.year.year);
     });
   }
 
