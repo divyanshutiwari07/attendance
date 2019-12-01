@@ -22,7 +22,7 @@ export class EmpRowComponent implements OnInit {
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
-    elementId: 'yearly_report', // the id of html/table element
+    elementId: 'employee_report', // the id of html/table element
   };
 
   constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
@@ -57,9 +57,9 @@ export class EmpRowComponent implements OnInit {
     this.yearlyReport = yearlyReport;
   }
 
-  exportEmployeeYearReport() {
-    this.exportAsService.save(this.exportAsConfig, 'My File Name').subscribe(() => {
-      // save started
+  exportEmployeeYearReport(fileName) {
+    this.exportAsService.save(this.exportAsConfig, fileName).subscribe(() => {
+
     });
   }
 }

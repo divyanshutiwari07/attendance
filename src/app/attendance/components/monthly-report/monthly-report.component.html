@@ -5,23 +5,27 @@
         <div class="column">Attendance % this month: 94%</div>            
     </div>
     <div class="record table-responsive">
-        <table class="table">
+        <table class="table" id="employee_report">
             <thead>
-                <th>Date</th>
-                <th>In Time</th>
-                <th>Out Time</th>                    
+                <tr>
+                    <th>Date</th>
+                    <th>In Time</th>
+                    <th>Out Time</th>
+                </tr>
             </thead>
-            <tr *ngFor="let day of monthReport.report" >
-                <td >
-                    {{day.day_of_month}} {{monthReport.month}}
-                </td>
-                <td>
-                    {{day.first_presence ? (day.first_presence | date:'h:mm:ss a') : '-'}}
-                </td>
-                <td>
-                    {{day.last_presence ? (day.last_presence | date:'h:mm:ss a') : '-'}}
-                </td>                    
-            </tr>
+            <tbody>
+                <tr *ngFor="let day of monthReport.report" >
+                    <td >
+                        {{day.day_of_month}} {{monthReport.month}}
+                    </td>
+                    <td>
+                        {{day.first_presence ? (day.first_presence | date:'h:mm:ss a') : '-'}}
+                    </td>
+                    <td>
+                        {{day.last_presence ? (day.last_presence | date:'h:mm:ss a') : '-'}}
+                    </td>
+                </tr>
+            </tbody>
         </table>    
     </div>
 </div>

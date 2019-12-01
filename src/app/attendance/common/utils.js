@@ -28,3 +28,12 @@ export function getFormattedCSVdata(data, mapTo) {
     });
     return formattedData;
 }
+
+export function getStartTimeStampOfYear(year) {
+    return (new Date(year, 0, 1 )).setHours(0, 0, 0, 0);
+}
+export function getEndTimeStampOfYear(year) {
+    return (new Date(year, 11, 31)).setHours(23, 59, 59, 999);
+}
+
+

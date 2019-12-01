@@ -1,6 +1,16 @@
  <div class="report-container">
 
-    <button class="btn btn-outline-primary go-back" *ngIf="reportMode == 'M'" (click)="reportMode = 'Y'">Go Back</button>
+     <button class="btn btn-outline-primary go-back" *ngIf="reportMode == 'M'" (click)="reportMode = 'Y'">Go Back</button>
+
+     <select class="go-back form-control" *ngIf="reportMode == 'Y'"
+             [(ngModel)]="selectedYear" name='year' id='year' required
+             (change)="getEmployeeRecordForYear()">
+
+         <option value="" disabled="true" hidden>Select year</option>
+         <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+
+     </select>
+
     <div class="col-md-12 yearly-report" *ngIf="reportMode == 'Y'">
         <div class="header d-flex">
             <div class="column">Attendance % this year: 94%</div>
@@ -8,7 +18,8 @@
             <div class="column">Attendance % this year: 94%</div>
         </div>
         <div class="record ">
-            <table class="table" *ngIf="!fetching" id="yearly_report">
+<!--            <p *ngIf="fetching">Fetching record</p>-->
+            <table class="table" *ngIf="!fetching" id="employee_report">
                 <thead>
                     <tr>
                         <th>Months/Dates</th>

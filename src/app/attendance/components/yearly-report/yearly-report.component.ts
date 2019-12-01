@@ -1,5 +1,8 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ApiService} from '../../services/api.service';
+import * as Utils from '../../common/utils';
+
+const BACK_YEARS_COUNT = 5;
 
 @Component({
   selector: 'app-yearly-report',
@@ -16,31 +19,48 @@ export class YearlyReportComponent implements OnInit {
   @Output() yearlyReportResponse: EventEmitter<any> = new EventEmitter<any>();
 
   public reportMode;
-
   public employeeMonthReport;
   public employeeYearReport;
   private selectedYear;
+  private years = [];
 
   constructor(private apiService: ApiService) {
+
+    console.log("I got instantiated for very first time");
     // tslint:disable-next-line:max-line-length
     this.days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    this.initializeYearDropdown();
   }
 
   ngOnInit() {
-    this.selectedYear = '2019';
-    this.fetching = 1;
+    this.selectedYear = this.years[0];
     this.reportMode = 'Y';
     console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
-    //  first and last day of current year
 
-    const yearFirstDay = (new Date(new Date().getFullYear(), 0, 1 )).setHours(0, 0, 0, 0);
-    const yearLastDay = (new Date(new Date().getFullYear(), 11, 31)).setHours(23, 59, 59, 999);
+    this.getEmployeeRecordForYear();
+  }
 
-    // this.months = Object.keys(this.employeeYearReport);
-    // tslint:disable-next-line:max-line-length
+  initializeYearDropdown() {
+    for( let i = 0; i < BACK_YEARS_COUNT; i++ ) {
+      const row = {year: null, startTimeStamp: null, endTimeStamp: null};
+      const year = new Date().getFullYear() - i;
+      row.year = year;
+      row.startTimeStamp = Utils.getStartTimeStampOfYear(year);
+      row.endTimeStamp = Utils.getEndTimeStampOfYear(year);
+      this.years.push( row );
+    }
+
+    console.log("years" , this.years);
+  }
+
+  getEmployeeRecordForYear() {
+    this.fetching = 1;
     this.apiService.getPresentEmployeesForDate({
-      'start_time': yearFirstDay, 'end_time': yearLastDay, 'awi_label': this.empName
+      'start_time': this.selectedYear.startTimeStamp,
+      'end_time': this.selectedYear.endTimeStamp,
+      'awi_label': this.empName
     }).subscribe((response) => {
       this.fetching = 0;
       this.employeeYearReport = response.data;
