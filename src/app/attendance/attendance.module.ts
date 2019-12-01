@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { ExportAsModule } from 'ngx-export-as';
 
 import { AttendanceRoutingModule } from './attendance-routing.module';
 import { TodaysReportComponent } from './components/todays-report/todays-report.component';
@@ -41,7 +42,8 @@ import { YearlyReportComponent } from './components/yearly-report/yearly-report.
     TranslateModule,
     FormsModule,
     ngfModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ExportAsModule
   ],
   bootstrap: [AttendanceComponent],
   providers: [ ],

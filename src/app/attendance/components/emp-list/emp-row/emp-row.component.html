@@ -35,10 +35,11 @@
             </div>            
         </div>
         <div class="report-data">
-            <app-yearly-report [empName]="employee.name"></app-yearly-report>
+            <app-yearly-report [empName]="employee.name" (yearlyReportResponse)="enableExportButton($event)"></app-yearly-report>
         </div>
     </div>
     <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+            <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="exportEmployeeYearReport()">Export CSV</button></div>
     </div>
 </ng-template>

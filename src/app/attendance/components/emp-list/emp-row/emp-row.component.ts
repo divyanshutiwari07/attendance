@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ApiService } from '../../../services/api.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 
 
 @Component({
@@ -17,10 +17,20 @@ export class EmpRowComponent implements OnInit {
   getYearLastDayEndTime: any;
   getYearFirstDayStartTime: any;
   empRecord: any = [];
+  private disableExportButton;
 
-  constructor(private modalService: NgbModal, private apiService: ApiService) { }
+  private yearlyReport;
+  exportAsConfig: ExportAsConfig = {
+    type: 'csv', // the type you want to download
+    elementId: 'yearly_report', // the id of html/table element
+  };
+
+  constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
 
   ngOnInit() {
+
+    this.disableExportButton = true;
+
     //  first and last day of current year
     const getYearFirstDay = new Date(new Date().getFullYear(), 0, 1 );
     const getYearLastDay = new Date(new Date().getFullYear(), 11, 31);
@@ -39,6 +49,18 @@ export class EmpRowComponent implements OnInit {
 
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
+  }
+
+  enableExportButton(yearlyReport) {
+    this.disableExportButton = false;
+    console.log('enableExportButton:', yearlyReport);
+    this.yearlyReport = yearlyReport;
+  }
+
+  exportEmployeeYearReport() {
+    this.exportAsService.save(this.exportAsConfig, 'My File Name').subscribe(() => {
+      // save started
+    });
   }
 }
 

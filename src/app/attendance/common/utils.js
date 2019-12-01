@@ -16,3 +16,15 @@ export function getMonthNumber(monthName) {
 export function getDayCountInMonth (month, year) {
     return new Date(year, month, 0).getDate();
 }
+
+export function getFormattedCSVdata(data, mapTo) {
+    const formattedData = [];
+    data.forEach(employee => {
+        const row = {};
+        for(const key in mapTo) {
+            row[ mapTo[key] ] = employee[key];
+        }
+        formattedData.push(row);
+    });
+    return formattedData;
+}

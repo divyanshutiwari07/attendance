@@ -39,11 +39,11 @@ export class TodaysReportComponent implements OnInit {
 
     const data = [];
     response.data.forEach((element) => {
-      const row = {inTime: null, outTime: null, photo: null, name: null, id: 0};
+      const row = {name: null, inTime: null, outTime: null, photo: null, id: 0};
 
+      row.name = element.awi_label;
       row.inTime = element.first_presence;
       row.outTime = element.last_presence;
-      row.name = element.awi_label;
 
       // Hard code emp Id
       // row.id = 123 + key;

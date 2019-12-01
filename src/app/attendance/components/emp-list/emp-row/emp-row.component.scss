@@ -74,4 +74,9 @@
     max-width: 90%;
     width: 90%;
   }
+
+  .modal-body{
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class YearlyReportComponent implements OnInit {
   fetching: any;
 
   @Input() empName ;
+  @Output() yearlyReportResponse: EventEmitter<any> = new EventEmitter<any>();
 
   public reportMode;
 
@@ -43,6 +44,7 @@ export class YearlyReportComponent implements OnInit {
     }).subscribe((response) => {
       this.fetching = 0;
       this.employeeYearReport = response.data;
+      this.yearlyReportResponse.emit(response.data);
     });
   }
 
@@ -74,6 +76,5 @@ export class YearlyReportComponent implements OnInit {
       return o.timestamp === (day + '-' + monthNumber + '-2019');
     });
   }
-
 
 }
