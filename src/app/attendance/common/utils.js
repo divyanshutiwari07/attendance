@@ -13,6 +13,15 @@ export function getMonthNumber(monthName) {
     return String('0' + monthNumber).slice(-2);
 }
 
+export function padStart(str, pad, length) {
+    return String(pad + str).slice(length * -1);
+}
+
+export function getMonthName(monthNumber) {
+    const date = new Date(1970, parseInt(monthNumber) - 1, 1);  // 2009-11-10
+    return date.toLocaleString('default', { month: 'short' });
+}
+
 export function getDayCountInMonth (month, year) {
     return new Date(year, month, 0).getDate();
 }

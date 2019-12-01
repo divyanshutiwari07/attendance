@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
+import {split} from 'ts-node';
 
 const BACK_YEARS_COUNT = 5;
 
@@ -21,12 +22,11 @@ export class YearlyReportComponent implements OnInit {
   public reportMode;
   public employeeMonthReport;
   public employeeYearReport;
+  public formattedYearReport;
   private selectedYear;
   private years = [];
 
   constructor(private apiService: ApiService) {
-
-    console.log("I got instantiated for very first time");
     // tslint:disable-next-line:max-line-length
     this.days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -65,6 +65,7 @@ export class YearlyReportComponent implements OnInit {
       this.fetching = 0;
       this.employeeYearReport = response.data;
       this.yearlyReportResponse.emit(response.data);
+      // this.genrateFormattedReport();
     });
   }
 
@@ -76,6 +77,38 @@ export class YearlyReportComponent implements OnInit {
     };
     this.reportMode = 'M';
   }
+  //
+  // genrateFormattedReport() {
+  //   const formattedYearReport = {monthReport: {}, presentCount: 0, ...this.selectedYear};
+  //
+  //   this.employeeYearReport.forEach( record => {
+  //     const date =  parseInt(record.timestamp.split('-')[0], 0);
+  //     const month = Utils.getMonthName( record.timestamp.split('-')[1] );
+  //
+  //     if( !formattedYearReport.monthReport[ month ] ) {
+  //       formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
+  //     }
+  //     formattedYearReport.monthReport[ month ].detail[date] = record;
+  //     formattedYearReport.monthReport[ month ].presentCount += 1;
+  //
+  //     formattedYearReport.presentCount += 1;
+  //   });
+  //
+  //   this.months.forEach( month => {
+  //     const dayCount =  Utils.getDayCountInMonth(month);
+  //     for( let d = 1; d <= dayCount; d++ ) {
+  //       if( !formattedYearReport.monthReport[ month ] ) {
+  //         formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
+  //       }
+  //       formattedYearReport.monthReport[ month ].detail[d] = {};
+  //
+  //       formattedYearReport.presentCount += 1;
+  //     }
+  //   });
+  //
+  //   this.formattedYearReport = formattedYearReport;
+  //   console.log( this.formattedYearReport );
+  // }
 
   getMonthReport(month) {
     const monthNumber = this.getMonthNumber(month);
