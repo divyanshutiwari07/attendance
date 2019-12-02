@@ -1,0 +1,10 @@
+<div class="col-md-3  d-flex select-year">
+    <span class="">Select Year: </span>
+    <select class=" form-control"
+            [(ngModel)]='selectedValue' name='year' id='year' required
+            (change)="changeCallBack()">
+
+    <option value="" disabled="true" hidden>Select year</option>
+    <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+</select>
+</div>

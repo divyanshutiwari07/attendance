@@ -21,6 +21,7 @@ import { AttendanceStatsComponent } from './components/attendance-stats/attendan
 import {ngfModule} from 'angular-file';
 import { MonthlyReportComponent } from './components/monthly-report/monthly-report.component';
 import { YearlyReportComponent } from './components/yearly-report/yearly-report.component';
+import { YearDropDownComponent } from './common/components/year-drop-down/year-drop-down.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { YearlyReportComponent } from './components/yearly-report/yearly-report.
     AttendanceStatsComponent,
     MonthlyReportComponent,
     YearlyReportComponent,
+    YearDropDownComponent,
   ],
   imports: [
     CommonModule,

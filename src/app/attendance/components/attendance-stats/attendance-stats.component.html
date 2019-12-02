@@ -6,20 +6,21 @@
   </div>
   <hr>
 
-  <!-- <div class="row p-3 d-flex">
+   <div class="row p-3 d-flex">
     <div class="col-12 col-lg-12  ">
-      <span class='span-heading d-flex'><h4>Monthly Attendance </h4></span> 
+      <span class='span-heading d-flex'><h4>Monthly Attendance </h4></span>
       <div class="col-md-3  d-flex select-year">
-          <span class="span-title d-flex">Select Year: </span> <select class=" form-control"
-                  [(ngModel)]='selectYear' name='year' id='year' required
-                  (change)="getEmployeeRecordForYear()">
-  
-              <option value="" disabled="true" hidden>Select year</option>
-              <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
-          </select>
+          <span class="span-title d-flex">Select Month: </span>
+            <select class=" form-control"
+                  [(ngModel)]='selectedMonth' name='year' required
+                  (change)="getAllEmployeeForSelectedMonth()">
+
+              <option value="" disabled="true" hidden>Select month</option>
+              <option *ngFor="let month of months" [ngValue]="month">{{month.name}}</option>
+            </select>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <div class="row">
     <div class="col col-sm-3" >
@@ -44,6 +45,16 @@
       <h4>Yearly Attendance </h4>
     </div>
   </div>
+    <div class="col-md-3  d-flex select-year">
+        <span class="">Select Year: </span>
+        <select class=" form-control"
+                [(ngModel)]='selectedYear' name='year' required
+                (change)="getYearReportForAllEmployees()">
+            <option value="" disabled="true" hidden>Select year</option>
+            <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+        </select>
+    </div>
+
 
   <div class="row">
     <div class="col col-sm-3" >
