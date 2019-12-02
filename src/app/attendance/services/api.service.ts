@@ -25,5 +25,8 @@ export class ApiService {
     return this.http.post(config.TODAYS_ATTENDANCE, obj);
   }
 
+  getChartData(obj): Observable <any> {
+    return this.http.post(config.TODAYS_ATTENDANCE, obj);
+  }
 }
 

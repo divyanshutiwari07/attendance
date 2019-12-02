@@ -71,24 +71,28 @@ canvas {
 margin: -5px -5px;
 }
 
-// #chartjs-tooltip {
-// 	opacity: 0;
-// 	position: absolute;
-// 	background: rgba(0, 0, 0, .7);
-// 	color: white;
-// 	padding: 3px;
-// 	border-radius: 3px;
-// 	-webkit-transition: all .1s ease;
-// 	transition: all .1s ease;
-// 	pointer-events: none;
-// 	-webkit-transform: translate(-50%, 0);
-// 	transform: translate(-50%, 0);
+// .row{
+// 	flex-direction: row;
+// 	.span-heading{
+// 		flex: 1;
+// 	}
+// 	.select-year{
+// 		flex: 1;
+// 		// margin-top: -60px;
+// 		// margin-right: -74px;
+// 		// float: right;
+// 		.heading{
+// 			display: flex;
+// 			align-items: center;
+// 			.span-title{
+// 				display: flex;
+// 				align-items: center;
+// 			}
+// 			select{
+// 					width: 6em;
+// 					margin-left: 6px;
+// 			}		
+// 		}
+// 	}
 // }
 
-// .attendance-stats {
-// 	background-color: #f8f9fa;
-// }
-
-// .card {
-// 	background-color: black;
-// }

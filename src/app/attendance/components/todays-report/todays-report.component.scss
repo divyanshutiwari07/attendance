@@ -22,3 +22,27 @@
 
     }
 }
+
+.div-as-btn {
+    // display:block;
+    color:#444;
+    // box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+    cursor:pointer;
+}
+.div-as-btn:active {
+    padding: 0px;  
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+.div-as-btn:hover {
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+    
+}
+
+.search-bar{
+    margin-right: 7px;
+    padding-bottom: 15px;
+    input{
+        margin: auto;
+    }
+}
+

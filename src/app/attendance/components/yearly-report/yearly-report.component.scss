@@ -1,10 +1,24 @@
 .report-container {
     
-    // button.go-back {
-    //     margin-top: -60px;
-    //     margin-right: 15px;
-    //     float: right;
-    // }
+    button.go-back {
+        margin-top: -60px;
+        margin-right: 15px;
+        float: right;
+    }
+
+    .select-year{
+        margin-top: -60px;
+        margin-right: -74px;
+        float: right;
+        span{
+            display: flex;
+            align-items: center;
+        }
+        select{
+            width: 6em;
+            margin-left: 6px;
+        }
+    }
 
     .yearly-report {
         .header {

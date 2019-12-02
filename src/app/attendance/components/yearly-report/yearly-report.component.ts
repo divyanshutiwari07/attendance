@@ -23,8 +23,8 @@ export class YearlyReportComponent implements OnInit {
   public employeeMonthReport;
   public employeeYearReport;
   public formattedYearReport;
-  private selectedYear;
-  private years = [];
+  public selectedYear;
+  public years = [];
 
   constructor(private apiService: ApiService) {
     // tslint:disable-next-line:max-line-length
@@ -43,7 +43,7 @@ export class YearlyReportComponent implements OnInit {
   }
 
   initializeYearDropdown() {
-    for( let i = 0; i < BACK_YEARS_COUNT; i++ ) {
+    for ( let i = 0; i < BACK_YEARS_COUNT; i++ ) {
       const row = {year: null, startTimeStamp: null, endTimeStamp: null};
       const year = new Date().getFullYear() - i;
       row.year = year;
@@ -52,7 +52,7 @@ export class YearlyReportComponent implements OnInit {
       this.years.push( row );
     }
 
-    console.log("years" , this.years);
+    console.log('years' , this.years);
   }
 
   getEmployeeRecordForYear() {

@@ -2,14 +2,15 @@
 
      <button class="btn btn-outline-primary go-back" *ngIf="reportMode == 'M'" (click)="reportMode = 'Y'">Go Back</button>
 
-     <select class="go-back form-control" *ngIf="reportMode == 'Y'"
-             [(ngModel)]="selectedYear" name='year' id='year' required
-             (change)="getEmployeeRecordForYear()">
+     <div class="col-md-3  d-flex select-year">
+        <span class="">Select Year: </span> <select class=" form-control" *ngIf="reportMode == 'Y'"
+                [(ngModel)]='selectedYear' name='year' id='year' required
+                (change)="getEmployeeRecordForYear()">
 
-         <option value="" disabled="true" hidden>Select year</option>
-         <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
-
-     </select>
+            <option value="" disabled="true" hidden>Select year</option>
+            <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+        </select>
+    </div>
 
     <div class="col-md-12 yearly-report" *ngIf="reportMode == 'Y'">
         <div class="header d-flex">

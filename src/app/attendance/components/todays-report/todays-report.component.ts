@@ -31,8 +31,8 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractData(response): Array<object> {
-    if (isNullOrUndefined(response) || isNullOrUndefined(response.data)) {
-      alert('No data found');
+    if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === 'false') {
+      this.errorToaster();
       console.log('todays data not found');
       return [];
     }
@@ -57,9 +57,15 @@ export class TodaysReportComponent implements OnInit {
     console.log(response);
     return data;
   }
-  // errorToaster() {
-  //   this.notifyService.showError('Data Clear successfully !!',  'PoC');
-  // }
+  errorToaster() {
+    this.notifyService.showError('No Data Found!!',  'Today\'s Attendance');
+  }
 
+  presentOnPremises() {
+    console.log('yes div 1 as btn');
+  }
 
+  absent() {
+    console.log('yes div 2 as btn');
+  }
 }

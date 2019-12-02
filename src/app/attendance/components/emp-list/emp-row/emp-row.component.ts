@@ -12,12 +12,12 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 export class EmpRowComponent implements OnInit {
 
   @Input() employee: any = {};
-  getMonthFirstDayStartTime: any;
-  getMonthLastDayEndTime: any;
-  getYearLastDayEndTime: any;
-  getYearFirstDayStartTime: any;
+  // getMonthFirstDayStartTime: any;
+  // getMonthLastDayEndTime: any;
+  // getYearLastDayEndTime: any;
+  // getYearFirstDayStartTime: any;
   empRecord: any = [];
-  private disableExportButton;
+  public disableExportButton;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -31,19 +31,19 @@ export class EmpRowComponent implements OnInit {
 
     this.disableExportButton = true;
 
-    //  first and last day of current year
-    const getYearFirstDay = new Date(new Date().getFullYear(), 0, 1 );
-    const getYearLastDay = new Date(new Date().getFullYear(), 11, 31);
-    this.getYearFirstDayStartTime = getYearFirstDay.setHours(0, 0, 0, 0);
-    this.getYearLastDayEndTime = getYearLastDay.setHours(23, 59, 59, 999);
+    // //  first and last day of current year
+    // const getYearFirstDay = new Date(new Date().getFullYear(), 0, 1 );
+    // const getYearLastDay = new Date(new Date().getFullYear(), 11, 31);
+    // this.getYearFirstDayStartTime = getYearFirstDay.setHours(0, 0, 0, 0);
+    // this.getYearLastDayEndTime = getYearLastDay.setHours(23, 59, 59, 999);
 
-    // first and last day of current month
+    // // first and last day of current month
 
-    const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    const getMonthFirstDay = new Date(y, m, 1);
-    const getMonthLastDay = new Date(y, m + 1, 0);
-    this.getMonthFirstDayStartTime = getMonthFirstDay.setHours(0, 0, 0, 0);
-    this.getMonthLastDayEndTime = getMonthLastDay.setHours(23, 59, 59, 999);
+    // const date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    // const getMonthFirstDay = new Date(y, m, 1);
+    // const getMonthLastDay = new Date(y, m + 1, 0);
+    // this.getMonthFirstDayStartTime = getMonthFirstDay.setHours(0, 0, 0, 0);
+    // this.getMonthLastDayEndTime = getMonthLastDay.setHours(23, 59, 59, 999);
 
   }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 import { GetRandomColorService } from '../../services/get-random-color.service';
-import { isNullOrUndefined } from 'util';
+import { ApiService } from '../../services/api.service';
+
 
 
 @Component({
@@ -12,10 +13,17 @@ import { isNullOrUndefined } from 'util';
 export class AttendanceStatsComponent implements OnInit {
   LineChart: any = [];
   PieChart: any = [];
+  public chartData;
 
-  constructor(private randomColor: GetRandomColorService) { }
+  constructor(private randomColor: GetRandomColorService , private apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.getPresentEmployeesForDate({'start_time': 1546281000000, 'end_time': 1577816999999, 'awi_chart_data': true })
+    .subscribe(response => {
+      this.chartData = response.data;
+      console.log(this.chartData);
+    });
+
     Chart.pluginService.register(this.randomColor.getRandomColor());
 
     this.PieChart = new Chart('pieChartMonthly', {
@@ -78,10 +86,10 @@ export class AttendanceStatsComponent implements OnInit {
 
     //  line chart
     this.LineChart = new Chart('lineChartMonthly', {
-      type: 'line',
+      type: 'bar',
       data: {
         // tslint:disable-next-line:max-line-length
-        labels: ['', '2', '', '4', '', '6', '', '8', '', '10', '', '12', '', '14', '', '16', '', '18', '', '20', '', '22', '', '24', '', '26', '', '28', '', '30'],
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '22', '24', '25', '26', '27', '28', '29', '30', '31'],
         datasets: [
           {
             // tslint:disable-next-line:max-line-length
@@ -92,15 +100,6 @@ export class AttendanceStatsComponent implements OnInit {
             pointBackgroundColor: '#fff',
             lineTension: 0,
           },
-          {
-            // tslint:disable-next-line:max-line-length
-            data: [25, 41, 48, 33, 65, 83, 15, 41, 25, 53 , 86, 77, 45, 65, 83 , 25, 41, 48, 33, 65, 83, 15, 41, 25, 53 , 86, 77, 45, 65, 83 ],
-            label: 'Absent',
-            borderColor: '#8e5ea2',
-            fill: false,
-            pointBackgroundColor: '#fff',
-            lineTension: 0,
-          }
       ]
       },
       options: {
@@ -214,18 +213,13 @@ export class AttendanceStatsComponent implements OnInit {
 
      // yearly line chart
     this.LineChart = new Chart('lineChartYearly', {
-      type: 'line',
+      type: 'bar',
       data: {
-        labels: ['2', '4', '6', '8', '10', '12', '14', '16', '18', '20', '22', '24', '26', '28', '30'],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
           data: [86, 77, 45, 65, 83, 15, 41, 48, 83, 25, 53, 65, 83, 15, 41],
           label: '#',
           borderColor: '#3e95cd',
-          fill: false
-        }, {
-          data: [25, 41, 48, 83, 65, 83, 15, 41, 25, 53 , 86, 77, 45, 65, 83 ],
-          label: '#',
-          borderColor: '#8e5ea2',
           fill: false
         }]
       },
@@ -272,5 +266,14 @@ export class AttendanceStatsComponent implements OnInit {
         }
     });
 
+    // const chartDatas = this.getChartData(12, 2019);
+    // console.log(chartDatas);
   }
+  // getChartData(month , year) {
+  //   console.log(this.chartData);
+  //   return this.chartData.filter(o => {
+  //     return o.timestamp.split('-')[1] === month && o.timestamp.split('-')[2] === year;
+  //   });
+  // }
+
 }

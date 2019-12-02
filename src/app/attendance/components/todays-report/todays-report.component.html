@@ -7,25 +7,28 @@
 <hr>
 
 <div class="row p-3">
-  <div class="col-6 col-lg-6">
-    <div class="card cursor-pointer">
+  <div class="col-6 col-lg-6 ">
+    <div class="card cursor-pointer div-as-btn">
       <div class="card-body p-3 clearfix">      
-        <div class="h5 mb-0 align-items-center d-flex justify-content-center">
+        <div class="h5 mb-0 align-items-center d-flex justify-content-center" (click)='presentOnPremises()'>
           76 Present on Premises
         </div>
-      </div>
+      </div>  
     </div>
   </div>
 
-  <div class="col-6 col-lg-6">
-      <div class="card cursor-pointer">
+  <div class="col-6 col-lg-6 ">
+      <div class="card cursor-pointer div-as-btn">
         <div class="card-body p-3 clearfix">      
-          <div class="h5 mb-0 align-items-center d-flex justify-content-center">
+          <div class="h5 mb-0 align-items-center d-flex justify-content-center" (click)='absent()'>
             24 Absent
           </div>
         </div>
       </div>
   </div>
+</div>
+<div class="search-bar">
+    <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search' | translate }}">
 </div>
 
 

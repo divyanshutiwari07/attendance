@@ -11,11 +11,23 @@ import * as Utils from '../../common/utils';
 export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
+  private currentDate;
 
-  constructor() { }
+  constructor() {
+    this.getCurrentDate();
+   }
 
   ngOnChanges() {
     console.log(this.employees);
+  }
+
+  getCurrentDate() {
+    this.currentDate = new Date();
+    const dd = String(this.currentDate.getDate()).padStart(2, '0');
+    const mm = String(this.currentDate.getMonth() + 1).padStart(2, '0');
+    const yyyy = this.currentDate.getFullYear();
+    this.currentDate = mm + '-' + dd + '-' + yyyy;
+    console.log(this.currentDate);
   }
 
   exportCSV() {
@@ -25,19 +37,19 @@ export class EmpListComponent implements OnChanges {
       decimalSeparator: '.',
       showLabels: true,
       showTitle: true,
-      title: 'My Awesome CSV',
+      title: 'Today\'s Present Employee',
       useTextFile: false,
       useBom: true,
       filename: null,
       useKeysAsHeaders: true,
     };
 
-    options.filename = 'Present-employee-02-12-2019';
+    options.filename = 'Present-employees at ' + this.currentDate;
     const csvExporter = new ExportToCsv(options);
 
     const mapTo = {name: 'Name', id: 'Employee Id', inTime: 'In Time', outTime: 'Out Time', photo : 'Photo' };
 
-    csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees, mapTo));
+    csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
   }
 
 }
