@@ -71,6 +71,29 @@ canvas {
 margin: -5px -5px;
 }
 
+.row{
+	.col-12 {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		.span-heading {
+			flex: .6;
+		}
+		.select-style {
+			display: flex;
+			align-items: center;
+			.span-title {
+				flex: 1;
+				margin-right: 7px;
+				text-align: right;
+			}
+			select {
+				flex: .6;
+			}
+		}
+	}
+}
+
 // .row{
 // 	flex-direction: row;
 // 	.span-heading{

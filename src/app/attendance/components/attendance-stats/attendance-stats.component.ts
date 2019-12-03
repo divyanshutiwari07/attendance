@@ -22,6 +22,10 @@ export class AttendanceStatsComponent implements OnInit {
   public selectedMonth;
   public years = [];
   public months = [];
+  public totalEmpCountForMonth;
+  public totalEmpCountForYear;
+  private workingDayCountForMonth = 0;
+  private datasetForPieMonthly = [];
 
   constructor(private randomColor: GetRandomColorService , private apiService: ApiService) {
     this.initializeMonthDropdown();
@@ -64,45 +68,44 @@ export class AttendanceStatsComponent implements OnInit {
 
     Chart.pluginService.register(this.randomColor.getRandomColor());
 
-    this.pieChartYearly = new Chart('pieChartYearly', {
-      type: 'pie',
-    data: {
-      labels: ['Present', 'Absent'],
-      datasets: [{
-          label: '# of Votes',
-          data: [9, 7 ],
-          backgroundColor : ['rgba(192, 192, 192, 1)',
-          ],
-          // borderColor: 'rgba(255,99,132,1)',
-          borderWidth: 1
-      }]
-    },
-    options: {
-      title: {
-          text: 'Pie Chart',
-          display: true,
-          fontColor: '#000000'
-      },
-      legend: {
-        labels: {
-            fontColor: 'black'
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      }
-    });
+    // this.pieChartYearly = new Chart('pieChartYearly', {
+    //   type: 'pie',
+    // data: {
+    //   labels: ['Present', 'Absent'],
+    //   datasets: [{
+    //       label: '# of Votes',
+    //       data: [9, 7 ],
+    //       backgroundColor : ['rgba(192, 192, 192, 1)',
+    //       ],
+    //       // borderColor: 'rgba(255,99,132,1)',
+    //       borderWidth: 1
+    //   }]
+    // },
+    // options: {
+    //   title: {
+    //       text: 'Pie Chart',
+    //       display: true,
+    //       fontColor: '#000000'
+    //   },
+    //   legend: {
+    //     labels: {
+    //         fontColor: 'black'
+    //     },
+    //   },
+    //   responsive: true,
+    //   maintainAspectRatio: false,
+    //   }
+    // });
   }
 
-  // getChartData(month , year) {
-  //   console.log(this.chartData);
-  //   return this.chartData.filter(o => {
-  //     return o.timestamp.split('-')[1] === month && o.timestamp.split('-')[2] === year;
-  //   });
-  // }
-
   private showMonthlyPieChart() {
-    const dataset = [];
+
+    const dataset =  ((this.totalEmpCountForMonth / this.workingDayCountForMonth) / TOTAL_EMP) * 100;
+    this.datasetForPieMonthly.push(dataset);
+    this.datasetForPieMonthly.push(100 - dataset);
+    console.log(this.datasetForPieMonthly);
+    console.log(this.workingDayCountForMonth);
+    console.log(this.totalEmpCountForMonth);
     if (!this.pieChartMonthly ) {
       this.pieChartMonthly = new Chart('pieChartMonthly', {
         type: 'pie',
@@ -110,11 +113,47 @@ export class AttendanceStatsComponent implements OnInit {
           labels: ['Present', 'Absent'],
           datasets: [{
             label: '# of Votes',
-            data: dataset,
+            data: this.datasetForPieMonthly,
             backgroundColor : ['rgba(192, 192, 192, 1)',
               // #b6ccc8
             ],
             // borderColor: 'rgba(255,99,132,1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          title: {
+            text: 'Pie Chart',
+            display: true,
+            fontColor: '#000000'
+          },
+          legend: {
+            labels: {
+              fontColor: 'black'
+            },
+          },
+          responsive: true,
+          maintainAspectRatio: false
+        }
+      });
+    } else {
+      this.pieChartMonthly.data.datasets[0].data = this.datasetForPieMonthly;
+      this.pieChartMonthly.update();
+    }
+  }
+
+  private showYearlyPieChart() {
+    const dataset = [2, 11];
+    if (!this.pieChartYearly ) {
+      this.pieChartMonthly = new Chart('pieChartYearly', {
+        type: 'pie',
+        data: {
+          labels: ['Present', 'Absent'],
+          datasets: [{
+            label: '# of Votes',
+            data: dataset,
+            backgroundColor : ['rgba(192, 192, 192, 1)',
+            ],
             borderWidth: 1
           }]
         },
@@ -145,6 +184,7 @@ export class AttendanceStatsComponent implements OnInit {
       return d.date.split('-')[1] === this.selectedMonth.number
           && d.date.split('-')[2] === this.selectedYear.year.toString();
     });
+    this.totalEmpCountForMonth = monthData.reduce((a, {count}) => a + count, 0);
 
     const dayCount = Utils.getDayCountInMonth(this.selectedMonth.number, this.selectedYear.year);
 
@@ -154,16 +194,16 @@ export class AttendanceStatsComponent implements OnInit {
         return parseInt(d.date.split('-')[0], 0) === i;
       });
 
-      if( dataset[i] ) {
-        dataset[i] = (dataset[i].count / TOTAL_EMP) * 100;
-        // Percent Here
+      if ( dataset[i] ) {
+        this.workingDayCountForMonth += 1;
+        dataset[i - 1] = (dataset[i].count / TOTAL_EMP) * 100;
+        // dataset[i - 1] = dataset[i].count ;
       } else {
         dataset[i] = 0;
       }
     }
 
     if ( !this.lineChartMonthly ) {
-
       this.lineChartMonthly = new Chart('lineChartMonthly', {
         type: 'bar',
         data: {
@@ -222,7 +262,6 @@ export class AttendanceStatsComponent implements OnInit {
           elements: {
             point: {
               radius: 5,
-              //  pointStyle: 'circle',
             }
           },
           responsive: true,
@@ -233,14 +272,13 @@ export class AttendanceStatsComponent implements OnInit {
                 maxTicksLimit: 5,
                 beginAtZero: true,
                 fontColor: '#000000',
-                fontSize: 14
+                fontSize: 14,
+                max: 100,
               },
               gridLines: {
                 color: '#f2f2f2',
                 drawBorder: false,
-                // lineWidth: 1,
                 zeroLineColor: '#f2f2f2',
-                // zeroLineWidth : 2
               },
 
             }],
@@ -266,22 +304,29 @@ export class AttendanceStatsComponent implements OnInit {
 
   private showYearlyBarChart() {
     const dataset = [];
+    const workingDayCountForYear = [];
     const yearData = this.chartData.filter(d => {
       return d.date.split('-')[2] === this.selectedYear.year.toString();
     });
-
+    this.totalEmpCountForYear = yearData.reduce((a, {count}) => a + count, 0);
+      console.log(this.totalEmpCountForYear);
     for (let i = 1; i <= 12; i++ ) {
 
       dataset[i] = yearData.filter(d => {
         return parseInt(d.date.split('-')[1], 0) === i;
       });
-
-      if( dataset[i] ) {
-        dataset[i - 1] = dataset[i].reduce(function (acc, obj) { return acc + obj.count; }, 0);
-        // Percent here
+      if ( dataset[i] ) {
+        workingDayCountForYear[i] = Object.keys(dataset[i]).length;
+        // console.log('count ' + i + ' '  + Object.keys(dataset[i]).length);
+        // tslint:disable-next-line:max-line-length
+        // monthData.reduce((a, {count}) => a + count, 0)
+        dataset[i - 1] = ((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / TOTAL_EMP) * 100;
+        // tslint:disable-next-line:max-line-length
+        // dataset[i - 1] = ((dataset[i].reduce(function (acc, obj) { return acc + obj.count; }, 0) / workingDayCountForYear[i]) / TOTAL_EMP) * 100;
+        // dataset[i - 1] = dataset[i].reduce(function (acc, obj) { return acc + obj.count; }, 0);
       }
     }
-    if( !this.lineChartYearly ) {
+    if ( !this.lineChartYearly ) {
       this.lineChartYearly = new Chart('lineChartYearly', {
         type: 'bar',
         data: {
@@ -310,9 +355,10 @@ export class AttendanceStatsComponent implements OnInit {
             yAxes: [{
               ticks: {
                 maxTicksLimit: 5,
+                max: 100,
                 beginAtZero: true,
                 fontColor : '#000000',
-                fontSize : 14
+                fontSize : 14,
               },
               gridLines: {
                 color: '#f2f2f2',
@@ -342,6 +388,7 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   getYearReportForAllEmployees() {
+    // console.log(this.selectedYear);
     this.apiService.getPresentEmployeesForDate({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -349,15 +396,20 @@ export class AttendanceStatsComponent implements OnInit {
     ).subscribe(response => {
       this.chartData = response.data;
       console.log(this.chartData);
-      //this.showMonthlyPieChart();
+      // this.showMonthlyPieChart();
       this.showMonthlyBarChart();
       this.showYearlyBarChart();
+      this.showMonthlyPieChart();
+      this.showYearlyPieChart();
     });
 
   }
 
   getAllEmployeeForSelectedMonth() {
+    this.datasetForPieMonthly = [];
+    this.workingDayCountForMonth = 0;
     this.showMonthlyBarChart();
+    this.showMonthlyPieChart();
   }
 
 }
