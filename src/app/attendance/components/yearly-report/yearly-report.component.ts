@@ -65,7 +65,7 @@ export class YearlyReportComponent implements OnInit {
       this.fetching = 0;
       this.employeeYearReport = response.data;
       this.yearlyReportResponse.emit(response.data);
-      // this.genrateFormattedReport();
+      this.genrateFormattedReport();
     });
   }
 
@@ -77,38 +77,38 @@ export class YearlyReportComponent implements OnInit {
     };
     this.reportMode = 'M';
   }
-  //
-  // genrateFormattedReport() {
-  //   const formattedYearReport = {monthReport: {}, presentCount: 0, ...this.selectedYear};
-  //
-  //   this.employeeYearReport.forEach( record => {
-  //     const date =  parseInt(record.timestamp.split('-')[0], 0);
-  //     const month = Utils.getMonthName( record.timestamp.split('-')[1] );
-  //
-  //     if( !formattedYearReport.monthReport[ month ] ) {
-  //       formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
-  //     }
-  //     formattedYearReport.monthReport[ month ].detail[date] = record;
-  //     formattedYearReport.monthReport[ month ].presentCount += 1;
-  //
-  //     formattedYearReport.presentCount += 1;
-  //   });
-  //
-  //   this.months.forEach( month => {
-  //     const dayCount =  Utils.getDayCountInMonth(month);
-  //     for( let d = 1; d <= dayCount; d++ ) {
-  //       if( !formattedYearReport.monthReport[ month ] ) {
-  //         formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
-  //       }
-  //       formattedYearReport.monthReport[ month ].detail[d] = {};
-  //
-  //       formattedYearReport.presentCount += 1;
-  //     }
-  //   });
-  //
-  //   this.formattedYearReport = formattedYearReport;
-  //   console.log( this.formattedYearReport );
-  // }
+
+  genrateFormattedReport() {
+    const formattedYearReport = {monthReport: {}, presentCount: 0, ...this.selectedYear};
+
+    this.employeeYearReport.forEach( record => {
+      const date =  parseInt(record.timestamp.split('-')[0], 0);
+      const month = Utils.getMonthName( record.timestamp.split('-')[1] );
+
+      if( !formattedYearReport.monthReport[ month ] ) {
+        formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
+      }
+      formattedYearReport.monthReport[ month ].detail[date] = record;
+      formattedYearReport.monthReport[ month ].presentCount += 1;
+
+      formattedYearReport.presentCount += 1;
+    });
+
+    this.months.forEach( month => {
+      const dayCount =  Utils.getDayCountInMonth(month);
+      for( let d = 1; d <= dayCount; d++ ) {
+        if( !formattedYearReport.monthReport[ month ] ) {
+          formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
+        }
+        formattedYearReport.monthReport[ month ].detail[d] = {};
+
+        formattedYearReport.presentCount += 1;
+      }
+    });
+
+    this.formattedYearReport = formattedYearReport;
+    console.log( 'formattedYearReport', this.formattedYearReport );
+  }
 
   getMonthReport(month) {
     const monthNumber = this.getMonthNumber(month);

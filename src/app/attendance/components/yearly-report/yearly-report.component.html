@@ -2,8 +2,9 @@
 
      <button class="btn btn-outline-primary go-back" *ngIf="reportMode == 'M'" (click)="reportMode = 'Y'">Go Back</button>
 
-     <div class="col-md-3  d-flex select-year">
-        <span class="">Select Year: </span> <select class=" form-control" *ngIf="reportMode == 'Y'"
+     <div class="col-md-3 d-flex select-year" *ngIf="reportMode == 'Y'">
+        <span class="">Select Year: </span>
+         <select class=" form-control"
                 [(ngModel)]='selectedYear' name='year' id='year' required
                 (change)="getEmployeeRecordForYear()">
 
@@ -13,9 +14,9 @@
     </div>
 
     <div class="col-md-12 yearly-report" *ngIf="reportMode == 'Y'">
-        <div class="header d-flex">
+        <div class="header d-flex" *ngIf="!fetching">
             <div class="column">Attendance % this year: 94%</div>
-            <div class="column">Attendance % this year: 94%</div>
+            <div class="column">Total Attendance this year: {{formattedYearReport.presentCount}}</div>
             <div class="column">Attendance % this year: 94%</div>
         </div>
         <div class="record ">
@@ -28,7 +29,7 @@
                             {{day}}
                         </th>
                         <th>
-                            Attendance%
+                            Attendance
                         </th>
                         <th>
                             Monthly
@@ -45,7 +46,7 @@
                             {{ checkIfPresentOnThisDate(day, month) ? "P" : 'A'}}
                         </td>
                         <td>
-                            87%
+                            {{formattedYearReport.monthReport[month] ? formattedYearReport.monthReport[month].presentCount : 0}}
                         </td>
                         <td>
                             <button type="button" class="btn btn-outline-primary btn-sm" (click)="showMonthlyReport(month)">View</button>
