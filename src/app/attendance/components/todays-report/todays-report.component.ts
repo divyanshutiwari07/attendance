@@ -14,9 +14,12 @@ export class TodaysReportComponent implements OnInit {
 
   public empList = [];
 
+  public selectedTab;
+
   constructor(private apiService: ApiService , private notifyService: NotificationService) { }
 
   ngOnInit() {
+    this.selectedTab = 'P';
     // const startTime = Date.parse(new Date().toISOString().slice(0, 10));
     // const endTime = Date.parse(new Date().toISOString().slice(0, 10) + ' ' + '23:59:59');
     const startTime = new Date().setHours(0, 0, 0, 0);
@@ -62,10 +65,12 @@ export class TodaysReportComponent implements OnInit {
   }
 
   presentOnPremises() {
-    console.log('yes div 1 as btn');
+    this.selectedTab = 'P';
+    // console.log('yes div 1 as btn');
   }
 
   absent() {
-    console.log('yes div 2 as btn');
+    this.selectedTab = 'A';
+    // console.log('yes div 2 as btn');
   }
 }
