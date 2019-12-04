@@ -76,9 +76,9 @@ export class AttendanceStatsComponent implements OnInit {
 
   private showMonthlyPieChart() {
 
-    const dataset = [this.report.month.attendancePercentage, 100 - this.report.month.attendancePercentage]
+    const dataset = [this.report.month.attendancePercentage, 100 - this.report.month.attendancePercentage];
 
-    console.log( "MOnth:showMonthlyPieChart:", dataset);
+    console.log( 'MOnth:showMonthlyPieChart:', dataset);
     if (!this.pieChartMonthly ) {
       this.pieChartMonthly = new Chart('pieChartMonthly', {
         type: 'pie',
@@ -191,8 +191,8 @@ export class AttendanceStatsComponent implements OnInit {
               label: 'Present',
               borderColor: '#8e5ea2',
               fill: false,
-              pointBackgroundColor: '#fff',
-              lineTension: 0,
+              backgroundColor : 'rgba(192, 192, 192, 1)',
+              borderWidth: 1
             },
           ]
         },
@@ -306,6 +306,8 @@ export class AttendanceStatsComponent implements OnInit {
             data: dataset,
             label: '#',
             borderColor: '#3e95cd',
+            backgroundColor : 'rgba(192, 192, 192, 1)',
+            borderWidth: 1,
             fill: false
           }]
         },
@@ -333,6 +335,7 @@ export class AttendanceStatsComponent implements OnInit {
               },
               gridLines: {
                 color: '#f2f2f2',
+                // color: 'rgba(0, 0, 0, 0)',
                 drawBorder: false,
                 zeroLineColor : '#f2f2f2',
               },

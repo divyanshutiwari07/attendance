@@ -85,7 +85,7 @@ export class YearlyReportComponent implements OnInit {
       const date =  parseInt(record.timestamp.split('-')[0], 0);
       const month = Utils.getMonthName( record.timestamp.split('-')[1] );
 
-      if( !formattedYearReport.monthReport[ month ] ) {
+      if ( !formattedYearReport.monthReport[ month ] ) {
         formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
       }
       formattedYearReport.monthReport[ month ].detail[date] = record;
@@ -94,20 +94,20 @@ export class YearlyReportComponent implements OnInit {
       formattedYearReport.presentCount += 1;
     });
 
-    this.months.forEach( month => {
-      const dayCount =  Utils.getDayCountInMonth(month);
-      for( let d = 1; d <= dayCount; d++ ) {
-        if( !formattedYearReport.monthReport[ month ] ) {
-          formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
-        }
-        formattedYearReport.monthReport[ month ].detail[d] = {};
+    // this.months.forEach( month => {
+    //   const dayCount =  Utils.getDayCountInMonth(month);
+    //   for ( let d = 1; d <= dayCount; d++ ) {
+    //     if ( !formattedYearReport.monthReport[ month ] ) {
+    //       formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
+    //     }
+    //     formattedYearReport.monthReport[ month ].detail[d] = {};
 
-        formattedYearReport.presentCount += 1;
-      }
-    });
+    //     formattedYearReport.presentCount += 1;
+    //   }
+    // });
 
     this.formattedYearReport = formattedYearReport;
-    console.log( 'formattedYearReport', this.formattedYearReport );
+    console.log( this.formattedYearReport );
   }
 
   getMonthReport(month) {

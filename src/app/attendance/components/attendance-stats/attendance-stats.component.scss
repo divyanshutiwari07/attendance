@@ -72,24 +72,25 @@ margin: -5px -5px;
 }
 
 .row{
-	.col-12 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	.span-heading {
+		flex: .6;
+		padding: 0px;
+	}
+	.select-style {
+		padding: 0px;
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		.span-heading {
-			flex: .6;
+		align-items: center;
+		.span-title {
+			flex: 1;
+			margin-right: 7px;
+			text-align: right;
 		}
-		.select-style {
-			display: flex;
-			align-items: center;
-			.span-title {
-				flex: 1;
-				margin-right: 7px;
-				text-align: right;
-			}
-			select {
-				flex: .6;
-			}
+		select {
+			flex: .6;
 		}
 	}
 }

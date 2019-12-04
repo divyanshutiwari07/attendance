@@ -17,7 +17,7 @@ export class GetRandomColorService {
             // tslint:disable-next-line:quotemark
             // tslint:disable-next-line:max-line-length
             const color = 'rgba(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',';
-              backgroundColor.push(color + '0.3)');
+              backgroundColor.push(color + '.6)');
               borderColor.push(color + '1)');
           }
           chart.config.data.datasets[0].backgroundColor = backgroundColor;
