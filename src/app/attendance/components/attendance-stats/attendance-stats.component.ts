@@ -117,6 +117,7 @@ export class AttendanceStatsComponent implements OnInit {
 
   private showYearlyPieChart() {
     const dataset = [this.report.year.attendancePercentage, 100 - this.report.year.attendancePercentage];
+    console.log('dataset', dataset);
     if (!this.pieChartYearly ) {
       this.pieChartYearly = new Chart('pieChartYearly', {
         type: 'pie',
@@ -289,7 +290,7 @@ export class AttendanceStatsComponent implements OnInit {
       dataset[i] = yearData.filter(d => {
         return parseInt(d.date.split('-')[1], 0) === i + 1;
       });
-      if ( dataset[i] ) {
+      if ( dataset[i] && dataset[i].length) {
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
         dataset[i] = ((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / TOTAL_EMP) * 100;
       }

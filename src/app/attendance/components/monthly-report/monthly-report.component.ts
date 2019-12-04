@@ -32,13 +32,13 @@ export class MonthlyReportComponent implements OnInit {
       console.log('data ' + this.formattedReport);
     });
     this.formattedReport = monthReport;
-
+    console.log('formate', this.formattedReport);
   }
 
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = Utils.getMonthNumber(monthName);
     return this.monthReport.report.find(o => {
-      return o.timestamp === (day + '-' + monthNumber + '-' + this.monthReport.year.year);
+      return o.timestamp === (Utils.padStart(day, '0', 2) + '-' + monthNumber + '-' + this.monthReport.year.year);
     });
   }
 
