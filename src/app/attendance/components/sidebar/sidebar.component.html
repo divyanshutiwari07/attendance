@@ -21,7 +21,6 @@
                 
             </div>
             <div class="modal-body">
-                <!-- (ngSubmit)='registerForm.form.valid && onSubmit()' -->
               <div class="container">
                   <form class="register-object" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
                     <div class="row">
@@ -31,32 +30,10 @@
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-<!--                      <div *ngIf="registerFormSubmitted && !files" class="invalid-feedback">-->
-<!--                          <div *ngIf="registerFormSubmitted && !files">Label is required</div>-->
-<!--                      </div>-->
                       <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && !files}">
                           <div>Atleast 1 file is required</div>
                       </div>
 
-
-<!--                          {{registerFormSubmitted ? files.length : "sdfdsf"}}-->
-                                           
-                        
-                        <!-- <ngfFormData
-                        [files]      = 'files'
-                        [(FormData)] = 'registerForm'
-                        postName     = "file"
-                        ></ngfFormData> -->
-                        <!-- 
-                        
-                        <ngfUploadStatus
-                        [(percent)] = "uploadPercent",
-                        [httpEvent] = "httpEvent"
-                        ></ngfUploadStatus> -->
-                        
-                        <!-- <div *ngIf="uploadPercent">
-                        Upload Progress: {{ uploadPercent }}%
-                        </div> -->
                         
                       </div>
                     </div>
@@ -102,66 +79,12 @@
               </div>                  
 
             </div>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click')" >Close</button>
-                <button type="button" class="btn btn-dark" disabled >Close</button>
-            </div> -->
         </ng-template>
 
-        <div class="p-3 d-flex justify-content-center">
+        <!-- <div class="p-3 d-flex justify-content-center">
             <button class="btn btn-outline-secondary" (click)="openVerticallyCentered(content)">Register</button>
-        </div>        
-
-        <!-- <div class="header-fields">
-            <a (click)="rltAndLtr()" class="list-group-item">
-                <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
-            </a>
-            <div class="nested-menu">
-                <a class="list-group-item" (click)="addExpandClass('languages')">
-                    <span><i class="fa fa-language"></i>&nbsp; {{ 'Language' }} <b class="caret"></b></span>
-                </a>
-                <li class="nested" [class.expand]="showMenu === 'languages'">
-                    <ul class="submenu">
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('en')">
-                                {{ 'English' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fr')">
-                                {{ 'French' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('ur')">
-                                {{ 'Urdu' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('es')">
-                                {{ 'Spanish' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('it')">
-                                {{ 'Italian' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fa')">
-                                {{ 'Farsi' }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('de')">
-                                {{ 'German' }}
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-          
         </div> -->
+        
     </div>
     <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
         <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;

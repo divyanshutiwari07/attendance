@@ -19,6 +19,7 @@ export class TodaysReportComponent implements OnInit {
   constructor(private apiService: ApiService , private notifyService: NotificationService) { }
 
   ngOnInit() {
+
     this.selectedTab = 'P';
     // const startTime = Date.parse(new Date().toISOString().slice(0, 10));
     // const endTime = Date.parse(new Date().toISOString().slice(0, 10) + ' ' + '23:59:59');
@@ -31,6 +32,7 @@ export class TodaysReportComponent implements OnInit {
     // .subscribe(response => console.log(response));
     this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
     .subscribe(response => this.empList = this.extractData(response));
+
   }
 
   private extractData(response): Array<object> {

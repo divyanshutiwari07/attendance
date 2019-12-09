@@ -1,78 +1,6 @@
-.body {
-	// background-color: #0f0f0f;
-	padding: 1px;	
-
-}
-
-.some-page-wrapper {
-	margin: 19px 0px 18px 32px;
-
-}
-
-.row {
-// display: flex;
-// flex-direction: row;
-// flex-wrap: wrap;
-width: 100%;
-}
-
-.column {
-padding: 5px;
-display: flex;
-	// flex-direction: column;
-	// flex-basis: 100%;
-	// flex: 1;
-	box-sizing: border-box;
-}
-
-.chart-container {
-	// background: #2b2b2b;
-	min-height: 200px;
-	padding: 10px;
-}
-
-.center-name {
-	min-height: unset;
-	color: #dfdfdf;
-	display: flex;
-	justify-content: center;
-}
-
-.center-value {
-	color: #797676;
-	font-weight: normal;
-}
-
-canvas {
-	height: 100%;
-	min-height: 300px;
-}
-
-
-
-// .double-column {
-// display: flex;
-// flex-direction: column;
-// flex-basis: 100%;
-// }
-
-@media screen and (min-width: 800px) {
-.column {
-	flex: 1
-}
-
-// .double-column {
-// 	flex: 2
-// }
-}
-
-.negative-mgn
-{
-margin: -5px -5px;
-}
-
 .row{
 	display: flex;
+	width: 100%;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -93,30 +21,62 @@ margin: -5px -5px;
 			flex: .6;
 		}
 	}
+
+	.chart-container {
+		// background: #2b2b2b;
+		padding: 10px;
+
+		canvas {
+			height: 100%;
+			min-height: 300px;
+		}
+	}
+
 }
 
-// .row{
-// 	flex-direction: row;
-// 	.span-heading{
-// 		flex: 1;
-// 	}
-// 	.select-year{
-// 		flex: 1;
-// 		// margin-top: -60px;
-// 		// margin-right: -74px;
-// 		// float: right;
-// 		.heading{
-// 			display: flex;
-// 			align-items: center;
-// 			.span-title{
-// 				display: flex;
-// 				align-items: center;
-// 			}
-// 			select{
-// 					width: 6em;
-// 					margin-left: 6px;
-// 			}		
-// 		}
+
+// .body {
+// 	// background-color: #0f0f0f;
+// 	padding: 1px;	
+
+// }
+
+// .some-page-wrapper {
+// 	margin: 19px 0px 18px 32px;
+
+// }
+
+// .column {
+// 	padding: 5px;
+// 	display: flex;
+// 	box-sizing: border-box;
+// }
+
+
+// .center-name {
+// 	min-height: unset;
+// 	color: #dfdfdf;
+// 	display: flex;
+// 	justify-content: center;
+// }
+
+// .center-value {
+// 	color: #797676;
+// 	font-weight: normal;
+// }
+
+
+
+
+// @media screen and (min-width: 800px) {
+// 	.column {
+// 		flex: 1
 // 	}
 // }
+
+// .negative-mgn{
+// 	margin: -5px -5px;
+// }
+
+
 

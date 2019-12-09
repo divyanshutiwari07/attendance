@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { AuthGuard } from 'src/app/shared';
 
 @Component({
@@ -11,7 +10,7 @@ import { AuthGuard } from 'src/app/shared';
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
 
-    constructor(private translate: TranslateService, public router: Router, private auth: AuthGuard) {
+    constructor( public router: Router, private auth: AuthGuard) {
 
         this.router.events.subscribe(val => {
             if (
@@ -38,16 +37,8 @@ export class HeaderComponent implements OnInit {
         dom.classList.toggle(this.pushRightClass);
     }
 
-    // rltAndLtr() {
-    //     const dom: any = document.querySelector('body');
-    //     dom.classList.toggle('rtl');
-    // }
-
     onLoggedout() {
         this.auth.logOut();
     }
 
-    changeLang(language: string) {
-        this.translate.use(language);
-    }
 }

@@ -12,7 +12,7 @@ $topnav-background-color: #dedede;
             color: black;
             // color: white;
             margin-left: 3em;
-        }
+        }   
         
         
         .nav-item > a {
@@ -38,29 +38,6 @@ $topnav-background-color: #dedede;
         }
     }
     
-    // .messages {
-    //     width: 300px;
-    //     .media {
-    //         border-bottom: 1px solid #ddd;
-    //         padding: 5px 10px;
-    //         &:last-child {
-    //             border-bottom: none;
-    //         }
-    //     }
-    //     .media-body {
-    //         h5 {
-    //             font-size: 13px;
-    //             font-weight: 600;
-    //         }
-    //         .small {
-    //             margin: 0;
-    //         }
-    //         .last {
-    //             font-size: 12px;
-    //             margin: 0;
-    //         }
-    //     }
-    // }
 }
 .dropdown-menu[x-placement="bottom-right"] {
     right: 0;

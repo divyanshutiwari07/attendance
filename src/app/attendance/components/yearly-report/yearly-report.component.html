@@ -15,12 +15,12 @@
 
     <div class="col-md-12 yearly-report" *ngIf="reportMode == 'Y'">
         <div class="header d-flex" *ngIf="!fetching">
-            <div class="column">Attendance % this year: 94%</div>
+            <!-- <div class="column">Attendance % this year: 94%</div> -->
             <div class="column">Total Attendance this year: {{formattedYearReport.presentCount}}</div>
-            <div class="column">Attendance % this year: 94%</div>
+            <!-- <div class="column">Attendance % this year: 94%</div> -->
         </div>
         <div class="record ">
-<!--            <p *ngIf="fetching">Fetching record</p>-->
+        <!--<p *ngIf="fetching">Fetching record</p>-->
             <table class="table" *ngIf="!fetching" id="employee_report">
                 <thead>
                     <tr>
@@ -45,6 +45,7 @@
                         <td *ngFor="let day of days" class="{{checkIfPresentOnThisDate(day, month)? 'present': '' }}">
                             {{ checkIfPresentOnThisDate(day, month) ? "P" : 'A'}}
                         </td>
+
                         <td>
                             {{formattedYearReport.monthReport[month] ? formattedYearReport.monthReport[month].presentCount : 0}}
                         </td>

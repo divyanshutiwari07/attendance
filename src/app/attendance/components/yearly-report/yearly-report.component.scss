@@ -23,7 +23,7 @@
     .yearly-report {
         .header {
             padding: 25px 0px;
-            justify-content: space-between;
+            justify-content: center;
             font-weight: bold;
             font-size: 18px;
             .column {
@@ -34,17 +34,16 @@
     
         .record {
             table {
-                border: 1px solid;
+                // border: 1px solid;
         
                 td, th {
+                    // border-left: 0px solid !important;
+                    
                     padding: 5px 5px;
                     border: 1px solid;
                     min-width: 30px;
                 }
                 
-                // td.present {
-                //     width:10px;
-                // }
                 td.present {
                     background-color: green;
                 }
@@ -60,3 +59,4 @@
         }
     }
 }
+

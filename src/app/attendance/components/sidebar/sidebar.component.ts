@@ -1,11 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { isNullOrUndefined } from 'util';
 
 @Component({
     selector: 'app-sidebar',
@@ -34,7 +32,6 @@ export class SidebarComponent implements OnInit {
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(
-        private translate: TranslateService,
         public router: Router ,
         private modalService: NgbModal,
         private notifyService: NotificationService,
@@ -157,7 +154,4 @@ export class SidebarComponent implements OnInit {
     this.notifyService.showSuccess('New Register Object is saved !!',  'Register Object');
   }
 
-  check() {
-      console.log('worked');
-  }
 }

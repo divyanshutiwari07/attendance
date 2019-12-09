@@ -1,13 +1,9 @@
 <nav class="navbar navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="#"><span class='span'>Facial Recognition Based Attendance Management System</span>  </a>
+    <span class='navbar-brand'>Facial Recognition Based Attendance Management System</span>
     <button class="navbar-toggler" type="button" (click)="toggleSidebar()">
-        <!-- <span class="navbar-toggler-icon"></span> -->
         <i class="fa fa-bars text-muted" aria-hidden="true"></i>
     </button>
     <div class="collapse navbar-collapse">
-        <!-- <form class="form-inline my-2 my-lg-0">    
-            <input class="form-control mr-sm-2" type="text" placeholder="{{ 'Search' | translate }}" >
-        </form> -->
         <div class="logo-style">
             <img src='../../../../assets/images/Awiros_logo.svg'>
         </div>
@@ -17,32 +13,21 @@
                     <i class="fa fa-user-circle"></i>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu> 
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}
+                    <!-- <a class="dropdown-item" href="javascript:void(0)">
+                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' }}
                     </a>
                     <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}
+                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' }}
                     </a>
                     <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
-                    </a>
+                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' }}
+                    </a> -->
                     <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
+                        <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' }}
                     </a>
                 </div>
             </li>
         </ul>
-
-        <!-- <div class="col text-right">
-            <div ngbDropdown placement="top-right" class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle><i class="fa fa-user-circle">John John</i><b class="caret"></b></button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-                <button ngbDropdownItem>Action - 1</button>
-                <button ngbDropdownItem>Another Action</button>
-                <button ngbDropdownItem>Something else is here</button>
-                </div>
-            </div>
-        </div> -->
         
     </div>
 </nav>

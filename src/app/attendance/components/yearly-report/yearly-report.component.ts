@@ -107,7 +107,7 @@ export class YearlyReportComponent implements OnInit {
     // });
 
     this.formattedYearReport = formattedYearReport;
-    // console.log( this.formattedYearReport );
+    console.log( this.formattedYearReport );
   }
 
   getMonthReport(month) {

@@ -1,15 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
 import { ExportAsModule } from 'ngx-export-as';
 
 import { AttendanceRoutingModule } from './attendance-routing.module';
 import { TodaysReportComponent } from './components/todays-report/todays-report.component';
 import { EmpListComponent } from './components/emp-list/emp-list.component';
 import { EmpRowComponent } from './components/emp-list/emp-row/emp-row.component';
-
-// import { SidebarComponent } from '../components/sidebar/sidebar.component';
-// import { HeaderComponent } from './components/header/header.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -41,7 +37,6 @@ import { YearDropDownComponent } from './common/components/year-drop-down/year-d
     CommonModule,
     AttendanceRoutingModule,
     NgbModule.forRoot(),
-    TranslateModule,
     FormsModule,
     ngfModule,
     ReactiveFormsModule,

@@ -1,6 +1,9 @@
 .monthly-report {
     .header {
-        justify-content: space-between;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        padding: 25px 0px;
         .column {
             display: flex;
             align-items: center;        

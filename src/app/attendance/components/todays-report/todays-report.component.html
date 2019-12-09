@@ -1,45 +1,49 @@
-<div class='header'>
-  <h2>
-    Today's Attendance 
-  </h2>
-  <span class='header-style'><h2>76 % </h2> Percentage Attendance</span>
-</div>
-<hr>
+<div class="todays-attendance">  
+  <div class='header'>
+    <h2>
+      Today's Attendance 
+    </h2>
+    <span class='header-style'><h2>76 % </h2> Percentage Attendance</span>
+  </div>
+  <hr>
 
-<div class="row p-3">
-  <div class="col-6 col-lg-6 ">
-    <div class="card cursor-pointer div-as-btn">
-      <div class="card-body p-3 clearfix {{ selectedTab == 'P' ? 'selected-tab' : ''}}" (click)='presentOnPremises()'>
-        <div class="h5 mb-0 align-items-center d-flex justify-content-center">
-          76 Present on Premises
+  <div class="row p-3">
+    <div class="col-6 col-lg-6 ">
+      <div class="card div-as-btn">
+        <div class="card-body p-3 clearfix {{ selectedTab == 'P' ? 'selected-tab' : ''}}" (click)='presentOnPremises()'>
+          <div class="h5 mb-0 align-items-center d-flex justify-content-center">
+            76 Present on Premises
+          </div>
+        </div>  
+      </div>
+    </div>
+
+    <div class="col-6 col-lg-6 ">
+        <div class="card div-as-btn">
+          <div class="card-body p-3 clearfix {{ selectedTab == 'A' ? 'selected-tab' : ''}}" (click)='absent()'>
+            <div class="h5 mb-0 align-items-center d-flex justify-content-center">
+              24 Absent
+            </div>
+          </div>
         </div>
-      </div>  
+    </div>
+  </div>
+  <div class="search-bar">
+      <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}">
+  </div>
+
+  <div class="test" *ngIf="selectedTab == 'A'">
+    hello this is absent page 
+  </div>
+
+  <div class="row p-3" *ngIf="selectedTab == 'P'">
+    <div class="col-md-12">
+      <app-emp-list [employees]="empList"></app-emp-list>
     </div>
   </div>
 
-  <div class="col-6 col-lg-6 ">
-      <div class="card cursor-pointer div-as-btn">
-        <div class="card-body p-3 clearfix {{ selectedTab == 'A' ? 'selected-tab' : ''}}" (click)='absent()'>
-          <div class="h5 mb-0 align-items-center d-flex justify-content-center">
-            24 Absent
-          </div>
-        </div>
-      </div>
-  </div>
+  <!-- <app-emp-list *ngIf="selectedTab == 'P'" [employees]="empList"></app-emp-list> -->
 </div>
-<div class="search-bar">
-    <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search' | translate }}">
-</div>
-
-
-<!-- <div class="row p-3">
-  <div class="col-md-12">
-    <app-emp-list [employees]="empList"></app-emp-list>
-  </div>
-</div> -->
-
-<app-emp-list [employees]="empList"></app-emp-list>
-  
 
 
 

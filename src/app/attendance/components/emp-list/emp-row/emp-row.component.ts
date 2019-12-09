@@ -12,10 +12,6 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 export class EmpRowComponent implements OnInit {
 
   @Input() employee: any = {};
-  // getMonthFirstDayStartTime: any;
-  // getMonthLastDayEndTime: any;
-  // getYearLastDayEndTime: any;
-  // getYearFirstDayStartTime: any;
   empRecord: any = [];
   public disableExportButton;
 
