@@ -10,7 +10,7 @@ export class NotificationService {
 
   showSuccess(message, title) {
     this.toastr.success(message, title , {
-      timeOut : 4000,
+      timeOut : 2000,
       closeButton: true,
       // enableHtml: true,
       positionClass: 'toast-top-center'
@@ -20,7 +20,7 @@ export class NotificationService {
   showError(message, title) {
 
     this.toastr.error(message, title , {
-      timeOut : 4000,
+      timeOut : 2000,
       closeButton: true,
       // enableHtml: true,
       positionClass: 'toast-top-center'

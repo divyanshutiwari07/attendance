@@ -2,6 +2,8 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
 import {split} from 'ts-node';
+import { isNullOrUndefined } from 'util';
+import { NotificationService } from '../../services/notification.service';
 
 const BACK_YEARS_COUNT = 5;
 
@@ -26,7 +28,7 @@ export class YearlyReportComponent implements OnInit {
   public selectedYear;
   public years = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private notifyService: NotificationService) {
     // tslint:disable-next-line:max-line-length
     this.days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -62,6 +64,9 @@ export class YearlyReportComponent implements OnInit {
       'end_time': this.selectedYear.endTimeStamp,
       'awi_label': this.empName
     }).subscribe((response) => {
+      if ( response.success === true ) {
+        this.successToaster(response.msg);
+      }
       this.fetching = 0;
       this.employeeYearReport = response.data;
       this.yearlyReportResponse.emit(response.data);
@@ -128,6 +133,10 @@ export class YearlyReportComponent implements OnInit {
     return this.employeeYearReport.find(o => {
       return o.timestamp === (day + '-' + monthNumber + '-2019');
     });
+  }
+
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
   }
 
 }

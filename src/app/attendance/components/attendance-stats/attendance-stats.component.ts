@@ -3,6 +3,8 @@ import {Chart} from 'chart.js';
 import {GetRandomColorService} from '../../services/get-random-color.service';
 import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
+import { NotificationService } from '../../services/notification.service';
+import { isNullOrUndefined } from 'util';
 
 const BACK_YEARS_COUNT = 5;
 const TOTAL_EMP = 20;
@@ -32,7 +34,11 @@ export class AttendanceStatsComponent implements OnInit {
     }
   };
 
-  constructor(private randomColor: GetRandomColorService , private apiService: ApiService) {
+  constructor(
+    private randomColor: GetRandomColorService,
+    private apiService: ApiService,
+    private notifyService: NotificationService
+  ) {
     this.initializeMonthDropdown();
     this.initializeYearDropdown();
   }
@@ -368,6 +374,12 @@ export class AttendanceStatsComponent implements OnInit {
       'end_time': this.selectedYear.endTimeStamp,
       'awi_chart_data': true }
     ).subscribe(response => {
+      // this.successToaster(response.msg);
+      if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
+        this.errorToaster(response.msg);
+        return;
+      }
+      this.successToaster(response.msg);
       this.chartData = response.data;
       this.showMonthlyBarChart();
       this.showYearlyBarChart();
@@ -382,4 +394,10 @@ export class AttendanceStatsComponent implements OnInit {
     this.showMonthlyPieChart();
   }
 
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
+  }
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
+  }
 }

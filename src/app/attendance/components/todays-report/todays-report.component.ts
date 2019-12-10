@@ -4,7 +4,6 @@ import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
 
 
-
 @Component({
   selector: 'app-todays-report',
   templateUrl: './todays-report.component.html',
@@ -13,35 +12,44 @@ import { isNullOrUndefined } from 'util';
 export class TodaysReportComponent implements OnInit {
 
   public empList = [];
-
   public selectedTab;
+  public TOTAL_EMP;
+  public presentEmp;
+  public absentEmp;
+  private startTime;
+  private endTime;
 
   constructor(private apiService: ApiService , private notifyService: NotificationService) { }
 
   ngOnInit() {
-
+    this.TOTAL_EMP = 20;
     this.selectedTab = 'P';
-    // const startTime = Date.parse(new Date().toISOString().slice(0, 10));
-    // const endTime = Date.parse(new Date().toISOString().slice(0, 10) + ' ' + '23:59:59');
-    const startTime = new Date().setHours(0, 0, 0, 0);
-    const endTime = new Date().setHours(23, 59, 59, 999);
-    console.log(startTime);
-    console.log(endTime);
 
-    // this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
-    // .subscribe(response => console.log(response));
-    this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
-    .subscribe(response => this.empList = this.extractData(response));
+    this.startTime = new Date().setHours(0, 0, 0, 0);
+    this.endTime = new Date().setHours(23, 59, 59, 999);
 
+    this.getPresentEmployeesDetails();
+  }
+
+  private getPresentEmployeesDetails() {
+    this.apiService.getPresentEmployeesForDate({'start_time': this.startTime, 'end_time': this.endTime })
+    .subscribe(
+      response => {
+        this.empList = this.extractData(response);
+      }
+    );
   }
 
   private extractData(response): Array<object> {
-    if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === 'false') {
-      this.errorToaster();
-      console.log('todays data not found');
+    if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
+      this.errorToaster(response.msg);
+      // console.log('todays data not found');
       return [];
     }
+    this.presentEmp = (response.data.length / this.TOTAL_EMP) * 100;
+    this.absentEmp = ((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100;
 
+    this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
       const row = {name: null, inTime: null, outTime: null, photo: null, id: 0};
@@ -62,12 +70,16 @@ export class TodaysReportComponent implements OnInit {
     console.log(response);
     return data;
   }
-  errorToaster() {
-    this.notifyService.showError('No Data Found!!',  'Today\'s Attendance');
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
+  }
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
   }
 
   presentOnPremises() {
     this.selectedTab = 'P';
+    this.getPresentEmployeesDetails();
     // console.log('yes div 1 as btn');
   }
 

@@ -119,7 +119,8 @@ export class SidebarComponent implements OnInit {
 
 
     openVerticallyCentered(content) {
-        this.modalReference =  this.modalService.open(content, { centered: true });
+        // this.modalReference =  this.modalService.open(content, { centered: true, windowClass: 'modal-sm-custom' });
+        this.modalReference =      this.modalService.open(content, { centered: true });
   }
 
 
@@ -139,9 +140,13 @@ export class SidebarComponent implements OnInit {
         formData.append('awi_severity', 'awi_low');
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
 
-         this.files.forEach((file) => {
-             formData.append('file', file);
-         });
+        this.files.forEach((file) => {
+            formData.append('file', file);
+        });
+        // to see the structure of the formdata
+        // formData.forEach((value, key) => {
+        //     console.log(key + ': ' + value);
+        // });
 
         this.modalReference.close();
         this.successToaster();
