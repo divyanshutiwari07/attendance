@@ -22,11 +22,15 @@ export class ApiService {
   }
 
   getPresentEmployeesForYear(obj): Observable <any> {
-    return this.http.post(config.TODAYS_ATTENDANCE, obj);
+    return this.http.get(config.TODAYS_ATTENDANCE, obj);
   }
 
   getChartData(obj): Observable <any> {
-    return this.http.post(config.TODAYS_ATTENDANCE, obj);
+    return this.http.get(config.TODAYS_ATTENDANCE, obj);
+  }
+
+  getListOfRegisteredUser(): Observable <any> {
+    return this.http.get(config.LIST_OF_REGISTER_URL, {});
   }
 }
 

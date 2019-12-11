@@ -22,13 +22,22 @@ export class TodaysReportComponent implements OnInit {
   constructor(private apiService: ApiService , private notifyService: NotificationService) { }
 
   ngOnInit() {
-    this.TOTAL_EMP = 20;
     this.selectedTab = 'P';
 
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
-    this.getPresentEmployeesDetails();
+    this.getListOfRegisteredUsers();
+  }
+
+  private getListOfRegisteredUsers() {
+    this.apiService.getListOfRegisteredUser().subscribe(
+      response => {
+        this.TOTAL_EMP = response.count;
+        this.getPresentEmployeesDetails();
+        // console.log(this.TOTAL_EMP);
+      }
+    );
   }
 
   private getPresentEmployeesDetails() {
@@ -46,9 +55,10 @@ export class TodaysReportComponent implements OnInit {
       // console.log('todays data not found');
       return [];
     }
-    this.presentEmp = (response.data.length / this.TOTAL_EMP) * 100;
-    this.absentEmp = ((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100;
 
+    this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
+    this.absentEmp = (((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100).toFixed(2);
+    console.log('total emp', this.TOTAL_EMP);
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
@@ -70,6 +80,7 @@ export class TodaysReportComponent implements OnInit {
     console.log(response);
     return data;
   }
+
   errorToaster(message: string) {
     this.notifyService.showError(message,  '');
   }
@@ -87,4 +98,5 @@ export class TodaysReportComponent implements OnInit {
     this.selectedTab = 'A';
     // console.log('yes div 2 as btn');
   }
+
 }

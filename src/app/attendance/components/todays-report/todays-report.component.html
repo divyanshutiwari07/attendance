@@ -34,10 +34,6 @@
       <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}">
   </div>
 
-  <div class="test" *ngIf="selectedTab == 'A'">
-    hello this is absent page 
-  </div>
-
   <div class="row p-3" *ngIf="selectedTab == 'P'">
     <div class="col-md-12">
       <app-emp-list [employees]="empList"></app-emp-list>
@@ -45,6 +41,10 @@
   </div>
 
   <!-- <app-emp-list *ngIf="selectedTab == 'P'" [employees]="empList"></app-emp-list> -->
+
+  <div class="test" *ngIf="selectedTab == 'A'">
+    hello this is absent page 
+  </div>
 </div>
 
 

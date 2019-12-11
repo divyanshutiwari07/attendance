@@ -59,7 +59,7 @@ export class YearlyReportComponent implements OnInit {
 
   getEmployeeRecordForYear() {
     this.fetching = 1;
-    this.apiService.getPresentEmployeesForDate({
+    this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
       'awi_label': this.empName

@@ -149,14 +149,19 @@ export class SidebarComponent implements OnInit {
         // });
 
         this.modalReference.close();
-        this.successToaster();
-        this.apiService.register(formData).subscribe(response => console.log(response));
+        this.apiService.register(formData)
+        .subscribe(
+            response => {
+                this.successToaster(response.msg);
+                console.log(response);
+            }
+        );
     }
 
   }
 
-  successToaster() {
-    this.notifyService.showSuccess('New Register Object is saved !!',  'Register Object');
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message, '');
   }
 
 }

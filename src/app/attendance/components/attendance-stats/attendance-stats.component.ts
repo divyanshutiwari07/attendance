@@ -369,12 +369,11 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   getYearReportForAllEmployees() {
-    this.apiService.getPresentEmployeesForDate({
+    this.apiService.getChartData({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
       'awi_chart_data': true }
     ).subscribe(response => {
-      // this.successToaster(response.msg);
       if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
         this.errorToaster(response.msg);
         return;

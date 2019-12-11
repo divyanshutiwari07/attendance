@@ -19,6 +19,7 @@ export class RestClient {
     get(url: string, payload: Object = null, token = null) {
 
         if (isNullOrUndefined(payload)) {
+            console.log('without payload');
             return this.http.get(url, this.httpOptions);
         } else {
             console.log('reso');
