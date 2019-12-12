@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
+import { DataService } from '../../services/data.service';
+
 
 
 @Component({
@@ -18,11 +20,16 @@ export class TodaysReportComponent implements OnInit {
   public absentEmp;
   private startTime;
   private endTime;
-
-  constructor(private apiService: ApiService , private notifyService: NotificationService) { }
+  message: string;
+  constructor(
+    private apiService: ApiService,
+    private notifyService: NotificationService,
+    private dataService: DataService
+  ) { }
 
   ngOnInit() {
     this.selectedTab = 'P';
+    // this.data.currentMessage.subscribe(message => this.message = message);
 
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
@@ -34,8 +41,10 @@ export class TodaysReportComponent implements OnInit {
     this.apiService.getListOfRegisteredUser().subscribe(
       response => {
         this.TOTAL_EMP = response.count;
+        // this.dataService.saveRegisterData(6);
+        this.dataService.saveRegisterData(response);
         this.getPresentEmployeesDetails();
-        // console.log(this.TOTAL_EMP);
+        console.log(response);
       }
     );
   }

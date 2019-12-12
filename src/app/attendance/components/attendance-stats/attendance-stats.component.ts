@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 import {Chart} from 'chart.js';
 import {GetRandomColorService} from '../../services/get-random-color.service';
 import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
 import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
+import { DataService } from '../../services/data.service';
 
 const BACK_YEARS_COUNT = 5;
-const TOTAL_EMP = 20;
+// const TOTAL_EMP = 20;
 
 @Component({
   selector: 'app-attendance-stats',
@@ -34,13 +35,42 @@ export class AttendanceStatsComponent implements OnInit {
     }
   };
 
+  // public registerUserData: any = {
+  //   count: 0
+  // };
+  public totalEmp;
+
   constructor(
     private randomColor: GetRandomColorService,
     private apiService: ApiService,
-    private notifyService: NotificationService
+    private notifyService: NotificationService,
+    private dataService: DataService
   ) {
     this.initializeMonthDropdown();
     this.initializeYearDropdown();
+    // localStorage.removeItem('registerUserData');
+
+  }
+  // @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+  //   localStorage.removeItem('registerUserData');
+  // }
+  getRegisterUserData() {
+    if (!localStorage.getItem('registerUserData')) {
+      this.dataService.registerDataString$.subscribe(
+        data => {
+          this.totalEmp = (<any>data).count;
+          // this.totalEmp = data;
+            localStorage.setItem('registerUserData', this.totalEmp );
+            console.log('registerUserData1', this.totalEmp);
+      });
+    }
+  }
+
+  checkRegisterUserDataPresent() {
+    if (localStorage.getItem('registerUserData')) {
+      this.totalEmp = localStorage.getItem('registerUserData');
+      console.log('registerUserData1', this.totalEmp);
+    }
   }
 
   initializeYearDropdown() {
@@ -72,7 +102,8 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getRegisterUserData();
+    this.checkRegisterUserDataPresent();
     this.selectedYear = this.years[0];
     this.selectedMonth = this.months[ new Date().getMonth() ];
     this.getYearReportForAllEmployees();
@@ -177,14 +208,14 @@ export class AttendanceStatsComponent implements OnInit {
 
       if ( dataset[i] ) {
         workingDayCountForMonth += 1;
-        dataset[i - 1] = (dataset[i].count / TOTAL_EMP) * 100;
+        dataset[i - 1] = (dataset[i].count / this.totalEmp) * 100;
         // dataset[i - 1] = dataset[i].count ;
       } else {
         dataset[i] = 0;
       }
     }
 
-    this.report.month.attendancePercentage = ((totalEmpCountForMonth / workingDayCountForMonth) / TOTAL_EMP) * 100;
+    this.report.month.attendancePercentage = ((totalEmpCountForMonth / workingDayCountForMonth) / this.totalEmp) * 100;
 
     if ( !this.lineChartMonthly ) {
       this.lineChartMonthly = new Chart('lineChartMonthly', {
@@ -298,7 +329,7 @@ export class AttendanceStatsComponent implements OnInit {
       });
       if ( dataset[i] && dataset[i].length) {
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
-        dataset[i] = ((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / TOTAL_EMP) * 100;
+        dataset[i] = ((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100;
       }
     }
 
