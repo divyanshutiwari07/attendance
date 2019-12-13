@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
-import { DataService } from '../../services/data.service';
+import { UserService } from '../../services/user.service';
 
 
 
@@ -24,7 +24,7 @@ export class TodaysReportComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private notifyService: NotificationService,
-    private dataService: DataService
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -38,15 +38,18 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private getListOfRegisteredUsers() {
-    this.apiService.getListOfRegisteredUser().subscribe(
-      response => {
-        this.TOTAL_EMP = response.count;
-        // this.dataService.saveRegisterData(6);
-        this.dataService.saveRegisterData(response);
-        this.getPresentEmployeesDetails();
-        console.log(response);
-      }
-    );
+    // this.userService.registeredUsers$.subscribe(
+    //   response => {
+        
+    //   }
+    // );
+    this.userService.loadRegisterUsers().subscribe(response => {
+      this.TOTAL_EMP = response.count;
+      // this.dataService.saveRegisterData(6);
+      //this.userService.saveRegisterData(response);
+      this.getPresentEmployeesDetails();
+      console.log("getListOfRegisteredUsers", response);
+    });
   }
 
   private getPresentEmployeesDetails() {

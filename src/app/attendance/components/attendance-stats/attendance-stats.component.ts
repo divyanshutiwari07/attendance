@@ -5,7 +5,7 @@ import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
 import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
-import { DataService } from '../../services/data.service';
+import { UserService } from '../../services/user.service';
 
 const BACK_YEARS_COUNT = 5;
 // const TOTAL_EMP = 20;
@@ -44,7 +44,7 @@ export class AttendanceStatsComponent implements OnInit {
     private randomColor: GetRandomColorService,
     private apiService: ApiService,
     private notifyService: NotificationService,
-    private dataService: DataService
+    private userService: UserService
   ) {
     this.initializeMonthDropdown();
     this.initializeYearDropdown();
@@ -54,16 +54,14 @@ export class AttendanceStatsComponent implements OnInit {
   // @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
   //   localStorage.removeItem('registerUserData');
   // }
-  getRegisterUserData() {
-    if (!localStorage.getItem('registerUserData')) {
-      this.dataService.registerDataString$.subscribe(
-        data => {
-          this.totalEmp = (<any>data).count;
-          // this.totalEmp = data;
-            localStorage.setItem('registerUserData', this.totalEmp );
-            console.log('registerUserData1', this.totalEmp);
-      });
-    }
+  getRegisterUserData() {    
+    this.userService.loadRegisterUsers().subscribe(
+      data => {
+        this.totalEmp = (<any>data).count;
+        // this.totalEmp = data;
+          localStorage.setItem('registerUserData', this.totalEmp );
+          console.log('registerUserData1', this.totalEmp);
+    });    
   }
 
   checkRegisterUserDataPresent() {

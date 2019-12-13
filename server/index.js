@@ -12,6 +12,8 @@ const empRecord = require('./emp-record.json');
 
 const chartData = require('./chart-data.json');
 
+const listOfRegisteredUsers = require('./list-of-register-user.json');
+
 app.listen(3000, () => {
  console.log("Server running on port 3000");
 });
@@ -38,3 +40,8 @@ app.post("/employee-attendance", (req, res, next) => {
     }
 
 });
+
+app.post('/list_of_registered_users', (req, res, next) => {
+    console.log("=========== Serving list_of_registered_users =============");
+    res.json(listOfRegisteredUsers);
+})
