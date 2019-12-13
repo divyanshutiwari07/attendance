@@ -45,4 +45,22 @@ export function getEndTimeStampOfYear(year) {
     return (new Date(year, 11, 31)).setHours(23, 59, 59, 999);
 }
 
+export function getRandomColor() {
+    const randomColorPlugin = {
+      beforeUpdate(chart) {
+          const backgroundColor = [];
+          const borderColor = [];
+          for (let i = 0; i < chart.config.data.datasets[0].data.length; i++) {
+            const color = 'rgba(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',';
+              backgroundColor.push(color + '.6)');
+            //   borderColor.push(color + '5)');
+            borderColor.push('rgba(0,0,0,0.5)');
+            //   borderColor: 'rgba(0,0,0,1)',
+          }
+          chart.config.data.datasets[0].backgroundColor = backgroundColor;
+          chart.config.data.datasets[0].borderColor = borderColor;
+      }
+    };
+    return randomColorPlugin;
+}
 

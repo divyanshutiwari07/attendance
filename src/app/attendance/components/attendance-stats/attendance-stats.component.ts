@@ -1,6 +1,5 @@
 import {Component, OnInit, HostListener} from '@angular/core';
 import {Chart} from 'chart.js';
-import {GetRandomColorService} from '../../services/get-random-color.service';
 import {ApiService} from '../../services/api.service';
 import * as Utils from '../../common/utils';
 import { NotificationService } from '../../services/notification.service';
@@ -34,41 +33,21 @@ export class AttendanceStatsComponent implements OnInit {
       attendancePercentage: 0
     }
   };
-
-  // public registerUserData: any = {
-  //   count: 0
-  // };
   public totalEmp;
 
   constructor(
-    private randomColor: GetRandomColorService,
     private apiService: ApiService,
     private notifyService: NotificationService,
     private userService: UserService
   ) {
     this.initializeMonthDropdown();
     this.initializeYearDropdown();
-    // localStorage.removeItem('registerUserData');
-
   }
-  // @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
-  //   localStorage.removeItem('registerUserData');
-  // }
-  getRegisterUserData() {    
-    this.userService.loadRegisterUsers().subscribe(
-      data => {
+  getRegisterUserData() {
+    this.userService.loadRegisterUsers().subscribe(data => {
         this.totalEmp = (<any>data).count;
-        // this.totalEmp = data;
-          localStorage.setItem('registerUserData', this.totalEmp );
-          console.log('registerUserData1', this.totalEmp);
-    });    
-  }
-
-  checkRegisterUserDataPresent() {
-    if (localStorage.getItem('registerUserData')) {
-      this.totalEmp = localStorage.getItem('registerUserData');
-      console.log('registerUserData1', this.totalEmp);
-    }
+        console.log('registerUserData1', this.totalEmp);
+    });
   }
 
   initializeYearDropdown() {
@@ -101,12 +80,12 @@ export class AttendanceStatsComponent implements OnInit {
 
   ngOnInit() {
     this.getRegisterUserData();
-    this.checkRegisterUserDataPresent();
+    // this.checkRegisterUserDataPresent();
     this.selectedYear = this.years[0];
     this.selectedMonth = this.months[ new Date().getMonth() ];
     this.getYearReportForAllEmployees();
 
-    Chart.pluginService.register(this.randomColor.getRandomColor());
+    Chart.pluginService.register(Utils.getRandomColor());
   }
 
   private showMonthlyPieChart() {

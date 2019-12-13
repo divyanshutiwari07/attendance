@@ -29,7 +29,6 @@ export class TodaysReportComponent implements OnInit {
 
   ngOnInit() {
     this.selectedTab = 'P';
-    // this.data.currentMessage.subscribe(message => this.message = message);
 
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
@@ -38,17 +37,10 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private getListOfRegisteredUsers() {
-    // this.userService.registeredUsers$.subscribe(
-    //   response => {
-        
-    //   }
-    // );
     this.userService.loadRegisterUsers().subscribe(response => {
       this.TOTAL_EMP = response.count;
-      // this.dataService.saveRegisterData(6);
-      //this.userService.saveRegisterData(response);
       this.getPresentEmployeesDetails();
-      console.log("getListOfRegisteredUsers", response);
+      console.log('getListOfRegisteredUsers', response);
     });
   }
 
