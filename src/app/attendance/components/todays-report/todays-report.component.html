@@ -51,21 +51,21 @@
 
       <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8'>
           
-          <ng-container matColumnDef="position">
-            <mat-header-cell  *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+          <ng-container matColumnDef="awi_id">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.awi_id}} </mat-cell>
           </ng-container>
         
           
-          <ng-container matColumnDef="name">
+          <ng-container matColumnDef="awi_label">
             <mat-header-cell *matHeaderCellDef mat-sort-header > Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.awi_label}} </mat-cell>
           </ng-container>
         
           
-          <ng-container matColumnDef="weight">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Weight </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+          <ng-container matColumnDef="isPresent">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Is Present? </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.isPresent}} </mat-cell>
           </ng-container>
         
           
@@ -77,7 +77,7 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row  (click)= "check(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]"></mat-paginator>
       
       <!-- <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
