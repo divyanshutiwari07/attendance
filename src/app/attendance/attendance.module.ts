@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExportAsModule } from 'ngx-export-as';
 
@@ -18,6 +18,9 @@ import {ngfModule} from 'angular-file';
 import { MonthlyReportComponent } from './components/monthly-report/monthly-report.component';
 import { YearlyReportComponent } from './components/yearly-report/yearly-report.component';
 import { YearDropDownComponent } from './common/components/year-drop-down/year-drop-down.component';
+
+import { DataTablesModule } from 'angular-datatables';
+import { MaterialModule } from './common/material/material.module';
 
 
 @NgModule({
@@ -40,8 +43,11 @@ import { YearDropDownComponent } from './common/components/year-drop-down/year-d
     FormsModule,
     ngfModule,
     ReactiveFormsModule,
-    ExportAsModule
+    ExportAsModule,
+    DataTablesModule,
+    MaterialModule,
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],
   providers: [ ],
 })

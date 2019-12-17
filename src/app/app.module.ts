@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 
-
 @NgModule({
     imports: [
         CommonModule,
@@ -21,7 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
         HttpClientModule,
         AppRoutingModule,
         FormsModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+
 
     ],
     declarations: [AppComponent],
