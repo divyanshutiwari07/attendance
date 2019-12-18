@@ -5,7 +5,7 @@
   "data": [
     {
       "_id": "5d6e082068b159000f375777",
-      "id": 48976,
+      "id": 2134,
       "awi_severity": "awi_critical",
       "awi_conf": 1,
       "awi_subclass": "Sales",
@@ -19,7 +19,7 @@
       "imgs": [
         "http://localhost:3000/objects/5d6e082068b159000f375777_0.jpg"
       ],
-      "awi_id": 48976
+      "awi_id": 2134
     },
     {
       "_id": "5dd50d14495bfd005a62027f",

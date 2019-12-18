@@ -50,74 +50,63 @@
       </mat-form-field>
 
       <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8'>
-          
-          <ng-container matColumnDef="awi_id">
+          <ng-container matColumnDef="imgurl">
+            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+            <mat-cell *matCellDef="let element"> <img [src]="element.imgurl" /> </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="id">
             <mat-header-cell  *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.awi_id}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
           </ng-container>
         
           
-          <ng-container matColumnDef="awi_label">
+          <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef mat-sort-header > Name </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.awi_label}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
-        
           
           <ng-container matColumnDef="isPresent">
             <mat-header-cell *matHeaderCellDef mat-sort-header > Is Present? </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.isPresent}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.isPresent ? 'Present': 'Absent'}} </mat-cell>
           </ng-container>
-        
-          
-          <ng-container matColumnDef="symbol">
-            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+
+          <ng-container matColumnDef="viewRecord">
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Yearly Attendance </mat-header-cell>
+            <mat-cell (click)="openVerticallyCentered(content); empData(element)" *matCellDef="let element"> <button mat-button >Edit</button> </mat-cell>
           </ng-container>
-        
+
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row  (click)= "check(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
       <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]"></mat-paginator>
       
-      <!-- <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-        
-        <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort>
-        
-            
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-            </ng-container>
-        
-            
-            <ng-container matColumnDef="progress">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-              <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
-            </ng-container>
-        
-         
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-            </ng-container>
-        
-         
-            <ng-container matColumnDef="color">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
-              <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-            </tr>
-          </table>
-        
-          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-        </div> -->
-        
+      <ng-template #content let-modal >
+          <div class="modal-header">
+              <h4 class="modal-title">Employee Report</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+              </button> 
+          </div>
+          <div class="modal-body report">
+              <div class="d-flex">
+                  <div class='column avatar'>
+                      <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar">
+                  </div>
+                  <div class='column col-md-8'>
+                      <div>Employee Name: {{selectedEmpData.name}} </div>
+                      <div>Department:</div>
+                  </div>            
+              </div>
+              <div class="report-data">
+                  <app-yearly-report [empName]="selectedEmpData.name" (yearlyReportResponse)="enableExportButton($event)"></app-yearly-report>
+              </div>
+          </div>
+          <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+                  <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="exportEmployeeYearReport(selectedEmpData.name)">Export CSV</button></div>
+          </div>
+      </ng-template>
   </div>
 </div>
 

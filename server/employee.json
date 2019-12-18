@@ -41,7 +41,7 @@
                                         "awi_subclass": "Engineer",
                                         "awi_severity": 3,
                                         "awi_label": "Taufizul",
-                                        "awi_id": 48976,
+                                        "awi_id": 2134,
                                         "awi_conf": 0.6993393229268732,
                                         "awi_class": "awi_face",
                                         "__v": 0
@@ -96,7 +96,7 @@
                 "awi_camid": 2116,
                 "awi_terminal_id": 48522,
                 "awi_client_id": 2,
-                "id": 48976,
+                "id": 2134,
                 "awi_severity": "awi_critical",
                 "add_to_train": false,
                 "transaction_id": "0",

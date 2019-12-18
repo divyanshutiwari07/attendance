@@ -55,7 +55,6 @@ export class EmpRowComponent implements OnInit {
 
   exportEmployeeYearReport(fileName) {
     this.exportAsService.save(this.exportAsConfig, fileName).subscribe(() => {
-
     });
   }
 }
