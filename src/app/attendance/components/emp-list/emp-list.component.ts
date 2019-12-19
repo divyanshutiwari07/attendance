@@ -12,10 +12,21 @@ export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
   private currentDate;
+  public selectedDepartment;
+
+  departments = [
+    {name: 'fd - Something', id: 'fd'},
+    {name: 'HW - Something', id: 'hw'}
+  ];
+
+  names = [
+    {name: 'Mohd. Taufizul', id: 'Taufizul'},
+    {name: 'Vikram Kumar', id: 'vikram'}
+  ];
 
   constructor() {
     this.getCurrentDate();
-   }
+  }
 
   ngOnChanges() {
     console.log(this.employees);

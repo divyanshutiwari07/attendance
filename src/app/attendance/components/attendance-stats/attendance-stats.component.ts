@@ -46,7 +46,7 @@ export class AttendanceStatsComponent implements OnInit {
   getRegisterUserData() {
     this.userService.loadRegisterUsers().subscribe(data => {
         this.totalEmp = (<any>data).count;
-        console.log('registerUserData1', this.totalEmp);
+        console.log('registerUserData1', data);
     });
   }
 

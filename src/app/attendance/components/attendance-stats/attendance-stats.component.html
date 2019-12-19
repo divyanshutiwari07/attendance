@@ -8,6 +8,7 @@
 
   <div class="row p-3 ">
       <span class='span-heading col-md-9'><h4>Monthly Attendance</h4></span>
+      
       <div class="col-md-3 select-style">
         <span class="span-title ">Select Month: </span>
         <select class=" form-control"
@@ -19,22 +20,95 @@
       </div>
   </div>
 
-  <div class="row">
-    <div class="col col-sm-3" >
-        <div class="card mb-3 ">
-            <div class="card-body" class="chart-container">
-                <canvas id="pieChartMonthly"></canvas>
+  <mat-tab-group>
+    <mat-tab label="Day wise report">
+        <div class="row">
+            <div class="col col-sm-3" >
+                <div class="card mb-3 ">
+                    <div class="card-body" class="chart-container">
+                        <canvas id="pieChartMonthly"></canvas>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col col-sm-9" >
-        <div class="card mb-3">
-            <div class="card-body" class="chart-container">
-                <canvas id="lineChartMonthly"></canvas>
+            <div class="col col-sm-9" >
+                <div class="card mb-3">
+                    <div class="card-body" class="chart-container">
+                        <canvas id="lineChartMonthly"></canvas>
+                    </div>
+                </div>
             </div>
+          </div> 
+    </mat-tab>
+    <mat-tab label="Stats">
+        <div style="">
+            <div class="row">
+                <div class="col col-md-6" >
+                    <div class="card mb-3 ">
+                        <div class="card-header">
+                            Top attendance
+                        </div>
+                        <div class="card-body" class="chart-container">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-6" >
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Bottom attendance
+                        </div>
+                        <div class="card-body" class="chart-container">
+                            
+                        </div>
+                    </div>
+                </div>
+              </div>  
         </div>
-    </div>
-  </div> 
+    </mat-tab>
+  </mat-tab-group>
+
+  
 
   <div class="row p-3">
     <span class='span-heading col-md-9'><h4>Yearly Attendance </h4></span>

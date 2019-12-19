@@ -21,6 +21,7 @@ import { YearDropDownComponent } from './common/components/year-drop-down/year-d
 
 import { DataTablesModule } from 'angular-datatables';
 import { MaterialModule } from './common/material/material.module';
+import { SearchPipe } from './common/filters/search';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { MaterialModule } from './common/material/material.module';
     MonthlyReportComponent,
     YearlyReportComponent,
     YearDropDownComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
@@ -49,6 +51,6 @@ import { MaterialModule } from './common/material/material.module';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],
-  providers: [ ],
+  providers: [SearchPipe],
 })
 export class AttendanceModule { }

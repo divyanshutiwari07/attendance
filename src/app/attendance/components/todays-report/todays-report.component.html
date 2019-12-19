@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="search-bar" *ngIf="selectedTab == 'P'">
-      <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}">
+      <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}" (input)="onSearchChange($event.target.value)">
   </div>
 
   <div class="row p-3" *ngIf="selectedTab == 'P'">

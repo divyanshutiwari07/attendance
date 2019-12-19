@@ -15,14 +15,18 @@
     </div>
     <div class='column filters'>            
         <div>Filter by: </div>
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-secondary" id="all_departments" ngbDropdownToggle>All Departments</button>
-            <div ngbDropdownMenu aria-labelledby="all_departments">
-                <button ngbDropdownItem>Action - 1</button>
-                <button ngbDropdownItem>Another Action</button>
-                <button ngbDropdownItem>Something else is here</button>
-            </div>
-        </div>        
+        <mat-select [(ngModel)]="selectedDepartment" name="departments">
+            <mat-option>All</mat-option>
+            <mat-option *ngFor="let department of departments" [value]="department.id">
+                {{department.name}}
+            </mat-option>
+        </mat-select>
+        <mat-select [(ngModel)]="selectedName" name="empname">
+            <mat-option>All</mat-option>
+            <mat-option *ngFor="let name of names" [value]="name.id">
+                {{name.name}}
+            </mat-option>
+        </mat-select>
         <div ngbDropdown class="d-inline-block">
             <button class="btn btn-outline-secondary" id="arrival_time" ngbDropdownToggle>Arrival Time</button>
             <div ngbDropdownMenu aria-labelledby="arrival_time">
@@ -41,6 +45,6 @@
 
     <div class="card mb-3 ">
         <div class="card-body" class="chart-container">
-            <div *ngFor="let employee of employees" app-emp-row [employee]="employee"></div>
+            <div *ngFor="let employee of employees | search:'entryFrom':selectedDepartment | search:'name':selectedName" app-emp-row [employee]="employee"></div>
         </div>
     </div>

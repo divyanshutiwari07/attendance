@@ -8,6 +8,7 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 // import { DatePipe } from '@angular/common';
 import { MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 import * as Utils from '../../common/utils';
+import { SearchPipe } from '../../common/filters/search';
 
 @Component({
   selector: 'app-todays-report',
@@ -28,6 +29,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   public empList = [];
+  public searchedList = [];
   public selectedTab;
   public TOTAL_EMP;
   public presentEmp;
@@ -52,6 +54,7 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
+    private searchPipe: SearchPipe
     // private datePipe: DatePipe
   ) {}
 
@@ -136,11 +139,13 @@ export class TodaysReportComponent implements OnInit {
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, inTime: null, outTime: null, photo: null, id: 0};
+      const row = {name: null, inTime: null, outTime: null, entryFrom: null, photo: null, id: 0};
 
       row.name = element.awi_label;
       row.inTime = element.first_presence;
       row.outTime = element.last_presence;
+      row.entryFrom = element.awi_data.location;
+      
 
       const idKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
       // row.id = idKey;
@@ -218,6 +223,13 @@ export class TodaysReportComponent implements OnInit {
     });
     // row.startTimeStamp = Utils.getStartTimeStampOfYear(year);
     // row.endTimeStamp = Utils.getEndTimeStampOfYear(year);
+  }
+
+  onSearchChange(searchedText) {
+    if(!searchedText || searchedText.length) {
+      this.searchedList = Object.assign([], this.empList);
+    }
+    this.searchedList = this.searchPipe.transform(this.empList, "entryForm", searchedText);
   }
 }
 
