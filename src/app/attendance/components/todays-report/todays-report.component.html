@@ -30,7 +30,7 @@
         </div>
     </div>
   </div>
-  <div class="search-bar">
+  <div class="search-bar" *ngIf="selectedTab == 'P'">
       <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}">
   </div>
 
@@ -42,17 +42,23 @@
 
   <!-- <app-emp-list *ngIf="selectedTab == 'P'" [employees]="empList"></app-emp-list> -->
 
-  <div class="test" *ngIf="selectedTab == 'A'">
+  <div class="all-employee" *ngIf="selectedTab == 'A'">
   <!-- <div class="test" > -->
 
       <mat-form-field>
-        <input (keyup) = "applyFilter($event.target.value)" matInput placeholder="Filter">
+        <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
       </mat-form-field>
-
+      <mat-form-field>
+          <input #event matInput [matDatepicker]="picker" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker  ngDefaultControl></mat-datepicker>
+          <!-- first($event.value.format('YYYY-MM-D')) -->
+      </mat-form-field>
+    
       <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8'>
           <ng-container matColumnDef="imgurl">
-            <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-            <mat-cell *matCellDef="let element"> <img [src]="element.imgurl" /> </mat-cell>
+            <mat-header-cell class="mat-header-img" *matHeaderCellDef> Profile Image</mat-header-cell>
+            <mat-cell class="mat-cell-img" *matCellDef="let element"> <img [src]="element.imgurl" /> </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="id">
@@ -67,19 +73,19 @@
           </ng-container>
           
           <ng-container matColumnDef="isPresent">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Is Present? </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.isPresent ? 'Present': 'Absent'}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header > Status </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="{{element.isPresent ? 'p': 'a'}}"> <div class="square"></div> </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="viewRecord">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Yearly Attendance </mat-header-cell>
-            <mat-cell (click)="openVerticallyCentered(content); empData(element)" *matCellDef="let element"> <button mat-button >Edit</button> </mat-cell>
+            <mat-header-cell class="mat-header-yearly-attendance" *matHeaderCellDef > Yearly Attendance </mat-header-cell>
+            <mat-cell class="mat-cell-yearly-attendance" (click)="openVerticallyCentered(content); empData(element)" *matCellDef="let element"> <button class="btn btn-outline-primary" >View Record</button> </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row  (click)= "check(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       
       <ng-template #content let-modal >
           <div class="modal-header">

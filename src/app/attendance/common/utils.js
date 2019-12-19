@@ -45,6 +45,13 @@ export function getEndTimeStampOfYear(year) {
     return (new Date(year, 11, 31)).setHours(23, 59, 59, 999);
 }
 
+export function getStartTimeStampOfGivenDate(date) {
+    return this.startTime = new Date(date).setHours(0, 0, 0, 0);
+}
+export function getEndTimeStampOfGivenDate(date) {
+    return this.endTime = new Date(date).setHours(23, 59, 59, 999);
+}
+
 export function getRandomColor() {
     const randomColorPlugin = {
       beforeUpdate(chart) {
@@ -62,5 +69,16 @@ export function getRandomColor() {
       }
     };
     return randomColorPlugin;
+}
+
+export function getFormattedDate(date) {
+    
+    let formattedDate = new Date(date);
+    const dd = String(formattedDate.getDate()).padStart(2, '0');
+    const mm = String(formattedDate.getMonth() + 1).padStart(2, '0');
+    const yyyy = formattedDate.getFullYear();
+    formattedDate = mm + '-' + dd + '-' + yyyy;
+    // console.log(formattedDate);
+    return formattedDate;
 }
 

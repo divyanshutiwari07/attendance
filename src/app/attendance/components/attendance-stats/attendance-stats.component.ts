@@ -213,7 +213,7 @@ export class AttendanceStatsComponent implements OnInit {
         },
         options: {
           title: {
-            text: 'Line Chart',
+            text: 'Bar Chart',
             display: true,
             fontColor: '#000000'
           },
@@ -246,6 +246,7 @@ export class AttendanceStatsComponent implements OnInit {
             }
           },
           legend: {
+            display: false,
             labels: {
               fontColor: '#000000'
             },
@@ -328,11 +329,12 @@ export class AttendanceStatsComponent implements OnInit {
         },
         options: {
           title: {
-            text: 'Line Chart',
+            text: 'Bar Chart',
             display: true,
             fontColor: '#000000'
           },
           legend: {
+            display: false,
             labels: {
               fontColor: '#000000'
             },

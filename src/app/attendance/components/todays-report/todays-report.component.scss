@@ -40,11 +40,49 @@
             margin: auto;
         }
     }
+
+    .all-employee {
+        margin-left: 16px;
+        margin-right: 17px;
+        mat-table {
+            mat-header-cell.mat-header-img {
+                justify-content: center;
+              }
+            mat-cell.mat-cell-img {
+                justify-content: center ;
+            }
+            mat-header-cell.mat-header-yearly-attendance {
+                padding-left:6px ;
+            }
+            mat-cell.mat-cell-yearly-attendance {
+                padding-left:6px ;  
+                .btn {
+                    display: block;
+                    height: 30px;
+                    padding: 3px;
+                    min-width: 58px;
+                    border-radius: 0 !important;
+                }
+            }
+            mat-cell.p {
+                .square {
+                    border: 6px solid green;
+                    margin-left: 10px;
+                }
+            }
+            mat-cell.a {
+                .square {
+                    border: 6px solid red;
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
 }
 
-table {
-    width: 100%;
-  }
+// table {
+//     width: 100%;
+//   }all-employee
 
 
 

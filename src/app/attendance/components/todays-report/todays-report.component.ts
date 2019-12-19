@@ -5,8 +5,9 @@ import { isNullOrUndefined } from 'util';
 import { UserService } from '../../services/user.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
-
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+// import { DatePipe } from '@angular/common';
+import { MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import * as Utils from '../../common/utils';
 
 @Component({
   selector: 'app-todays-report',
@@ -38,6 +39,8 @@ export class TodaysReportComponent implements OnInit {
   public selectedEmpData;
   public disableExportButton;
   private yearlyReport;
+  private startTimeStamp;
+  private endTimeStamp;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
@@ -48,10 +51,12 @@ export class TodaysReportComponent implements OnInit {
     private notifyService: NotificationService,
     private userService: UserService,
     private modalService: NgbModal,
-    private exportAsService: ExportAsService
+    private exportAsService: ExportAsService,
+    // private datePipe: DatePipe
   ) {}
 
   ngOnInit() {
+    // this.selectedDate = new Date();
     this.disableExportButton = true;
     this.imgurl = 'https://www.tutorialrepublic.com/examples/images/avatar/1.jpg';
     this.selectedTab = 'P';
@@ -77,6 +82,7 @@ export class TodaysReportComponent implements OnInit {
 
   private markPresentEmployees() {
     this.dataSource.data = this.registeredUsersData.map(user => ({
+      // tslint:disable-next-line:max-line-length
       ...user , imgurl: 'https://www.tutorialrepublic.com/examples/images/avatar/1.jpg', isPresent: !isNullOrUndefined( this.empList.find(emp => {
         return emp.id === user.id;
       }))
@@ -89,6 +95,7 @@ export class TodaysReportComponent implements OnInit {
     .subscribe(
       response => {
         if (callBackFn) {
+          console.log('present emp today' , response);
           callBackFn(response);
         }
 
@@ -97,6 +104,12 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractDataForRegisteredUsers(response): Array<object> {
+    if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
+      this.errorToaster(response.msg);
+      console.log('no registered users data found');
+      return [];
+    }
+
     const data = [];
     response.data.forEach((element) => {
       const row = {name: null, department: null, img : null, photo: null, id: 0};
@@ -129,13 +142,12 @@ export class TodaysReportComponent implements OnInit {
       row.inTime = element.first_presence;
       row.outTime = element.last_presence;
 
-      // Hard code emp Id
-      row.id = element.awi_data.id;
+      const idKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
+      // row.id = idKey;
+      row.id = element.awi_data.awi_app_data.awi_blobs[idKey].classification.awi_blob_db[0].awi_id;
 
       // const imgKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
       // row.photo = element.awi_data.awi_app_data.awi_blobs[imgKey].img_base64;
-
-
       data.push(row);
     });
     console.log(response);
@@ -166,7 +178,7 @@ export class TodaysReportComponent implements OnInit {
     // console.log(row);
   }
 
-  applyFilter(filterValue: String) {
+  searchEmployee(filterValue: String) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
@@ -189,4 +201,23 @@ export class TodaysReportComponent implements OnInit {
     this.exportAsService.save(this.exportAsConfig, fileName).subscribe(() => {
     });
   }
+
+  getEmployeeRecordForGivenDate() {
+    console.log('given data');
+  }
+
+  getEmployeeRecordForSelectedDate(selectedDate) {
+    console.log(selectedDate);
+    this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
+    this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
+    console.log('formated date', this.startTimeStamp, this.endTimeStamp);
+    this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
+      this.empList = this.extractData(res);
+      this.markPresentEmployees();
+      console.log('this.empList', this.empList);
+    });
+    // row.startTimeStamp = Utils.getStartTimeStampOfYear(year);
+    // row.endTimeStamp = Utils.getEndTimeStampOfYear(year);
+  }
 }
+
