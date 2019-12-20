@@ -11,18 +11,25 @@ import * as Utils from '../../common/utils';
 export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
+  @Input() searchText;
+
   private currentDate;
   public selectedDepartment;
-
+  public selectedLocation;
+  // searchText;
+  location = [
+    {name: 'fd ', id: 'fd'},
+    {name: 'HW ', id: 'hw'}
+  ];
   departments = [
-    {name: 'fd - Something', id: 'fd'},
-    {name: 'HW - Something', id: 'hw'}
+    {name: 'Sales ', id: 'Sales'},
+    {name: 'Engineer ', id: 'Engineer'}
   ];
 
-  names = [
-    {name: 'Mohd. Taufizul', id: 'Taufizul'},
-    {name: 'Vikram Kumar', id: 'vikram'}
-  ];
+  // names = [
+  //   {name: 'Mohd. Taufizul', id: 'Taufizul'},
+  //   {name: 'Vikram Kumar', id: 'vikram'}
+  // ];
 
   constructor() {
     this.getCurrentDate();

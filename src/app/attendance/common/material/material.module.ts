@@ -8,7 +8,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatTabsModule,
-  MatSelectModule
+  MatSelectModule,
 
 } from '@angular/material';
 

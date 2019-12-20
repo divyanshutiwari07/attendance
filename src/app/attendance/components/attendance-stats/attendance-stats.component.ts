@@ -115,6 +115,7 @@ export class AttendanceStatsComponent implements OnInit {
             fontColor: '#000000'
           },
           legend: {
+            onClick: (e) => e.stopPropagation(),
             labels: {
               fontColor: 'black'
             },
@@ -152,6 +153,7 @@ export class AttendanceStatsComponent implements OnInit {
             fontColor: '#000000'
           },
           legend: {
+            onClick: (e) => e.stopPropagation(),
             labels: {
               fontColor: 'black'
             },

@@ -6,9 +6,11 @@ import { UserService } from '../../services/user.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 // import { DatePipe } from '@angular/common';
-import { MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { SearchPipe } from '../../common/filters/search';
+import { config } from '../../../config';
+// import { MatSort } from '@angular/material/sort'
 
 @Component({
   selector: 'app-todays-report',
@@ -17,11 +19,18 @@ import { SearchPipe } from '../../common/filters/search';
 })
 export class TodaysReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['imgurl',  'id', 'name', 'isPresent', 'viewRecord' ];
+  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' ];
   dataSource = new MatTableDataSource([]);
-  imgurl: string;
+  searchText;
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
+    this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
+      if (typeof data[sortHeaderId] === 'string') {
+        return data[sortHeaderId].toLocaleLowerCase();
+      }
+      return data[sortHeaderId];
+    };
+
     this.dataSource.sort = sort;
   }
   @ViewChild(MatPaginator, {static: false}) set paginator(sort: MatPaginator) {
@@ -61,7 +70,6 @@ export class TodaysReportComponent implements OnInit {
   ngOnInit() {
     // this.selectedDate = new Date();
     this.disableExportButton = true;
-    this.imgurl = 'https://www.tutorialrepublic.com/examples/images/avatar/1.jpg';
     this.selectedTab = 'P';
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
@@ -72,13 +80,14 @@ export class TodaysReportComponent implements OnInit {
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
+      console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         this.empList = this.extractData(res);
         this.markPresentEmployees();
         console.log('this.empList', this.empList);
       });
-      console.log('register result', this.registeredUsersData);
+
 
     });
   }
@@ -86,11 +95,10 @@ export class TodaysReportComponent implements OnInit {
   private markPresentEmployees() {
     this.dataSource.data = this.registeredUsersData.map(user => ({
       // tslint:disable-next-line:max-line-length
-      ...user , imgurl: 'https://www.tutorialrepublic.com/examples/images/avatar/1.jpg', isPresent: !isNullOrUndefined( this.empList.find(emp => {
+      ...user , isPresent: !isNullOrUndefined( this.empList.find(emp => {
         return emp.id === user.id;
       }))
     }));
-    // console.log('data' , this.dataSource.data);
   }
 
   private getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
@@ -115,18 +123,19 @@ export class TodaysReportComponent implements OnInit {
 
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, department: null, img : null, photo: null, id: 0};
+      const row = {name: null, department: null, photo: null, id: 0};
 
       row.name = element.awi_label;
       row.department = element.awi_subclass;
-      row.img = element.img_url;
+      // row.photo  = element.img_url[0];
+      const img = element.imgs[0];
+      row.photo = this.getUpdatedImageUrl(img);
       row.id = element.id;
       data.push(row);
     });
     console.log(response);
     return data;
   }
-
   private extractData(response): Array<object> {
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
@@ -139,24 +148,42 @@ export class TodaysReportComponent implements OnInit {
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, inTime: null, outTime: null, entryFrom: null, photo: null, id: 0};
+      const row = {name: null, inTime: null, outTime: null, location: null, department: null, photo: null, id: 0};
+
+      const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
 
       row.name = element.awi_label;
       row.inTime = element.first_presence;
       row.outTime = element.last_presence;
-      row.entryFrom = element.awi_data.location;
-      
+      row.location = element.awi_data.location;
 
-      const idKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-      // row.id = idKey;
-      row.id = element.awi_data.awi_app_data.awi_blobs[idKey].classification.awi_blob_db[0].awi_id;
+      row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
+
+      row.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
 
       // const imgKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-      // row.photo = element.awi_data.awi_app_data.awi_blobs[imgKey].img_base64;
+      const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
+      row.photo = this.getUpdatedImageUrl(img);
+      // row.photo = "https://www.tutorialrepublic.com/examples/images/avatar/1.jpg";
       data.push(row);
     });
     console.log(response);
     return data;
+  }
+
+  getUpdatedImageUrlForRegister(img_url) {
+    const url = config.SERVER_ADDRESS_FOR_REGISTER + config.PORT + img_url;
+    console.log('url', url);
+    return url;
+  }
+
+  getUpdatedImageUrl(img_url) {
+    const host = img_url.split('/')[2].split(':')[0];
+    const port = img_url.split('/')[2].split(':')[1];
+
+    let url = img_url.replace(host, config.SERVER_ADDRESS);
+    url     = url.replace(port, config.PORT);
+    return url;
   }
 
   errorToaster(message: string) {
@@ -179,10 +206,6 @@ export class TodaysReportComponent implements OnInit {
     // console.log('yes div 2 as btn');
   }
 
-  check(row) {
-    // console.log(row);
-  }
-
   searchEmployee(filterValue: String) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -192,7 +215,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   empData(element) {
-    console.log(element);
+    console.log('selectedempdata', element);
     this.selectedEmpData = element;
   }
 
@@ -226,10 +249,10 @@ export class TodaysReportComponent implements OnInit {
   }
 
   onSearchChange(searchedText) {
-    if(!searchedText || searchedText.length) {
+    if (!searchedText || searchedText.length) {
       this.searchedList = Object.assign([], this.empList);
     }
-    this.searchedList = this.searchPipe.transform(this.empList, "entryForm", searchedText);
+    this.searchedList = this.searchPipe.transform(this.empList, 'entryForm', searchedText);
   }
 }
 

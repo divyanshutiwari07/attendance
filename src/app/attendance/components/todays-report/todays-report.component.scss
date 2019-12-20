@@ -44,12 +44,23 @@
     .all-employee {
         margin-left: 16px;
         margin-right: 17px;
+
+        .mat-form {
+            display: flex;
+            justify-content: space-between;
+        }
+
         mat-table {
             mat-header-cell.mat-header-img {
                 justify-content: center;
               }
             mat-cell.mat-cell-img {
                 justify-content: center ;
+                img{
+                    width: 50px;
+                    height: 50px;
+                    padding: 4px;
+                }
             }
             mat-header-cell.mat-header-yearly-attendance {
                 padding-left:6px ;
@@ -77,12 +88,38 @@
                 }
             }
         }
+
+        
     }
 }
 
-// table {
-//     width: 100%;
-//   }all-employee
+.report {
+    padding: 8px 25px;  
+    .d-flex {
+      padding: 8px 17px;
+      
+      .column.avatar {
+        display: flex;
+        flex: 0.07; 
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+      .column {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        > div {
+          padding: 9px 0px;
+        }
+      }
+      .report-data {
+        margin-top: 20px;
+      }
+    }
+}
 
 
 

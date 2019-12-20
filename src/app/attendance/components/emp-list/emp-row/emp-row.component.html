@@ -1,11 +1,11 @@
 <div class="emp-detail" >
     <div class='column avatar'>
-        <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar">
-        <!-- <img src='{{employee.photo}}' alt="Avatar"> -->
+        <!-- <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> -->
+        <img src={{employee.photo}} alt="Avatar">
     </div>
     <div class='column'>
         <div>Employee Name: {{employee.name}}</div>
-        <div>Department: {{employee.entryFrom}}</div>
+        <div>Department: {{employee.department}}</div>
     </div>
     <div class='column'>
         <div>Entry From: {{employee.entryFrom}}</div>
@@ -27,11 +27,11 @@
     <div class="modal-body report">
         <div class="d-flex">
             <div class='column avatar'>
-                <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar">
+                <img src={{employee.photo}} alt="Avatar">
             </div>
             <div class='column col-md-8'>
                 <div>Employee Name: {{employee.name}} </div>
-                <div>Department:</div>
+                <div>Department: {{employee.department}} </div>
             </div>            
         </div>
         <div class="report-data">

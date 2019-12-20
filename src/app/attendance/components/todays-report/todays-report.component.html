@@ -2,7 +2,7 @@
   <div class='header'>
     <h2>
       <!-- {{ selectedTab == 'P' ? 'Today\'s Attendance' : 'Today\'s Absent'}} -->
-      Today's Attendance {{message}}
+      Today's Attendance 
     </h2>
     <span class='header-style'><h2> {{presentEmp}} % </h2> Percentage Attendance</span>
     <!-- <span class='header-style'><h2> {{ selectedTab == 'P' ? presentEmp : absentEmp}} % </h2> Percentage Attendance</span> -->
@@ -14,7 +14,7 @@
       <div class="card div-as-btn">
         <div class="card-body p-3 clearfix {{ selectedTab == 'P' ? 'selected-tab' : ''}}" (click)='presentOnPremises()'>
           <div class="h5 mb-0 align-items-center d-flex justify-content-center">
-            {{presentEmp}} % Present on Premises
+            Present on Premises
           </div>
         </div>  
       </div>
@@ -24,56 +24,55 @@
         <div class="card div-as-btn">
           <div class="card-body p-3 clearfix {{ selectedTab == 'A' ? 'selected-tab' : ''}}" (click)='absent()'>
             <div class="h5 mb-0 align-items-center d-flex justify-content-center">
-              {{ absentEmp }} % Absent
+            All Employees
             </div>
           </div>
         </div>
     </div>
   </div>
   <div class="search-bar" *ngIf="selectedTab == 'P'">
-      <input class="form-control mr-sm-2 col-2" type="text" placeholder="{{ 'Search'}}" (input)="onSearchChange($event.target.value)">
+      <input class="form-control mr-sm-2 col-2" type="text" [(ngModel)]="searchText" placeholder="{{ 'Search'}}">
   </div>
 
   <div class="row p-3" *ngIf="selectedTab == 'P'">
     <div class="col-md-12">
-      <app-emp-list [employees]="empList"></app-emp-list>
+      <app-emp-list [employees]="empList" [searchText] = 'searchText'></app-emp-list>
     </div>
   </div>
 
   <!-- <app-emp-list *ngIf="selectedTab == 'P'" [employees]="empList"></app-emp-list> -->
 
   <div class="all-employee" *ngIf="selectedTab == 'A'">
-  <!-- <div class="test" > -->
+      <div class="mat-form">
+        <mat-form-field>
+          <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
+        </mat-form-field>
+        <mat-form-field>
+            <input #event matInput [matDatepicker]="picker" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker  ngDefaultControl></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field>
-        <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
-      </mat-form-field>
-      <mat-form-field>
-          <input #event matInput [matDatepicker]="picker" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker  ngDefaultControl></mat-datepicker>
-          <!-- first($event.value.format('YYYY-MM-D')) -->
-      </mat-form-field>
-    
-      <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8'>
-          <ng-container matColumnDef="imgurl">
+      <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8' matSortActive="name" matSortDirection="asc" matSortDisableClear>
+          <ng-container matColumnDef="photo">
             <mat-header-cell class="mat-header-img" *matHeaderCellDef> Profile Image</mat-header-cell>
-            <mat-cell class="mat-cell-img" *matCellDef="let element"> <img [src]="element.imgurl" /> </mat-cell>
+            <mat-cell class="mat-cell-img" *matCellDef="let element"> <img [src]="element.photo" /> </mat-cell>
           </ng-container>
 
-          <ng-container matColumnDef="id">
-            <mat-header-cell  *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          <ng-container matColumnDef="department">
+            <mat-header-cell  *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.department}} </mat-cell>
           </ng-container>
-        
+          
           
           <ng-container matColumnDef="name">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Name </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
           </ng-container>
           
           <ng-container matColumnDef="isPresent">
-            <mat-header-cell *matHeaderCellDef mat-sort-header > Status </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
             <mat-cell *matCellDef="let element" class="{{element.isPresent ? 'p': 'a'}}"> <div class="square"></div> </mat-cell>
           </ng-container>
 
@@ -83,9 +82,10 @@
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row  (click)= "check(row)" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+      <mat-paginator [pageSizeOptions]="[5 , 10, 25, 100]"></mat-paginator>
       
       <ng-template #content let-modal >
           <div class="modal-header">
@@ -97,7 +97,7 @@
           <div class="modal-body report">
               <div class="d-flex">
                   <div class='column avatar'>
-                      <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar">
+                      <img src={{selectedEmpData.photo}} alt="Avatar">
                   </div>
                   <div class='column col-md-8'>
                       <div>Employee Name: {{selectedEmpData.name}} </div>
