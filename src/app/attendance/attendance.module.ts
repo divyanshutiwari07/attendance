@@ -23,6 +23,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { MaterialModule } from './common/material/material.module';
 import { SearchPipe } from './common/filters/search';
 import { SortPipe } from './common/filters/sort';
+import { TimeRangePipe } from './common/filters/time-range';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { SortPipe } from './common/filters/sort';
     YearDropDownComponent,
     SearchPipe,
     SortPipe,
-
+    TimeRangePipe    
   ],
   imports: [
     CommonModule,
@@ -54,6 +55,6 @@ import { SortPipe } from './common/filters/sort';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],
-  providers: [SearchPipe, SortPipe],
+  providers: [SearchPipe, SortPipe, TimeRangePipe],
 })
 export class AttendanceModule { }

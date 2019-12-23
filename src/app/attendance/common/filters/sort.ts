@@ -12,15 +12,28 @@ export class SortPipe implements PipeTransform {
     if (!field) {
       return array;
     }
-    array.sort((a: any, b: any) => {
-      if (a[field].toLowerCase() < b[field].toLowerCase()) {
-        return -1;
-      } else if (a[field].toLowerCase() > b[field].toLowerCase()) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    if( field == 'inTime') {
+      array.sort((a: any, b: any) => {
+        if (a[field].toLowerCase() > b[field].toLowerCase()) {
+          return -1;
+        } else if (a[field].toLowerCase() < b[field].toLowerCase()) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else {
+      array.sort((a: any, b: any) => {
+        if (a[field].toLowerCase() < b[field].toLowerCase()) {
+          return -1;
+        } else if (a[field].toLowerCase() > b[field].toLowerCase()) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    }
+    
     return array;
   }
 }

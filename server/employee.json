@@ -349,6 +349,122 @@
           "s_name": "Office",
           "__v": 0
         }
+      },
+      {
+        "timestamp": "19-12-2019",
+        "week": 50,
+        "day_of_week": 5,
+        "day_of_year": 353,
+        "day_of_month": 19,
+        "awi_label": "abhishek",
+        "first_presence": "2019-12-19T12:35:53.049Z",
+        "last_presence": "2019-12-19T12:35:53.049Z",
+        "awi_data": {
+          "cam_no": 1,
+          "awi_app_data": {
+            "awi_name": "awi_app_data",
+            "awi_blobs": {
+              "awi_server_heat": [
+                ""
+              ],
+              "awi_blob_subclass": [
+                "Sales"
+              ],
+              "awi_blob_names": [
+                "awi_face"
+              ],
+              "awi_blob_labels": [
+                "piyush"
+              ],
+              "awi_blob_ids": [
+                "awi_160"
+              ],
+              "awi_160": {
+                "img_base64": "http://localhost:3000/detections/48522/2183/48522_2183_5958_awi_160.jpg",
+                "classification": {
+                  "status": true,
+                  "awi_url_db": "url",
+                  "awi_max_match_idx": 0,
+                  "awi_label": "piyush",
+                  "awi_descriptor": "",
+                  "awi_conf": 0.6459776859561022,
+                  "awi_class": "awi_face",
+                  "awi_blob_db": [
+                    {
+                      "imgs": [
+                        "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
+                      ],
+                      "img_url": [
+                        "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
+                      ],
+                      "img_base64": "base64",
+                      "awi_subclass": "Sales",
+                      "awi_severity": 1,
+                      "awi_label": "piyush",
+                      "awi_id": 2148,
+                      "awi_conf": 0.6459776859561022,
+                      "awi_class": "awi_face",
+                      "__v": 0
+                    }
+                  ],
+                  "awi_attributes": {
+                    "awi_gender": "",
+                    "awi_emotion": "",
+                    "awi_age": ""
+                  },
+                  "__v": 0
+                },
+                "awi_coords": [
+                  {
+                    "y": 0.3499999940395355,
+                    "x": 0.28437501192092896
+                  },
+                  {
+                    "y": 0.3499999940395355,
+                    "x": 0.3453125059604645
+                  },
+                  {
+                    "y": 0.45625001192092896,
+                    "x": 0.3453125059604645
+                  },
+                  {
+                    "y": 0.45625001192092896,
+                    "x": 0.28437501192092896
+                  }
+                ]
+              }
+            },
+            "awi_app_param": {
+              "awi_time_senstivity": 10,
+              "awi_time_frequency": 10,
+              "awi_space_senstivity_y": 5,
+              "awi_space_senstivity_x": 5,
+              "awi_name": "awi_app_param"
+            },
+            "awi_app": {
+              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+              "color": "#A57E5D",
+              "awi_name": "Facial Recognition",
+              "awi_app_name": "awi_facial_recognition",
+              "awi_app_id": 1,
+              "awi_app_credits": 100,
+              "awi_app_API_key": "34"
+            }
+          },
+          "timestamp": "2019-12-19T12:39:53.049Z",
+          "location": "fd",
+          "awi_camid": 2183,
+          "awi_terminal_id": 48522,
+          "awi_client_id": 2,
+          "id": 5958,
+          "awi_severity": "awi_medium",
+          "add_to_train": false,
+          "transaction_id": "0",
+          "is_read": false,
+          "awi_site_id": 48515,
+          "s_name": "Office",
+          "__v": 0
+        }
       }
     ]
   }

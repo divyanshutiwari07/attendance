@@ -28,7 +28,7 @@
             <mat-label>Arrival Time</mat-label>
             <mat-select [(ngModel)]="selectedTime" name="arrivalTime">
                 <mat-option>All</mat-option>
-                <mat-option *ngFor="let arrivalTime of arrivalTimes" [value]="arrivalTime.id">
+        <mat-option *ngFor="let arrivalTime of arrivalTimes" [value]="arrivalTime">
                     {{arrivalTime.name}}
                 </mat-option>
             </mat-select>
@@ -68,7 +68,7 @@
 
     <!-- <div class="card mb-3 ">
         <div class="card-body" class="chart-container">
-            <div *ngFor="let employee of employees | search : selectedDepartment " app-emp-row [employee]="employee"></div>
+            <div *ngFor="let employee of employees | sort:selectedList " app-emp-row [employee]="employee"></div>
         </div>
     </div>   -->
     <!-- <div class="card mb-3 ">
@@ -81,7 +81,13 @@
     <!-- original -->
     <div class="card mb-3 ">
         <div class="card-body" class="chart-container">
-            <div *ngFor="let employee of employees | search : selectedDepartment :['department'] | search : selectedLocation :['location'] | sort:selectedList" app-emp-row [employee]="employee"></div>
+            <div *ngFor="let employee of employees 
+            | search : selectedDepartment :['department'] 
+            | search : selectedLocation :['location'] 
+            | sort:selectedList 
+            | search:searchText:['name'] 
+            | timeRange : selectedTime" 
+            app-emp-row [employee]="employee"></div>
         </div>
     </div>
     
