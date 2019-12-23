@@ -3,6 +3,7 @@ import {ExportToCsv} from 'export-to-csv';
 
 import * as Utils from '../../common/utils';
 
+
 @Component({
   selector: 'app-emp-list',
   templateUrl: './emp-list.component.html',
@@ -16,6 +17,8 @@ export class EmpListComponent implements OnChanges {
   private currentDate;
   public selectedDepartment;
   public selectedLocation;
+  public selectedList;
+
   // searchText;
   location = [
     {name: 'fd ', id: 'fd'},
@@ -24,6 +27,32 @@ export class EmpListComponent implements OnChanges {
   departments = [
     {name: 'Sales ', id: 'Sales'},
     {name: 'Engineer ', id: 'Engineer'}
+  ];
+  sortByList = [
+    {name: 'Alphabetic Order', id: 'name'},
+    {name: 'Latest Time', id: 'inTime'},
+  ];
+  arrivalTimes = [
+    {name: '6 AM -  7 AM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '7 AM -  8 AM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '8 AM -  9 AM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '9 AM -  10 AM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '10 AM - 11 AM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '11 AM - 00 PM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '00 PM - 1 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '01 PM - 2 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '02 PM - 3 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '03 PM - 4 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '04 PM - 5 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '05 PM - 6 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '06 PM - 7 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '07 PM - 8 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '08 PM - 9 PM',  id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '09 PM - 10 PM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '10 PM - 11 PM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+    {name: '11 PM - 12 PM', id: { firstTime: '1576747800000', lastTime: '1576751400000'} },
+
+    
   ];
 
   // names = [

@@ -9,9 +9,13 @@
         align-items: center;
         flex: 1;
     }
+    .column.heading {
+        flex: .7;
+    }
     .column.filters {
+        flex: 1.5;        
         > * {
-                margin-right: 5px;
+                margin-right: 7px;
             }
             
         // div {
@@ -27,16 +31,15 @@
         //     font-size: 13px;    
         // }
         
-        flex: 1.5;        
-        > * {
-            margin-right: 5px;
-        }
     }
-    .column.sorts > * {
-        margin-right: 5px;
+    .column.sort > * {
+        margin-right: 7px;
     }
     .column.action {
         flex: 0.5;
     }
 
+    mat-form-field{
+        width: 110px;
+    }
 }

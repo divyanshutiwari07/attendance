@@ -5,12 +5,10 @@ import { isNullOrUndefined } from 'util';
 import { UserService } from '../../services/user.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
-// import { DatePipe } from '@angular/common';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { SearchPipe } from '../../common/filters/search';
 import { config } from '../../../config';
-// import { MatSort } from '@angular/material/sort'
 
 @Component({
   selector: 'app-todays-report',
@@ -30,7 +28,6 @@ export class TodaysReportComponent implements OnInit {
       }
       return data[sortHeaderId];
     };
-
     this.dataSource.sort = sort;
   }
   @ViewChild(MatPaginator, {static: false}) set paginator(sort: MatPaginator) {
@@ -52,6 +49,7 @@ export class TodaysReportComponent implements OnInit {
   private yearlyReport;
   private startTimeStamp;
   private endTimeStamp;
+  public todaysDate;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
@@ -63,12 +61,13 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-    private searchPipe: SearchPipe
-    // private datePipe: DatePipe
+
+
   ) {}
 
   ngOnInit() {
     // this.selectedDate = new Date();
+    this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
     this.startTime = new Date().setHours(0, 0, 0, 0);
@@ -248,11 +247,11 @@ export class TodaysReportComponent implements OnInit {
     // row.endTimeStamp = Utils.getEndTimeStampOfYear(year);
   }
 
-  onSearchChange(searchedText) {
-    if (!searchedText || searchedText.length) {
-      this.searchedList = Object.assign([], this.empList);
-    }
-    this.searchedList = this.searchPipe.transform(this.empList, 'entryForm', searchedText);
-  }
+  // onSearchChange(searchedText) {
+  //   if (!searchedText || searchedText.length) {
+  //     this.searchedList = Object.assign([], this.empList);
+  //   }
+  //   this.searchedList = this.searchPipe.transform(this.empList, 'entryForm', searchedText);
+  // }
 }
 

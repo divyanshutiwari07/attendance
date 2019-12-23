@@ -2,17 +2,14 @@
 
     .header {
         display: flex;
-
+        justify-content: space-between;
+        align-items: center;
         .header-style {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            flex: 1;
             font-size: 18px;
-        
             h2 {
                 padding-right: 15px;
-        
             }
         }
     }
