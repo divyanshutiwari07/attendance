@@ -31,11 +31,9 @@
     }
     
     .search-bar{
-        margin-right: 7px;
-        padding-bottom: 15px;
-        input{
-            margin: auto;
-        }
+        display: flex;
+        margin-right: 16px;
+        justify-content: flex-end;
     }
 
     .all-employee {

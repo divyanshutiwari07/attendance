@@ -105,18 +105,18 @@
       "endTime": 21
     },
     {
-        "name": "09 PM -  10 PM",
-        "startTime": 21,
-        "endTime": 22
+      "name": "09 PM -  10 PM",
+      "startTime": 21,
+      "endTime": 22
     },
     {
-        "name": "10 PM -  11 PM",
-        "startTime": 22,
-        "endTime": 23
+      "name": "10 PM -  11 PM",
+      "startTime": 22,
+      "endTime": 23
     },
     {
-        "name": "11 PM -  00 AM",
-        "startTime": 23,
-        "endTime": 0
-    }
+      "name": "11 PM -  00 AM",
+      "startTime": 23,
+      "endTime": 0
+  }
   ]

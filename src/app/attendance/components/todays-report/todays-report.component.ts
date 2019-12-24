@@ -39,7 +39,7 @@ export class TodaysReportComponent implements OnInit {
   public selectedTab;
   public TOTAL_EMP;
   public presentEmp;
-  public absentEmp;
+  // public absentEmp;
   private startTime;
   private endTime;
   message: string;
@@ -50,6 +50,8 @@ export class TodaysReportComponent implements OnInit {
   private startTimeStamp;
   private endTimeStamp;
   public todaysDate;
+  public allDepartmentList;
+  public allLocationList;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
@@ -83,12 +85,30 @@ export class TodaysReportComponent implements OnInit {
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         this.empList = this.extractData(res);
+        this.allDepartmentList = this.getAllDepartmentList(this.empList);
+        this.allLocationList = this.getAllLocationList(this.empList);
         this.markPresentEmployees();
         console.log('this.empList', this.empList);
       });
 
 
     });
+  }
+
+  private getAllLocationList(empList) {
+    const locationList = empList.map(a => a.location);
+     return  [...new Set( locationList)].map((d) => {
+          const obj = {id: d };
+          return obj;
+         } );
+  }
+
+  private getAllDepartmentList(empList) {
+    const departmentList = empList.map(a => a.department);
+     return  [...new Set( departmentList)].map((d) => {
+          const obj = {id: d };
+          return obj;
+         } );
   }
 
   private markPresentEmployees() {
@@ -130,6 +150,7 @@ export class TodaysReportComponent implements OnInit {
       const img = element.imgs[0];
       row.photo = this.getUpdatedImageUrl(img);
       row.id = element.id;
+
       data.push(row);
     });
     console.log(response);
@@ -143,7 +164,7 @@ export class TodaysReportComponent implements OnInit {
     }
 
     this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
-    this.absentEmp = (((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100).toFixed(2);
+    // this.absentEmp = (((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
@@ -170,11 +191,11 @@ export class TodaysReportComponent implements OnInit {
     return data;
   }
 
-  getUpdatedImageUrlForRegister(img_url) {
-    const url = config.SERVER_ADDRESS_FOR_REGISTER + config.PORT + img_url;
-    console.log('url', url);
-    return url;
-  }
+  // getUpdatedImageUrlForRegister(img_url) {
+  //   const url = config.SERVER_ADDRESS_FOR_REGISTER + config.PORT + img_url;
+  //   console.log('url', url);
+  //   return url;
+  // }
 
   getUpdatedImageUrl(img_url) {
     const host = img_url.split('/')[2].split(':')[0];
@@ -197,7 +218,6 @@ export class TodaysReportComponent implements OnInit {
     this.getPresentEmployeesDetails(this.startTime, this.endTime, (response) => {
       this.empList = this.extractData(response);
     });
-    // console.log('yes div 1 as btn');
   }
 
   absent() {

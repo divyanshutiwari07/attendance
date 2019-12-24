@@ -14,13 +14,13 @@
         </mat-form-field>
     </div>
     <div class='column filters'>            
-        <div>Filter by: </div>  
+        <div>Filter by:  </div>  
         <mat-form-field>
             <mat-label>Department</mat-label>
             <mat-select [(ngModel)]="selectedDepartment" name="departments">
                 <mat-option>All</mat-option>
                 <mat-option *ngFor="let department of departments" [value]="department.id">
-                    {{department.name}}
+                    {{department.id}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -37,46 +37,27 @@
             <mat-label>Entry From</mat-label>
             <mat-select [(ngModel)]="selectedLocation" name="empname">
                 <mat-option>All</mat-option>
-                <mat-option *ngFor="let entryFrom of location" [value]="entryFrom.id">
-                    {{entryFrom.name}}
+                <mat-option *ngFor="let location of locations" [value]="location.id">
+                    {{location.id}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <!-- <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-secondary" id="arrival_time" ngbDropdownToggle>Department</button>
-            <div ngbDropdownMenu aria-labelledby="arrival_time">
-                <button ngbDropdownItem>Action - 1</button>
-                <button ngbDropdownItem>Another Action</button>
-                <button ngbDropdownItem>Something else is here</button>
-            </div>
-        </div>        
-        <div ngbDropdown class="d-inline-block">
-            <button class="btn btn-outline-secondary" id="arrival_time" ngbDropdownToggle>Arrival Time</button>
-            <div ngbDropdownMenu aria-labelledby="arrival_time">
-                <button ngbDropdownItem>Action - 1</button>
-                <button ngbDropdownItem>Another Action</button>
-                <button ngbDropdownItem>Something else is here</button>
-            </div>
-        </div>    -->
     </div>
     <div class='column action'>            
         <div><button class="btn btn-outline-primary" (click)="exportCSV()">Export CSV</button></div>
     </div>
 </div>
-    
-    <!-- <div *ngFor="let employee of employees " app-emp-row [employee]="employee"></div> -->
 
-    <!-- <div class="card mb-3 ">
-        <div class="card-body" class="chart-container">
-            <div *ngFor="let employee of employees | sort:selectedList " app-emp-row [employee]="employee"></div>
-        </div>
-    </div>   -->
-    <!-- <div class="card mb-3 ">
-        <div class="card-body" class="chart-container">
-            <div *ngFor="let employee of employees  | search: 1576690200000: 1576863000000" app-emp-row [employee]="employee"></div>
-        </div>
-    </div> -->
-    <!-- <div *ngFor="let employee of employees" app-emp-row [employee]="employee"></div> -->
+<!-- <div class="card mb-3 ">
+    <div class="card-body" class="chart-container">
+        <div *ngFor="let employee of employees 
+        | sort:selectedList
+        | search : selectedDepartment :['department'] 
+        | search : selectedLocation :['location'] 
+        | search:searchText:['name', 'department', 'location']" 
+        app-emp-row [employee]="employee"></div>
+    </div>
+</div> -->
 
     <!-- original -->
     <div class="card mb-3 ">
@@ -84,9 +65,9 @@
             <div *ngFor="let employee of employees 
             | search : selectedDepartment :['department'] 
             | search : selectedLocation :['location'] 
-            | sort:selectedList 
-            | search:searchText:['name'] 
-            | timeRange : selectedTime" 
+            | search:searchText:['name', 'department', 'location'] 
+            | timeRange : selectedTime
+            | sort:selectedList" 
             app-emp-row [employee]="employee"></div>
         </div>
     </div>

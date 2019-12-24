@@ -5,7 +5,7 @@
       Today's Attendance 
     </h2>
     <h3> {{todaysDate | date: 'dd/MM/yyyy'}} </h3>
-    <span class='header-style'><h2> {{presentEmp}} % </h2> Percentage Attendance</span>
+    <span class='header-style'><h2> {{presentEmp}}</h2> Percentage Attendance</span>
     <!-- <span class='header-style'><h2> {{ selectedTab == 'P' ? presentEmp : absentEmp}} % </h2> Percentage Attendance</span> -->
   </div>
   <hr>
@@ -32,12 +32,19 @@
     </div>
   </div>
   <div class="search-bar" *ngIf="selectedTab == 'P'">
-      <input class="form-control mr-sm-2 col-2" type="text" [(ngModel)]="searchText" placeholder="{{ 'Search'}}">
+      <mat-form-field>
+          <input matInput placeholder="Search Employees" [(ngModel)]="searchText">
+        </mat-form-field>
+      <!-- <input class="form-control mr-sm-2 col-2" type="text" [(ngModel)]="searchText" placeholder="{{ 'Search'}}"> -->
   </div>
 
   <div class="row p-3" *ngIf="selectedTab == 'P'">
     <div class="col-md-12">
-      <app-emp-list [employees]="empList" [searchText] = 'searchText'></app-emp-list>
+      <app-emp-list 
+      [employees]="empList" 
+      [searchText] = 'searchText' 
+      [allDepartmentList] = 'allDepartmentList' 
+      [allLocationList] = 'allLocationList'></app-emp-list>
     </div>
   </div>
 

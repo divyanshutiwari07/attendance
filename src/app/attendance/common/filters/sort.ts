@@ -6,13 +6,16 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class SortPipe implements PipeTransform {
 
   transform(array: any, field: string): any[] {
+
+    console.log(array)
+    console.log(field)
     if (!Array.isArray(array)) {
       return;
     }
     if (!field) {
       return array;
     }
-    if( field == 'inTime') {
+    if ( field === 'inTime') {
       array.sort((a: any, b: any) => {
         if (a[field].toLowerCase() > b[field].toLowerCase()) {
           return -1;
@@ -33,7 +36,8 @@ export class SortPipe implements PipeTransform {
         }
       });
     }
-    
+
+    console.log(array)
     return array;
   }
 }

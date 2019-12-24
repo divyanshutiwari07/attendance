@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import {ExportToCsv} from 'export-to-csv';
-import * as Metadata from './../../common/metadata/metadata'
+import * as Metadata from './../../common/metadata/metadata';
 import * as Utils from '../../common/utils';
 
 @Component({
@@ -12,38 +12,32 @@ export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
   @Input() searchText;
+  @Input() allDepartmentList: Array<object>;
+  @Input() allLocationList: Array<object>;
 
-  private currentDate;
   public selectedDepartment;
   public selectedLocation;
   public selectedList;
+  public selectedTime;
+  // public departments;
+  public locations;
+  private todaysDate;
 
-  location = [
-    {name: 'fd ', id: 'fd'},
-    {name: 'HW ', id: 'hw'}
-  ];
-  departments = [
-    {name: 'Sales ', id: 'Sales'},
-    {name: 'Engineer ', id: 'Engineer'}
-  ];
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
-
+  departments = [
+    {id: 'Engineer'},
+    {id: 'Sales'}
+  ] ;
   constructor() {
-    this.getCurrentDate();
+    this.todaysDate = new Date();
+    // this.getCurrentDate();
   }
 
   ngOnChanges() {
-    
-  }
-
-  getCurrentDate() {
-    this.currentDate = new Date();
-    const dd = String(this.currentDate.getDate()).padStart(2, '0');
-    const mm = String(this.currentDate.getMonth() + 1).padStart(2, '0');
-    const yyyy = this.currentDate.getFullYear();
-    this.currentDate = mm + '-' + dd + '-' + yyyy;
-    console.log(this.currentDate);
+    // this.departments = this.allDepartmentList;
+    this.locations = this.allLocationList;
+    console.log('allDepartmentList', this.allDepartmentList);
   }
 
   exportCSV() {
@@ -60,7 +54,7 @@ export class EmpListComponent implements OnChanges {
       useKeysAsHeaders: true,
     };
 
-    options.filename = 'Present-employees at ' + this.currentDate;
+    options.filename = 'Present employees at ' + Utils.getFormattedDate(this.todaysDate);
     const csvExporter = new ExportToCsv(options);
 
     const mapTo = {name: 'Name', id: 'Employee Id', inTime: 'In Time', outTime: 'Out Time', photo : 'Photo' };

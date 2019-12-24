@@ -219,34 +219,21 @@ export class AttendanceStatsComponent implements OnInit {
             display: true,
             fontColor: '#000000'
           },
-          tooltips: {
-            enabled: true,
-            mode: 'point',
-            callbacks: {
-              label: function (tooltipItem, data) {
-                const label = data.datasets[tooltipItem.datasetIndex].label;
-                const yValue = tooltipItem.yLabel;
-                // const xValue = tooltipItem.xLabel;
-                return label + ': ' + yValue;
-              },
-              footer: function (tooltipItem, data) {
-                return ['new line', 'another line'];
-              }
-              // label: function(tooltipItem, data) {
-              //   return ' ' + data.datasets[tooltipItem.datasetIndex].label + '<br> ' + tooltipItem.yLabel;
-              // }
-
-              // label: function(tooltipItems, data) {
-              //   return  tooltipItems.yLabel + ' : ' + tooltipItems.xLabel ;
-              //   //  const  multistringText = [tooltipItems.yLabel];
-              //   //         // multistringText = [tooltipItems.yLabel];
-              //   //         multistringText.push('Another Item');
-              //   //         multistringText.push(tooltipItems.index + 1);
-              //   //         multistringText.push('One more Item');
-              //   //  return multistringText;
-              // }
-            }
-          },
+          // tooltips: {
+          //   enabled: true,
+          //   mode: 'point',
+          //   callbacks: {
+          //     label: function (tooltipItem, data) {
+          //       const label = data.datasets[tooltipItem.datasetIndex].label;
+          //       const yValue = tooltipItem.yLabel;
+          //       // const xValue = tooltipItem.xLabel;
+          //       return label + ': ' + yValue;
+          //     },
+          //     footer: function (tooltipItem, data) {
+          //       return ['new line', 'another line'];
+          //     }
+          //   }
+          // },
           legend: {
             display: false,
             labels: {
@@ -322,7 +309,7 @@ export class AttendanceStatsComponent implements OnInit {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
           datasets: [{
             data: dataset,
-            label: '#',
+            label: 'Present',
             borderColor: '#3e95cd',
             backgroundColor : 'rgba(192, 192, 192, 1)',
             borderWidth: 1,
