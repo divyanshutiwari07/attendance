@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
+var server = require('http').Server(app);
 var bodyParser = require('body-parser');
+var io = require('socket.io')(server);
 
 const cors = require('cors');
 app.use(cors());
@@ -14,8 +16,13 @@ const chartData = require('./chart-data.json');
 
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 
-app.listen(3000, () => {
- console.log("Server running on port 3000");
+// app.listen(3000, () => {
+//  console.log("Server running on port 3000");
+// });
+
+// Initialize our websocket server on port 5000
+server.listen(3000, () => {
+    console.log("started on port 5000");
 });
 
 
@@ -45,3 +52,12 @@ app.post('/list_of_registered_users', (req, res, next) => {
     console.log("=========== Serving list_of_registered_users =============");
     res.json(listOfRegisteredUsers);
 })
+
+io.on('connection', function (socket) {
+    console.log('user connected');
+
+    socket.emit('news', { hello: 'world' });
+    socket.on('my-event', function (data) {
+        console.log(data);
+    });
+});

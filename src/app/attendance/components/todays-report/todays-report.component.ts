@@ -9,6 +9,7 @@ import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { SearchPipe } from '../../common/filters/search';
 import { config } from '../../../config';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-todays-report',
@@ -63,7 +64,7 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-
+    private socket: Socket
 
   ) {}
 
@@ -76,6 +77,8 @@ export class TodaysReportComponent implements OnInit {
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
     this.getListOfRegisteredUsers();
+    const socketMsg = this.getMessage();
+    console.log("socketMsg", socketMsg);
   }
 
   private getListOfRegisteredUsers() {
@@ -90,10 +93,16 @@ export class TodaysReportComponent implements OnInit {
         this.markPresentEmployees();
         console.log('this.empList', this.empList);
       });
-
-
     });
   }
+
+  sendMessage(msg: string){
+    // this.socket.emit("my-event", msg);
+  }
+ getMessage() {
+    return this.socket
+        .fromEvent("my-event");
+}
 
   private getAllLocationList(empList) {
     const locationList = empList.map(a => a.location);
