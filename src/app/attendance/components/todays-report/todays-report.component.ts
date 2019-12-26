@@ -7,7 +7,6 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
-import { SearchPipe } from '../../common/filters/search';
 import { config } from '../../../config';
 import { ChatServiceService } from '../../services/chat-service.service';
 
@@ -43,7 +42,7 @@ export class TodaysReportComponent implements OnInit {
   // public absentEmp;
   private startTime;
   private endTime;
-  message: string;
+  public message: string;
   public registeredUsersData;
   public selectedEmpData;
   public disableExportButton;
@@ -54,21 +53,19 @@ export class TodaysReportComponent implements OnInit {
   public allDepartmentList;
   public allLocationList;
   private allEmpIdList;
-  private newEmpData;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
     elementId: 'employee_report', // the id of html/table element
   };
+  
   constructor(
     private apiService: ApiService,
     private notifyService: NotificationService,
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-    private chat: ChatServiceService,
-
-
+    private chat: ChatServiceService
   ) {}
 
   ngOnInit() {
@@ -84,27 +81,20 @@ export class TodaysReportComponent implements OnInit {
 
     this.getListOfRegisteredUsers();
   }
+
   sendMessage() {
     this.chat.sendMsg('Test Message');
   }
 
   private checkNewPresentEmp() {
     this.chat.messages.subscribe(data => {
-      this.newEmpData = this.extractDataForNewEmp(data);
-      console.log(data);
-      if (!isNullOrUndefined(this.newEmpData)) {
-        console.log('reach at 80');
-        const checkPresence = this.checkEmpAlreadyPresent(this.newEmpData.id);
-
-        if ((isNullOrUndefined(checkPresence))) {
-          console.log('emp already present');
-        } else {
-          console.log('reach at 89');
-          this.empList.push(this.newEmpData);
-          console.log(this.empList);
+      const newEmpData = this.extractDataForNewEmp(data);
+      if ( !isNullOrUndefined( newEmpData ) ) {
+        if ( isNullOrUndefined( this.checkEmpAlreadyPresent( newEmpData.id ) ) ) {
+          this.empList.push( newEmpData );
+          this.allDepartmentList = this.getAllDepartmentList( this.empList );          
         }
       }
-      console.log( 'newdata', this.newEmpData);
     });
   }
 
@@ -120,10 +110,6 @@ export class TodaysReportComponent implements OnInit {
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
         this.markPresentEmployees();
-
-
-        // console.log('allemplistid', this.allEmpIdList );
-
         console.log('this.empList', this.empList);
       });
     });
@@ -138,16 +124,14 @@ export class TodaysReportComponent implements OnInit {
 
   private getAllEmpIdList(empList) {
     const locationList = empList.map(a => a.id);
-     return [...new Set( locationList)];
+     return [...new Set( locationList )];
   }
 
   private getAllLocationList(empList) {
     const locationList = empList.map(a => a.location);
-    return [...new Set( locationList)].map((d) => {
-          const obj = {id: d };
-          return obj;
-         } );
-        //  console.log('sd checking' ,  sd);
+    return [...new Set( locationList )].map((d) => {
+      return {id: d };
+    });
   }
 
   private getAllDepartmentList(empList) {
@@ -331,15 +315,6 @@ export class TodaysReportComponent implements OnInit {
       this.markPresentEmployees();
       console.log('this.empList', this.empList);
     });
-    // row.startTimeStamp = Utils.getStartTimeStampOfYear(year);
-    // row.endTimeStamp = Utils.getEndTimeStampOfYear(year);
   }
-
-  // onSearchChange(searchedText) {
-  //   if (!searchedText || searchedText.length) {
-  //     this.searchedList = Object.assign([], this.empList);
-  //   }
-  //   this.searchedList = this.searchPipe.transform(this.empList, 'entryForm', searchedText);
-  // }
 }
 

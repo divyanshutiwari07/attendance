@@ -3,6 +3,7 @@ import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import * as Rx from 'rxjs';
 import { config } from '../../config';
+import {SOCKET_EVENTS} from '../../config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,13 @@ export class WebsocketService {
   constructor() { }
 
   connect(): Rx.Subject<MessageEvent> {
-    // If you aren't familiar with environment variables then
-    // you can hard code `environment.ws_url` as `http://localhost:5000`
-    // this.socket = io('http://localhost:5000');
+   
     this.socket = io(config.SERVER_ADDRESS__REALTIME);
 
     // We define our observable which will observe any incoming messages
     // from our socket.io server.
     const observable = new Observable(observer => {
-        this.socket.on('new_event_occurred', (data) => {
-          console.log('Received message from Websocket Server');
+        this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {          
           observer.next(data);
         });
         return () => {
@@ -36,7 +34,7 @@ export class WebsocketService {
     // socket server whenever the `next()` method is called.
     const observer = {
         next: (data: Object) => {
-            this.socket.emit('user_joined', 2);
+          this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT, 2);
         },
     };
 

@@ -18,7 +18,7 @@ const empRecord = require('./emp-record.json');
 const chartData = require('./chart-data.json');
 
 const listOfRegisteredUsers = require('./list-of-register-user.json');
-
+const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 // app.listen(3000, () => {
 //  console.log("Server running on port 3000");
 // });
@@ -27,7 +27,6 @@ const listOfRegisteredUsers = require('./list-of-register-user.json');
 server.listen(3000, () => {
     console.log("started on port 5000");
 });
-
 
 app.post("/employee-attendance", (req, res, next) => {
     console.log("=========== BOdy Payload =============");
@@ -56,43 +55,35 @@ app.post('/list_of_registered_users', (req, res, next) => {
     res.json(listOfRegisteredUsers);
 })
 
-io.on('connection', function (socket) {
-    console.log('user connected');
+// io.on('connection', function (socket) {
+//     console.log('user connected');
 
-    socket.emit('news', { hello: 'world' });
-    socket.on('my-event', function (data) {
-        console.log(data);
+//     socket.emit('news', { hello: 'world' });
+//     socket.on('my-event', function (data) {
+//         console.log(data);
+//     });
+// });
+
+io.on("connection", socket => {
+    // Log whenever a user connects
+    console.log("user connected");
+  
+    // Log whenever a client disconnects from our websocket server
+    socket.on("disconnect", function() {
+      console.log("user disconnected");
     });
+  
+  //   socket.on("message", message => {
+  //     console.log("Message Received: " + message);
+  //     io.emit("message", { type: "new-message from divyanshu", text: message });
+  //   });
+  
+    socket.on("message", () => {
+        setTimeout(() => {
+        console.log("Message Received: " );
+            io.emit("message", newEmpCameInFrontOfCamera);
+        }, 3000);
+      });
+  
+    
 });
-
-
-
-
-// let app = require("express")();
-// let http = require("http").Server(app);
-// let io = require("socket.io")(http);
-
-// io.on("connection", socket => {
-//   // Log whenever a user connects
-//   console.log("user connected");
-
-//   // Log whenever a client disconnects from our websocket server
-//   socket.on("disconnect", function() {
-//     console.log("user disconnected");
-//   });
-
-// //   socket.on("message", message => {
-// //     console.log("Message Received: " + message);
-// //     io.emit("message", { type: "new-message from divyanshu", text: message });
-// //   });
-//   socket.on("message", () => {
-//     console.log("Message Received: " );
-//     io.emit("message", { type: "new-message from divyanshu" });
-//   });
-// });
-
-// // Initialize our websocket server on port 5000
-// http.listen(5000, () => {
-//   console.log("started on port 5000");
-// });
-
