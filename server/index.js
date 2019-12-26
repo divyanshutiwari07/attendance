@@ -1,8 +1,11 @@
 var express = require("express");
 var app = express();
-var server = require('http').Server(app);
 var bodyParser = require('body-parser');
+
+var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
+
 
 const cors = require('cors');
 app.use(cors());
@@ -61,3 +64,35 @@ io.on('connection', function (socket) {
         console.log(data);
     });
 });
+
+
+
+
+// let app = require("express")();
+// let http = require("http").Server(app);
+// let io = require("socket.io")(http);
+
+// io.on("connection", socket => {
+//   // Log whenever a user connects
+//   console.log("user connected");
+
+//   // Log whenever a client disconnects from our websocket server
+//   socket.on("disconnect", function() {
+//     console.log("user disconnected");
+//   });
+
+// //   socket.on("message", message => {
+// //     console.log("Message Received: " + message);
+// //     io.emit("message", { type: "new-message from divyanshu", text: message });
+// //   });
+//   socket.on("message", () => {
+//     console.log("Message Received: " );
+//     io.emit("message", { type: "new-message from divyanshu" });
+//   });
+// });
+
+// // Initialize our websocket server on port 5000
+// http.listen(5000, () => {
+//   console.log("started on port 5000");
+// });
+

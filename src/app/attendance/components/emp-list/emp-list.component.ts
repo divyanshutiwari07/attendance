@@ -19,25 +19,25 @@ export class EmpListComponent implements OnChanges {
   public selectedLocation;
   public selectedList;
   public selectedTime;
-  // public departments;
+  public departments;
   public locations;
   private todaysDate;
 
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
-  departments = [
-    {id: 'Engineer'},
-    {id: 'Sales'}
-  ] ;
+  // departments = [
+  //   {id: 'Engineer'},
+  //   {id: 'Sales'}
+  // ];
   constructor() {
     this.todaysDate = new Date();
     // this.getCurrentDate();
   }
 
   ngOnChanges() {
-    // this.departments = this.allDepartmentList;
+    this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
-    console.log('allDepartmentList', this.allDepartmentList);
+    // console.log('allDepartmentList', this.allDepartmentList);
   }
 
   exportCSV() {

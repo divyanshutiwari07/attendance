@@ -25,10 +25,10 @@ import { SearchPipe } from './common/filters/search';
 import { SortPipe } from './common/filters/sort';
 import { TimeRangePipe } from './common/filters/time-range';
 
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import {LOCAL_HOST_SERVER} from './../config';
+// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+// import {LOCAL_HOST_SERVER} from './../config';
 
-const config: SocketIoConfig = { url: LOCAL_HOST_SERVER, options: {} };
+// const config: SocketIoConfig = { url: LOCAL_HOST_SERVER, options: {} };
 
 
 @NgModule({
@@ -45,7 +45,7 @@ const config: SocketIoConfig = { url: LOCAL_HOST_SERVER, options: {} };
     YearDropDownComponent,
     SearchPipe,
     SortPipe,
-    TimeRangePipe    
+    TimeRangePipe
   ],
   imports: [
     CommonModule,
@@ -57,7 +57,6 @@ const config: SocketIoConfig = { url: LOCAL_HOST_SERVER, options: {} };
     ExportAsModule,
     DataTablesModule,
     MaterialModule,
-    SocketIoModule.forRoot(config)
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],

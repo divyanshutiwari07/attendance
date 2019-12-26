@@ -9,7 +9,7 @@ import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { SearchPipe } from '../../common/filters/search';
 import { config } from '../../../config';
-import { Socket } from 'ngx-socket-io';
+import { ChatServiceService } from '../../services/chat-service.service';
 
 @Component({
   selector: 'app-todays-report',
@@ -53,6 +53,8 @@ export class TodaysReportComponent implements OnInit {
   public todaysDate;
   public allDepartmentList;
   public allLocationList;
+  private allEmpIdList;
+  private newEmpData;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv', // the type you want to download
@@ -64,11 +66,15 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-    private socket: Socket
+    private chat: ChatServiceService,
+
 
   ) {}
 
   ngOnInit() {
+    this.sendMessage();
+    this.checkNewPresentEmp();
+
     // this.selectedDate = new Date();
     this.todaysDate = new Date();
     this.disableExportButton = true;
@@ -77,8 +83,29 @@ export class TodaysReportComponent implements OnInit {
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
     this.getListOfRegisteredUsers();
-    const socketMsg = this.getMessage();
-    console.log("socketMsg", socketMsg);
+  }
+  sendMessage() {
+    this.chat.sendMsg('Test Message');
+  }
+
+  private checkNewPresentEmp() {
+    this.chat.messages.subscribe(data => {
+      this.newEmpData = this.extractDataForNewEmp(data);
+      console.log(data);
+      if (!isNullOrUndefined(this.newEmpData)) {
+        console.log('reach at 80');
+        const checkPresence = this.checkEmpAlreadyPresent(this.newEmpData.id);
+
+        if ((isNullOrUndefined(checkPresence))) {
+          console.log('emp already present');
+        } else {
+          console.log('reach at 89');
+          this.empList.push(this.newEmpData);
+          console.log(this.empList);
+        }
+      }
+      console.log( 'newdata', this.newEmpData);
+    });
   }
 
   private getListOfRegisteredUsers() {
@@ -88,28 +115,39 @@ export class TodaysReportComponent implements OnInit {
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         this.empList = this.extractData(res);
+
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
+        this.allEmpIdList = this.getAllEmpIdList(this.empList);
         this.markPresentEmployees();
+
+
+        // console.log('allemplistid', this.allEmpIdList );
+
         console.log('this.empList', this.empList);
       });
     });
   }
 
-  sendMessage(msg: string){
-    // this.socket.emit("my-event", msg);
+  private checkEmpAlreadyPresent(newId) {
+    const check =  this.allEmpIdList.find(id => {
+      return id === newId;
+    });
+    console.log('check', check );
   }
- getMessage() {
-    return this.socket
-        .fromEvent("my-event");
-}
+
+  private getAllEmpIdList(empList) {
+    const locationList = empList.map(a => a.id);
+     return [...new Set( locationList)];
+  }
 
   private getAllLocationList(empList) {
     const locationList = empList.map(a => a.location);
-     return  [...new Set( locationList)].map((d) => {
+    return [...new Set( locationList)].map((d) => {
           const obj = {id: d };
           return obj;
          } );
+        //  console.log('sd checking' ,  sd);
   }
 
   private getAllDepartmentList(empList) {
@@ -162,7 +200,7 @@ export class TodaysReportComponent implements OnInit {
 
       data.push(row);
     });
-    console.log(response);
+    // console.log(response);
     return data;
   }
   private extractData(response): Array<object> {
@@ -196,15 +234,36 @@ export class TodaysReportComponent implements OnInit {
       // row.photo = "https://www.tutorialrepublic.com/examples/images/avatar/1.jpg";
       data.push(row);
     });
-    console.log(response);
+    // console.log(response);
     return data;
   }
 
-  // getUpdatedImageUrlForRegister(img_url) {
-  //   const url = config.SERVER_ADDRESS_FOR_REGISTER + config.PORT + img_url;
-  //   console.log('url', url);
-  //   return url;
-  // }
+  private extractDataForNewEmp(res) {
+
+    const row = {name: null, inTime: null, location: null, department: null , photo: null,  id: 0};
+    const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
+
+    row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
+
+    row.inTime = res.data.timestamp;
+    row.location = res.data.awi_facial_recognition.location;
+
+    row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
+
+    row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+
+    const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
+    row.photo = this.getUpdatedImageUrl(img);
+
+      if (row.name === 'Unrecognized') {
+          // return null;
+          console.log('unrecognized person');
+      } else {
+        return row;
+      }
+
+      // return row;
+  }
 
   getUpdatedImageUrl(img_url) {
     const host = img_url.split('/')[2].split(':')[0];

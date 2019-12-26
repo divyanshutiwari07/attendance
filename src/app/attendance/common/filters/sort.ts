@@ -7,8 +7,6 @@ export class SortPipe implements PipeTransform {
 
   transform(array: any, field: string): any[] {
 
-    console.log(array)
-    console.log(field)
     if (!Array.isArray(array)) {
       return;
     }
@@ -37,7 +35,7 @@ export class SortPipe implements PipeTransform {
       });
     }
 
-    console.log(array)
+
     return array;
   }
 }
