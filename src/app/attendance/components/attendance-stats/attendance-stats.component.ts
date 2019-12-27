@@ -92,7 +92,7 @@ export class AttendanceStatsComponent implements OnInit {
 
     const dataset = [this.report.month.attendancePercentage, 100 - this.report.month.attendancePercentage];
 
-    console.log( 'MOnth:showMonthlyPieChart:', dataset);
+    // console.log( 'MOnth:showMonthlyPieChart:', dataset);
     if (!this.pieChartMonthly ) {
       this.pieChartMonthly = new Chart('pieChartMonthly', {
         type: 'pie',
@@ -132,7 +132,7 @@ export class AttendanceStatsComponent implements OnInit {
 
   private showYearlyPieChart() {
     const dataset = [this.report.year.attendancePercentage, 100 - this.report.year.attendancePercentage];
-    console.log('dataset', dataset);
+    // console.log('dataset', dataset);
     if (!this.pieChartYearly ) {
       this.pieChartYearly = new Chart('pieChartYearly', {
         type: 'pie',

@@ -27,6 +27,7 @@ export class YearlyReportComponent implements OnInit {
   public formattedYearReport;
   public selectedYear;
   public years = [];
+  public showSpinner;
 
   constructor(private apiService: ApiService, private notifyService: NotificationService) {
     // tslint:disable-next-line:max-line-length
@@ -37,9 +38,14 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.showSpinner = true;
+    // setInterval( () => {
+    //   this.showSpinner = false;
+    // }, 5000);
+
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
-    console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
+    // console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
 
     this.getEmployeeRecordForYear();
   }
@@ -54,7 +60,7 @@ export class YearlyReportComponent implements OnInit {
       this.years.push( row );
     }
 
-    console.log('years' , this.years);
+    // console.log('years' , this.years);
   }
 
   getEmployeeRecordForYear() {
@@ -64,6 +70,7 @@ export class YearlyReportComponent implements OnInit {
       'end_time': this.selectedYear.endTimeStamp,
       'awi_label': this.empName
     }).subscribe((response) => {
+      // this.showSpinner = false;
       if ( response.success === true ) {
         this.successToaster(response.msg);
       }

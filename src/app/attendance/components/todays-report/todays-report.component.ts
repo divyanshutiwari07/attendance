@@ -19,7 +19,6 @@ export class TodaysReportComponent implements OnInit {
 
   displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' ];
   dataSource = new MatTableDataSource([]);
-  searchText;
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
     this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
@@ -53,12 +52,13 @@ export class TodaysReportComponent implements OnInit {
   public allDepartmentList;
   public allLocationList;
   private allEmpIdList;
+  public searchText;
 
   exportAsConfig: ExportAsConfig = {
-    type: 'csv', // the type you want to download
-    elementId: 'employee_report', // the id of html/table element
+    type: 'csv',
+    elementId: 'employee_report',
   };
-  
+
   constructor(
     private apiService: ApiService,
     private notifyService: NotificationService,
@@ -69,30 +69,37 @@ export class TodaysReportComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sendMessage();
-    this.checkNewPresentEmp();
-
-    // this.selectedDate = new Date();
     this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
+    this.sendMessage();
+    this.checkNewPresentEmp();
     this.getListOfRegisteredUsers();
   }
 
   sendMessage() {
-    this.chat.sendMsg('Test Message');
+    this.chat.sendMsg('Access Real Time Data From Server');
   }
 
   private checkNewPresentEmp() {
     this.chat.messages.subscribe(data => {
+      console.log('Data' , data);
       const newEmpData = this.extractDataForNewEmp(data);
-      if ( !isNullOrUndefined( newEmpData ) ) {
-        if ( isNullOrUndefined( this.checkEmpAlreadyPresent( newEmpData.id ) ) ) {
+      console.log('newData' , newEmpData);
+      if ( newEmpData ) {
+        if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
+          console.log('line 94');
           this.empList.push( newEmpData );
-          this.allDepartmentList = this.getAllDepartmentList( this.empList );          
+          this.allDepartmentList = this.getAllDepartmentList( this.empList );
+          this.allLocationList = this.getAllLocationList(this.empList);
+          this.allEmpIdList = this.getAllEmpIdList(this.empList);
+          console.log('new emplist', this.empList );
+          console.log('updated id list', this.allEmpIdList );
+        } else {
+          console.log('emp already present');
         }
       }
     });
@@ -105,10 +112,10 @@ export class TodaysReportComponent implements OnInit {
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         this.empList = this.extractData(res);
-
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
+        console.log('allEmpIdList ', this.allEmpIdList);
         this.markPresentEmployees();
         console.log('this.empList', this.empList);
       });
@@ -116,15 +123,12 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private checkEmpAlreadyPresent(newId) {
-    const check =  this.allEmpIdList.find(id => {
-      return id === newId;
-    });
-    console.log('check', check );
+    return this.allEmpIdList.includes(newId);
   }
 
   private getAllEmpIdList(empList) {
     const locationList = empList.map(a => a.id);
-     return [...new Set( locationList )];
+    return [...new Set( locationList )];
   }
 
   private getAllLocationList(empList) {
@@ -136,15 +140,13 @@ export class TodaysReportComponent implements OnInit {
 
   private getAllDepartmentList(empList) {
     const departmentList = empList.map(a => a.department);
-     return  [...new Set( departmentList)].map((d) => {
-          const obj = {id: d };
-          return obj;
-         } );
+    return  [...new Set( departmentList)].map((d) => {
+      return  {id: d };
+    });
   }
 
   private markPresentEmployees() {
     this.dataSource.data = this.registeredUsersData.map(user => ({
-      // tslint:disable-next-line:max-line-length
       ...user , isPresent: !isNullOrUndefined( this.empList.find(emp => {
         return emp.id === user.id;
       }))
@@ -177,14 +179,12 @@ export class TodaysReportComponent implements OnInit {
 
       row.name = element.awi_label;
       row.department = element.awi_subclass;
-      // row.photo  = element.img_url[0];
       const img = element.imgs[0];
       row.photo = this.getUpdatedImageUrl(img);
       row.id = element.id;
 
       data.push(row);
     });
-    // console.log(response);
     return data;
   }
   private extractData(response): Array<object> {
@@ -195,7 +195,6 @@ export class TodaysReportComponent implements OnInit {
     }
 
     this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
-    // this.absentEmp = (((this.TOTAL_EMP - response.data.length) / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
@@ -212,13 +211,10 @@ export class TodaysReportComponent implements OnInit {
 
       row.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
 
-      // const imgKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
       const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
       row.photo = this.getUpdatedImageUrl(img);
-      // row.photo = "https://www.tutorialrepublic.com/examples/images/avatar/1.jpg";
       data.push(row);
     });
-    // console.log(response);
     return data;
   }
 
@@ -239,13 +235,11 @@ export class TodaysReportComponent implements OnInit {
     const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
     row.photo = this.getUpdatedImageUrl(img);
 
-      if (row.name === 'Unrecognized') {
-          // return null;
-          console.log('unrecognized person');
-      } else {
+      if (row.name !== 'Unrecognized') {
         return row;
+      } else {
+        console.log('unrecognized person');
       }
-
       // return row;
   }
 
@@ -277,10 +271,6 @@ export class TodaysReportComponent implements OnInit {
     // console.log('yes div 2 as btn');
   }
 
-  searchEmployee(filterValue: String) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   openVerticallyCentered(content) {
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
   }
@@ -288,6 +278,10 @@ export class TodaysReportComponent implements OnInit {
   empData(element) {
     console.log('selectedempdata', element);
     this.selectedEmpData = element;
+  }
+
+  searchEmployee(filterValue: String) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   enableExportButton(yearlyReport) {
@@ -301,15 +295,9 @@ export class TodaysReportComponent implements OnInit {
     });
   }
 
-  getEmployeeRecordForGivenDate() {
-    console.log('given data');
-  }
-
   getEmployeeRecordForSelectedDate(selectedDate) {
-    console.log(selectedDate);
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
-    console.log('formated date', this.startTimeStamp, this.endTimeStamp);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       this.empList = this.extractData(res);
       this.markPresentEmployees();

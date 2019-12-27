@@ -31,11 +31,11 @@
         </div>
     </div>
   </div>
+
   <div class="search-bar" *ngIf="selectedTab == 'P'">
       <mat-form-field>
           <input matInput placeholder="Search Employees" [(ngModel)]="searchText">
-        </mat-form-field>
-      <!-- <input class="form-control mr-sm-2 col-2" type="text" [(ngModel)]="searchText" placeholder="{{ 'Search'}}"> -->
+      </mat-form-field>
   </div>
 
   <div class="row p-3" *ngIf="selectedTab == 'P'">

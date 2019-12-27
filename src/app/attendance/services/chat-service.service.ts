@@ -10,18 +10,14 @@ export class ChatServiceService {
 
   messages: Subject<any>;
 
-  // Our constructor calls our wsService connect method
   constructor(private wsService: WebsocketService) {
     this.messages = <Subject<any>>wsService
       .connect()
       .pipe(map((response: any): any => {
-        console.log("ChatServiceService", response)
         return response;
       }));
    }
 
-  // Our simplified interface for sending
-  // messages back to our socket.io server
   sendMsg(msg) {
     this.messages.next(msg);
   }

@@ -15,9 +15,10 @@
 
     <div class="col-md-12 yearly-report" *ngIf="reportMode == 'Y'">
         <div class="header d-flex" *ngIf="!fetching">
-            <!-- <div class="column">Attendance % this year: 94%</div> -->
+            
+            <!-- <mat-spinner *ngIf="showSpinner"></mat-spinner> -->
+
             <div class="column">Total Attendance this year: {{formattedYearReport.presentCount}}</div>
-            <!-- <div class="column">Attendance % this year: 94%</div> -->
         </div>
         <div class="record ">
         <!--<p *ngIf="fetching">Fetching record</p>-->

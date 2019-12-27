@@ -17,8 +17,8 @@ export class EmpRowComponent implements OnInit {
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
-    type: 'csv', // the type you want to download
-    elementId: 'employee_report', // the id of html/table element
+    type: 'csv',
+    elementId: 'employee_report',
   };
 
   constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
@@ -26,20 +26,6 @@ export class EmpRowComponent implements OnInit {
   ngOnInit() {
 
     this.disableExportButton = true;
-
-    // //  first and last day of current year
-    // const getYearFirstDay = new Date(new Date().getFullYear(), 0, 1 );
-    // const getYearLastDay = new Date(new Date().getFullYear(), 11, 31);
-    // this.getYearFirstDayStartTime = getYearFirstDay.setHours(0, 0, 0, 0);
-    // this.getYearLastDayEndTime = getYearLastDay.setHours(23, 59, 59, 999);
-
-    // // first and last day of current month
-
-    // const date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    // const getMonthFirstDay = new Date(y, m, 1);
-    // const getMonthLastDay = new Date(y, m + 1, 0);
-    // this.getMonthFirstDayStartTime = getMonthFirstDay.setHours(0, 0, 0, 0);
-    // this.getMonthLastDayEndTime = getMonthLastDay.setHours(23, 59, 59, 999);
 
   }
 
@@ -49,7 +35,7 @@ export class EmpRowComponent implements OnInit {
 
   enableExportButton(yearlyReport) {
     this.disableExportButton = false;
-    console.log('enableExportButton:', yearlyReport);
+    // console.log('enableExportButton:', yearlyReport);
     this.yearlyReport = yearlyReport;
   }
 

@@ -13,5 +13,4 @@ export class TimeRangePipe implements PipeTransform {
       return dateHours >= timeRangeObj.startTime && dateHours < timeRangeObj.endTime;
     });
   }
-
 }
