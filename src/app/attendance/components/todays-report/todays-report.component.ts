@@ -8,7 +8,7 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { config } from '../../../config';
-import { UserDataHomePageService } from '../../services/chat-service.service';
+import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 
 @Component({
   selector: 'app-todays-report',
@@ -69,8 +69,6 @@ export class TodaysReportComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const windowUrl = window.location.href;
-    console.log('window ' , windowUrl);
     this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
@@ -93,13 +91,10 @@ export class TodaysReportComponent implements OnInit {
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
-          console.log('line 94');
           this.empList.push( newEmpData );
           this.allDepartmentList = this.getAllDepartmentList( this.empList );
           this.allLocationList = this.getAllLocationList(this.empList);
           this.allEmpIdList = this.getAllEmpIdList(this.empList);
-          console.log('new emplist', this.empList );
-          console.log('updated id list', this.allEmpIdList );
         } else {
           console.log('emp already present');
         }
@@ -108,9 +103,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private getListOfRegisteredUsers() {
-    console.log('list')
     this.userService.loadRegisterUsers().subscribe(response => {
-      console.log('userservice result');
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
       console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
@@ -119,9 +112,7 @@ export class TodaysReportComponent implements OnInit {
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
-        console.log('allEmpIdList ', this.allEmpIdList);
         this.markPresentEmployees();
-        console.log('this.empList', this.empList);
       });
     });
   }

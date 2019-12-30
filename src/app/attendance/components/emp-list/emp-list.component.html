@@ -50,7 +50,7 @@
 
 <div class="card mb-3 ">
     <div class="card-body" class="chart-container">
-        <div *ngFor="let employee of currentItemsToShow 
+        <div *ngFor="let employee of employees 
         | search : selectedDepartment :['department'] 
         | search : selectedLocation :['location'] 
         | search:searchText:['name', 'department', 'location'] 

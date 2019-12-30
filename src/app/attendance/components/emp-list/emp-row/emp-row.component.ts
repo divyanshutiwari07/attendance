@@ -35,7 +35,6 @@ export class EmpRowComponent implements OnInit {
 
   enableExportButton(yearlyReport) {
     this.disableExportButton = false;
-    // console.log('enableExportButton:', yearlyReport);
     this.yearlyReport = yearlyReport;
   }
 

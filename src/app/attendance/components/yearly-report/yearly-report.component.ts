@@ -33,19 +33,13 @@ export class YearlyReportComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     this.days = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
     this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
     this.initializeYearDropdown();
   }
 
   ngOnInit() {
-    // this.showSpinner = true;
-    // setInterval( () => {
-    //   this.showSpinner = false;
-    // }, 5000);
-
+    this.fetching = 1;
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
-    // console.log('YearlyReportComponent::ngOnInit', 'empName:', this.empName);
 
     this.getEmployeeRecordForYear();
   }
@@ -60,17 +54,14 @@ export class YearlyReportComponent implements OnInit {
       this.years.push( row );
     }
 
-    // console.log('years' , this.years);
   }
 
   getEmployeeRecordForYear() {
-    this.fetching = 1;
     this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
       'awi_label': this.empName
     }).subscribe((response) => {
-      // this.showSpinner = false;
       if ( response.success === true ) {
         this.successToaster(response.msg);
       }
@@ -105,21 +96,8 @@ export class YearlyReportComponent implements OnInit {
 
       formattedYearReport.presentCount += 1;
     });
-
-    // this.months.forEach( month => {
-    //   const dayCount =  Utils.getDayCountInMonth(month);
-    //   for ( let d = 1; d <= dayCount; d++ ) {
-    //     if ( !formattedYearReport.monthReport[ month ] ) {
-    //       formattedYearReport.monthReport[ month ] = {detail: {}, presentCount: 0};
-    //     }
-    //     formattedYearReport.monthReport[ month ].detail[d] = {};
-
-    //     formattedYearReport.presentCount += 1;
-    //   }
-    // });
-
     this.formattedYearReport = formattedYearReport;
-    console.log( 'formattedYearReport', this.formattedYearReport );
+
   }
 
   getMonthReport(month) {
@@ -138,7 +116,7 @@ export class YearlyReportComponent implements OnInit {
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = this.getMonthNumber(monthName);
     return this.employeeYearReport.find(o => {
-      return o.timestamp === (day + '-' + monthNumber + '-2019');
+      return o.timestamp === (day + '-' + monthNumber + '-' + this.selectedYear.year);
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges  } from '@angular/core';
+import { Component, Input, OnChanges  } from '@angular/core';
 import {ExportToCsv} from 'export-to-csv';
 import * as Metadata from './../../common/metadata/metadata';
 import * as Utils from '../../common/utils';
@@ -8,7 +8,7 @@ import * as Utils from '../../common/utils';
   templateUrl: './emp-list.component.html',
   styleUrls: ['./emp-list.component.scss']
 })
-export class EmpListComponent implements OnChanges, OnInit {
+export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
   @Input() searchText;
@@ -31,31 +31,11 @@ export class EmpListComponent implements OnChanges, OnInit {
     this.todaysDate = new Date();
   }
 
-  ngOnInit() {
-    // setInterval(() => {
-    //   this.onPageChange( {
-    //     'previousPageIndex': 0,
-    //     'pageIndex': 0,
-    //     'pageSize': 2,
-    //     'length': 100
-    //   } );
-    // }, 500);
-
-  }
-
   ngOnChanges() {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
     this.currentItemsToShow = this.employees;
   }
-
-  // onPageChange($event) {
-  //   console.log('event', $event);
-  //   this.currentItemsToShow =  this.employees.slice
-  //   ($event.pageIndex * $event.pageSize,
-  //   $event.pageIndex * $event.pageSize +
-  //   $event.pageSize);
-  // }
 
   exportCSV() {
     const options = {

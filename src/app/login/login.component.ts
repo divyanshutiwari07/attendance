@@ -28,9 +28,8 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        
         this.apiService.login(this.loginDetails).subscribe((loginRes) => {
-        
+
             if ( loginRes.success ) {
                 this.auth.logIn(loginRes.token);
                 this.successToaster();

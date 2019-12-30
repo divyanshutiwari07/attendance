@@ -12,9 +12,7 @@ export class WebsocketService {
 
   private socket;
 
-  constructor() {
-
-   }
+  constructor() {}
 
   connect(): Rx.Subject<MessageEvent> {
     const token = localStorage.getItem('token');
