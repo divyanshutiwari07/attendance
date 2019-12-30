@@ -25,12 +25,6 @@ import { SearchPipe } from './common/filters/search';
 import { SortPipe } from './common/filters/sort';
 import { TimeRangePipe } from './common/filters/time-range';
 
-// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-// import {LOCAL_HOST_SERVER} from './../config';
-
-// const config: SocketIoConfig = { url: LOCAL_HOST_SERVER, options: {} };
-
-
 @NgModule({
   declarations: [
     TodaysReportComponent,

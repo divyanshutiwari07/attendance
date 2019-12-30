@@ -28,13 +28,9 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-
-        const token  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXdpX2NsaWVudF9pZCI6MiwiYXdpcm9zIjoicGl5dXNoQGF3aWRpdC5jb20iLCJsZXZlbCI6ImF3aV91c2VyIiwiaWF0IjoxNTc0NDE1MzU1LCJleHAiOjE1NzQ1MDE3NTV9.uFkIrv3bK167iJncOI-xnKQQj7Kw3Wcwe3YpLftdM3w";
-        this.auth.logIn(token);
-
-
+        
         this.apiService.login(this.loginDetails).subscribe((loginRes) => {
-            console.log(loginRes);
+        
             if ( loginRes.success ) {
                 this.auth.logIn(loginRes.token);
                 this.successToaster();

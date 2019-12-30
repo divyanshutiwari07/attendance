@@ -8,7 +8,7 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { config } from '../../../config';
-import { ChatServiceService } from '../../services/chat-service.service';
+import { UserDataHomePageService } from '../../services/chat-service.service';
 
 @Component({
   selector: 'app-todays-report',
@@ -65,10 +65,12 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-    private chat: ChatServiceService
+    private userData: UserDataHomePageService
   ) {}
 
   ngOnInit() {
+    const windowUrl = window.location.href;
+    console.log('window ' , windowUrl);
     this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
@@ -81,11 +83,11 @@ export class TodaysReportComponent implements OnInit {
   }
 
   sendMessage() {
-    this.chat.sendMsg('Access Real Time Data From Server');
+    this.userData.sendMsg('Access Real Time Data From Server');
   }
 
   private checkNewPresentEmp() {
-    this.chat.messages.subscribe(data => {
+    this.userData.messages.subscribe(data => {
       console.log('Data' , data);
       const newEmpData = this.extractDataForNewEmp(data);
       console.log('newData' , newEmpData);
@@ -106,7 +108,9 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private getListOfRegisteredUsers() {
+    console.log('list')
     this.userService.loadRegisterUsers().subscribe(response => {
+      console.log('userservice result');
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
       console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
@@ -220,12 +224,13 @@ export class TodaysReportComponent implements OnInit {
 
   private extractDataForNewEmp(res) {
 
-    const row = {name: null, inTime: null, location: null, department: null , photo: null,  id: 0};
+    const row = {name: null, inTime: null, outTime: null, location: null, department: null , photo: null,  id: 0};
     const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
 
     row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
 
     row.inTime = res.data.timestamp;
+    row.outTime = res.data.timestamp;
     row.location = res.data.awi_facial_recognition.location;
 
     row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;

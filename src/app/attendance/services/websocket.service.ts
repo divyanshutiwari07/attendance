@@ -12,9 +12,14 @@ export class WebsocketService {
 
   private socket;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   connect(): Rx.Subject<MessageEvent> {
+    const token = localStorage.getItem('token');
+    const payload = token.split('.')[1];
+    const obj = window.atob(payload);
 
     this.socket = io(config.SERVER_ADDRESS_REALTIME);
 
@@ -29,7 +34,7 @@ export class WebsocketService {
 
     const observer = {
         next: (data: Object) => {
-          this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT, 2);
+          this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
         },
     };
 
