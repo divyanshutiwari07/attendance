@@ -22,7 +22,6 @@ export class EmpListComponent implements OnChanges {
   public departments;
   public locations;
   private todaysDate;
-  currentItemsToShow = [];
 
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
@@ -34,7 +33,6 @@ export class EmpListComponent implements OnChanges {
   ngOnChanges() {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
-    this.currentItemsToShow = this.employees;
   }
 
   exportCSV() {

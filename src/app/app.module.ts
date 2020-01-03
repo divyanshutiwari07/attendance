@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { FormsModule } from '@angular/forms';
-
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -21,7 +20,6 @@ import { ToastrModule } from 'ngx-toastr';
         AppRoutingModule,
         FormsModule,
         ToastrModule.forRoot(),
-
 
     ],
     declarations: [AppComponent],

@@ -1,7 +1,7 @@
 {
   "data": {
     "awi_name": "awi_facial_recognition",
-    "timestamp": "2019-12-26T10:02:05.100Z",
+    "timestamp": "2020-12-26T10:02:05.100Z",
     "awi_facial_recognition": {
       "awi_app_data": {
         "awi_app": {
@@ -207,7 +207,7 @@
           }
         }
       },
-      "timestamp": "2019-12-26T10:02:05.100Z",
+      "timestamp": "2020-12-26T10:02:05.100Z",
       "location": "HW 2",
       "awi_frame": {
         "width": 1280,

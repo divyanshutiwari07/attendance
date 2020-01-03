@@ -6,8 +6,8 @@ const SERVER_URL = 'http://192.168.0.16:';
 const _PORT = '4000';
 const PORT = '3000';
 
-const devMode = 'ON_PREMISE';
-// let devMode = 'LOCALHOST';
+// const devMode = 'ON_PREMISE';
+let devMode = 'LOCALHOST';
 // const devMode = "PRODUCTION";
 
 export const LOCAL_HOST_SERVER = 'http://localhost:3000';
