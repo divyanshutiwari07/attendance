@@ -71,8 +71,11 @@
   }
 }
 
+// [_nghost-c12]  instead of ng-deep
+
 ::ng-deep .modal-xl-custom {
   .modal-dialog {
+    // overflow-y: initial !important;
     max-width: 90%; 
     width: 90%;
   }

@@ -10,7 +10,7 @@ import {SOCKET_EVENTS} from '../../config';
 })
 export class WebsocketService {
 
-  // private socket;
+  private socket;
 
   constructor() {}
 
@@ -38,4 +38,7 @@ export class WebsocketService {
 
   //   return Rx.Subject.create(observer, observable);
   // }
+
+
+
 }

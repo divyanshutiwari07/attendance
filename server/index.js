@@ -16,7 +16,7 @@ const empData = require('./employee.json');
 const empRecord = require('./emp-record.json');
 
 const chartData = require('./chart-data.json');
-
+    
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 // app.listen(3000, () => {
@@ -82,7 +82,7 @@ io.on("connection", socket => {
         setTimeout(() => {
         console.log("Message Received: " );
             io.emit("message", newEmpCameInFrontOfCamera);
-        }, 3000);
+        }, 5000);
       });
   
     

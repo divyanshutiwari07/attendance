@@ -28,6 +28,7 @@ export class EmpListComponent implements OnChanges {
 
   constructor() {
     this.todaysDate = new Date();
+    this.selectedList = Metadata.getSortOptions()[1].id;
   }
 
   ngOnChanges() {

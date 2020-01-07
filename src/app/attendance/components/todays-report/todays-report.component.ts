@@ -84,23 +84,24 @@ export class TodaysReportComponent implements OnInit {
     this.userData.sendMsg('Access Real Time Data from server');
   }
 
-  // private checkNewPresentEmp() {
-  //   this.userData.messages.subscribe(data => {
-  //     console.log('Data' , data);
-  //     const newEmpData = this.extractDataForNewEmp(data);
-  //     console.log('newData' , newEmpData);
-  //     if ( newEmpData ) {
-  //       if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
-  //         this.empList.push( newEmpData );
-  //         this.allDepartmentList = this.getAllDepartmentList( this.empList );
-  //         this.allLocationList = this.getAllLocationList(this.empList);
-  //         this.allEmpIdList = this.getAllEmpIdList(this.empList);
-  //       } else {
-  //         console.log('emp already present');
-  //       }
-  //     }
-  //   });
-  // }
+  private checkNewPresentEmp() {
+    this.userData.messages.subscribe(data => {
+      console.log('Data' , data);
+      const newEmpData = this.extractDataForNewEmp(data);
+      console.log('newData' , newEmpData);
+      if ( newEmpData ) {
+        if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
+          // this.empList.push( newEmpData );
+          this.empList.unshift( newEmpData );
+          this.allDepartmentList = this.getAllDepartmentList( this.empList );
+          this.allLocationList = this.getAllLocationList(this.empList);
+          this.allEmpIdList = this.getAllEmpIdList(this.empList);
+        } else {
+          console.log('emp already present');
+        }
+      }
+    });
+  }
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
