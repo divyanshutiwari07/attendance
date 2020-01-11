@@ -82,10 +82,11 @@ export class AttendanceStatsComponent implements OnInit {
     this.getRegisterUserData();
     // this.checkRegisterUserDataPresent();
     this.selectedYear = this.years[0];
+
     this.selectedMonth = this.months[ new Date().getMonth() ];
     this.getYearReportForAllEmployees();
 
-    Chart.pluginService.register(Utils.getRandomColor());
+    // Chart.pluginService.register(Utils.getRandomColor());
   }
 
   private showMonthlyPieChart() {
@@ -101,10 +102,12 @@ export class AttendanceStatsComponent implements OnInit {
           datasets: [{
             label: '# of Votes',
             data: dataset,
-            backgroundColor : ['rgba(192, 192, 192, 1)',
-              // #b6ccc8
+            backgroundColor :
+            [
+              '#3B566E',
+              '#DEDEDE'
             ],
-            // borderColor: 'rgba(255,99,132,1)',
+            borderColor: '#000000',
             borderWidth: 1
           }]
         },
@@ -141,8 +144,12 @@ export class AttendanceStatsComponent implements OnInit {
           datasets: [{
             label: 'Attendance %',
             data: dataset,
-            backgroundColor : ['rgba(192, 192, 192, 1)',
+            backgroundColor :
+            [
+              '#3B566E',
+              '#DEDEDE'
             ],
+            borderColor: '#000000',
             borderWidth: 1
           }]
         },
@@ -187,16 +194,19 @@ export class AttendanceStatsComponent implements OnInit {
 
       if ( dataset[i] ) {
         workingDayCountForMonth += 1;
-        dataset[i - 1] = (dataset[i].count / this.totalEmp) * 100;
+        dataset[i - 1] =  (dataset[i].count / this.totalEmp) * 100;
         // dataset[i - 1] = dataset[i].count ;
       } else {
         dataset[i] = 0;
       }
     }
 
-    this.report.month.attendancePercentage = ((totalEmpCountForMonth / workingDayCountForMonth) / this.totalEmp) * 100;
+    const attendancePercentage = (((totalEmpCountForMonth / workingDayCountForMonth) / this.totalEmp) * 100).toFixed(2);
+    this.report.month.attendancePercentage = parseFloat(attendancePercentage);
+
 
     if ( !this.lineChartMonthly ) {
+      const _this = this;
       this.lineChartMonthly = new Chart('lineChartMonthly', {
         type: 'bar',
         data: {
@@ -206,9 +216,9 @@ export class AttendanceStatsComponent implements OnInit {
             {
               data: dataset,
               label: 'Present',
-              borderColor: '#8e5ea2',
               fill: false,
-              backgroundColor : 'rgba(192, 192, 192, 1)',
+              backgroundColor : '#3B566E',
+              borderColor: '#000000',
               borderWidth: 1
             },
           ]
@@ -227,13 +237,37 @@ export class AttendanceStatsComponent implements OnInit {
           //       const label = data.datasets[tooltipItem.datasetIndex].label;
           //       const yValue = tooltipItem.yLabel;
           //       // const xValue = tooltipItem.xLabel;
-          //       return label + ': ' + yValue;
+          //       return label + ': fs' + yValue;
           //     },
           //     footer: function (tooltipItem, data) {
           //       return ['new line', 'another line'];
           //     }
           //   }
           // },
+
+          tooltips: {
+
+            custom: function(tooltip) {
+              if (!tooltip) { return; }
+              tooltip.displayColors = false;
+            },
+            callbacks: {
+              title: function() { return ''; },
+              label: function(tooltipItem, data) {
+                  // tslint:disable-next-line:max-line-length
+                  const date = 'Date : ' + _this.selectedMonth.name + '  ' + tooltipItem.xLabel + ', ' + _this.selectedYear.year ;
+                  const value = tooltipItem.yLabel;
+
+                  // multistringText.push(tooltipItem.yLabel);
+
+                  return (date + '/n' + value).split('/n');
+
+                // return tooltipItem.xLabel + ' :' + tooltipItem.yLabel;
+              },
+
+            }
+          },
+
           legend: {
             display: false,
             labels: {
@@ -300,7 +334,10 @@ export class AttendanceStatsComponent implements OnInit {
       }
     }
 
-    this.report.year.attendancePercentage = dataset.reduce((a, b) => a + b, 0) / 12;
+    let attendancePercentage = dataset.reduce((a, b) => a + b, 0) / 12;
+    attendancePercentage = attendancePercentage || NaN;
+    const attendancePercentageFixedNum = attendancePercentage.toFixed(2);
+    this.report.year.attendancePercentage = parseFloat(attendancePercentageFixedNum);
 
     if ( !this.lineChartYearly ) {
       this.lineChartYearly = new Chart('lineChartYearly', {
@@ -310,8 +347,8 @@ export class AttendanceStatsComponent implements OnInit {
           datasets: [{
             data: dataset,
             label: 'Present',
-            borderColor: '#3e95cd',
-            backgroundColor : 'rgba(192, 192, 192, 1)',
+            borderColor: '#000000',
+            backgroundColor : '#3B566E',
             borderWidth: 1,
             fill: false
           }]
@@ -368,6 +405,7 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   getYearReportForAllEmployees() {
+    console.log('selectedyear', this.selectedYear);
     this.apiService.getChartData({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -375,10 +413,12 @@ export class AttendanceStatsComponent implements OnInit {
     ).subscribe(response => {
       if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
         this.errorToaster(response.msg);
-        return;
+        this.chartData = response.data;
+        // return [];
       }
       this.successToaster(response.msg);
       this.chartData = response.data;
+      console.log('chart data', this.chartData);
       this.showMonthlyBarChart();
       this.showYearlyBarChart();
       this.showMonthlyPieChart();

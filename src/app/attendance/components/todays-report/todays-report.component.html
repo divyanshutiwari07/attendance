@@ -84,7 +84,7 @@
 
           <ng-container matColumnDef="viewRecord">
             <mat-header-cell class="mat-header-yearly-attendance" *matHeaderCellDef > Yearly Attendance </mat-header-cell>
-            <mat-cell class="mat-cell-yearly-attendance" (click)="openVerticallyCentered(content); empData(element)" *matCellDef="let element"> <button class="btn btn-outline-primary" >View Record</button> </mat-cell>
+            <mat-cell class="mat-cell-yearly-attendance" *matCellDef="let element"> <button class="btn btn-outline-primary" (click)="openVerticallyCentered(content); empData(element)" >View Record</button> </mat-cell>
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

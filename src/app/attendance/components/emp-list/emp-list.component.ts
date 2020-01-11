@@ -54,7 +54,7 @@ export class EmpListComponent implements OnChanges {
     options.filename = 'Present employees at ' + Utils.getFormattedDate(this.todaysDate);
     const csvExporter = new ExportToCsv(options);
 
-    const mapTo = {name: 'Name', id: 'Employee Id', inTime: 'In Time', outTime: 'Out Time', photo : 'Photo' };
+    const mapTo = {name: 'Name', id: 'Employee Id', inTimeForCSV: 'In Time', outTime: 'Out Time' };
 
     csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
   }

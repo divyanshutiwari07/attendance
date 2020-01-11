@@ -75,8 +75,8 @@ export class TodaysReportComponent implements OnInit {
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
-    // this.sendMessage();
-    // this.checkNewPresentEmp();
+    this.sendMessage();
+    this.checkNewPresentEmp();
     this.getListOfRegisteredUsers();
   }
 
@@ -194,13 +194,16 @@ export class TodaysReportComponent implements OnInit {
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, inTime: null, outTime: null, location: null, department: null, photo: null, id: 0};
+      const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0};
 
       const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-
+      const intime = element.first_presence;
+      const outtime = element.last_presence;
       row.name = element.awi_label;
-      row.inTime = element.first_presence;
-      row.outTime = element.last_presence;
+      row.inTime = intime;
+
+      row.inTimeForCSV =  Utils.getFormattedTime(intime);
+      row.outTime = Utils.getFormattedTime(outtime);
       row.location = element.awi_data.location;
 
       row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;

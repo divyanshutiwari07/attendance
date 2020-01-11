@@ -14,30 +14,30 @@ export class WebsocketService {
 
   constructor() {}
 
-  // connect(): Rx.Subject<MessageEvent> {
-  //   const token = localStorage.getItem('token');
-  //   const payload = token.split('.')[1];
-  //   const obj = window.atob(payload);
+  connect(): Rx.Subject<MessageEvent> {
+    const token = localStorage.getItem('token');
+    const payload = token.split('.')[1];
+    const obj = window.atob(payload);
 
-  //   this.socket = io(config.SERVER_ADDRESS_REALTIME);
+    this.socket = io(config.SERVER_ADDRESS_REALTIME);
 
-  //   const observable = new Observable(observer => {
-  //       this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
-  //         observer.next(data);
-  //       });
-  //       return () => {
-  //         this.socket.disconnect();
-  //       };
-  //   });
+    const observable = new Observable(observer => {
+        this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
+          observer.next(data);
+        });
+        return () => {
+          this.socket.disconnect();
+        };
+    });
 
-  //   const observer = {
-  //       next: (data: Object) => {
-  //         this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
-  //       },
-  //   };
+    const observer = {
+        next: (data: Object) => {
+          this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
+        },
+    };
 
-  //   return Rx.Subject.create(observer, observable);
-  // }
+    return Rx.Subject.create(observer, observable);
+  }
 
 
 

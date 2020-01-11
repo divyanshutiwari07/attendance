@@ -22,9 +22,6 @@ export class LoginComponent implements OnInit {
         private notifyService: NotificationService) { }
 
     ngOnInit() {
-        const token = 'dsfksdjf';
-        localStorage.setItem('token', token);
-
         if (this.auth.isLoggedIn()) {
             this.router.navigateByUrl('/attendance');
         }

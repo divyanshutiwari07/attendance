@@ -120,7 +120,7 @@ export class SidebarComponent implements OnInit {
 
     openVerticallyCentered(content) {
         // this.modalReference =  this.modalService.open(content, { centered: true, windowClass: 'modal-sm-custom' });
-        this.modalReference =      this.modalService.open(content, { centered: true });
+        this.modalReference = this.modalService.open(content, { centered: true });
   }
 
 
@@ -148,11 +148,11 @@ export class SidebarComponent implements OnInit {
         //     console.log(key + ': ' + value);
         // });
 
-        this.modalReference.close();
         this.apiService.register(formData)
         .subscribe(
             response => {
                 this.successToaster(response.msg);
+                this.modalReference.close();
                 console.log(response);
             }
         );

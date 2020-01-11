@@ -1,13 +1,13 @@
-const WINDOW_HTTP =    location.protocol;
-const WINDOW_URL =     location.hostname;
+// const WINDOW_HTTP =    location.protocol;
+// const WINDOW_URL =     location.hostname;
 
-const SERVER_URL = 'http://192.168.0.16:';
+const SERVER_URL = 'http://192.168.0.80:';
 // const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
 const _PORT = '4000';
 const PORT = '3000';
 
-// const devMode = 'ON_PREMISE';
-let devMode = 'LOCALHOST';
+const devMode = 'ON_PREMISE';
+// let devMode = 'LOCALHOST';
 // const devMode = "PRODUCTION";
 
 export const LOCAL_HOST_SERVER = 'http://localhost:3000';
@@ -19,9 +19,9 @@ export const SOCKET_EVENTS = {
 
 const configs = {
   ON_PREMISE: {
-    SERVER_ADDRESS_REALTIME : 'http://192.168.0.16:3000',
-    SERVER_ADDRESS : '192.168.0.16',
-    SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.16:',
+    SERVER_ADDRESS_REALTIME : 'http://192.168.0.80:3000',
+    SERVER_ADDRESS : '192.168.0.80',
+    SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.80:',
 
     // SERVER_ADDRESS_REALTIME : WINDOW_HTTP + '//' + WINDOW_URL + ':' + PORT,
     // SERVER_ADDRESS : WINDOW_URL,

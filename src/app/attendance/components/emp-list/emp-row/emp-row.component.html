@@ -9,7 +9,8 @@
     </div>
     <div class='column'>
         <div>Entry From: {{employee.location}}</div>
-        <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a'}}</div>
+        <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a' }}</div>
+        
     </div>
     <div class='column action'>
         <div>Yearly Attendance</div>
@@ -35,7 +36,11 @@
             </div>            
         </div>
         <div class="report-data">
-            <app-yearly-report [empName]="employee.name" (yearlyReportResponse)="enableExportButton($event)"></app-yearly-report>
+            <app-yearly-report 
+            [empName]="employee.name"
+            [exportDataFlag]="disableViewRecordColumn" 
+            (checkDataMonthlyOrYearly)='checkDataMonthlyOrYearly($event)' 
+            (yearlyReportResponse)="enableExportButton($event)" ></app-yearly-report>
         </div>
     </div>
     <div class="modal-footer">

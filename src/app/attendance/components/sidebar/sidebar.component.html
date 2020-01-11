@@ -57,20 +57,7 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <div class="row">
-                      <div class="col-md-12" >
-                        <label for="Severity" class='forLabel'>Severity<span class="required"> *</span></label>
-                        <select class="form-control" formControlName="severity" name='severity' id='severity'
-                           [ngClass]="{ 'is-invalid': registerFormSubmitted && severity.invalid }"  required>
-                           <option value="" disabled="true" hidden>select severity</option>
-                          <option *ngFor="let s of severityOption let i = index" [ngValue]="s.value">{{severityOption[i].id}}</option>
-                          
-                        </select>
-                        <div *ngIf="registerFormSubmitted && severity.invalid" class="invalid-feedback">
-                            <div *ngIf="severity.errors['required']">Severity is required</div>
-                        </div> 
-                      </div>
-                    </div> -->
+                    
                     <div class="footer-btn">
                       <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click'); " >Close</button>
                       <button type="submit" class="btn btn-dark" >Register</button>
@@ -80,10 +67,6 @@
 
             </div>
         </ng-template>
-
-        <!-- <div class="p-3 d-flex justify-content-center">
-            <button class="btn btn-outline-secondary" (click)="openVerticallyCentered(content)">Register</button>
-        </div> -->
         
     </div>
     <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">

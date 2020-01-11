@@ -82,3 +82,15 @@ export function getFormattedDate(date) {
     return formattedDate;
 }
 
+export function getFormattedTime(date) {
+    let formattedTime = new Date(date);
+    let hours = formattedTime.getHours();
+    let minutes = formattedTime.getMinutes();
+    let second = formattedTime.getSeconds();
+    let ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+    let strTime = hours + ':' + minutes + ':' + second + ' ' + ampm;
+    return strTime;
+}

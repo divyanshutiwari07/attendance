@@ -19,7 +19,9 @@ export class YearlyReportComponent implements OnInit {
   fetching: any;
 
   @Input() empName ;
+  @Input() exportDataFlag ;
   @Output() yearlyReportResponse: EventEmitter<any> = new EventEmitter<any>();
+  @Output() checkDataMonthlyOrYearly: EventEmitter<any> = new EventEmitter<any>();
 
   public reportMode;
   public employeeMonthReport;
@@ -28,6 +30,7 @@ export class YearlyReportComponent implements OnInit {
   public selectedYear;
   public years = [];
   public showSpinner;
+  private checkMonthlyOrYearly;
 
   constructor(private apiService: ApiService, private notifyService: NotificationService) {
     // tslint:disable-next-line:max-line-length
@@ -37,9 +40,11 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('export data flag', this.exportDataFlag);
     this.fetching = 1;
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
+    this.checkMonthlyOrYearly = 'yearly';
 
     this.getEmployeeRecordForYear();
   }
@@ -56,6 +61,13 @@ export class YearlyReportComponent implements OnInit {
 
   }
 
+  goBackOnYearlyRecordPage() {
+    this.reportMode = 'Y';
+    this.checkMonthlyOrYearly = 'yearly';
+    this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
+  }
+
+
   getEmployeeRecordForYear() {
     this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,
@@ -68,6 +80,7 @@ export class YearlyReportComponent implements OnInit {
       this.fetching = 0;
       this.employeeYearReport = response.data;
       this.yearlyReportResponse.emit(response.data);
+      this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.genrateFormattedReport();
     });
   }
@@ -79,6 +92,8 @@ export class YearlyReportComponent implements OnInit {
       report: this.getMonthReport(month),
     };
     this.reportMode = 'M';
+    this.checkMonthlyOrYearly = 'monthly';
+    this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
   }
 
   genrateFormattedReport() {

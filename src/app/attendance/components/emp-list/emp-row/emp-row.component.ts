@@ -14,6 +14,8 @@ export class EmpRowComponent implements OnInit {
   @Input() employee: any = {};
   empRecord: any = [];
   public disableExportButton;
+  private fileDataType;
+  public disableViewRecordColumn;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -24,7 +26,7 @@ export class EmpRowComponent implements OnInit {
   constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
 
   ngOnInit() {
-
+    this.disableViewRecordColumn = true;
     this.disableExportButton = true;
 
   }
@@ -36,10 +38,17 @@ export class EmpRowComponent implements OnInit {
   enableExportButton(yearlyReport) {
     this.disableExportButton = false;
     this.yearlyReport = yearlyReport;
+    console.log('yerly report', this.yearlyReport);
   }
 
-  exportEmployeeYearReport(fileName) {
-    this.exportAsService.save(this.exportAsConfig, fileName).subscribe(() => {
+  checkDataMonthlyOrYearly(dataType) {
+    this.fileDataType = dataType;
+    console.log('file type', this.fileDataType);
+  }
+
+  exportEmployeeYearReport(fileName ) {
+    this.disableViewRecordColumn = false;
+    this.exportAsService.save(this.exportAsConfig, fileName + '_' + this.fileDataType).subscribe(() => {
     });
   }
 }
