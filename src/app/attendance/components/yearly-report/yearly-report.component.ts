@@ -18,8 +18,7 @@ export class YearlyReportComponent implements OnInit {
   days: any;
   fetching: any;
 
-  @Input() empName ;
-  @Input() exportDataFlag ;
+  @Input() empName ;  
   @Output() yearlyReportResponse: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkDataMonthlyOrYearly: EventEmitter<any> = new EventEmitter<any>();
 
@@ -27,6 +26,7 @@ export class YearlyReportComponent implements OnInit {
   public employeeMonthReport;
   public employeeYearReport;
   public formattedYearReport;
+  public attendanceTable;
   public selectedYear;
   public years = [];
   public showSpinner;
@@ -39,8 +39,7 @@ export class YearlyReportComponent implements OnInit {
     this.initializeYearDropdown();
   }
 
-  ngOnInit() {
-    console.log('export data flag', this.exportDataFlag);
+  ngOnInit() { 
     this.fetching = 1;
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
@@ -79,7 +78,9 @@ export class YearlyReportComponent implements OnInit {
       }
       this.fetching = 0;
       this.employeeYearReport = response.data;
-      this.yearlyReportResponse.emit(response.data);
+
+      console.log("employeeYearReport", this.employeeYearReport);
+      
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.genrateFormattedReport();
     });
@@ -112,7 +113,25 @@ export class YearlyReportComponent implements OnInit {
       formattedYearReport.presentCount += 1;
     });
     this.formattedYearReport = formattedYearReport;
+    // console.log("this.formattedYearReport", this.formattedYearReport);
+    this.generateAttendanceTable();
+  }
 
+  generateAttendanceTable() {
+    this.attendanceTable = [];
+    this.months.forEach((month) => {
+      let monthData: any = {
+        Month: month
+      };
+      this.days.forEach((day) => {
+        monthData[" " + day] = this.checkIfPresentOnThisDate(day, month) ? "P" : 'A';
+      });
+      monthData["Present"] = this.formattedYearReport.monthReport[month] ? this.formattedYearReport.monthReport[month].presentCount : 0;
+      this.attendanceTable.push(monthData);
+      
+    });
+    this.yearlyReportResponse.emit(this.attendanceTable);
+    // console.log("this.attendanceTable", this.attendanceTable);
   }
 
   getMonthReport(month) {

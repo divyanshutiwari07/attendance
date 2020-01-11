@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ExportToCsv} from 'export-to-csv';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
+import * as Utils from '../../../common/utils';
 
 
 @Component({
@@ -15,7 +17,6 @@ export class EmpRowComponent implements OnInit {
   empRecord: any = [];
   public disableExportButton;
   private fileDataType;
-  public disableViewRecordColumn;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -26,7 +27,6 @@ export class EmpRowComponent implements OnInit {
   constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
 
   ngOnInit() {
-    this.disableViewRecordColumn = true;
     this.disableExportButton = true;
 
   }
@@ -46,10 +46,49 @@ export class EmpRowComponent implements OnInit {
     console.log('file type', this.fileDataType);
   }
 
-  exportEmployeeYearReport(fileName ) {
-    this.disableViewRecordColumn = false;
-    this.exportAsService.save(this.exportAsConfig, fileName + '_' + this.fileDataType).subscribe(() => {
-    });
+  exportEmployeeYearReport(fileName) {
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: true,
+      // title: 'Today\'s Present Employee',
+      title: '',
+      useTextFile: false,
+      useBom: true,
+      filename: null,
+      useKeysAsHeaders: true,
+    };
+
+    options.filename = fileName + '_' + this.fileDataType;
+    const csvExporter = new ExportToCsv(options);
+
+    // const mapTo: any = {
+    //   month: 'Month',
+    //   "01": "01",
+    //   "02": "02",
+    //   "03": "03",
+    //   "04": "04",
+    //   "05": "05",
+    //   "06": "06",
+    //   "07": "07",
+    //   "08": "08",
+    //   "09": "09",
+    //   "10": "10",
+    //   "11": "11",
+    //   presentCount: "Present"
+    // };
+
+    // csvExporter.generateCsv(Utils.getFormattedCSVdata(this.yearlyReport , mapTo));
+    csvExporter.generateCsv(this.yearlyReport);
+    //csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
   }
+
+
+  // exportEmployeeYearReport(fileName ) {
+  //   this.exportAsService.save(this.exportAsConfig, fileName + '_' + this.fileDataType).subscribe(() => {
+  //   });
+  // }
 }
 

@@ -37,8 +37,7 @@
         </div>
         <div class="report-data">
             <app-yearly-report 
-            [empName]="employee.name"
-            [exportDataFlag]="disableViewRecordColumn" 
+            [empName]="employee.name"            
             (checkDataMonthlyOrYearly)='checkDataMonthlyOrYearly($event)' 
             (yearlyReportResponse)="enableExportButton($event)" ></app-yearly-report>
         </div>

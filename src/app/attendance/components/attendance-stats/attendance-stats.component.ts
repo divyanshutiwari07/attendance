@@ -194,7 +194,7 @@ export class AttendanceStatsComponent implements OnInit {
 
       if ( dataset[i] ) {
         workingDayCountForMonth += 1;
-        dataset[i - 1] =  (dataset[i].count / this.totalEmp) * 100;
+        dataset[i - 1] =  ((dataset[i].count / this.totalEmp) * 100).toFixed(2);
         // dataset[i - 1] = dataset[i].count ;
       } else {
         dataset[i] = 0;
@@ -330,7 +330,7 @@ export class AttendanceStatsComponent implements OnInit {
       });
       if ( dataset[i] && dataset[i].length) {
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
-        dataset[i] = ((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100;
+        dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
       }
     }
 

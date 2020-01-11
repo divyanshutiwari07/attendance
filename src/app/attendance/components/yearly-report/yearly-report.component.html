@@ -21,7 +21,7 @@
             <div class="column">Total Attendance this year: {{formattedYearReport.presentCount ? formattedYearReport.presentCount : 0 }} </div>
         </div>
         <div class="record ">
-            <table class="table"  id="employee_report">
+            <table class="table" id="employee_report">
             <!-- <table class="table"  id="employee_report"> -->
                 <thead>
                     <tr>
@@ -50,7 +50,7 @@
                         <td>
                             {{formattedYearReport.monthReport[month] ? formattedYearReport.monthReport[month].presentCount : 0}}
                         </td>
-                        <td *ngIf='!exportDataFlag'>
+                        <td>
                             <button type="button" class="btn btn-outline-primary btn-sm" (click)="showMonthlyReport(month)">View</button>
                         </td>
                     </tr>
