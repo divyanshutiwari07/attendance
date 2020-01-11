@@ -19,13 +19,14 @@ const chartData = require('./chart-data.json');
     
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
+const login = require('./login.json');
 // app.listen(3000, () => {
 //  console.log("Server running on port 3000");
 // });
 
 // Initialize our websocket server on port 5000
 server.listen(3000, () => {
-    console.log("started on port 5000");
+    console.log("started on port 3000");
 });
 
 app.post("/employee-attendance", (req, res, next) => {
@@ -49,6 +50,12 @@ app.post("/employee-attendance", (req, res, next) => {
     }
 
 });
+
+app.post('/login', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== Serving login =============");
+    res.json(login);
+})
 
 app.post('/list_of_registered_users', (req, res, next) => {
     console.log("=========== Serving list_of_registered_users =============");
