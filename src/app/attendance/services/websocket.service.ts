@@ -35,7 +35,7 @@ export class WebsocketService {
           this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
         },
     };
-    
+
     return Rx.Subject.create(observer, observable);
   }
 

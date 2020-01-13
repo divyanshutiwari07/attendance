@@ -10,19 +10,27 @@
                 <tr>
                     <th>Date</th>
                     <th>In Time</th>
+                    <th>Entry Location</th>
                     <th>Out Time</th>
+                    <th>Exit Location</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let day of formattedReport" >
                     <td >
-                        {{day.day_of_month}} {{monthReport.month}}
+                        {{day.day_of_month}} {{monthReport.month}} {{monthReport.year.year}}
                     </td>
                     <td>
-                        {{day.first_presence ? (day.first_presence | date:'h:mm:ss a') : '-'}}
+                        {{day.first_presence ? (day.first_presence | date:'h:mm a') : '-'}}
                     </td>
                     <td>
-                        {{day.last_presence ? (day.last_presence | date:'h:mm:ss a') : '-'}}
+                        {{day.first_location ? (day.first_location ) : '-'}}
+                    </td>
+                    <td>
+                        {{day.last_presence ? (day.last_presence | date:'h:mm a') : '-'}}
+                    </td>
+                    <td>
+                        {{day.last_location ? (day.last_location ) : '-'}}
                     </td>
                 </tr>
             </tbody>

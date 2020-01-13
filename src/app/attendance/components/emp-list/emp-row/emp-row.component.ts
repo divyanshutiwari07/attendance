@@ -16,7 +16,9 @@ export class EmpRowComponent implements OnInit {
   @Input() employee: any = {};
   empRecord: any = [];
   public disableExportButton;
-  private fileDataType;
+  public fileDataType;
+  private monthlyData;
+  private selectedYear;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -41,12 +43,23 @@ export class EmpRowComponent implements OnInit {
     console.log('yerly report', this.yearlyReport);
   }
 
+  employeeMonthlyReportData(monthlyData) {
+    this.monthlyData = monthlyData;
+    console.log('monthName', this.monthlyData);
+  }
+
+  selectedYearForEmp(year) {
+    console.log('year', year);
+    this.selectedYear = year;
+  }
+
   checkDataMonthlyOrYearly(dataType) {
     this.fileDataType = dataType;
     console.log('file type', this.fileDataType);
   }
 
   exportEmployeeYearReport(fileName) {
+    console.log('export yearly');
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
@@ -61,34 +74,18 @@ export class EmpRowComponent implements OnInit {
       useKeysAsHeaders: true,
     };
 
-    options.filename = fileName + '_' + this.fileDataType;
+    options.filename = fileName + '_' + this.selectedYear.year + '_yearly_attendance';
     const csvExporter = new ExportToCsv(options);
 
-    // const mapTo: any = {
-    //   month: 'Month',
-    //   "01": "01",
-    //   "02": "02",
-    //   "03": "03",
-    //   "04": "04",
-    //   "05": "05",
-    //   "06": "06",
-    //   "07": "07",
-    //   "08": "08",
-    //   "09": "09",
-    //   "10": "10",
-    //   "11": "11",
-    //   presentCount: "Present"
-    // };
-
-    // csvExporter.generateCsv(Utils.getFormattedCSVdata(this.yearlyReport , mapTo));
     csvExporter.generateCsv(this.yearlyReport);
-    //csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
   }
 
+  exportEmployeeMonthReport(fileName) {
+    const CSVfilename = fileName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_attendance_record';
+    console.log('export monthly');
+    this.exportAsService.save(this.exportAsConfig, CSVfilename ).subscribe(() => {
+        });
+  }
 
-  // exportEmployeeYearReport(fileName ) {
-  //   this.exportAsService.save(this.exportAsConfig, fileName + '_' + this.fileDataType).subscribe(() => {
-  //   });
-  // }
 }
 

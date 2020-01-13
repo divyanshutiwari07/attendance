@@ -254,15 +254,9 @@ export class AttendanceStatsComponent implements OnInit {
             callbacks: {
               title: function() { return ''; },
               label: function(tooltipItem, data) {
-                  // tslint:disable-next-line:max-line-length
                   const date = 'Date : ' + _this.selectedMonth.name + '  ' + tooltipItem.xLabel + ', ' + _this.selectedYear.year ;
-                  const value = tooltipItem.yLabel;
-
-                  // multistringText.push(tooltipItem.yLabel);
-
+                  const value = 'Present : ' + tooltipItem.yLabel;
                   return (date + '/n' + value).split('/n');
-
-                // return tooltipItem.xLabel + ' :' + tooltipItem.yLabel;
               },
 
             }
@@ -359,6 +353,14 @@ export class AttendanceStatsComponent implements OnInit {
             display: true,
             fontColor: '#000000'
           },
+
+          tooltips: {
+            custom: function(tooltip) {
+              if (!tooltip) { return; }
+              tooltip.displayColors = false;
+            },
+          },
+
           legend: {
             display: false,
             labels: {

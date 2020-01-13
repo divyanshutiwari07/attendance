@@ -1,14 +1,14 @@
-// const WINDOW_HTTP =    location.protocol;
-// const WINDOW_URL =     location.hostname;
+const WINDOW_HTTP =    location.protocol;
+const WINDOW_URL =     location.hostname;
 
 const SERVER_URL = 'http://192.168.0.80:';
 // const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
 const _PORT = '4000';
 const PORT = '3000';
 
-// const devMode = 'ON_PREMISE';
-let devMode = 'LOCALHOST';
-// const devMode = "PRODUCTION";
+const devMode = 'ON_PREMISE';
+// let devMode = 'LOCALHOST';
+// let devMode = 'PRODUCTION';
 
 export const LOCAL_HOST_SERVER = 'http://localhost:3000';
 
@@ -23,10 +23,6 @@ const configs = {
     SERVER_ADDRESS : '192.168.0.80',
     SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.80:',
 
-    // SERVER_ADDRESS_REALTIME : WINDOW_HTTP + '//' + WINDOW_URL + ':' + PORT,
-    // SERVER_ADDRESS : WINDOW_URL,
-    // SERVER_ADDRESS_FOR_REGISTER : WINDOW_HTTP + '//' + WINDOW_URL + ':',
-
     PORT : PORT,
     TODAYS_ATTENDANCE : SERVER_URL + _PORT + '/awiros_ms/attendence/api/console_data',
     LOGIN_URL : SERVER_URL + _PORT + '/awiros_ms/attendence/api/login',
@@ -37,6 +33,7 @@ const configs = {
     SERVER_ADDRESS_REALTIME : LOCAL_HOST_SERVER,
     SERVER_ADDRESS : '192.168.0.16',
     SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.16:',
+
     PORT : PORT,
     TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',
     LOGIN_URL: LOCAL_HOST_SERVER + '/login',
@@ -44,7 +41,15 @@ const configs = {
     LIST_OF_REGISTER_URL : LOCAL_HOST_SERVER + '/list_of_registered_users',
   },
   PRODUCTION: {
-    TODAYS_ATTENDANCE : SERVER_URL + PORT + '/awiros_ms/attendence/api/console_data'
+    SERVER_ADDRESS_REALTIME : WINDOW_HTTP + '//' + WINDOW_URL + ':' + PORT,
+    SERVER_ADDRESS : WINDOW_URL,
+    SERVER_ADDRESS_FOR_REGISTER : WINDOW_HTTP + '//' + WINDOW_URL + ':',
+
+    PORT : PORT,
+    TODAYS_ATTENDANCE : SERVER_URL + _PORT + '/awiros_ms/attendence/api/console_data',
+    LOGIN_URL : SERVER_URL + _PORT + '/awiros_ms/attendence/api/login',
+    REGISTER_URL : SERVER_URL + _PORT + '/awiros_ms/attendence/api/register_user_for_attendence',
+    LIST_OF_REGISTER_URL : SERVER_URL + _PORT + '/awiros_ms/attendence/api/list_of_registered_users',
   }
 };
 

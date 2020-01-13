@@ -46,10 +46,10 @@ export function getEndTimeStampOfYear(year) {
 }
 
 export function getStartTimeStampOfGivenDate(date) {
-    return this.startTime = new Date(date).setHours(0, 0, 0, 0);
+    return  new Date(date).setHours(0, 0, 0, 0);
 }
 export function getEndTimeStampOfGivenDate(date) {
-    return this.endTime = new Date(date).setHours(23, 59, 59, 999);
+    return  new Date(date).setHours(23, 59, 59, 999);
 }
 
 export function getRandomColor() {

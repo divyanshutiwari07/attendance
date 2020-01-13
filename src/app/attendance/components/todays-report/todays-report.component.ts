@@ -9,6 +9,7 @@ import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { config } from '../../../config';
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
+import {ExportToCsv} from 'export-to-csv';
 
 @Component({
   selector: 'app-todays-report',
@@ -53,6 +54,9 @@ export class TodaysReportComponent implements OnInit {
   public allLocationList;
   private allEmpIdList;
   public searchText;
+  public fileDataType;
+  private monthlyData;
+  private selectedYear;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -78,6 +82,7 @@ export class TodaysReportComponent implements OnInit {
     this.sendMessage();
     this.checkNewPresentEmp();
     this.getListOfRegisteredUsers();
+    console.log('ngonint');
   }
 
   sendMessage() {
@@ -149,7 +154,9 @@ export class TodaysReportComponent implements OnInit {
     }));
   }
 
-  private getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
+  getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
+    console.log("@@@@@@@@@@@@@@@@@")
+    console.log(startTime)
     this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
     .subscribe(
       response => {
@@ -290,14 +297,56 @@ export class TodaysReportComponent implements OnInit {
     this.yearlyReport = yearlyReport;
   }
 
-  exportEmployeeYearReport(fileName) {
-    this.exportAsService.save(this.exportAsConfig, fileName).subscribe(() => {
+  checkDataMonthlyOrYearly(dataType) {
+    this.fileDataType = dataType;
+    console.log('file type', this.fileDataType);
+  }
+
+  employeeMonthlyReportData(monthlyData) {
+    this.monthlyData = monthlyData;
+    console.log('monthName', this.monthlyData);
+  }
+
+  selectedYearForEmp(year) {
+    console.log('year', year);
+    this.selectedYear = year;
+  }
+
+  exportEmployeeMonthReport(fileName) {
+    const CSVfilename = fileName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_attendance_record';
+    console.log('export monthly');
+    this.exportAsService.save(this.exportAsConfig, CSVfilename).subscribe(() => {
     });
   }
 
+  exportEmployeeYearReport(fileName) {
+    console.log('export yearly');
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true,
+      showTitle: true,
+      // title: 'Today\'s Present Employee',
+      title: '',
+      useTextFile: false,
+      useBom: true,
+      filename: null,
+      useKeysAsHeaders: true,
+    };
+
+    options.filename = fileName + '_' + this.selectedYear.year + '_yearly_attendance';
+    const csvExporter = new ExportToCsv(options);
+
+    csvExporter.generateCsv(this.yearlyReport);
+  }
+
   getEmployeeRecordForSelectedDate(selectedDate) {
+    console.log('selectedDate', selectedDate);
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
+    console.log('starttimestamp', this.startTimeStamp);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
+    console.log('endtimestamp', this.endTimeStamp);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       this.empList = this.extractData(res);
       this.markPresentEmployees();

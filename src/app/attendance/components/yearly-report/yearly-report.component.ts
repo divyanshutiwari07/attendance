@@ -18,9 +18,12 @@ export class YearlyReportComponent implements OnInit {
   days: any;
   fetching: any;
 
-  @Input() empName ;  
+  @Input() empName ;
   @Output() yearlyReportResponse: EventEmitter<any> = new EventEmitter<any>();
   @Output() checkDataMonthlyOrYearly: EventEmitter<any> = new EventEmitter<any>();
+  @Output() employeeMonthlyReportData: EventEmitter<any> = new EventEmitter<any>();
+  @Output() selectedYearForEmp: EventEmitter<any> = new EventEmitter<any>();
+
 
   public reportMode;
   public employeeMonthReport;
@@ -39,11 +42,11 @@ export class YearlyReportComponent implements OnInit {
     this.initializeYearDropdown();
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.fetching = 1;
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
-    this.checkMonthlyOrYearly = 'yearly';
+    this.checkMonthlyOrYearly = 'yearly_attendance_record';
 
     this.getEmployeeRecordForYear();
   }
@@ -62,7 +65,7 @@ export class YearlyReportComponent implements OnInit {
 
   goBackOnYearlyRecordPage() {
     this.reportMode = 'Y';
-    this.checkMonthlyOrYearly = 'yearly';
+    this.checkMonthlyOrYearly = 'yearly_attendance_record';
     this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
   }
 
@@ -79,9 +82,10 @@ export class YearlyReportComponent implements OnInit {
       this.fetching = 0;
       this.employeeYearReport = response.data;
 
-      console.log("employeeYearReport", this.employeeYearReport);
-      
+      console.log('employeeYearReport', this.employeeYearReport);
+
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
+      this.selectedYearForEmp.emit(this.selectedYear);
       this.genrateFormattedReport();
     });
   }
@@ -93,8 +97,9 @@ export class YearlyReportComponent implements OnInit {
       report: this.getMonthReport(month),
     };
     this.reportMode = 'M';
-    this.checkMonthlyOrYearly = 'monthly';
+    this.checkMonthlyOrYearly = 'monthly_attendance_record';
     this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
+    this.employeeMonthlyReportData.emit(this.employeeMonthReport);
   }
 
   genrateFormattedReport() {
@@ -120,15 +125,15 @@ export class YearlyReportComponent implements OnInit {
   generateAttendanceTable() {
     this.attendanceTable = [];
     this.months.forEach((month) => {
-      let monthData: any = {
+      const monthData: any = {
         Month: month
       };
       this.days.forEach((day) => {
-        monthData[" " + day] = this.checkIfPresentOnThisDate(day, month) ? "P" : 'A';
+        monthData[' ' + day] = this.checkIfPresentOnThisDate(day, month) ? 'P' : 'A';
       });
-      monthData["Present"] = this.formattedYearReport.monthReport[month] ? this.formattedYearReport.monthReport[month].presentCount : 0;
+      monthData['Present'] = this.formattedYearReport.monthReport[month] ? this.formattedYearReport.monthReport[month].presentCount : 0;
       this.attendanceTable.push(monthData);
-      
+
     });
     this.yearlyReportResponse.emit(this.attendanceTable);
     // console.log("this.attendanceTable", this.attendanceTable);

@@ -35,7 +35,7 @@ export class EmpListComponent implements OnChanges {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
 
-    console.log("this.employees", this.employees);
+    console.log('this.employees', this.employees);
   }
 
   exportCSV() {
@@ -53,10 +53,11 @@ export class EmpListComponent implements OnChanges {
       useKeysAsHeaders: true,
     };
 
-    options.filename = 'Present employees at ' + Utils.getFormattedDate(this.todaysDate);
+    options.filename = 'Employees_present_on_' + Utils.getFormattedDate(this.todaysDate);
     const csvExporter = new ExportToCsv(options);
 
-    const mapTo = {name: 'Name', id: 'Employee Id', inTimeForCSV: 'In Time', outTime: 'Out Time' };
+    // tslint:disable-next-line:max-line-length
+    const mapTo = {id: 'Employee Id', name: 'Employee Name', department : 'Department', inTimeForCSV: 'In Time', location: 'Entry Location', outTime: 'Out Time' };
 
     csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
   }

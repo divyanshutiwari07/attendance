@@ -32,7 +32,7 @@ export class MonthlyReportComponent implements OnInit {
       // console.log('data ' + this.formattedReport);
     });
     this.formattedReport = monthReport;
-    // console.log('formate', this.formattedReport);
+    console.log('formate', this.formattedReport);
   }
 
   checkIfPresentOnThisDate(day, monthName) {
