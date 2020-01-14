@@ -270,6 +270,7 @@ export class TodaysReportComponent implements OnInit {
     this.selectedTab = 'P';
     this.getPresentEmployeesDetails(this.startTime, this.endTime, (response) => {
       this.empList = this.extractData(response);
+      this.markPresentEmployees();
     });
   }
 
