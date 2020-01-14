@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     successToaster() {
         console.log('yes');
         this.notifyService.showSuccess('Login Successfully !!', '');
-      }
+    }
 }
 
 

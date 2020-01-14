@@ -1,27 +1,30 @@
 const WINDOW_HTTP =    location.protocol;
 const WINDOW_URL =     location.hostname;
 
-const SERVER_URL = 'http://192.168.0.80:';
-// const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
+// const SERVER_URL = 'http://192.168.0.21:';
+const SERVER_URL = WINDOW_HTTP + '//' + WINDOW_URL + ':';
 const _PORT = '4000';
 const PORT = '3000';
 
-const devMode = 'ON_PREMISE';
+// const devMode = 'ON_PREMISE';
 // let devMode = 'LOCALHOST';
-// let devMode = 'PRODUCTION';
+let devMode = 'PRODUCTION';
 
 export const LOCAL_HOST_SERVER = 'http://localhost:3000';
 
 export const SOCKET_EVENTS = {
-  NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
-  USER_JOINED_EVENT : devMode === 'ON_PREMISE' ? 'user_joined' : 'message'
+  // NEW_SERVER_EVENT : devMode === 'ON_PREMISE' ? 'new_event_occurred' : 'message',
+  // USER_JOINED_EVENT : devMode === 'ON_PREMISE' ? 'user_joined' : 'message'
+
+  NEW_SERVER_EVENT : devMode === 'PRODUCTION' ? 'new_event_occurred' : 'message',
+  USER_JOINED_EVENT : devMode === 'PRODUCTION' ? 'user_joined' : 'message'
 };
 
 const configs = {
   ON_PREMISE: {
-    SERVER_ADDRESS_REALTIME : 'http://192.168.0.80:3000',
-    SERVER_ADDRESS : '192.168.0.80',
-    SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.80:',
+    SERVER_ADDRESS_REALTIME : 'http://192.168.0.21:3000',
+    SERVER_ADDRESS : '192.168.0.21',
+    SERVER_ADDRESS_FOR_REGISTER : 'http://192.168.0.21:',
 
     PORT : PORT,
     TODAYS_ATTENDANCE : SERVER_URL + _PORT + '/awiros_ms/attendence/api/console_data',
