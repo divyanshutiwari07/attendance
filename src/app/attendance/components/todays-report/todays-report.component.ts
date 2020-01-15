@@ -155,8 +155,6 @@ export class TodaysReportComponent implements OnInit {
   }
 
   getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
-    console.log("@@@@@@@@@@@@@@@@@")
-    console.log(startTime)
     this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
     .subscribe(
       response => {
@@ -345,9 +343,7 @@ export class TodaysReportComponent implements OnInit {
   getEmployeeRecordForSelectedDate(selectedDate) {
     console.log('selectedDate', selectedDate);
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
-    console.log('starttimestamp', this.startTimeStamp);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
-    console.log('endtimestamp', this.endTimeStamp);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       this.empList = this.extractData(res);
       this.markPresentEmployees();
