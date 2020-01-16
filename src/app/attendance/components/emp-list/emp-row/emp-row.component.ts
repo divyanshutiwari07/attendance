@@ -37,6 +37,10 @@ export class EmpRowComponent implements OnInit {
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
   }
 
+  rejectEmployeeAttendance(emp) {
+    console.log('empname' , emp.name + ', ' + emp.id);
+  }
+
   enableExportButton(yearlyReport) {
     this.disableExportButton = false;
     this.yearlyReport = yearlyReport;

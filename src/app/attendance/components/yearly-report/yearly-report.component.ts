@@ -71,6 +71,7 @@ export class YearlyReportComponent implements OnInit {
 
 
   getEmployeeRecordForYear() {
+    // console.log('selected year on year ', this.selectedYear)
     this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -82,11 +83,14 @@ export class YearlyReportComponent implements OnInit {
       this.fetching = 0;
       this.employeeYearReport = response.data;
 
-      console.log('employeeYearReport', this.employeeYearReport);
+      // console.log('employeeYearReport', this.employeeYearReport);
 
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.selectedYearForEmp.emit(this.selectedYear);
       this.genrateFormattedReport();
+      if (response.success === false) {
+        this.errorToaster(response.msg);
+      }
     });
   }
 
@@ -161,6 +165,10 @@ export class YearlyReportComponent implements OnInit {
 
   successToaster(message: string) {
     this.notifyService.showSuccess(message,  '');
+  }
+
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
   }
 
 }
