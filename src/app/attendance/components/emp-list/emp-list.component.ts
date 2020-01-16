@@ -38,6 +38,17 @@ export class EmpListComponent implements OnChanges {
     console.log('this.employees', this.employees);
   }
 
+  getEmployeeRecordForSelectedDate(selectedDate) {
+    console.log('selectedDate', selectedDate);
+    // this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
+    // this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
+    // this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
+    //   this.empList = this.extractData(res);
+    //   this.markPresentEmployees();
+    //   console.log('this.empList', this.empList);
+    // });
+  }
+
   exportCSV() {
     const options = {
       fieldSeparator: ',',

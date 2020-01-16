@@ -18,7 +18,7 @@ import {ExportToCsv} from 'export-to-csv';
 })
 export class TodaysReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' , 'rejectAttendance' ];
+  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' ];
   dataSource = new MatTableDataSource([]);
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {

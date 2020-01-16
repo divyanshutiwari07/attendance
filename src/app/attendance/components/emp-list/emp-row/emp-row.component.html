@@ -12,17 +12,15 @@
         <div>Entry Time: {{employee.inTime | date: 'h:mm:ss a' }}</div>
         <!-- <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a' }}</div> -->
         
-    </div>
+    </div>  
     <div class='column action'>
-        <div>Yearly Attendance</div>
-        <!-- <div><button class="btn btn-outline-primary" >View Record</button></div> -->
-        <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">View Record</button></div>
+        <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Delete Attendance</button></div>
+        <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">Yearly Attendance</button></div>
     </div>
-    <div class='column'>
+    <!-- <div class='column'>
         <div>Reject Attendance</div>
-        <!-- <div><button class="btn btn-outline-primary" >View Record</button></div> -->
         <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject</button></div>
-    </div>
+    </div> -->
 </div>
 <ng-template #content let-modal >
     <div class="modal-header">
