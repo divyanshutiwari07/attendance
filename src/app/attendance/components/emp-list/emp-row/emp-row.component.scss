@@ -6,6 +6,7 @@
     border-radius: 15px;
     box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
     .emp-body {
+      height: 110px;
       padding: 5px 25px;  
       display: flex;
       flex-direction: row;
@@ -21,9 +22,17 @@
           padding: 10px 0px;  
         }
       }
+
+      .column.action div{
+        button {
+          height: 30px;
+          padding: 3px 7px 1px 7px;
+        }
+        
+      }
     
       .column.avatar {
-        flex: 0.3;
+        flex: 0.5;
         align-items: center;  
         img {
           border-radius: 8px;
