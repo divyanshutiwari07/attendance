@@ -10,6 +10,7 @@ import * as Utils from '../../common/utils';
 import { config } from '../../../config';
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportToCsv} from 'export-to-csv';
+import { AuthGuard } from 'src/app/shared';
 
 @Component({
   selector: 'app-todays-report',
@@ -69,7 +70,8 @@ export class TodaysReportComponent implements OnInit {
     private userService: UserService,
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
-    private userData: UserDataHomePageService
+    private userData: UserDataHomePageService,
+    private auth: AuthGuard
   ) {}
 
   ngOnInit() {
@@ -115,10 +117,12 @@ export class TodaysReportComponent implements OnInit {
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         this.empList = this.extractData(res);
+        console.log('present emplist', this.empList);
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
         this.markPresentEmployees();
+        this.addRegisteredPhotoToPresentEmpList();
       });
     });
   }
@@ -146,6 +150,18 @@ export class TodaysReportComponent implements OnInit {
     });
   }
 
+  private addRegisteredPhotoToPresentEmpList() {
+    const empList = this.empList.map(emp => ({
+      ...emp , photoForModal: ( this.registeredUsersData.forEach(user => {
+         if (user.id === emp.id) {
+          return user.photo;
+         }
+      }))
+
+    }));
+    console.log('updated imge' , empList)
+  }
+
   private markPresentEmployees() {
     this.dataSource.data = this.registeredUsersData.map(user => ({
       ...user , isPresent: !isNullOrUndefined( this.empList.find(emp => {
@@ -168,6 +184,9 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractDataForRegisteredUsers(response): Array<object> {
+    if ( response.msg === 'Un-Authorized Access, expired session' ) {
+      this.auth.logOut();
+    }
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
       console.log('no registered users data found');

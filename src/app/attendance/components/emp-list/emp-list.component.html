@@ -42,14 +42,36 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <mat-form-field>
+            <mat-label>Manually Entered</mat-label>
+            <mat-select [(ngModel)]="selectedLocation" name="empname">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let location of locations" [value]="location.id">
+                    {{location.id}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
-    <div class='column action'>            
+    <!-- <div class='column action'>            
         <div><button class="btn btn-outline-primary" (click)="exportCSV()">Export CSV</button></div>
-    </div>
+    </div> -->
 </div>
 
-<div class="card mb-3 ">
+<!-- <div class="card mb-3 ">
     <div class="card-body" class="chart-container">
+        <div *ngFor="let employee of employees 
+        | search : selectedDepartment :['department'] 
+        | search : selectedLocation :['location'] 
+        | search:searchText:['name', 'department', 'location'] 
+        | timeRange : selectedTime
+        | sort:selectedList" 
+        app-emp-row [employee]="employee"
+        ></div>
+    </div>
+</div> -->
+
+<div class="mb-3 ">
+    <div class="" class="chart-container">
         <div *ngFor="let employee of employees 
         | search : selectedDepartment :['department'] 
         | search : selectedLocation :['location'] 

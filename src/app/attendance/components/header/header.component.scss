@@ -25,7 +25,12 @@ $topnav-background-color: #dedede;
         }
 
         .logo-style {
-            padding-left: 25em;
+            padding-left: 20em;
+            span {
+                color: #75807a;
+                font-style: italic;
+                padding-right: 6px;
+            }
         }
 
         .navbar-nav {
