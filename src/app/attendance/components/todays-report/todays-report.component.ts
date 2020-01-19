@@ -152,14 +152,9 @@ export class TodaysReportComponent implements OnInit {
 
   private addRegisteredPhotoToPresentEmpList() {
     const empList = this.empList.map(emp => ({
-      ...emp , photoForModal: ( this.registeredUsersData.forEach(user => {
-         if (user.id === emp.id) {
-          return user.photo;
-         }
-      }))
-
+      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photo)
     }));
-    console.log('updated imge' , empList)
+    // console.log('updated imge' , empList)
   }
 
   private markPresentEmployees() {
