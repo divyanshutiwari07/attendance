@@ -1,4 +1,7 @@
 .monthly-report {
+    overflow-x: hidden;
+    max-height: calc(100vh - 315px);
+    overflow-y: auto;
     .header {
         justify-content: center;
         font-weight: bold;

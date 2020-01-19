@@ -43,7 +43,7 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.fetching = 1;
+    
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
     this.checkMonthlyOrYearly = 'yearly_attendance_record';
@@ -71,6 +71,7 @@ export class YearlyReportComponent implements OnInit {
 
 
   getEmployeeRecordForYear() {
+    this.fetching = 1;
     // console.log('selected year on year ', this.selectedYear)
     this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,

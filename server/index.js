@@ -40,7 +40,9 @@ app.post("/employee-attendance", (req, res, next) => {
 
     if( req.body.awi_label ) {
         console.log("===================== Serving employee data ======================= ");
-        res.json(empRecord);
+        setTimeout(() => {
+            res.json(empRecord);
+        }, 2000);
     } else if( req.body.awi_chart_data ) {
         console.log("===================== Serving chart data ======================= ");
         res.json(chartData);

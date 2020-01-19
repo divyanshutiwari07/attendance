@@ -21,6 +21,9 @@
     }
 
     .yearly-report {
+        overflow-x: hidden;
+        max-height: calc(100vh - 315px);
+        overflow-y: auto;
         .header {
             padding: 25px 0px;
             justify-content: center;

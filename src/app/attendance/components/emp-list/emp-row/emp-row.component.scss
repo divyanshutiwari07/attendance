@@ -99,11 +99,11 @@
     width: 90%;
   }
 
-  .modal-body{
-    overflow-x: hidden;
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
-  }
+  // .modal-body{
+  //   overflow-x: hidden;
+  //   max-height: calc(100vh - 200px);
+  //   overflow-y: auto;
+  // }
 
   @media only screen and (max-width: 1250px) {
     .modal-body{
