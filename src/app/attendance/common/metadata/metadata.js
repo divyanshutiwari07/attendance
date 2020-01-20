@@ -5,7 +5,7 @@ export const getTimeRange = () => {
 
 export const getSortOptions = () => {
     return [
-        {name: 'Alphabetic Order', id: 'name'},
         {name: 'Latest Time', id: 'inTime'},
+        {name: 'Alphabetic Order', id: 'name'},
     ];
 }

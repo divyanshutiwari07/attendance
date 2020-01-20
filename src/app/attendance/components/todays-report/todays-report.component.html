@@ -1,10 +1,10 @@
 <div class="todays-attendance">  
   <div class='header'>
-    <h2>
+    <h3>
       Today's Attendance 
-    </h2>
+    </h3>
     <h3> {{todaysDate | date: 'dd/MM/yyyy'}} </h3>
-    <span class='header-style'><h2> {{presentEmp}}</h2> Percentage Attendance</span>
+    <span class='header-style'><h3> {{presentEmp}}</h3> Percentage Attendance</span>
   </div>
   <hr>
 
@@ -48,7 +48,8 @@
     <div class="col-md-12">
       <app-emp-list 
       [employees]="empList" 
-      [searchText] = 'searchText' 
+      [searchText] = 'searchText'
+      [selectedDate] = 'selectedDate' 
       [allDepartmentList] = 'allDepartmentList' 
       [allLocationList] = 'allLocationList'></app-emp-list>
     </div>

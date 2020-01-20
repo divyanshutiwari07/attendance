@@ -21,6 +21,7 @@ export class TodaysReportComponent implements OnInit {
 
   displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' ];
   dataSource = new MatTableDataSource([]);
+  selectedDate;
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
     this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
@@ -81,9 +82,9 @@ export class TodaysReportComponent implements OnInit {
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
+    this.getListOfRegisteredUsers();
     this.sendMessage();
     this.checkNewPresentEmp();
-    this.getListOfRegisteredUsers();
     console.log('ngonint');
   }
 
@@ -100,6 +101,7 @@ export class TodaysReportComponent implements OnInit {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
           // this.empList.push( newEmpData );
           this.empList.unshift( newEmpData );
+          this.addRegisteredPhotoToPresentEmpList(this.empList);
           this.allDepartmentList = this.getAllDepartmentList( this.empList );
           this.allLocationList = this.getAllLocationList(this.empList);
           this.allEmpIdList = this.getAllEmpIdList(this.empList);
@@ -121,14 +123,19 @@ export class TodaysReportComponent implements OnInit {
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
+        this.addRegisteredPhotoToPresentEmpList(this.empList);
         this.markPresentEmployees();
-        this.addRegisteredPhotoToPresentEmpList();
       });
     });
   }
 
   private checkEmpAlreadyPresent(newId) {
-    return this.allEmpIdList.includes(newId);
+    if ( this.allEmpIdList ) {
+      return this.allEmpIdList.includes(newId);
+    } else {
+      return false;
+    }
+
   }
 
   private getAllEmpIdList(empList) {
@@ -150,11 +157,10 @@ export class TodaysReportComponent implements OnInit {
     });
   }
 
-  private addRegisteredPhotoToPresentEmpList() {
-    const empList = this.empList.map(emp => ({
+  private addRegisteredPhotoToPresentEmpList(empList) {
+    this.empList = empList.map(emp => ({
       ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photo)
     }));
-    // console.log('updated imge' , empList)
   }
 
   private markPresentEmployees() {
@@ -282,6 +288,7 @@ export class TodaysReportComponent implements OnInit {
     this.selectedTab = 'P';
     this.getPresentEmployeesDetails(this.startTime, this.endTime, (response) => {
       this.empList = this.extractData(response);
+      this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
     });
   }
@@ -355,11 +362,13 @@ export class TodaysReportComponent implements OnInit {
   }
 
   getEmployeeRecordForSelectedDate(selectedDate) {
-    console.log('selectedDate', selectedDate);
+    // console.log('selectedDate', selectedDate);
+    this.selectedDate = selectedDate;
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       this.empList = this.extractData(res);
+      this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
       console.log('this.empList', this.empList);
     });

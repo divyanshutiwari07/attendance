@@ -3,7 +3,7 @@
 .emp-detail{
   padding-bottom: 10px;
   .emp-card {
-    border-radius: 15px;
+    border-radius: 8px;
     box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
     .emp-body {
       height: 110px;
@@ -55,6 +55,7 @@
       display: flex;
       flex: 0.07; 
       img {
+        border-radius: 8px;
         width: 60px;
         height: 60px;
       }

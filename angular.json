@@ -58,6 +58,24 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }                
+              ],
+              "serviceWorker": true
+            },
+            "premise": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.premise.ts"
+                }                
+              ],
+              "serviceWorker": true
             }
           }
         },
@@ -69,6 +87,12 @@
           "configurations": {
             "production": {
               "browserTarget": "test-ng7:build:production"
+            },
+            "local": {
+              "browserTarget": "test-ng7:build:local"
+            },
+            "premise": {
+              "browserTarget": "test-ng7:build:premise"
             }
           }
         },

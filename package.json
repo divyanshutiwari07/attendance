@@ -4,8 +4,12 @@
   "license": "Apache",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run start:premise",
+    "start:premise": "ng serve -o --port 4400 -c premise",
+    "start:local": "ng serve -o --port 4400 -c local",
+    "start:device": "ng serve -o --port 4400 -c premise --host 0.0.0.0",
     "build": "ng build --prod",
+    "build:prod": "ng build -c production",
     "gitbuild": "ng build --prod --base-href /start-angular/SB-Admin-BS4-Angular-7/master/dist/",
     "test": "ng test",
     "test-ci": "TEST_CI=true ng test",

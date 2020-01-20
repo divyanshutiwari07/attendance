@@ -12,6 +12,7 @@ export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
   @Input() searchText;
+  @Input() selectedDate;
   @Input() allDepartmentList: Array<object>;
   @Input() allLocationList: Array<object>;
 
@@ -22,13 +23,15 @@ export class EmpListComponent implements OnChanges {
   public departments;
   public locations;
   private todaysDate;
+  private csvDate;
+
 
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
 
   constructor() {
     this.todaysDate = new Date();
-    this.selectedList = Metadata.getSortOptions()[1].id;
+    this.selectedList = Metadata.getSortOptions()[0].id;
   }
 
   ngOnChanges() {
@@ -36,17 +39,17 @@ export class EmpListComponent implements OnChanges {
     this.locations = this.allLocationList;
 
     console.log('this.employees', this.employees);
+    console.log('this. selected date in emp', this.selectedDate);
+
   }
 
-  getEmployeeRecordForSelectedDate(selectedDate) {
-    console.log('selectedDate', selectedDate);
-    // this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
-    // this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
-    // this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
-    //   this.empList = this.extractData(res);
-    //   this.markPresentEmployees();
-    //   console.log('this.empList', this.empList);
-    // });
+  getFormattedDateForCSV() {
+    if ( !this.selectedDate ) {
+      console.log('under')
+      return Utils.getFormattedDate( this.todaysDate );
+    } else {
+      return Utils.getFormattedDate( this.selectedDate );
+    }
   }
 
   exportCSV() {
@@ -64,7 +67,7 @@ export class EmpListComponent implements OnChanges {
       useKeysAsHeaders: true,
     };
 
-    options.filename = 'Employees_present_on_' + Utils.getFormattedDate(this.todaysDate);
+    options.filename = 'Employees_present_on_' + this.getFormattedDateForCSV();
     const csvExporter = new ExportToCsv(options);
 
     // tslint:disable-next-line:max-line-length

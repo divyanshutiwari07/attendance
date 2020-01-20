@@ -23,9 +23,11 @@ export class WebsocketService {
 
     const observable = new Observable(observer => {
         this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
+          console.log('connect  socket');
           observer.next(data);
         });
         return () => {
+          console.log('disconnect socket');
           this.socket.disconnect();
         };
     });
@@ -35,7 +37,6 @@ export class WebsocketService {
           this.socket.emit(SOCKET_EVENTS.USER_JOINED_EVENT,  JSON.parse(obj).id);
         },
     };
-
     return Rx.Subject.create(observer, observable);
   }
 

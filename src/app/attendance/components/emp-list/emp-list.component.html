@@ -43,7 +43,7 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Manually Entered</mat-label>
+            <mat-label>Manual Entry</mat-label>
             <mat-select [(ngModel)]="selectedLocation" name="empname">
                 <mat-option>All</mat-option>
                 <mat-option *ngFor="let location of locations" [value]="location.id">

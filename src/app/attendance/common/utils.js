@@ -72,7 +72,7 @@ export function getRandomColor() {
 }
 
 export function getFormattedDate(date) {
-    
+    console.log('getformateed date for home')
     let formattedDate = new Date(date);
     const dd = String(formattedDate.getDate()).padStart(2, '0');
     const mm = String(formattedDate.getMonth() + 1).padStart(2, '0');

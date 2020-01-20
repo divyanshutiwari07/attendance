@@ -21,7 +21,7 @@ export class RestClient {
         };
     }
 
-    get(url: string, payload: Object = null, token = null): Observable<any>{
+    get(url: string, payload: Object = null, token = null): Observable<any> {
         return Observable.create((observer: Observer<any>) => {
             if (isNullOrUndefined(payload)) {
                 this.http.get(url, this.getHttpOptions()).subscribe(response => {

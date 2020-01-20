@@ -15,9 +15,9 @@
                 <!-- <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a' }}</div> -->
                 
             </div>  
-            <div class='column action'>
+            <div class='column action'> 
                 <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">Yearly Attendance</button></div>
-                <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Delete Attendance</button></div>
+                <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject Attendance</button></div>
             </div>
             <!-- <div class='column'>
                 <div>Reject Attendance</div>
@@ -37,7 +37,7 @@
     <div class="modal-body report">
         <div class="d-flex">
             <div class='column avatar'>
-                <img src={{employee.photo}} alt="Avatar">
+                <img src={{employee.registeredPhoto}} alt="Avatar">
             </div>
             <div class='column col-md-8'>
                 <div>Employee Name: {{employee.name}} </div>
