@@ -52,28 +52,33 @@ export class EmpListComponent implements OnChanges {
     }
   }
 
+
   exportCSV() {
-    const options = {
-      fieldSeparator: ',',
-      quoteStrings: '"',
-      decimalSeparator: '.',
-      showLabels: true,
-      showTitle: true,
-      // title: 'Today\'s Present Employee',
-      title: '',
-      useTextFile: false,
-      useBom: true,
-      filename: null,
-      useKeysAsHeaders: true,
-    };
+    console.log('this.employees', this.employees);
+    if (this.employees.length !== 0) {
+      const options = {
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true,
+        showTitle: true,
+        // title: 'Today\'s Present Employee',
+        title: '',
+        useTextFile: false,
+        useBom: true,
+        filename: null,
+        useKeysAsHeaders: true,
+      };
 
-    options.filename = 'Employees_present_on_' + this.getFormattedDateForCSV();
-    const csvExporter = new ExportToCsv(options);
+      options.filename = 'Employees_present_on_' + this.getFormattedDateForCSV();
+      const csvExporter = new ExportToCsv(options);
 
-    // tslint:disable-next-line:max-line-length
-    const mapTo = {id: 'Employee Id', name: 'Employee Name', department : 'Department', inTimeForCSV: 'In Time', location: 'Entry Location', outTime: 'Out Time' };
+      // tslint:disable-next-line:max-line-length
+      const mapTo = {id: 'Employee Id', name: 'Employee Name', department : 'Department', inTimeForCSV: 'In Time', location: 'Entry Location', outTime: 'Out Time' };
 
-    csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
+      csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
+    }
+
   }
 
 }

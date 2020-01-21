@@ -51,9 +51,20 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <div>
+            <button class="btn btn-outline-primary" (click)="exportCSV()" placement="left" ngbTooltip="Export CSV">
+                <!-- <a data-toggle="tooltip" data-placement="left" ngbTooltip="Waiting Employees"></a>             -->
+                <i class="fa fa-download" aria-hidden="false"></i>
+            </button>
+        </div>
     </div>
+    
     <!-- <div class='column action'>            
-        <div><button class="btn btn-outline-primary" (click)="exportCSV()">Export CSV</button></div>
+        <div>
+            <button class="btn btn-outline-primary" (click)="exportCSV()">
+                <i class="fa fa-download" aria-hidden="false"></i>
+             </button>
+        </div>
     </div> -->
 </div>
 
