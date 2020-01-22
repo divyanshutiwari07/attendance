@@ -32,5 +32,9 @@ export class ApiService {
   getListOfRegisteredUser(): Observable <any> {
     return this.http.get(config.LIST_OF_REGISTER_URL, {});
   }
+
+  rejectEmpAttendance(obj): Observable <any> {
+    return this.http.get( config.REJECT_ATTENDANCE_URL, obj );
+  }
 }
 

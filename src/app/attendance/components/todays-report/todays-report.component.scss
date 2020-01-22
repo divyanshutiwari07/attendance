@@ -34,7 +34,7 @@
     .search-bar{
         display: flex;
         margin-right: 16px;
-        justify-content: space-between;
+        justify-content: flex-end;
     }
 
     .all-employee {
@@ -71,6 +71,22 @@
                     border-radius: 0 !important;
                 }
             }
+
+            mat-cell.mat-cell-action {
+                padding-left:6px ;  
+                .btn {
+                    display: block;
+                    height: 30px;
+                    padding: 3px;
+                    min-width: 36px;
+                    // border-radius: 0 !important;
+                    border-radius: 3px;
+                }
+                .reject-attendance {
+                    margin-right: 5px;
+                }
+            }
+
             mat-cell.p {
                 .square {
                     border: 6px solid green;

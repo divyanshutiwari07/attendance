@@ -19,9 +19,8 @@ import { AuthGuard } from 'src/app/shared';
 })
 export class TodaysReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord' ];
+  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord', 'action' ];
   dataSource = new MatTableDataSource([]);
-  selectedDate;
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
     this.dataSource.sortingDataAccessor = (data: any, sortHeaderId: string): string => {
@@ -59,6 +58,7 @@ export class TodaysReportComponent implements OnInit {
   public fileDataType;
   private monthlyData;
   private selectedYear;
+  private selectedDate;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -307,6 +307,52 @@ export class TodaysReportComponent implements OnInit {
     this.selectedEmpData = element;
   }
 
+  chooseEndDateTime() {
+    if ( this.selectedDate ) {
+      if ( Utils.getStartTimeStampOfGivenDate(this.todaysDate) === Utils.getStartTimeStampOfGivenDate(this.selectedDate) ) {
+        return Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
+      } else {
+        return Utils.getEndTimeStampOfGivenDate( this.selectedDate );
+      }
+    } else {
+      return Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
+    }
+  }
+  chooseStartDateTime() {
+    if ( !this.selectedDate ) {
+     return Utils.getStartTimeStampOfGivenDate(this.todaysDate);
+    } else {
+      return Utils.getStartTimeStampOfGivenDate(this.selectedDate);
+    }
+  }
+
+  rejectEmployeeAttendance() {
+    console.log('reject attendace' , this.selectedDate );
+    const startTime = this.chooseStartDateTime();
+    const endTime = this.chooseEndDateTime();
+
+    if ( this.checkEmpAlreadyPresent(this.selectedEmpData.id) ) {
+      this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': this.selectedEmpData.name})
+      .subscribe(
+        response => {
+          console.log('rejectDatarespone' , response);
+          if ( response.success ) {
+            this.successToaster(response.msg);
+          } else {
+            this.errorToaster(response.msg);
+          }
+        }
+      );
+    } else {
+      this.errorToaster('already absent!');
+    }
+
+  }
+
+  deleteUser() {
+    console.log('delete user');
+  }
+
   searchEmployee(filterValue: String) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -368,6 +414,7 @@ export class TodaysReportComponent implements OnInit {
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       this.empList = this.extractData(res);
+      this.allEmpIdList = this.getAllEmpIdList(this.empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
       console.log('this.empList', this.empList);

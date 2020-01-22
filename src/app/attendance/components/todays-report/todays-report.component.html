@@ -35,11 +35,6 @@
           <mat-form-field>
               <input matInput placeholder="Search Employees" [(ngModel)]="searchText">
           </mat-form-field>
-          <mat-form-field>
-              <input #event matInput [matDatepicker]="picker" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker  ngDefaultControl></mat-datepicker>
-          </mat-form-field>
       </div>
     </div>
   </div>
@@ -49,7 +44,6 @@
       <app-emp-list 
       [employees]="empList" 
       [searchText] = 'searchText'
-      [selectedDate] = 'selectedDate' 
       [allDepartmentList] = 'allDepartmentList' 
       [allLocationList] = 'allLocationList'></app-emp-list>
     </div>
@@ -96,10 +90,17 @@
             <mat-cell class="mat-cell-yearly-attendance" *matCellDef="let element"> <button class="btn btn-outline-primary" (click)="openVerticallyCentered(content); empData(element)" >View Record</button> </mat-cell>
           </ng-container>
 
-          <!-- <ng-container matColumnDef="rejectAttendance">
-            <mat-header-cell class="mat-header-yearly-attendance" *matHeaderCellDef > Delete Attendance </mat-header-cell>
-            <mat-cell class="mat-cell-yearly-attendance" *matCellDef="let element"> <button class="btn btn-outline-danger" (click)="empData(element)" >Delete</button> </mat-cell>
-          </ng-container> -->
+          <ng-container matColumnDef="action">
+            <mat-header-cell class="mat-header-action" *matHeaderCellDef > Actions </mat-header-cell>
+            <mat-cell class="mat-cell-action" *matCellDef="let element"> 
+              <button class="btn btn-warning reject-attendance" placement="top" ngbTooltip="Reject Attendance"  (click)="empData(element);rejectEmployeeAttendance()" >
+                <i class="fa fa-close" aria-hidden="false"></i>
+              </button>
+              <button class="btn btn-danger" placement="top" ngbTooltip="Delete User" (click)="empData(element); deleteUser()">
+                <i class="fa fa-trash" aria-hidden="false"></i>
+              </button> 
+            </mat-cell>
+          </ng-container>
 
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>

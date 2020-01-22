@@ -12,4 +12,5 @@ export const config = {
     TODAYS_ATTENDANCE : LOCAL_HOST_SERVER + '/employee-attendance',
     LIST_OF_REGISTER_URL : LOCAL_HOST_SERVER + '/list_of_registered_users',
     REGISTER_URL : LOCAL_HOST_SERVER + COMMON.API_PORT + '/awiros_ms/attendence/api/register_user_for_attendence',
+    REJECT_ATTENDANCE_URL : LOCAL_HOST_SERVER + COMMON.API_PORT + '/rejectAttendance'
 };

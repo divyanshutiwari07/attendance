@@ -12,7 +12,6 @@ export class EmpListComponent implements OnChanges {
 
   @Input() employees: Array<object>;
   @Input() searchText;
-  @Input() selectedDate;
   @Input() allDepartmentList: Array<object>;
   @Input() allLocationList: Array<object>;
 
@@ -39,17 +38,7 @@ export class EmpListComponent implements OnChanges {
     this.locations = this.allLocationList;
 
     console.log('this.employees', this.employees);
-    console.log('this. selected date in emp', this.selectedDate);
 
-  }
-
-  getFormattedDateForCSV() {
-    if ( !this.selectedDate ) {
-      console.log('under')
-      return Utils.getFormattedDate( this.todaysDate );
-    } else {
-      return Utils.getFormattedDate( this.selectedDate );
-    }
   }
 
 
@@ -70,7 +59,7 @@ export class EmpListComponent implements OnChanges {
         useKeysAsHeaders: true,
       };
 
-      options.filename = 'Employees_present_on_' + this.getFormattedDateForCSV();
+      options.filename = 'Employees_present_on_' + Utils.getFormattedDate( this.todaysDate );
       const csvExporter = new ExportToCsv(options);
 
       // tslint:disable-next-line:max-line-length

@@ -20,6 +20,8 @@ const chartData = require('./chart-data.json');
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 const login = require('./login.json');
+const rejectAttendance = require('./reject-attendance.json');
+
 // app.listen(3000, () => {
 //  console.log("Server running on port 3000");
 // });
@@ -64,6 +66,10 @@ app.post('/list_of_registered_users', (req, res, next) => {
     res.json(listOfRegisteredUsers);
 })
 
+app.post('/rejectAttendance', (req, res, next) => {
+    console.log("=========== Serving reject attendance response=============");
+    res.json(rejectAttendance);
+})
 // io.on('connection', function (socket) {
 //     console.log('user connected');
 

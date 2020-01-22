@@ -90,8 +90,8 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   private showMonthlyPieChart() {
-
-    const dataset = [this.report.month.attendancePercentage, 100 - this.report.month.attendancePercentage];
+    const absentPercentage = (100 - this.report.month.attendancePercentage).toFixed(2);
+    const dataset = [this.report.month.attendancePercentage, parseFloat(absentPercentage)];
 
     // console.log( 'MOnth:showMonthlyPieChart:', dataset);
     if (!this.pieChartMonthly ) {
@@ -203,7 +203,6 @@ export class AttendanceStatsComponent implements OnInit {
 
     const attendancePercentage = (((totalEmpCountForMonth / workingDayCountForMonth) / this.totalEmp) * 100).toFixed(2);
     this.report.month.attendancePercentage = parseFloat(attendancePercentage);
-
 
     if ( !this.lineChartMonthly ) {
       const _this = this;

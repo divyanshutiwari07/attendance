@@ -52,6 +52,10 @@ export function getEndTimeStampOfGivenDate(date) {
     return  new Date(date).setHours(23, 59, 59, 999);
 }
 
+export function getCurrentTimeStampOfGivenDate(date) {
+    return new Date().getTime();
+}
+
 export function getRandomColor() {
     const randomColorPlugin = {
       beforeUpdate(chart) {
@@ -77,7 +81,7 @@ export function getFormattedDate(date) {
     const dd = String(formattedDate.getDate()).padStart(2, '0');
     const mm = String(formattedDate.getMonth() + 1).padStart(2, '0');
     const yyyy = formattedDate.getFullYear();
-    formattedDate = mm + '-' + dd + '-' + yyyy;
+    formattedDate = dd + '-' + mm + '-' + yyyy;
     // console.log(formattedDate);
     return formattedDate;
 }

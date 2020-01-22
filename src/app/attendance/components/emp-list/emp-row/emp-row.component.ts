@@ -3,6 +3,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportToCsv} from 'export-to-csv';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import * as Utils from '../../../common/utils';
+import { ApiService } from '../../../services/api.service';
+import { NotificationService } from '../../../services/notification.service';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class EmpRowComponent implements OnInit {
   public fileDataType;
   private monthlyData;
   private selectedYear;
+  private todaysDate;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -26,7 +29,13 @@ export class EmpRowComponent implements OnInit {
     elementId: 'employee_report',
   };
 
-  constructor(private modalService: NgbModal, private exportAsService: ExportAsService) { }
+  constructor(
+    private modalService: NgbModal,
+    private exportAsService: ExportAsService,
+    private apiService: ApiService,
+    private notifyService: NotificationService) {
+    this.todaysDate = new Date();
+   }
 
   ngOnInit() {
     this.disableExportButton = true;
@@ -38,7 +47,22 @@ export class EmpRowComponent implements OnInit {
   }
 
   rejectEmployeeAttendance(emp) {
-    console.log('empname' , emp.name + ', ' + emp.id);
+    const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
+    const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
+    console.log('empname' , emp.name, ' start time' , startTime, 'end time' , endTime);
+
+    this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': emp.name})
+    .subscribe(
+      response => {
+        console.log('rejectDatarespone' , response);
+        if ( response.success ) {
+          this.successToaster(response.msg);
+        } else {
+          this.errorToaster(response.msg);
+        }
+      }
+    );
+
   }
 
   enableExportButton(yearlyReport) {
@@ -89,6 +113,13 @@ export class EmpRowComponent implements OnInit {
     console.log('export monthly');
     this.exportAsService.save(this.exportAsConfig, CSVfilename ).subscribe(() => {
         });
+  }
+
+  errorToaster(message: string) {
+    this.notifyService.showError(message,  '');
+  }
+  successToaster(message: string) {
+    this.notifyService.showSuccess(message,  '');
   }
 
 }
