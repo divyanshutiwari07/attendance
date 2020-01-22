@@ -8,9 +8,14 @@ $topnav-background-color: #dedede;
         background-color: $topnav-background-color;
         .navbar-brand {
             color: black;
+            max-width: 85%;
+            overflow: hidden;
+            text-overflow: ellipsis;
             // color: white;
-            margin-left: 3em;
         }   
+        .navbar-toggler {
+            padding-right: 0;
+        }
         
         
         .nav-item > a {
@@ -23,7 +28,6 @@ $topnav-background-color: #dedede;
         }
 
         .logo-style {
-            padding-left: 20em;
             span {
                 color: #75807a;
                 font-style: italic;
@@ -38,6 +42,9 @@ $topnav-background-color: #dedede;
             i.fa-user-circle {
                 font-size: 25px;
             } 
+            .dropdown-menu {
+                position: absolute;
+            }
         }
     }
     

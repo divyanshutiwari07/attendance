@@ -8,7 +8,7 @@
 
     .select-year{
         margin-top: -60px;
-        margin-right: -74px;
+        // margin-right: -74px;
         float: right;
         span{
             display: flex;
@@ -21,7 +21,7 @@
     }
 
     .yearly-report {
-        overflow-x: hidden;
+        // overflow-x: hidden;
         max-height: calc(100vh - 315px);
         overflow-y: auto;
         .header {

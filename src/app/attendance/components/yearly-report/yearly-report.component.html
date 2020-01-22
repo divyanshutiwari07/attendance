@@ -2,7 +2,7 @@
 
      <button class="btn btn-outline-primary go-back" *ngIf="reportMode == 'M'" (click)="goBackOnYearlyRecordPage()">Go Back</button>
 
-     <div class="col-md-3 d-flex select-year" *ngIf="reportMode == 'Y'">
+     <div class="d-flex select-year" *ngIf="reportMode == 'Y'">
         <span class="">Select Year: </span>
          <select class=" form-control"
                 [(ngModel)]='selectedYear' name='year' id='year' required
