@@ -24,6 +24,7 @@ import { MaterialModule } from './common/material/material.module';
 import { SearchPipe } from './common/filters/search';
 import { SortPipe } from './common/filters/sort';
 import { TimeRangePipe } from './common/filters/time-range';
+import { PresentEmpService } from './services/present-emp.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,6 @@ import { TimeRangePipe } from './common/filters/time-range';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],
-  providers: [SearchPipe, SortPipe, TimeRangePipe],
+  providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService],
 })
 export class AttendanceModule { }

@@ -5,6 +5,7 @@ import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import * as Utils from '../../../common/utils';
 import { ApiService } from '../../../services/api.service';
 import { NotificationService } from '../../../services/notification.service';
+import { PresentEmpService } from '../../../services/present-emp.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class EmpRowComponent implements OnInit {
   private monthlyData;
   private selectedYear;
   private todaysDate;
+  
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -30,10 +32,12 @@ export class EmpRowComponent implements OnInit {
   };
 
   constructor(
-    private modalService: NgbModal,
-    private exportAsService: ExportAsService,
-    private apiService: ApiService,
-    private notifyService: NotificationService) {
+      private modalService: NgbModal,
+      private exportAsService: ExportAsService,
+      private apiService: ApiService,
+      private notifyService: NotificationService,
+      private presentEmpService: PresentEmpService
+    ) {
     this.todaysDate = new Date();
    }
 
@@ -57,6 +61,7 @@ export class EmpRowComponent implements OnInit {
         console.log('rejectDatarespone' , response);
         if ( response.success ) {
           this.successToaster(response.msg);
+          this.presentEmpService.reject(emp.id)
         } else {
           this.errorToaster(response.msg);
         }

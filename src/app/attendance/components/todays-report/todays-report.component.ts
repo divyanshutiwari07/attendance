@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { isNullOrUndefined } from 'util';
 import { UserService } from '../../services/user.service';
+import { PresentEmpService } from '../../services/present-emp.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
@@ -59,6 +60,7 @@ export class TodaysReportComponent implements OnInit {
   private monthlyData;
   private selectedYear;
   private selectedDate;
+  private presentEmpSubscription;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -72,7 +74,8 @@ export class TodaysReportComponent implements OnInit {
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
-    private auth: AuthGuard
+    private auth: AuthGuard,
+    private presentEmpService: PresentEmpService
   ) {}
 
   ngOnInit() {
@@ -86,6 +89,11 @@ export class TodaysReportComponent implements OnInit {
     this.sendMessage();
     this.checkNewPresentEmp();
     console.log('ngonint');
+    this.presentEmpSubscription = this.presentEmpService.empList$
+      .subscribe(empList => {
+        this.empList = empList;
+        console.log(empList);
+      })
   }
 
   sendMessage() {
@@ -118,7 +126,8 @@ export class TodaysReportComponent implements OnInit {
       console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
-        this.empList = this.extractData(res);
+        const empList = this.extractData(res);
+        this.presentEmpService.changeList(empList);
         console.log('present emplist', this.empList);
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
         this.allLocationList = this.getAllLocationList(this.empList);
@@ -289,7 +298,8 @@ export class TodaysReportComponent implements OnInit {
   presentOnPremises() {
     this.selectedTab = 'P';
     this.getPresentEmployeesDetails(this.startTime, this.endTime, (response) => {
-      this.empList = this.extractData(response);
+      const empList = this.extractData(response);
+      this.presentEmpService.changeList(empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
     });
@@ -341,14 +351,16 @@ export class TodaysReportComponent implements OnInit {
           if ( response.success ) {
             this.successToaster(response.msg);
 
-            this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
-              console.log('presentempdeta');
-              this.empList = this.extractData(res);
-              this.allEmpIdList = this.getAllEmpIdList(this.empList);
-              this.addRegisteredPhotoToPresentEmpList(this.empList);
-              this.markPresentEmployees();
-              console.log('this.empList', this.empList);
-            });
+            // this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
+            //   console.log('presentempdeta');
+            //   this.empList = this.extractData(res);
+            //   this.allEmpIdList = this.getAllEmpIdList(this.empList);
+            //   this.addRegisteredPhotoToPresentEmpList(this.empList);
+            //   this.markPresentEmployees();
+            //   console.log('this.empList', this.empList);
+            // });
+            this.presentEmpService.reject(this.selectedEmpData.id)
+            this.markPresentEmployees();
 
           } else {
             this.errorToaster(response.msg);
@@ -425,7 +437,8 @@ export class TodaysReportComponent implements OnInit {
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
-      this.empList = this.extractData(res);
+      const empList = this.extractData(res);
+      this.presentEmpService.changeList(empList);
       this.allEmpIdList = this.getAllEmpIdList(this.empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
