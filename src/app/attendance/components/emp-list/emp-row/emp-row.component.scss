@@ -10,7 +10,7 @@
       padding: 5px 25px;  
       display: flex;
       flex-direction: row;
-      border-radius: 15px;
+      border-radius: 8px;
       // border-bottom: 2px solid #bbb;
     
       .column {
@@ -27,8 +27,7 @@
         button {
           height: 30px;
           padding: 3px 7px 1px 7px;
-        }
-        
+        } 
       }
     
       .column.avatar {
@@ -40,6 +39,10 @@
           height: 60px;
         }
       }
+    }
+
+    .emp-body.manual-attendance {
+      background-color: gainsboro;
     }
   }
 }

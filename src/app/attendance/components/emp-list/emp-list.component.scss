@@ -7,13 +7,24 @@
     .column {
         display: flex;
         align-items: center;
-        flex: .7;
+        // flex: .7;
     }
-    .column.heading {
-        flex: .5;
-    }
+    // .column.heading {
+        // flex: .5;
+    // }
     .column.filters {
-        flex: 1.5;        
+        button {
+            // height: 33px;
+            // padding-bottom: 27px;
+            height: 31px;
+            width: 33px;
+            position: relative;
+            i {
+                position: absolute;
+                bottom: 25%;
+                right: 25%;
+            }
+        }        
         > * {
                 margin-right: 7px;
             }
@@ -44,6 +55,6 @@
     }
 
     mat-form-field{
-        max-width: 120px;
+        max-width: 110px;
     }
 }

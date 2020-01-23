@@ -219,7 +219,8 @@ export class TodaysReportComponent implements OnInit {
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0};
+      // tslint:disable-next-line:max-line-length
+      const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0, type: null};
 
       const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
       const intime = element.first_presence;
@@ -230,6 +231,7 @@ export class TodaysReportComponent implements OnInit {
       row.inTimeForCSV =  Utils.getFormattedTime(intime);
       row.outTime = Utils.getFormattedTime(outtime);
       row.location = element.awi_data.location;
+      row.type = element.type;
 
       row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
 
@@ -338,6 +340,16 @@ export class TodaysReportComponent implements OnInit {
           console.log('rejectDatarespone' , response);
           if ( response.success ) {
             this.successToaster(response.msg);
+
+            this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
+              console.log('presentempdeta');
+              this.empList = this.extractData(res);
+              this.allEmpIdList = this.getAllEmpIdList(this.empList);
+              this.addRegisteredPhotoToPresentEmpList(this.empList);
+              this.markPresentEmployees();
+              console.log('this.empList', this.empList);
+            });
+
           } else {
             this.errorToaster(response.msg);
           }

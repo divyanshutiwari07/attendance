@@ -8,7 +8,7 @@
             display: flex;
             align-items: center;
             font-size: 18px;
-            h2 {
+            h3 {
                 padding-right: 15px;
             }
         }
@@ -18,7 +18,7 @@
         color:#444;
         cursor:pointer;
         border-radius: 6px;
-        .selected-tab {
+        .selected-tab { 
             border-radius: 6px;
             border: 1px solid #212529;
         }
@@ -33,7 +33,7 @@
     
     .search-bar{
         display: flex;
-        margin-right: 16px;
+        // margin-right: 16px;
         justify-content: flex-end;
     }
 

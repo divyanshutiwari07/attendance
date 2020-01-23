@@ -43,16 +43,16 @@
             </mat-select>
         </mat-form-field>
         <mat-form-field>
-            <mat-label>Manual Entry</mat-label>
-            <mat-select [(ngModel)]="selectedLocation" name="empname">
+            <mat-label>Entry Type</mat-label>
+            <mat-select [(ngModel)]="selectedEntryType" name="empname">
                 <mat-option>All</mat-option>
-                <mat-option *ngFor="let location of locations" [value]="location.id">
-                    {{location.id}}
+                <mat-option *ngFor="let filterType of filterByType" [value]="filterType.id">
+                    {{filterType.name}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
         <div>
-            <button class="btn btn-outline-primary" (click)="exportCSV()" placement="left" ngbTooltip="Export CSV">
+            <button class="btn btn-outline-secondary" (click)="exportCSV()" placement="left" ngbTooltip="Export CSV">
                 <i class="fa fa-download" aria-hidden="false"></i>
             </button>
         </div>
@@ -84,7 +84,8 @@
     <div class="" class="chart-container">
         <div *ngFor="let employee of employees 
         | search : selectedDepartment :['department'] 
-        | search : selectedLocation :['location'] 
+        | search : selectedLocation :['location']
+        | search : selectedEntryType : [ 'type' ] 
         | search:searchText:['name', 'department', 'location'] 
         | timeRange : selectedTime
         | sort:selectedList" 

@@ -22,11 +22,13 @@ export class EmpListComponent implements OnChanges {
   public departments;
   public locations;
   private todaysDate;
+  public selectedEntryType;
   private csvDate;
 
 
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
+  filterByType = Metadata.getManualFilterOptions();
 
   constructor() {
     this.todaysDate = new Date();

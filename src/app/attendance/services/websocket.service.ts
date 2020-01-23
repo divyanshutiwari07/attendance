@@ -12,7 +12,7 @@ export class WebsocketService {
 
   private socket;
 
-  constructor() {}
+  constructor( ) {}
 
   connect(): Rx.Subject<MessageEvent> {
     const token = localStorage.getItem('token');
@@ -26,11 +26,15 @@ export class WebsocketService {
           console.log('connect  socket');
           observer.next(data);
         });
-        return () => {
-          console.log('disconnect socket');
-          this.socket.disconnect();
-        };
+        // return () => {
+        //   console.log('disconnect socket');
+        //   this.socket.disconnect();
+        // };
     });
+
+    // disconnectSocksdet(){
+    //   this.socket.disconnect();
+    // }
 
     const observer = {
         next: (data: Object) => {
@@ -40,6 +44,9 @@ export class WebsocketService {
     return Rx.Subject.create(observer, observable);
   }
 
-
+  disconnectSocksdet(){
+    console.log('dissconnet');
+    this.socket.disconnect();
+  }
 
 }

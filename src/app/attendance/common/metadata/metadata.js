@@ -9,3 +9,9 @@ export const getSortOptions = () => {
         {name: 'Alphabetic Order', id: 'name'},
     ];
 }
+export const getManualFilterOptions = () => {
+    return [
+        { name: 'Manual', id: 'manual' },
+        { name: 'Auto', id: 'auto' }
+    ];
+}
