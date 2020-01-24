@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "npm run start:premise",
     "start:premise": "ng serve -o --port 4400 -c premise",
-    "start:local": "ng serve -o --port 4400 -c local",
+    "start:local": "ng serve -o --port 4401 -c local",
     "start:device": "ng serve -o --port 4400 -c premise --host 0.0.0.0",
     "build": "ng build --prod",
     "build:prod": "ng build -c production",

@@ -1,4 +1,4 @@
-import {Injectable}      from '@angular/core'
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable()
@@ -15,8 +15,8 @@ export class PresentEmpService {
   reject(empId) {
     const existingEmpList = this.empListSource.getValue();
     const newEmpList = existingEmpList.filter((emp) => {
-        return emp.id != empId
-    })
+        return emp.id !== empId;
+    });
     this.changeList(newEmpList);
   }
 }

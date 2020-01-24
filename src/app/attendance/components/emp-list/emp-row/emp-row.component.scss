@@ -24,6 +24,8 @@
       }
 
       .column.action div{
+        display: flex;
+        justify-content: center;
         button {
           height: 30px;
           padding: 3px 7px 1px 7px;
@@ -33,17 +35,34 @@
       .column.avatar {
         flex: 0.5;
         align-items: center;  
-        img {
+
+        position:relative;
+        // padding-top:20px;
+        // display:inline-block;
+        .notify-badge{
+          position: absolute;
+          left: 27px;
+          width: 20px;
+          height: 20px;
+          bottom: 0px;
+      }
+      .profile {
           border-radius: 8px;
           width: 60px;
           height: 60px;
         }
       }
+      
+      .badges.auto {
+        span {
+          min-width: 54.9px;  
+        }
+      }
     }
 
-    .emp-body.manual-attendance {
-      background-color: gainsboro;
-    }
+    // .emp-body.manual-attendance {
+    //   background-color: gainsboro;
+    // }
   }
 }
 

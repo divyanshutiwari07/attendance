@@ -92,8 +92,9 @@ export class TodaysReportComponent implements OnInit {
     this.presentEmpSubscription = this.presentEmpService.empList$
       .subscribe(empList => {
         this.empList = empList;
+        this.addRegisteredPhotoToPresentEmpList(this.empList);
         console.log(empList);
-      })
+      });
   }
 
   sendMessage() {
@@ -144,7 +145,6 @@ export class TodaysReportComponent implements OnInit {
     } else {
       return false;
     }
-
   }
 
   private getAllEmpIdList(empList) {
@@ -255,7 +255,7 @@ export class TodaysReportComponent implements OnInit {
 
   private extractDataForNewEmp(res) {
 
-    const row = {name: null, inTime: null, outTime: null, location: null, department: null , photo: null,  id: 0};
+    const row = {name: null, inTime: null, outTime: null, type: null, location: null, department: null , photo: null,  id: 0};
     const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
 
     row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
@@ -263,6 +263,7 @@ export class TodaysReportComponent implements OnInit {
     row.inTime = res.data.timestamp;
     row.outTime = res.data.timestamp;
     row.location = res.data.awi_facial_recognition.location;
+    row.type = 'auto';
 
     row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
 
@@ -307,6 +308,7 @@ export class TodaysReportComponent implements OnInit {
 
   absent() {
     this.selectedTab = 'A';
+    this.markPresentEmployees();
     // console.log('yes div 2 as btn');
   }
 
@@ -359,8 +361,9 @@ export class TodaysReportComponent implements OnInit {
             //   this.markPresentEmployees();
             //   console.log('this.empList', this.empList);
             // });
-            this.presentEmpService.reject(this.selectedEmpData.id)
+            this.presentEmpService.reject(this.selectedEmpData.id);
             this.markPresentEmployees();
+            this.allEmpIdList = this.getAllEmpIdList(this.empList);
 
           } else {
             this.errorToaster(response.msg);

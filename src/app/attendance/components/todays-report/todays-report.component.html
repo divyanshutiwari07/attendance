@@ -1,9 +1,10 @@
 <div class="todays-attendance">  
   <div class='header'>
     <h3>
-      Today's Attendance 
+      {{selectedTab === 'P' ? 'Today\'s' : 'All Days'}} Attendance 
     </h3>
-    <h3> {{todaysDate | date: 'dd/MM/yyyy'}} </h3>
+    <!-- <h3 class="todaysDate"> {{todaysDate | date: 'dd/MM/yyyy'}} </h3> -->
+    <h3 class="todaysDate"> {{ selectedTab === 'P' ? (todaysDate | date: 'dd/MM/yyyy') : chooseStartDateTime() | date: 'dd/MM/yyyy' }} </h3>
     <span class='header-style'><h3> {{presentEmp}}</h3> Percentage Attendance</span>
   </div>
   <hr>

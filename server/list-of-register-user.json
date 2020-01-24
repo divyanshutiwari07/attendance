@@ -92,6 +92,24 @@
         "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
       ],
       "awi_id": 2148
+    },
+    {
+      "_id": "5ddb8e919dda400215a73eea",
+      "id": 17,
+      "awi_severity": "awi_medium",
+      "awi_conf": 1,
+      "awi_subclass": "Engineer",
+      "awi_label": "Divyanshu",
+      "awi_class": "awi_face",
+      "awi_client_id": 2,
+      "__v": 0,
+      "img_url": [
+        "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
+      ],
+      "imgs": [
+        "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
+      ],
+      "awi_id": 2148
     }
   ]
 }

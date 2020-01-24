@@ -4,9 +4,17 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .todaysDate {
+            border: 1px solid grey;
+            padding: 2px 15px;
+            border-radius: 4px;
+            box-shadow: 0 0 6px -1px rgba(0, 0, 0, 0.6);
+        }   
+
         .header-style {
             display: flex;
-            align-items: center;
+            align-items: baseline;  
             font-size: 18px;
             h3 {
                 padding-right: 15px;
@@ -132,7 +140,6 @@
       }
     }
 }
-
 
 
 
