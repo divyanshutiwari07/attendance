@@ -2,12 +2,17 @@
     <div class="card emp-card">
         <div class="emp-body card-body {{ employee.type === 'manual' ? 'manual-attendance': '' }} " >
             <div class='column avatar'>
-                <!-- <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> -->
-                <div *ngIf="employee.type === 'manual'" >
-                    <img src="assets/images/user-edit.png" class="notify-badge" alt=""> 
-                    <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
+                <div>
+                    <img src={{employee.photo}} alt="Avatar" class="profile" >
+                    <div *ngIf="employee.type === 'manual'">
+                        <img src="assets/images/user-edit.png" class="notify-badge" alt=""> 
+                        <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
+                    </div>
                 </div>
-                <img src={{employee.photo}} alt="Avatar" class="profile" >
+                <!-- <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> -->
+                
+                <!-- <img src={{employee.photo}} alt="Avatar" class="profile" > -->
+                
             </div>
             <div class='column'>
                 <div>Employee Name: {{employee.name}}</div>

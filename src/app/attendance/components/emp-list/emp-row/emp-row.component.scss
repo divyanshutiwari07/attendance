@@ -33,18 +33,22 @@
       }
     
       .column.avatar {
+        > div {
+          position: relative;
+        }
         flex: 0.5;
         align-items: center;  
 
         position:relative;
         // padding-top:20px;
         // display:inline-block;
+        
         .notify-badge{
           position: absolute;
-          left: 27px;
+          left: -8px;
           width: 20px;
           height: 20px;
-          bottom: 0px;
+          bottom: 2px;
       }
       .profile {
           border-radius: 8px;
