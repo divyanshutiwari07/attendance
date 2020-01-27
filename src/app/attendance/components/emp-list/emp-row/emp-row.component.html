@@ -4,8 +4,8 @@
             <div class='column avatar'>
                 <div>
                     <img src={{employee.photo}} alt="Avatar" class="profile" >
-                    <div *ngIf="employee.type === 'manual'">
-                        <img src="assets/images/user-edit.png" class="notify-badge" alt=""> 
+                    <div *ngIf="employee.type === 'manual'" >
+                        <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
                         <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
                     </div>
                 </div>
@@ -28,16 +28,13 @@
                 <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">Yearly Attendance</button></div>
                 <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject Attendance</button></div>
             </div>
-            <div class="badges" [hidden]="employee.type !== 'manual'">
+            <!-- <div class="badges" [hidden]="employee.type !== 'manual'">
                 <span class="badge badge-pill badge-info" placement='top' ngbTooltip='Manual Entry'>Manual</span>
             </div>
             <div class="badges auto" [hidden]="employee.type !== 'auto'">
                 <span class="badge badge-pill badge-success" placement='top' ngbTooltip='Auto Entry'>Auto</span>
-            </div>
-            <!-- <div class='column'>
-                <div>Reject Attendance</div>
-                <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject</button></div>
             </div> -->
+            
         </div>
     </div>
 </div>
