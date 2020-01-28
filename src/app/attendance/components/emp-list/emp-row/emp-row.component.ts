@@ -23,7 +23,6 @@ export class EmpRowComponent implements OnInit {
   private monthlyData;
   private selectedYear;
   private todaysDate;
-  
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -61,7 +60,7 @@ export class EmpRowComponent implements OnInit {
         console.log('rejectDatarespone' , response);
         if ( response.success ) {
           this.successToaster(response.msg);
-          this.presentEmpService.reject(emp.id)
+          this.presentEmpService.reject(emp.id);
         } else {
           this.errorToaster(response.msg);
         }
@@ -98,23 +97,25 @@ export class EmpRowComponent implements OnInit {
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
-      showTitle: true,
+      showTitle: false,
       // title: 'Today\'s Present Employee',
-      title: '',
+      // title: '',
       useTextFile: false,
       useBom: true,
       filename: null,
       useKeysAsHeaders: true,
     };
-
-    options.filename = fileName + '_' + this.selectedYear.year + '_yearly_attendance';
+    const empName = Utils.getFirstLaterOfWordCapital(fileName);
+    options.filename = empName + '_' + this.selectedYear.year + '_Yearly_Attendance';
     const csvExporter = new ExportToCsv(options);
 
     csvExporter.generateCsv(this.yearlyReport);
   }
 
   exportEmployeeMonthReport(fileName) {
-    const CSVfilename = fileName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_attendance_record';
+    const empName = Utils.getFirstLaterOfWordCapital(fileName);
+    console.log('filename', empName);
+    const CSVfilename = empName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_Attendance_Record';
     console.log('export monthly');
     this.exportAsService.save(this.exportAsConfig, CSVfilename ).subscribe(() => {
         });

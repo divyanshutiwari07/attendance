@@ -82,7 +82,7 @@ export class AttendanceStatsComponent implements OnInit {
     this.getRegisterUserData();
     // this.checkRegisterUserDataPresent();
     this.selectedYear = this.years[0];
-
+    // console.log('oninit', this.selectedYear, '', this.selectedMonth.number);
     this.selectedMonth = this.months[ new Date().getMonth() ];
     this.getYearReportForAllEmployees();
 
@@ -176,6 +176,12 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   private showMonthlyBarChart() {
+    const dayCount = Utils.getDayCountInMonth(this.selectedMonth.number, this.selectedYear.year);
+    const monthLabel = [];
+    for (let i = 0; i <= dayCount - 1; i++) {
+      monthLabel[i] = (i + 1).toString();
+    }
+    console.log('monthlabel', monthLabel);
     const dataset = [];
     let workingDayCountForMonth = 0;
     const monthData = this.chartData.filter(d => {
@@ -183,8 +189,6 @@ export class AttendanceStatsComponent implements OnInit {
           && d.date.split('-')[2] === this.selectedYear.year.toString();
     });
     const totalEmpCountForMonth = monthData.reduce((a, {count}) => a + count, 0);
-
-    const dayCount = Utils.getDayCountInMonth(this.selectedMonth.number, this.selectedYear.year);
 
     for (let i = 1; i <= dayCount; i++ ) {
 
@@ -210,7 +214,7 @@ export class AttendanceStatsComponent implements OnInit {
         type: 'bar',
         data: {
           // tslint:disable-next-line:max-line-length
-          labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '22', '24', '25', '26', '27', '28', '29', '30', '31'],
+          labels: monthLabel,
           datasets: [
             {
               data: dataset,
@@ -306,11 +310,13 @@ export class AttendanceStatsComponent implements OnInit {
       });
     } else {
       this.lineChartMonthly.data.datasets[0].data = dataset;
+      this.lineChartMonthly.data.labels = monthLabel;
       this.lineChartMonthly.update();
     }
 }
 
   private showYearlyBarChart() {
+    const _this = this;
     const dataset = [];
     const workingDayCountForYear = [];
     const yearData = this.chartData.filter(d => {
@@ -358,6 +364,15 @@ export class AttendanceStatsComponent implements OnInit {
               if (!tooltip) { return; }
               tooltip.displayColors = false;
             },
+            callbacks: {
+              title: function() { return ''; },
+              label: function(tooltipItem, data) {
+                  const date = 'Date : '  + tooltipItem.xLabel + ', ' + _this.selectedYear.year ;
+                  const value = 'Present : ' + tooltipItem.yLabel;
+                  return (date + '/n' + value).split('/n');
+              },
+
+            }
           },
 
           legend: {
@@ -416,9 +431,10 @@ export class AttendanceStatsComponent implements OnInit {
         this.errorToaster(response.msg);
         this.chartData = response.data;
         // return [];
+      } else {
+        this.successToaster(response.msg);
+        this.chartData = response.data;
       }
-      this.successToaster(response.msg);
-      this.chartData = response.data;
       console.log('chart data', this.chartData);
       this.showMonthlyBarChart();
       this.showYearlyBarChart();

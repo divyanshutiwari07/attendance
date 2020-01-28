@@ -34,49 +34,13 @@
 
 }
 
-
-// .body {
-// 	// background-color: #0f0f0f;
-// 	padding: 1px;	
-
-// }
-
-// .some-page-wrapper {
-// 	margin: 19px 0px 18px 32px;
-
-// }
-
-// .column {
-// 	padding: 5px;
-// 	display: flex;
-// 	box-sizing: border-box;
-// }
-
-
-// .center-name {
-// 	min-height: unset;
-// 	color: #dfdfdf;
-// 	display: flex;
-// 	justify-content: center;
-// }
-
-// .center-value {
-// 	color: #797676;
-// 	font-weight: normal;
-// }
-
-
-
-
-// @media screen and (min-width: 800px) {
-// 	.column {
-// 		flex: 1
-// 	}
-// }
-
-// .negative-mgn{
-// 	margin: -5px -5px;
-// }
-
-
-
+@-moz-document url-prefix() {
+	select.form-control {
+			padding-right: 25px;
+	background-image: url("../../../../assets/images/drop-down-arrow.svg");
+			background-repeat: no-repeat;
+			background-position: calc(100% - 7px) 50%;
+			-moz-appearance: none;
+			appearance: none;
+	}
+}

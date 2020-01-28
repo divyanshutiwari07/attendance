@@ -98,3 +98,7 @@ export function getFormattedTime(date) {
     let strTime = hours + ':' + minutes + ':' + second + ' ' + ampm;
     return strTime;
 }
+
+export function getFirstLaterOfWordCapital(str) {
+    return str.replace(/\b\w/, v => v.toUpperCase());
+}

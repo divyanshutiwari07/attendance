@@ -70,9 +70,14 @@
         }
 
         mat-table {
+
+            overflow-y: scroll;
+            height: calc( 100vh - 384px);
+
             mat-header-cell.mat-header-img {
                 justify-content: center;
-              }
+            }
+            
             mat-cell.mat-cell-img {
                 justify-content: center ;
                 img{

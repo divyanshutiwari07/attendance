@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges  } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import {ExportToCsv} from 'export-to-csv';
 import * as Metadata from './../../common/metadata/metadata';
 import * as Utils from '../../common/utils';
@@ -29,6 +29,7 @@ export class EmpListComponent implements OnChanges {
   sortByList = Metadata.getSortOptions();
   arrivalTimes = Metadata.getTimeRange();
   filterByType = Metadata.getManualFilterOptions();
+  currentItemsToShow = [];
 
   constructor() {
     this.todaysDate = new Date();
@@ -40,6 +41,7 @@ export class EmpListComponent implements OnChanges {
     this.locations = this.allLocationList;
 
     console.log('this.employees', this.employees);
+    // this.currentItemsToShow = this.employees;
 
   }
 
@@ -52,7 +54,7 @@ export class EmpListComponent implements OnChanges {
         quoteStrings: '"',
         decimalSeparator: '.',
         showLabels: true,
-        showTitle: true,
+        showTitle: false,
         // title: 'Today\'s Present Employee',
         title: '',
         useTextFile: false,
@@ -65,11 +67,17 @@ export class EmpListComponent implements OnChanges {
       const csvExporter = new ExportToCsv(options);
 
       // tslint:disable-next-line:max-line-length
-      const mapTo = {id: 'Employee Id', name: 'Employee Name', department : 'Department', inTimeForCSV: 'In Time', location: 'Entry Location', outTime: 'Out Time' };
+      const mapTo = { name: 'Employee Name', department : 'Department', inTimeForCSV: 'In Time', location: 'Entry Location', outTime: 'Out Time' };
 
       csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
     }
 
   }
+
+  // onPageChange($event) {
+  //   console.log($event);
+  //   // tslint:disable-next-line:max-line-length
+  //   this.currentItemsToShow = this.employees.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+  // }
 
 }

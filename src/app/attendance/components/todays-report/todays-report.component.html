@@ -63,10 +63,10 @@
         <mat-form-field>
           <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
         </mat-form-field>
-        <mat-form-field>
-            <input #event matInput [matDatepicker]="picker" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
+        <mat-form-field >
+            <input #event matInput [matDatepicker]="picker" (focus)="picker.open()" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker  ngDefaultControl></mat-datepicker>
+            <mat-datepicker  #picker  ngDefaultControl (closed)="event.blur()"></mat-datepicker>
         </mat-form-field>
       </div>
 
@@ -109,7 +109,7 @@
             </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
           <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
 

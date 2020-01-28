@@ -167,6 +167,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private addRegisteredPhotoToPresentEmpList(empList) {
+    if (!this.registeredUsersData || !this.registeredUsersData.length ) { return; }
     this.empList = empList.map(emp => ({
       ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photo)
     }));
@@ -220,7 +221,7 @@ export class TodaysReportComponent implements OnInit {
   private extractData(response): Array<object> {
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
-
+      this.presentEmp = '00.00';
       return [];
     }
 
@@ -308,6 +309,8 @@ export class TodaysReportComponent implements OnInit {
 
   absent() {
     this.selectedTab = 'A';
+    this.selectedDate = null;
+    console.log(this.selectedDate);
     this.markPresentEmployees();
     // console.log('yes div 2 as btn');
   }
@@ -406,7 +409,8 @@ export class TodaysReportComponent implements OnInit {
   }
 
   exportEmployeeMonthReport(fileName) {
-    const CSVfilename = fileName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_attendance_record';
+    const empName = Utils.getFirstLaterOfWordCapital(fileName);
+    const CSVfilename = empName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_Attendance_Record';
     console.log('export monthly');
     this.exportAsService.save(this.exportAsConfig, CSVfilename).subscribe(() => {
     });
@@ -419,7 +423,7 @@ export class TodaysReportComponent implements OnInit {
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
-      showTitle: true,
+      showTitle: false,
       // title: 'Today\'s Present Employee',
       title: '',
       useTextFile: false,
@@ -427,8 +431,8 @@ export class TodaysReportComponent implements OnInit {
       filename: null,
       useKeysAsHeaders: true,
     };
-
-    options.filename = fileName + '_' + this.selectedYear.year + '_yearly_attendance';
+    const empName = Utils.getFirstLaterOfWordCapital(fileName);
+    options.filename = empName + '_' + this.selectedYear.year + '_Yearly_Attendance';
     const csvExporter = new ExportToCsv(options);
 
     csvExporter.generateCsv(this.yearlyReport);

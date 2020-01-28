@@ -86,10 +86,23 @@
         | search : selectedDepartment :['department'] 
         | search : selectedLocation :['location']
         | search : selectedEntryType : [ 'type' ] 
-        | search:searchText:['name', 'department', 'location'] 
+        | search:searchText:['name'] 
         | timeRange : selectedTime
         | sort:selectedList" 
         app-emp-row [employee]="employee"
         ></div>
     </div>
 </div>
+
+<!-- <mat-paginator onload="onPageChange($event)"
+    (page)="onPageChange($event)"
+    [length]="100"
+    [pageSize]="2"
+    [pageSizeOptions]="[2, 3, 5, 100]">
+</mat-paginator> -->
+
+<!-- <mat-paginator [length]="length"
+[pageSize]="pageSize"
+[pageSizeOptions]="pageSizeOptions"
+(page)="pageEvent = OnPageChange($event)">
+</mat-paginator> -->
