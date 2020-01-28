@@ -69,65 +69,73 @@
             justify-content: space-between;
         }
 
-        mat-table {
-
-            overflow-y: scroll;
-            height: calc( 100vh - 384px);
-
-            mat-header-cell.mat-header-img {
-                justify-content: center;
-            }
-            
-            mat-cell.mat-cell-img {
-                justify-content: center ;
-                img{
-                    width: 50px;
-                    height: 50px;
-                    padding: 4px;
+        .reg-emp-table-container {
+            background-color: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+            mat-table {
+                box-shadow: none;
+                overflow-y: scroll;
+                max-height: 350px;
+    
+                mat-header-cell.mat-header-img {
+                    justify-content: center;
                 }
-            }
-            mat-header-cell.mat-header-yearly-attendance {
-                padding-left:6px ;
-            }
-            mat-cell.mat-cell-yearly-attendance {
-                padding-left:6px ;  
-                .btn {
-                    display: block;
-                    height: 30px;
-                    padding: 3px;
-                    min-width: 58px;
-                    border-radius: 0 !important;
+                
+                mat-cell.mat-cell-img {
+                    justify-content: center ;
+                    img{
+                        width: 50px;
+                        height: 50px;
+                        padding: 4px;
+                    }
                 }
-            }
-
-            mat-cell.mat-cell-action {
-                padding-left:6px ;  
-                .btn {
-                    display: block;
-                    height: 30px;
-                    padding: 3px;
-                    min-width: 36px;
-                    // border-radius: 0 !important;
-                    border-radius: 3px;
+                mat-header-cell.mat-header-yearly-attendance {
+                    padding-left:6px ;
                 }
-                .reject-attendance {
-                    margin-right: 5px;
+                mat-cell.mat-cell-yearly-attendance {
+                    padding-left:6px ;  
+                    .btn {
+                        display: block;
+                        height: 30px;
+                        padding: 3px;
+                        min-width: 58px;
+                        border-radius: 0 !important;
+                    }
                 }
-            }
-
-            mat-cell.p {
-                .square {
-                    border: 6px solid green;
-                    margin-left: 10px;
+    
+                mat-cell.mat-cell-action {
+                    padding-left:6px ;  
+                    .btn {
+                        display: block;
+                        height: 30px;
+                        padding: 3px;
+                        min-width: 36px;
+                        // border-radius: 0 !important;
+                        border-radius: 3px;
+                    }
+                    .reject-attendance {
+                        margin-right: 5px;
+                    }
                 }
-            }
-            mat-cell.a {
-                .square {
-                    border: 6px solid red;
-                    margin-left: 10px;
+    
+                mat-cell.p {
+                    .square {
+                        border: 6px solid green;
+                        margin-left: 10px;
+                    }
+                }
+                mat-cell.a {
+                    .square {
+                        border: 6px solid red;
+                        margin-left: 10px;
+                    }
                 }
             }
         }
+
+        
 
         
     }
