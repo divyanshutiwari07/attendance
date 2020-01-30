@@ -32,16 +32,18 @@ export class LoginComponent implements OnInit {
 
             if ( loginRes.success ) {
                 this.auth.logIn(loginRes.token);
-                this.successToaster();
+                this.successToaster(loginRes.msg);
             } else {
-                alert(loginRes.msg);
+                this.errorToaster(loginRes.msg);
             }
         });
     }
 
-    successToaster() {
-        console.log('yes');
-        this.notifyService.showSuccess('Login Successfully !!', '');
+    errorToaster(message: string) {
+        this.notifyService.showError(message,  '');
+    }
+    successToaster(message: string) {
+        this.notifyService.showSuccess(message,  '');
     }
 }
 

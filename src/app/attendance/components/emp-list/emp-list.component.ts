@@ -63,7 +63,7 @@ export class EmpListComponent implements OnChanges {
         useKeysAsHeaders: true,
       };
 
-      options.filename = 'Employees_present_on_' + Utils.getFormattedDate( this.todaysDate );
+      options.filename = 'Employees_Present_On_' + Utils.getFormattedDate( this.todaysDate );
       const csvExporter = new ExportToCsv(options);
 
       // tslint:disable-next-line:max-line-length

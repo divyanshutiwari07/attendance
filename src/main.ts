@@ -8,9 +8,9 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
   // disabled all console
-  if (window) {
-    window.console.log = function() {};
-  }
+  // if (window) {
+  //   window.console.log = function() {};
+  // }
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
