@@ -113,6 +113,8 @@ export class TodaysReportComponent implements OnInit {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
           // this.empList.push( newEmpData );
           this.empList.unshift( newEmpData );
+          this.presentEmpService.changeList(this.empList);
+          console.log('this.empllist 116', this.empList);
           this.addRegisteredPhotoToPresentEmpList(this.empList);
           this.allDepartmentList = this.getAllDepartmentList( this.empList );
           this.allLocationList = this.getAllLocationList(this.empList);
