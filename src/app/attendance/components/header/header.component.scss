@@ -12,6 +12,7 @@ $topnav-background-color: #dedede;
             overflow: hidden;
             text-overflow: ellipsis;
             // color: white;
+            width: 70%;
         }   
         .navbar-toggler {
             padding-right: 0;
@@ -27,8 +28,7 @@ $topnav-background-color: #dedede;
             }
         }
 
-        .logo-style {
-            margin-left: 26em;
+        .logo-style {        
             span {
                 color: #75807a;
                 font-style: italic;
