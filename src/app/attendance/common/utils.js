@@ -104,31 +104,20 @@ export function getFirstLaterOfWordCapital(str) {
 }
 
 export function getTimeDifferenceBetweenTwoTimestamps(date1,date2) {
-    var difference = new Date (date2).getTime() - new Date (date1).getTime();
-    var daysDifference = Math.floor(difference/1000/60/60/24);
-    difference -= daysDifference*1000*60*60*24
-
-   var hoursDifference = Math.floor(difference/1000/60/60);
-    difference -= hoursDifference*1000*60*60
-
-    var minutesDifference = Math.floor(difference/1000/60);
-    difference -= minutesDifference*1000*60
-
-    var secondsDifference = Math.floor(difference/1000);
-
-    return { 'timeDuration': difference , 'totalHoursEmpPresentToday' : (hoursDifference + ':' + minutesDifference + ':' +  secondsDifference) } ;
-    // return (minutesDifference); 
+    const difference = new Date (date2).getTime() - new Date (date1).getTime();
+    return {
+        'timeDuration': difference,
+        'totalHoursEmpPresentToday' : getTimeFromMilliseconds(difference) 
+    };
 }
 
-export function getTimeFromMilliseconds(time) {
-    console.log('time in 124', time);
-    // var dateFromMillisec = new Date(time);
-    // return dateFromMillisec.getHours() + ":" + dateFromMillisec.getMinutes() + ":" + dateFromMillisec.getSeconds();
-    var hours = Math.floor((time / (3600 * 1000)) % 60);
-    var seconds = Math.floor((time / 1000) % 60);
-    var minutes = Math.floor((time / (60 * 1000)) % 60);
+export function getTimeFromMilliseconds(time) {         
+    
+    const hours = Math.floor((time / (3600 * 1000)) % 60);
+    const seconds = Math.floor((time / 1000) % 60);
+    const minutes = Math.floor((time / (60 * 1000)) % 60);
 
-    return (hours + "" + minutes + ":" + seconds);
+    return (padStart(hours, "0", 2) + ":" + padStart(minutes, "0", 2) + ":" + padStart(seconds, "0", 2));
 }
 
 

@@ -38,7 +38,7 @@ export class MonthlyReportComponent implements OnInit {
 
   getTotalHoursEmpPresentForMonth() {
     const time = this.monthReport.report.reduce(( a, count) => a + count.empPresenceDetails.timeDuration, 0);
-    console.log(time);
+    console.log("getTotalHoursEmpPresentForMonth", time);
     return Utils.getTimeFromMilliseconds(time);
 
     // const hours = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[0], 0) , 0);
