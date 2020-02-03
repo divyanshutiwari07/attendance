@@ -43,7 +43,7 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
     this.checkMonthlyOrYearly = 'yearly_attendance_record';
@@ -82,10 +82,8 @@ export class YearlyReportComponent implements OnInit {
         this.successToaster(response.msg);
       }
       this.fetching = 0;
-      this.employeeYearReport = response.data;
-
-      // console.log('employeeYearReport', this.employeeYearReport);
-
+      this.employeeYearReport = this.addPresentEmpDuration(response.data);
+      console.log(this.employeeYearReport);
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.selectedYearForEmp.emit(this.selectedYear);
       this.genrateFormattedReport();
@@ -93,6 +91,12 @@ export class YearlyReportComponent implements OnInit {
         this.errorToaster(response.msg);
       }
     });
+  }
+
+  addPresentEmpDuration(employeeYearReport) {
+    return employeeYearReport.map((emp) => ({
+      ...emp, empPresenceDetails: Utils.getTimeDifferenceBetweenTwoTimestamps(emp.first_presence, emp.last_presence)
+    }));
   }
 
   showMonthlyReport(month) {
@@ -160,8 +164,16 @@ export class YearlyReportComponent implements OnInit {
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = this.getMonthNumber(monthName);
     return this.employeeYearReport.find(o => {
-      return o.timestamp === (day + '-' + monthNumber + '-' + this.selectedYear.year);
+      const a = o.timestamp === (day + '-' + monthNumber + '-' + this.selectedYear.year);
+      return a;
     });
+  }
+
+  checkIfPresentOnFullTime() {
+    // return this.employeeYearReport.find(o => {
+    //   const a =  o.totalHoursEmpPresentToday.split(':')[0] === 1 ;
+    //   return a ;
+    // });
   }
 
   successToaster(message: string) {

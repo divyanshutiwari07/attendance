@@ -1,6 +1,6 @@
 import * as COMMON from './config.common';
 
-const SERVER_URL = 'http://192.168.0.22' + ':';
+const SERVER_URL = 'http://192.168.0.150' + ':';
 
 const API_URLS = {
     LOGIN_URL : SERVER_URL + COMMON.API_PORT + '/awiros_ms/attendence/api/login',
@@ -11,8 +11,8 @@ const API_URLS = {
 };
 
 export const config = {
-    SERVER_ADDRESS_REALTIME : 'http://192.168.0.22:3000',
-    SERVER_ADDRESS : '192.168.0.22',
+    SERVER_ADDRESS_REALTIME : 'http://192.168.0.150:3000',
+    SERVER_ADDRESS : '192.168.0.150',
     PORT : COMMON.ASSET_PORT,
     ...API_URLS
 };

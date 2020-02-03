@@ -13,6 +13,10 @@ $topnav-background-color: #dedede;
             text-overflow: ellipsis;
             // color: white;
             width: 70%;
+            img {
+                height: 34px;
+                padding-left: 30px;
+            }
         }   
         .navbar-toggler {
             padding-right: 0;

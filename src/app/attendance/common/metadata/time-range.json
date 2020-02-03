@@ -1,121 +1,121 @@
 [
     {
-      "name": "12 AM -  1 AM",
+      "name": " After 12 AM",
       "startTime": 0,
       "endTime": 1
     },
     {
-      "name": "1 AM -  2 AM",
+      "name": "After 1 AM",
       "startTime": 1,
       "endTime": 2
     },
     {
-      "name": "2 AM -  3 AM",
+      "name": "After 2 AM",
       "startTime": 2,
       "endTime": 3
     },
     {
-      "name": "3 AM -  4 AM",
+      "name": "After 3 AM",
       "startTime": 3,
       "endTime": 4
     },
     {
-      "name": "4 AM -  5 AM",
+      "name": "After 4 AM",
       "startTime": 4,
       "endTime": 5
     },
     {
-      "name": "5 AM -  6 AM",
+      "name": "After 5 AM",
       "startTime": 5,
       "endTime": 6
     },
     {
-      "name": "6 AM -  7 AM",
+      "name": "After 6 AM",
       "startTime": 6,
       "endTime": 7
     },
     {
-      "name": "7 AM -  8 AM",
+      "name": "After 7 AM",
       "startTime": 7,
       "endTime": 8
     },
     {
-      "name": "8 AM -  9 AM",
+      "name": "After 8 AM",
       "startTime": 8,
       "endTime": 9
     },
     {
-      "name": "9 AM - 10 AM",
+      "name": "After 9 AM",
       "startTime": 9,
       "endTime": 10
     },
     {
-      "name": "10 AM - 11 AM",
+      "name": "After 10 AM",
       "startTime": 10,
       "endTime": 11
     },
     {
-      "name": "11 AM -  12 PM",
+      "name": "After 11 AM",
       "startTime": 11,
       "endTime": 12
     },
     {
-      "name": "12 PM -  01 PM",
+      "name": "After 12 PM",
       "startTime": 12,
       "endTime": 13
     },
     {
-      "name": "01 PM -  02 PM",
+      "name": "After 01 PM",
       "startTime": 13,
       "endTime": 14
     },
     {
-      "name": "02 PM -  03 PM",
+      "name": "After 02 PM",
       "startTime": 14,
       "endTime": 15
     },
     {
-      "name": "03 PM -  04 PM",
+      "name": "After 03 PM",
       "startTime": 15,
       "endTime": 16
     },
     {
-      "name": "04 PM -  05 PM",
+      "name": "After 04 PM",
       "startTime": 16,
       "endTime": 17
     },
     {
-      "name": "05 PM -  06 PM",
+      "name": "After 05 PM",
       "startTime": 17,
       "endTime": 18
     },
     {
-      "name": "06 PM -  07 PM",
+      "name": "After 06 PM",
       "startTime": 18,
       "endTime": 19
     },
     {
-      "name": "07 PM -  08 PM",
+      "name": "After 07 PM",
       "startTime": 19,
       "endTime": 20
     },
     {
-      "name": "08 PM -  09 PM",
+      "name": "After 08 PM",
       "startTime": 20,
       "endTime": 21
     },
     {
-      "name": "09 PM -  10 PM",
+      "name": "After 09 PM",
       "startTime": 21,
       "endTime": 22
     },
     {
-      "name": "10 PM -  11 PM",
+      "name": "After 10 PM",
       "startTime": 22,
       "endTime": 23
     },
     {
-      "name": "11 PM -  00 AM",
+      "name": "After 11 PM",
       "startTime": 23,
       "endTime": 0
   }

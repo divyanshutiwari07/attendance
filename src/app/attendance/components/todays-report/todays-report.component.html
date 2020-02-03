@@ -76,7 +76,7 @@
       <mat-table [dataSource]='dataSource' matSort class='mat-elevation-z8' matSortActive="name" matSortDirection="asc" matSortDisableClear>
           <ng-container matColumnDef="photo">
             <mat-header-cell class="mat-header-img" *matHeaderCellDef> Profile Image</mat-header-cell>
-            <mat-cell class="mat-cell-img" *matCellDef="let element"> <img [src]="element.photo" /> </mat-cell>
+            <mat-cell class="mat-cell-img" *matCellDef="let element"> <img [src]="element.photo" onerror="src='assets/images/error_404.png';"/> </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="department">
@@ -129,7 +129,7 @@
           <div class="modal-body report">
               <div class="d-flex">
                   <div class='column avatar'>
-                      <img src={{selectedEmpData.photo}} alt="Avatar">
+                      <img src={{selectedEmpData.photo}} alt="Avatar" onerror="src='assets/images/error_404.png';">
                   </div>
                   <div class='column col-md-8'>
                       <div>Employee Name: {{selectedEmpData.name}} </div>

@@ -13,7 +13,11 @@
                     <th>Entry Location</th>
                     <th>Out Time</th>
                     <th>Exit Location</th>
+                    <th>Total Duration</th>
                 </tr>
+                <!-- <tr>
+                    <th>Total Hours in Month</th>
+                </tr> -->
             </thead>
             <tbody>
                 <tr *ngFor="let day of formattedReport" >
@@ -31,6 +35,17 @@
                     </td>
                     <td>
                         {{day.last_location ? (day.last_location ) : '-'}}
+                    </td>
+                    <td>
+                        {{day.empPresenceDetails ? (day.empPresenceDetails.totalHoursEmpPresentToday) : '-' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Total Hours
+                    </td>
+                    <td colspan="5" >
+                        {{ getTotalHoursEmpPresentForMonth() }}
                     </td>
                 </tr>
             </tbody>

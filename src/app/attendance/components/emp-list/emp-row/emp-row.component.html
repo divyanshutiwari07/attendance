@@ -3,7 +3,8 @@
         <div class="emp-body card-body {{ employee.type === 'manual' ? 'manual-attendance': '' }} " >
             <div class='column avatar'>
                 <div>
-                    <img src={{employee.photo}} alt="Avatar" class="profile" >
+                    <img src={{employee.photo}} alt="Avatar" class="profile" onerror="src='assets/images/error_404.png';">
+                    
                     <div *ngIf="employee.type === 'manual'" >
                         <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
                         <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
@@ -49,7 +50,7 @@
     <div class="modal-body report">
         <div class="d-flex">
             <div class='column avatar'>
-                <img src={{employee.registeredPhoto}} alt="Avatar">
+                <img src={{employee.registeredPhoto}} alt="Avatar" onerror="src='assets/images/error_404.png';">
             </div>
             <div class='column col-md-8'>
                 <div>Employee Name: {{employee.name}} </div>

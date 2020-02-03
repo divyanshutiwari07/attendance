@@ -33,6 +33,18 @@ export class MonthlyReportComponent implements OnInit {
     });
     this.formattedReport = monthReport;
     console.log('formate', this.formattedReport);
+    // this.getTotalHoursEmpPresentForMonth();
+  }
+
+  getTotalHoursEmpPresentForMonth() {
+    const time = this.monthReport.report.reduce(( a, count) => a + count.empPresenceDetails.timeDuration, 0);
+    console.log(time);
+    return Utils.getTimeFromMilliseconds(time);
+
+    // const hours = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[0], 0) , 0);
+    // const min = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[1], 0) , 0);
+    // const sec = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[2], 0) , 0);
+    // return hours + ':' + min + ':' + sec;
   }
 
   checkIfPresentOnThisDate(day, monthName) {

@@ -181,6 +181,10 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private markPresentEmployees() {
+    if (!this.registeredUsersData || !this.empList) {
+      console.log('185');
+      return [];
+    }
     this.dataSource.data = this.registeredUsersData.map(user => ({
       ...user , isPresent: !isNullOrUndefined( this.empList.find(emp => {
         return emp.id === user.id;
@@ -263,13 +267,17 @@ export class TodaysReportComponent implements OnInit {
 
   private extractDataForNewEmp(res) {
 
-    const row = {name: null, inTime: null, outTime: null, type: null, location: null, department: null , photo: null,  id: 0};
+    // tslint:disable-next-line:max-line-length
+    const row = {name: null, inTime: null, outTime: null, inTimeForCSV: null, type: null, location: null, department: null , photo: null,  id: 0};
     const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
+    const intime = res.data.timestamp;
+    const outtime = res.data.timestamp;
 
     row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
 
-    row.inTime = res.data.timestamp;
-    row.outTime = res.data.timestamp;
+    row.inTime = intime;
+    row.inTimeForCSV =  Utils.getFormattedTime(intime);
+    row.outTime = Utils.getFormattedTime(outtime);
     row.location = res.data.awi_facial_recognition.location;
     row.type = 'auto';
 
