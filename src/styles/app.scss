@@ -21,4 +21,7 @@ body {
 
     
     font-family: heebo, roboto;
+    .cdk-overlay-container {
+        z-index: 1050;
+    }
 }

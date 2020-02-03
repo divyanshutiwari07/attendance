@@ -105,9 +105,12 @@ export function getFirstLaterOfWordCapital(str) {
 
 export function getTimeDifferenceBetweenTwoTimestamps(date1,date2) {
     const difference = new Date (date2).getTime() - new Date (date1).getTime();
+    const timeDetails = getTimeFromMilliseconds(difference);
+
     return {
         'timeDuration': difference,
-        'totalHoursEmpPresentToday' : getTimeFromMilliseconds(difference) 
+        'totalHoursEmpPresentToday' : timeDetails,
+        'hoursPresent': timeDetails.split("0")[0]
     };
 }
 

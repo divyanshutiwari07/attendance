@@ -127,7 +127,7 @@ export class YearlyReportComponent implements OnInit {
       formattedYearReport.presentCount += 1;
     });
     this.formattedYearReport = formattedYearReport;
-    // console.log("this.formattedYearReport", this.formattedYearReport);
+    console.log("this.formattedYearReport", this.formattedYearReport);
     this.generateAttendanceTable();
   }
 
@@ -161,19 +161,24 @@ export class YearlyReportComponent implements OnInit {
     return String('0' + monthNumber).slice(-2);
   }
 
+  getPresentClassName(day, month) {
+    const currentObj = this.checkIfPresentOnThisDate(day, month);
+    if( !currentObj ) return "";
+    const presentHours = parseInt(currentObj.empPresenceDetails.totalHoursEmpPresentToday.split(":")[0]);
+    if( presentHours < 1 ) {
+      return "half-present";
+    } else {
+      return "present";
+    }
+
+  }
+
   checkIfPresentOnThisDate(day, monthName) {
     const monthNumber = this.getMonthNumber(monthName);
     return this.employeeYearReport.find(o => {
       const a = o.timestamp === (day + '-' + monthNumber + '-' + this.selectedYear.year);
       return a;
     });
-  }
-
-  checkIfPresentOnFullTime() {
-    // return this.employeeYearReport.find(o => {
-    //   const a =  o.totalHoursEmpPresentToday.split(':')[0] === 1 ;
-    //   return a ;
-    // });
   }
 
   successToaster(message: string) {
