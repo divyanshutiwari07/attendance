@@ -10,7 +10,8 @@ import {
   MatTabsModule,
   MatSelectModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatIconModule
 
 } from '@angular/material';
 
@@ -25,7 +26,8 @@ const Material = [
   MatTabsModule,
   MatSelectModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatIconModule
 ];
 
 @NgModule({

@@ -163,14 +163,13 @@ export class YearlyReportComponent implements OnInit {
 
   getPresentClassName(day, month) {
     const currentObj = this.checkIfPresentOnThisDate(day, month);
-    if( !currentObj ) return "";
-    const presentHours = parseInt(currentObj.empPresenceDetails.totalHoursEmpPresentToday.split(":")[0]);
-    if( presentHours < 1 ) {
-      return "half-present";
+    if ( !currentObj ) { return ''; }
+    const presentHours = parseInt(currentObj.empPresenceDetails.totalHoursEmpPresentToday.split(':')[0], 0);
+    if ( presentHours < 1 ) {
+      return 'half-present';
     } else {
-      return "present";
+      return 'present';
     }
-
   }
 
   checkIfPresentOnThisDate(day, monthName) {

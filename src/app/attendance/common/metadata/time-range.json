@@ -5,47 +5,47 @@
       "endTime": 1
     },
     {
-      "name": "After 1 AM",
+      "name": "After 01 AM",
       "startTime": 1,
       "endTime": 2
     },
     {
-      "name": "After 2 AM",
+      "name": "After 02 AM",
       "startTime": 2,
       "endTime": 3
     },
     {
-      "name": "After 3 AM",
+      "name": "After 03 AM",
       "startTime": 3,
       "endTime": 4
     },
     {
-      "name": "After 4 AM",
+      "name": "After 04 AM",
       "startTime": 4,
       "endTime": 5
     },
     {
-      "name": "After 5 AM",
+      "name": "After 05 AM",
       "startTime": 5,
       "endTime": 6
     },
     {
-      "name": "After 6 AM",
+      "name": "After 06 AM",
       "startTime": 6,
       "endTime": 7
     },
     {
-      "name": "After 7 AM",
+      "name": "After 07 AM",
       "startTime": 7,
       "endTime": 8
     },
     {
-      "name": "After 8 AM",
+      "name": "After 08 AM",
       "startTime": 8,
       "endTime": 9
     },
     {
-      "name": "After 9 AM",
+      "name": "After 09 AM",
       "startTime": 9,
       "endTime": 10
     },
