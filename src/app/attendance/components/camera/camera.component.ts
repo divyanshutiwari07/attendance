@@ -55,17 +55,12 @@ export class CameraComponent implements OnInit {
     this.nextWebcam.next(directionOrDeviceId);
   }
 
-  public handleImage(webcamImage: WebcamImage): void {
-    console.info('received webcam image', webcamImage);
+
+  public async handleImage(webcamImage: WebcamImage) {    
     this.pictureTaken.emit(webcamImage);
   }
 
-  // public handleImage(webcamImage: any ): void {
-  //   this.pictureTaken.emit(webcamImage);
-  // }
-
   public cameraWasSwitched(deviceId: string): void {
-    console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
   }
 

@@ -30,19 +30,20 @@ export class SidebarComponent implements OnInit {
     objectPhotos: FormControl;
 
     public registerFormSubmitted;
-    files;
+    public files;
     public showCameraView;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
+    
+    public webcamImages: any = [];
 
-    // latest snapshot
-    // public webcamImage: WebcamImage = null;
-    public webcamImage: any = [];
-
-    handleImage(webcamImage: WebcamImage) {
-        this.webcamImage.push(webcamImage);
-        // this.webcamImage = webcamImage;
-        console.log('webcamimage after', this.webcamImage);
+    async handleImage(webcamImage: WebcamImage) {
+        await fetch(webcamImage.imageAsDataUrl)
+            .then(res => res.blob())
+            .then(blob => {
+                const blobImage = blob;        
+                this.webcamImages.push({blob: blobImage, original: webcamImage});
+            });
     }
 
     constructor(
@@ -124,16 +125,10 @@ export class SidebarComponent implements OnInit {
         this.modalReference = this.modalService.open(content, { centered: true });
     }
 
-
-//   uploadFiles(files:File[]) {
-//     console.log("Files: ", files);
-//     console.log("Gonna upload");
-//   }
-
-  onSubmit() {
-    console.log(this.files, this.webcamImage);
+    onSubmit() {
+    // console.log(this.files, this.webcamImages);
     this.registerFormSubmitted = true;
-    console.log(this.registerForm);
+    // console.log(this.registerForm);
     if (this.registerForm.valid ) {
         const formData = new FormData();
         formData.append('awi_label', this.registerForm.get('label').value);
@@ -143,16 +138,18 @@ export class SidebarComponent implements OnInit {
         if (this.files) {
             this.files.forEach((file) => {
                 formData.append('file', file);
-                console.log('this.files');
             });
-        } else {
-            console.log('this.webcamimg');
-            formData.append('file', this.webcamImage);
+        }
+
+        if(this.webcamImages.length) {
+            this.webcamImages.forEach((image, key) => {
+                formData.append('file', image.blob, 'webcam-'+ (key+1));
+            });
         }
 
         // to see the structure of the formdata
         formData.forEach((value, key) => {
-            console.log(key + ': ' + value);
+            console.log(key, ': ', value);
         });
 
         // this.apiService.register(formData)
@@ -170,13 +167,13 @@ export class SidebarComponent implements OnInit {
     this.notifyService.showSuccess(message, '');
   }
 
-  openCamera() {
-    this.showCameraView = true;
+  toggleCamera() {
+    this.showCameraView = !this.showCameraView;
   }
 
   closeModal() {
     this.showCameraView = false ;
-    this.webcamImage = [];
+    this.webcamImages = [];
   }
 
 }

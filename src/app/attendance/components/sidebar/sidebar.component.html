@@ -26,30 +26,37 @@
                   <form class="register-object" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
                     <div class="capture-image" *ngIf='showCameraView === true'>
                         <app-camera (pictureTaken)="handleImage($event)"></app-camera>
-                        <div class="snapshotList" *ngIf="webcamImage">
-                          <mat-grid-list cols="4" >
-                            <mat-grid-tile
-                                *ngFor="let webcamImg of webcamImage">
-                                <img [src]="webcamImg.imageAsDataUrl" style="object-fit: cover; height: inherit; width: inherit;" />
-                            </mat-grid-tile>
-                          </mat-grid-list>
-                        </div>
+                    </div>
+                    <div class="snapshotList" *ngIf="webcamImages">
+                      <mat-grid-list cols="4" >
+                        <mat-grid-tile
+                            *ngFor="let webcamImg of webcamImages">                                
+                            <img [src]="webcamImg.original.imageAsDataUrl" style="object-fit: cover; height: inherit; width: inherit;" />
+                        </mat-grid-tile>
+                      </mat-grid-list>
+                    </div>
+                    <div class="snapshotList">
+                      <mat-grid-list cols="4" >
+                        <mat-grid-tile
+                            *ngFor="let file of files">                                
+                            <div [ngfBackground]="file" style="background-size:cover;background-repeat:no-repeat;width:110px;height:110px"></div>
+                        </mat-grid-tile>
+                      </mat-grid-list>
                     </div>
                     <div class="row form-data">
-                      <div class="col-md-12" >
-                        
+                      <div class="col-md-12" >                        
 
                         <label for="uploadImage" class='forLabel'>Upload Image<span class="required"> *</span></label>
                         <button ngfSelect type="button" class="btn btn-default not-focusable" [(files)]="files"
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-                        <button type="button" class="btn btn-default not-focusable" (click)='openCamera()' >
-                            Open Camera
+                        <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
+                            {{showCameraView ? 'Close' : 'Open'}} Camera
                         </button>
-                      <!-- <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && !files}">
+                      <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && (!files && !webcamImages.length)}">
                           <div>Atleast 1 file is required</div>
-                      </div> -->
+                      </div>
 
                         
                       </div>
