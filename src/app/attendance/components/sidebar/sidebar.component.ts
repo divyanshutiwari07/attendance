@@ -4,6 +4,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Subject} from 'rxjs';
+import {Observable} from 'rxjs';
+import {WebcamImage} from 'ngx-webcam';
 
 @Component({
     selector: 'app-sidebar',
@@ -28,8 +31,19 @@ export class SidebarComponent implements OnInit {
 
     public registerFormSubmitted;
     files;
+    public showCameraView;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
+
+    // latest snapshot
+    // public webcamImage: WebcamImage = null;
+    public webcamImage: any = [];
+
+    handleImage(webcamImage: WebcamImage) {
+        this.webcamImage.push(webcamImage);
+        // this.webcamImage = webcamImage;
+        console.log('webcamimage after', this.webcamImage);
+    }
 
     constructor(
         public router: Router ,
@@ -51,13 +65,6 @@ export class SidebarComponent implements OnInit {
         this.createFormControls();
         this.createForm();
 
-
-        // this.registerForm = this.formBuilder.group({
-        //     'label': [null, Validators.required],
-        //     'subClass': [null, Validators.required],
-        //     'severity': [null, Validators.required]
-        // });
-
         this.registerFormSubmitted = false;
     }
 
@@ -72,13 +79,7 @@ export class SidebarComponent implements OnInit {
         this.registerForm = new FormGroup({
             label: this.label,
             subClass: this.subClass,
-            // severity: this.severity
         });
-        // this.registerForm = this.formBuilder.group ({
-        //     label: ['', Validators.required],
-        //     subClass: ['', Validators.required],
-        //     severity: ['', Validators.required],
-        // });
     }
 
     ngOnInit() {
@@ -86,7 +87,8 @@ export class SidebarComponent implements OnInit {
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
-
+        this.showCameraView = false;
+        // tslint:disable-next-line:max-line-length
     }
 
 
@@ -119,9 +121,8 @@ export class SidebarComponent implements OnInit {
 
 
     openVerticallyCentered(content) {
-        // this.modalReference =  this.modalService.open(content, { centered: true, windowClass: 'modal-sm-custom' });
         this.modalReference = this.modalService.open(content, { centered: true });
-  }
+    }
 
 
 //   uploadFiles(files:File[]) {
@@ -130,38 +131,52 @@ export class SidebarComponent implements OnInit {
 //   }
 
   onSubmit() {
-    console.log(this.files);
+    console.log(this.files, this.webcamImage);
     this.registerFormSubmitted = true;
     console.log(this.registerForm);
-    if (this.registerForm.valid && this.files) {
+    if (this.registerForm.valid ) {
         const formData = new FormData();
         formData.append('awi_label', this.registerForm.get('label').value);
         formData.append('awi_class', 'awi_face');
         formData.append('awi_severity', 'awi_low');
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
+        if (this.files) {
+            this.files.forEach((file) => {
+                formData.append('file', file);
+                console.log('this.files');
+            });
+        } else {
+            console.log('this.webcamimg');
+            formData.append('file', this.webcamImage);
+        }
 
-        this.files.forEach((file) => {
-            formData.append('file', file);
-        });
         // to see the structure of the formdata
-        // formData.forEach((value, key) => {
-        //     console.log(key + ': ' + value);
-        // });
+        formData.forEach((value, key) => {
+            console.log(key + ': ' + value);
+        });
 
-        this.apiService.register(formData)
-        .subscribe(
-            response => {
-                this.successToaster(response.msg);
-                this.modalReference.close();
-                console.log(response);
-            }
-        );
+        // this.apiService.register(formData)
+        // .subscribe(
+        //     response => {
+        //         this.successToaster(response.msg);
+        //         this.modalReference.close();
+        //         console.log(response);
+        //     }
+        // );
     }
-
   }
 
   successToaster(message: string) {
     this.notifyService.showSuccess(message, '');
+  }
+
+  openCamera() {
+    this.showCameraView = true;
+  }
+
+  closeModal() {
+    this.showCameraView = false ;
+    this.webcamImage = [];
   }
 
 }

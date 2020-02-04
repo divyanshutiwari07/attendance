@@ -26,6 +26,9 @@ import { SortPipe } from './common/filters/sort';
 import { TimeRangePipe } from './common/filters/time-range';
 import { PresentEmpService } from './services/present-emp.service';
 
+import {WebcamModule} from 'ngx-webcam';
+import { CameraComponent } from './components/camera/camera.component';
+
 @NgModule({
   declarations: [
     TodaysReportComponent,
@@ -40,7 +43,8 @@ import { PresentEmpService } from './services/present-emp.service';
     YearDropDownComponent,
     SearchPipe,
     SortPipe,
-    TimeRangePipe
+    TimeRangePipe,
+    CameraComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +56,7 @@ import { PresentEmpService } from './services/present-emp.service';
     ExportAsModule,
     DataTablesModule,
     MaterialModule,
+    WebcamModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],

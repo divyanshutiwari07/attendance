@@ -21,18 +21,35 @@
                 
             </div>
             <div class="modal-body">
-              <div class="container">
+              <div class="container"> 
+                
                   <form class="register-object" [formGroup]="registerForm" (ngSubmit)="onSubmit()"> 
-                    <div class="row">
+                    <div class="capture-image" *ngIf='showCameraView === true'>
+                        <app-camera (pictureTaken)="handleImage($event)"></app-camera>
+                        <div class="snapshotList" *ngIf="webcamImage">
+                          <mat-grid-list cols="4" >
+                            <mat-grid-tile
+                                *ngFor="let webcamImg of webcamImage">
+                                <img [src]="webcamImg.imageAsDataUrl" style="object-fit: cover; height: inherit; width: inherit;" />
+                            </mat-grid-tile>
+                          </mat-grid-list>
+                        </div>
+                    </div>
+                    <div class="row form-data">
                       <div class="col-md-12" >
+                        
+
                         <label for="uploadImage" class='forLabel'>Upload Image<span class="required"> *</span></label>
                         <button ngfSelect type="button" class="btn btn-default not-focusable" [(files)]="files"
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-                      <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && !files}">
+                        <button type="button" class="btn btn-default not-focusable" (click)='openCamera()' >
+                            Open Camera
+                        </button>
+                      <!-- <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && !files}">
                           <div>Atleast 1 file is required</div>
-                      </div>
+                      </div> -->
 
                         
                       </div>
@@ -57,9 +74,37 @@
                         </div>
                       </div>
                     </div>
+
+                    <!-- <div class="row">
+                      <div class="col-md-12" >
+                        <label for="email" class='forLabel'>Email<span class="required"> *</span></label>
+                        <input type="text" autocomplete="off" placeholder="Enter your email" class="form-control" formControlName="email" name='email' id='email'
+                          [ngClass]="{ 'is-invalid': registerFormSubmitted && email.invalid }" required>
+                        <div *ngIf="registerFormSubmitted && subClass.invalid" class="invalid-feedback">
+                            <div *ngIf="subClass.errors['required']">Email is required</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12" >
+                          <label for="email" class='forLabel'>Site<span class="required"> *</span></label>
+                          <select id="site" class="form-control" name="site" formControlName="email" [ngClass]="{ 'is-invalid': registerFormSubmitted && email.invalid }" required>
+                              
+                              <option value="undefined"  selected disabled >Select Site</option>
+                              <option value="small">small</option>
+                              <option value="medium">medium</option>
+                              <option value="large">large</option>
+                          </select> 
+                          <div *ngIf="registerFormSubmitted && subClass.invalid" class="invalid-feedback">
+                              <div *ngIf="subClass.errors['required']">Email is required</div>
+                          </div>
+                        </div>
+                      </div> -->
+                    
                     
                     <div class="footer-btn">
-                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click'); " >Close</button>
+                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="closeModal(); modal.close('Close click')" >Close</button>
                       <button type="submit" class="btn btn-dark" >Register</button>
                     </div> 
                   </form>

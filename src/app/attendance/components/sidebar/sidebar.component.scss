@@ -260,10 +260,18 @@ select {
       } 
 }
 
-// modal size custom
-// ::ng-deep .modal-sm-custom {
-//     .modal-dialog {
-//       max-width: 30%;
-//       width: 30%;
-//     }
-// }
+.form-data {
+    padding-top: 10px;
+}
+
+// web
+.snapshotList {
+    text-align: center;
+    .snapshot{
+        padding-bottom: 15px;
+        img {
+            max-width: 350px;
+            max-height: 350px;
+        }
+    }
+}
