@@ -4,10 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import {Subject} from 'rxjs';
-import {Observable} from 'rxjs';
-import {WebcamImage} from 'ngx-webcam';
-
+import { WebcamImage } from 'ngx-webcam';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -34,14 +31,14 @@ export class SidebarComponent implements OnInit {
     public showCameraView;
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
-    
+
     public webcamImages: any = [];
 
     async handleImage(webcamImage: WebcamImage) {
         await fetch(webcamImage.imageAsDataUrl)
             .then(res => res.blob())
             .then(blob => {
-                const blobImage = blob;        
+                const blobImage = blob;
                 this.webcamImages.push({blob: blobImage, original: webcamImage});
             });
     }
@@ -124,9 +121,14 @@ export class SidebarComponent implements OnInit {
     openVerticallyCentered(content) {
         this.modalReference = this.modalService.open(content, { centered: true });
     }
+    // this.modalReference.result.then((data) => {
+    //     // on close
+    //   }, (reason) => {
+    //     // on dismiss
+    //   });
 
     onSubmit() {
-    // console.log(this.files, this.webcamImages);
+    console.log(this.files, this.webcamImages);
     this.registerFormSubmitted = true;
     // console.log(this.registerForm);
     if (this.registerForm.valid ) {
@@ -141,9 +143,9 @@ export class SidebarComponent implements OnInit {
             });
         }
 
-        if(this.webcamImages.length) {
+        if (this.webcamImages.length) {
             this.webcamImages.forEach((image, key) => {
-                formData.append('file', image.blob, 'webcam-'+ (key+1));
+                formData.append('file', image.blob, 'webcam-' + (key + 1) + '.jpeg');
             });
         }
 
@@ -152,14 +154,14 @@ export class SidebarComponent implements OnInit {
             console.log(key, ': ', value);
         });
 
-        // this.apiService.register(formData)
-        // .subscribe(
-        //     response => {
-        //         this.successToaster(response.msg);
-        //         this.modalReference.close();
-        //         console.log(response);
-        //     }
-        // );
+        this.apiService.register(formData)
+        .subscribe(
+            response => {
+                this.successToaster(response.msg);
+                this.modalReference.close();
+                console.log(response);
+            }
+        );
     }
   }
 
@@ -172,8 +174,11 @@ export class SidebarComponent implements OnInit {
   }
 
   closeModal() {
+      console.log('close');
     this.showCameraView = false ;
     this.webcamImages = [];
+    this.registerForm.reset();
+    this.files = null;
   }
 
 }

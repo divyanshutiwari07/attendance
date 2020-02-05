@@ -51,9 +51,9 @@
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-                        <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
+                        <!-- <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
                             {{showCameraView ? 'Close' : 'Open'}} Camera
-                        </button>
+                        </button> -->
                       <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && (!files && !webcamImages.length)}">
                           <div>Atleast 1 file is required</div>
                       </div>

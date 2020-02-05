@@ -1,7 +1,7 @@
 <div style="text-align:center">
     <div>
       <webcam [height]="350" [width]="350" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" [imageType]="'image/png'" (cameraSwitched)="cameraWasSwitched($event)"
+       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"  (cameraSwitched)="cameraWasSwitched($event)"
        (initError)="handleInitError($event)"></webcam>
       <br/>
       <div class="actionBtn" (click)="triggerSnapshot();" title="Take Picture">📸</div>
@@ -13,3 +13,4 @@
   <ul *ngFor="let error of errors">
     <li>{{error | json}}</li>
   </ul> 
+  <!-- [imageType]="'image/png'" -->
