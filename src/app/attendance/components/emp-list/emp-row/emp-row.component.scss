@@ -124,12 +124,14 @@
     display: flex;  
     justify-content: space-around;
     .column.avatar {
+      padding: 0 10px;
+      
       > div:nth-child(1) {
         padding-bottom: 15px;
       }
       img {
         height: 265px;
-        width: 250px;
+        // width: 250px;
       }
     }
   }

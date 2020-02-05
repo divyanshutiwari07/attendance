@@ -331,12 +331,14 @@ export class AttendanceStatsComponent implements OnInit {
       if ( dataset[i] && dataset[i].length) {
         workingMonthCount += 1;
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
-        dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100);
+        dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
         // dataset[i] = ((((dataset[i].reduce((a, {count}) => a + count, 0)) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
+      } else {
+        dataset[i] = 0;
       }
     }
     console.log('workingmonth ', workingMonthCount);
-    let attendancePercentage = dataset.reduce((a, b) => a + b, 0) / workingMonthCount  ;
+    let attendancePercentage = dataset.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / workingMonthCount  ;
     console.log('attendancePercentage', attendancePercentage);
     attendancePercentage = attendancePercentage || NaN;
     const attendancePercentageFixedNum = attendancePercentage.toFixed(2);

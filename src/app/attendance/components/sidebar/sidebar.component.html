@@ -51,9 +51,9 @@
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-                        <!-- <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
+                        <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
                             {{showCameraView ? 'Close' : 'Open'}} Camera
-                        </button> -->
+                        </button>
                       <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && (!files && !webcamImages.length)}">
                           <div>Atleast 1 file is required</div>
                       </div>
@@ -111,8 +111,8 @@
                     
                     
                     <div class="footer-btn">
-                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="closeModal(); modal.close('Close click')" >Close</button>
-                      <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid" >Register</button>
+                      <button type="button" class="btn btn-outline-dark not-focusable " (click)="modal.close('Close click')" >Close</button>
+                      <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid || !(files || webcamImages.length)" >Register</button>
                     </div> 
                   </form>
               </div>                  

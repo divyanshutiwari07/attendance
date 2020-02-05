@@ -115,17 +115,17 @@ export class SidebarComponent implements OnInit {
     toggleSidebar() {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
-    }
-
+    }    
 
     openVerticallyCentered(content) {
         this.modalReference = this.modalService.open(content, { centered: true });
+        this.modalReference.result.then((data) => {
+            this.resetModalData();
+        }, (reason) => {
+            this.resetModalData();
+        });
     }
-    // this.modalReference.result.then((data) => {
-    //     // on close
-    //   }, (reason) => {
-    //     // on dismiss
-    //   });
+    
 
     onSubmit() {
     console.log(this.files, this.webcamImages);
@@ -173,8 +173,7 @@ export class SidebarComponent implements OnInit {
     this.showCameraView = !this.showCameraView;
   }
 
-  closeModal() {
-    console.log('close');
+  resetModalData() {    
     this.showCameraView = false ;
     this.webcamImages = [];
     this.registerForm.reset();
