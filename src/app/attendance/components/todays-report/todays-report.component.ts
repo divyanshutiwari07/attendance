@@ -96,7 +96,6 @@ export class TodaysReportComponent implements OnInit {
         this.allDepartmentList = this.getAllDepartmentList( this.empList );
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
-        console.log(empList);
       });
   }
 

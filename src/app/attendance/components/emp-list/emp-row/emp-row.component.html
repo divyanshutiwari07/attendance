@@ -6,7 +6,7 @@
                     <img src={{employee.photo}} alt="Avatar" class="profile" onerror="src='assets/images/error_404.png';">
                     
                     <div *ngIf="employee.type === 'manual'" >
-                        <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
+                        <img src="assets/images/user-edit.png" (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
                         <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
                     </div>
                 </div>
@@ -69,5 +69,29 @@
     <div class="modal-footer">
             <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
             <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="fileDataType === 'yearly_attendance_record'? exportEmployeeYearReport(employee.name) : exportEmployeeMonthReport(employee.name)">Export CSV</button></div>
+    </div>
+</ng-template>  
+
+<ng-template #contentForImgCompare let-modal     >
+    <div class="img-comparison">
+        <div class="modal-header">
+            <h4 class="modal-title">Compare Image</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button> 
+        </div>
+        <div class="modal-body img-report">
+            <div class='column avatar'>
+                <div>Detection Photo</div>
+                <img src={{employee.photo}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
+            </div>
+            <div class='column avatar'>
+                    <div>Registered Photo</div>
+                <img src={{employee.registeredPhoto}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
+            </div>
+        </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+        </div>
     </div>
 </ng-template>  

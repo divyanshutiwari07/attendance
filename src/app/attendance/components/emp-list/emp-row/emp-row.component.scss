@@ -119,7 +119,23 @@
   }
 }
 
-// [_nghost-c12]  instead of ng-deep
+.img-comparison {
+  .img-report {
+    display: flex;  
+    justify-content: space-around;
+    .column.avatar {
+      > div:nth-child(1) {
+        padding-bottom: 15px;
+      }
+      img {
+        height: 265px;
+        width: 250px;
+      }
+    }
+  }
+
+}
+// [_ngtost-c12]  instead of ng-deep
 
 ::ng-deep .modal-xl-custom {
   .modal-dialog {

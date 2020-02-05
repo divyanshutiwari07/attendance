@@ -49,6 +49,10 @@ export class EmpRowComponent implements OnInit {
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
   }
 
+  openVerticallyCenteredForImgCompare(contentForImgCompare) {
+    this.modalService.open(contentForImgCompare, { centered: true, size: 'lg' } );
+  }
+
   rejectEmployeeAttendance(emp) {
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );

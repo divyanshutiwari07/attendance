@@ -16,6 +16,7 @@ const empData = require('./employee.json');
 const empRecord = require('./emp-record.json');
 
 const chartData = require('./chart-data.json');
+const chartData1 = require('./chart-data1.json');
     
 const listOfRegisteredUsers = require('./list-of-register-user.json');
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
@@ -48,6 +49,7 @@ app.post("/employee-attendance", (req, res, next) => {
     } else if( req.body.awi_chart_data ) {
         console.log("===================== Serving chart data ======================= ");
         res.json(chartData);
+        // res.json(chartData1);
     } else {
         console.log("===================== Serving normal data ======================= ");
         res.json(empData);

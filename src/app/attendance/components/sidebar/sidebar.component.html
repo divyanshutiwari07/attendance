@@ -112,7 +112,7 @@
                     
                     <div class="footer-btn">
                       <button type="button" class="btn btn-outline-dark not-focusable " (click)="closeModal(); modal.close('Close click')" >Close</button>
-                      <button type="submit" class="btn btn-dark" >Register</button>
+                      <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid" >Register</button>
                     </div> 
                   </form>
               </div>                  

@@ -46,7 +46,7 @@ export class AttendanceStatsComponent implements OnInit {
   getRegisterUserData() {
     this.userService.loadRegisterUsers().subscribe(data => {
         this.totalEmp = (<any>data).count;
-        console.log('registerUserData1', data);
+        // console.log('registerUserData1', data);
     });
   }
 
@@ -181,7 +181,7 @@ export class AttendanceStatsComponent implements OnInit {
     for (let i = 0; i <= dayCount - 1; i++) {
       monthLabel[i] = (i + 1).toString();
     }
-    console.log('monthlabel', monthLabel);
+    // console.log('monthlabel', monthLabel);
     const dataset = [];
     let workingDayCountForMonth = 0;
     const monthData = this.chartData.filter(d => {
@@ -319,6 +319,7 @@ export class AttendanceStatsComponent implements OnInit {
     const _this = this;
     const dataset = [];
     const workingDayCountForYear = [];
+    let workingMonthCount = 0;
     const yearData = this.chartData.filter(d => {
       return d.date.split('-')[2] === this.selectedYear.year.toString();
     });
@@ -328,12 +329,15 @@ export class AttendanceStatsComponent implements OnInit {
         return parseInt(d.date.split('-')[1], 0) === i + 1;
       });
       if ( dataset[i] && dataset[i].length) {
+        workingMonthCount += 1;
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
-        dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
+        dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100);
+        // dataset[i] = ((((dataset[i].reduce((a, {count}) => a + count, 0)) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
       }
     }
-
-    let attendancePercentage = dataset.reduce((a, b) => a + b, 0) / 12;
+    console.log('workingmonth ', workingMonthCount);
+    let attendancePercentage = dataset.reduce((a, b) => a + b, 0) / workingMonthCount  ;
+    console.log('attendancePercentage', attendancePercentage);
     attendancePercentage = attendancePercentage || NaN;
     const attendancePercentageFixedNum = attendancePercentage.toFixed(2);
     this.report.year.attendancePercentage = parseFloat(attendancePercentageFixedNum);
@@ -421,7 +425,7 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   getYearReportForAllEmployees() {
-    console.log('selectedyear', this.selectedYear);
+    // console.log('selectedyear', this.selectedYear);
     this.apiService.getChartData({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -434,8 +438,9 @@ export class AttendanceStatsComponent implements OnInit {
       } else {
         this.successToaster(response.msg);
         this.chartData = response.data;
+        console.log(response);
       }
-      console.log('chart data', this.chartData);
+      // console.log('chart data', this.chartData);
       this.showMonthlyBarChart();
       this.showYearlyBarChart();
       this.showMonthlyPieChart();

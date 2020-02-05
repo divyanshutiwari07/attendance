@@ -154,14 +154,14 @@ export class SidebarComponent implements OnInit {
             console.log(key, ': ', value);
         });
 
-        this.apiService.register(formData)
-        .subscribe(
-            response => {
-                this.successToaster(response.msg);
-                this.modalReference.close();
-                console.log(response);
-            }
-        );
+        // this.apiService.register(formData)
+        // .subscribe(
+        //     response => {
+        //         this.successToaster(response.msg);
+        //         this.modalReference.close();
+        //         console.log(response);
+        //     }
+        // );
     }
   }
 
@@ -174,11 +174,11 @@ export class SidebarComponent implements OnInit {
   }
 
   closeModal() {
-      console.log('close');
+    console.log('close');
     this.showCameraView = false ;
     this.webcamImages = [];
     this.registerForm.reset();
+    // this.registerForm.markAsPristine();
     this.files = null;
   }
-
 }
