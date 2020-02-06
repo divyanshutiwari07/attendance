@@ -3,10 +3,11 @@
         <div class="emp-body card-body {{ employee.type === 'manual' ? 'manual-attendance': '' }} " >
             <div class='column avatar'>
                 <div>
-                    <img src={{employee.photo}} alt="Avatar" class="profile" onerror="src='assets/images/error_404.png';">
+                    <img src={{employee.photo}} alt="Avatar" class="profile"
+                    (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)"  onerror="src='assets/images/error_404.png';">
                     
                     <div *ngIf="employee.type === 'manual'" >
-                        <img src="assets/images/user-edit.png" (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
+                        <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
                         <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
                     </div>
                 </div>
@@ -82,12 +83,12 @@
         </div>
         <div class="modal-body img-report">
             <div class='column avatar'>
-                <div>Detection Photo</div>
-                <img src={{employee.photo}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
-            </div>
-            <div class='column avatar'>
                     <div>Registered Photo</div>
                 <img src={{employee.registeredPhoto}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
+            </div>
+            <div class='column avatar'>
+                <div>Detected Photo</div>
+                <img src={{employee.photo}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
             </div>
         </div>
         <div class="modal-footer">

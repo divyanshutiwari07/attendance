@@ -154,14 +154,14 @@ export class SidebarComponent implements OnInit {
             console.log(key, ': ', value);
         });
 
-        // this.apiService.register(formData)
-        // .subscribe(
-        //     response => {
-        //         this.successToaster(response.msg);
-        //         this.modalReference.close();
-        //         console.log(response);
-        //     }
-        // );
+        this.apiService.register(formData)
+        .subscribe(
+            response => {
+                this.successToaster(response.msg);
+                this.modalReference.close();
+                console.log(response);
+            }
+        );
     }
   }
 
@@ -173,7 +173,7 @@ export class SidebarComponent implements OnInit {
     this.showCameraView = !this.showCameraView;
   }
 
-  resetModalData() {    
+  resetModalData() {
     this.showCameraView = false ;
     this.webcamImages = [];
     this.registerForm.reset();

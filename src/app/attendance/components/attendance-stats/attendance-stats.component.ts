@@ -332,7 +332,6 @@ export class AttendanceStatsComponent implements OnInit {
         workingMonthCount += 1;
         workingDayCountForYear[i] = Object.keys(dataset[i]).length;
         dataset[i] = (((dataset[i].reduce((a, {count}) => a + count, 0) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
-        // dataset[i] = ((((dataset[i].reduce((a, {count}) => a + count, 0)) / workingDayCountForYear[i]) / this.totalEmp) * 100).toFixed(2);
       } else {
         dataset[i] = 0;
       }

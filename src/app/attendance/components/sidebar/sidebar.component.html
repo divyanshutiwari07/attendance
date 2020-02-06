@@ -51,12 +51,12 @@
                             accept="image/*" multiple="1" required>
                             Browse
                         </button>
-                        <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
+                        <!-- <button type="button" class="btn btn-default not-focusable" (click)='toggleCamera()' >
                             {{showCameraView ? 'Close' : 'Open'}} Camera
-                        </button>
-                      <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && (!files && !webcamImages.length)}">
+                        </button> -->
+                      <!-- <div class="invalid-feedback" [ngClass]="{ 'd-block': registerFormSubmitted && (!files && !webcamImages.length)}">
                           <div>Atleast 1 file is required</div>
-                      </div>
+                      </div> -->
 
                         
                       </div>
@@ -64,21 +64,20 @@
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="label" class='forLabel'>Name<span class="required"> *</span></label>
+                        <!-- <input type="text" autocomplete="off" placeholder="Enter your name" class="form-control" name='lebel' id='lebel' formControlName="label" 
+                            [ngClass]="{ 'is-invalid': registerFormSubmitted && label.invalid }" required>                             -->
                         <input type="text" autocomplete="off" placeholder="Enter your name" class="form-control" name='lebel' id='lebel' formControlName="label" 
-                            [ngClass]="{ 'is-invalid': registerFormSubmitted && label.invalid }" required>                            
-                        <div *ngIf="registerFormSubmitted && label.invalid" class="invalid-feedback">
+                         required>                            
+                        <!-- <div *ngIf="registerFormSubmitted && label.invalid" class="invalid-feedback">
                             <div *ngIf="label.errors['required']">Name is required</div>
-                        </div>                        
+                        </div>                         -->
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12" >
                         <label for="subClass" class='forLabel'>Department<span class="required"> *</span></label>
                         <input type="text" autocomplete="off" placeholder="Enter your department" class="form-control" formControlName="subClass" name='subClass' id='subClass'
-                          [ngClass]="{ 'is-invalid': registerFormSubmitted && subClass.invalid }" required>
-                        <div *ngIf="registerFormSubmitted && subClass.invalid" class="invalid-feedback">
-                            <div *ngIf="subClass.errors['required']">Department is required</div>
-                        </div>
+                         required>
                       </div>
                     </div>
 
