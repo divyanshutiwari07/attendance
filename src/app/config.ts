@@ -71,7 +71,7 @@ const CONFIGS = {
   PROD_CONFIG
 };
 
-console.log('config mode', environment.environmentName);
+// console.log('config mode', environment.environmentName);
 const mode = environment.environmentName + '_CONFIG';
 
 export const config = CONFIGS[mode].config;

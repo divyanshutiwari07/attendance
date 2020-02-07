@@ -19,7 +19,6 @@ export class UserDataHomePageService {
    }
 
   sendMsg(msg) {
-    console.log('sendmsg');
     this.messages.next(msg);
   }
 }

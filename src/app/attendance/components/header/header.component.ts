@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/app/shared';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
+    public user;
 
     constructor( public router: Router, private auth: AuthGuard) {
 

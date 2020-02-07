@@ -40,14 +40,14 @@ export class EmpListComponent implements OnChanges {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
 
-    console.log('this.employees', this.employees);
+    // console.log('this.employees', this.employees);
     // this.currentItemsToShow = this.employees;
 
   }
 
 
   exportCSV() {
-    console.log('this.employees', this.employees);
+    // console.log('this.employees', this.employees);
     if (this.employees.length !== 0) {
       const options = {
         fieldSeparator: ',',

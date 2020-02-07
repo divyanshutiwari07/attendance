@@ -83,7 +83,7 @@ export class YearlyReportComponent implements OnInit {
       }
       this.fetching = 0;
       this.employeeYearReport = this.addPresentEmpDuration(response.data);
-      console.log(this.employeeYearReport);
+      // console.log(this.employeeYearReport);
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.selectedYearForEmp.emit(this.selectedYear);
       this.genrateFormattedReport();
@@ -127,7 +127,7 @@ export class YearlyReportComponent implements OnInit {
       formattedYearReport.presentCount += 1;
     });
     this.formattedYearReport = formattedYearReport;
-    console.log("this.formattedYearReport", this.formattedYearReport);
+    // console.log("this.formattedYearReport", this.formattedYearReport);
     this.generateAttendanceTable();
   }
 

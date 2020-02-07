@@ -88,7 +88,6 @@ export class TodaysReportComponent implements OnInit {
     this.getListOfRegisteredUsers();
     this.sendMessage();
     this.checkNewPresentEmp();
-    console.log('ngonint');
     this.presentEmpSubscription = this.presentEmpService.empList$
       .subscribe(empList => {
         this.empList = empList;
@@ -129,6 +128,7 @@ export class TodaysReportComponent implements OnInit {
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
+      console.log('register data', response);
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
       console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
@@ -175,7 +175,7 @@ export class TodaysReportComponent implements OnInit {
   private addRegisteredPhotoToPresentEmpList(empList) {
     if (!this.registeredUsersData || !this.registeredUsersData.length ) { return; }
     this.empList = empList.map(emp => ({
-      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photo)
+      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photos)
     }));
   }
 
@@ -216,12 +216,16 @@ export class TodaysReportComponent implements OnInit {
 
     const data = [];
     response.data.forEach((element) => {
-      const row = {name: null, department: null, photo: null, id: 0};
+      const row = {name: null, department: null, photo: null, photos: [], id: 0};
 
       row.name = element.awi_label;
       row.department = element.awi_subclass;
-      const img = element.imgs[0];
-      row.photo = this.getUpdatedImageUrl(img);
+      const image = element.imgs[0];
+      const images = element.imgs;
+      row.photo = this.getUpdatedImageUrl(image);
+      images.forEach( (img) => {
+        row.photos.push(this.getUpdatedImageUrl(img));
+      });
       row.id = element.id;
 
       data.push(row);

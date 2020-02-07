@@ -115,7 +115,7 @@ export class SidebarComponent implements OnInit {
     toggleSidebar() {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
-    }    
+    }
 
     openVerticallyCentered(content) {
         this.modalReference = this.modalService.open(content, { centered: true });
@@ -125,7 +125,6 @@ export class SidebarComponent implements OnInit {
             this.resetModalData();
         });
     }
-    
 
     onSubmit() {
     console.log(this.files, this.webcamImages);
@@ -138,7 +137,7 @@ export class SidebarComponent implements OnInit {
         formData.append('awi_severity', 'awi_low');
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
         if (this.files) {
-            this.files.forEach((file) => {
+            this.files.reverse().forEach((file) => {
                 formData.append('file', file);
             });
         }
