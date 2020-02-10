@@ -56,7 +56,7 @@ export class CameraComponent implements OnInit {
   }
 
 
-  public async handleImage(webcamImage: WebcamImage) {    
+  public async handleImage(webcamImage: WebcamImage) {
     this.pictureTaken.emit(webcamImage);
   }
 

@@ -184,6 +184,7 @@ export class AttendanceStatsComponent implements OnInit {
     // console.log('monthlabel', monthLabel);
     const dataset = [];
     let workingDayCountForMonth = 0;
+    if (!this.chartData) { return; }
     const monthData = this.chartData.filter(d => {
       return d.date.split('-')[1] === this.selectedMonth.number
           && d.date.split('-')[2] === this.selectedYear.year.toString();
@@ -320,6 +321,7 @@ export class AttendanceStatsComponent implements OnInit {
     const dataset = [];
     const workingDayCountForYear = [];
     let workingMonthCount = 0;
+    if (!this.chartData) { return; }
     const yearData = this.chartData.filter(d => {
       return d.date.split('-')[2] === this.selectedYear.year.toString();
     });

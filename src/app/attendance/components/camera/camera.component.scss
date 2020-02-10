@@ -14,3 +14,13 @@
 ul.links {
   padding-bottom: 20px;
 }
+
+.btn{
+  background-color: black;
+  color: white;
+  border-radius: 0;
+}
+.not-focusable:focus {
+  outline: none;
+  box-shadow: none;
+}
