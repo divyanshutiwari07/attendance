@@ -27,6 +27,7 @@ export class EmpRowComponent implements OnInit {
   private imgIndex;
   public currentImg;
   public showNextPreIcon;
+  temp;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -50,22 +51,23 @@ export class EmpRowComponent implements OnInit {
     console.log(this.employee);
     this.disableExportButton = true;
     this.imgIndex = 0;
-    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
-    if ( this.employee.registeredPhoto.photos.length >= 2 ) {
+    this.temp = [ "https://www.dailycsr.com/photo/art/grande/10192527-16625056.jpg?v=1473684171", "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg" ]
+    this.currentImg = this.temp[this.imgIndex];
+    if ( this.temp.length >= 2 ) {
       this.showNextPreIcon = true;
     }
   }
 
   nextImg() {
-    const imgLength = this.employee.registeredPhoto.photos.length;
+    const imgLength = this.temp.length;
     this.imgIndex = this.imgIndex >= (imgLength - 1) ? 0 : this.imgIndex + 1 ;
-    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
+    this.currentImg = this.temp[this.imgIndex];
   }
 
   previousImg() {
-    const imgLength = this.employee.registeredPhoto.photos.length;
+    const imgLength = this.temp.length;
     this.imgIndex = this.imgIndex <= 0 ? (imgLength - 1) : this.imgIndex - 1;
-    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
+    this.currentImg = this.temp[this.imgIndex];
   }
 
   openVerticallyCentered(content) {

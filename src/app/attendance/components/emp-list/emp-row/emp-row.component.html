@@ -86,9 +86,11 @@
             <div class='column avatar'>
                 <div class= "{{ showNextPreIcon ? 'reg-header' : ''  }}" >Registered Photo</div>
                 <!-- <button type="button" class="btn btn-outline-dark" (click) = 'previousImg()'><i class="fa fa-angle-left" ></i></button> -->
-                <a *ngIf='showNextPreIcon' class="fa fa-angle-left fa-2x " title="Previous Image" (click)="previousImg()"></a>
-                <img src={{currentImg}} alt="Avatar" class="img-fluid " onerror="src='assets/images/error_404.png';">
-                <a *ngIf='showNextPreIcon' class="fa fa-angle-right fa-2x" title="next Image" (click)="nextImg()"></a>
+                <div class="registered-photos-slider">
+                    <a *ngIf='showNextPreIcon' class="fa fa-angle-left fa-2x " title="Previous Image" (click)="previousImg()"></a>
+                    <img src={{currentImg}} alt="Avatar" class="img-fluid " onerror="src='assets/images/error_404.png';">
+                    <a *ngIf='showNextPreIcon' class="fa fa-angle-right fa-2x" title="next Image" (click)="nextImg()"></a>
+                </div>                
             </div>
              <div class='column avatar'>    
                 <div>Detected Photo</div>

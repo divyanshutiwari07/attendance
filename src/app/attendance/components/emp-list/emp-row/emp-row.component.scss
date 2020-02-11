@@ -124,6 +124,36 @@
     display: flex;  
     justify-content: space-around;
     .column.avatar {
+      .registered-photos-slider {
+        position: relative;
+        a {
+          position: absolute;
+          width: 20px;
+          height: 100%;
+          justify-content: center;
+          display: flex;
+          align-items: center;
+          background-color: #d6d6d68c;
+          top: 0;
+          cursor: pointer;
+        }
+
+        a:hover {
+          background-color: #d6d6d6b8;
+        }
+
+        a:nth-of-type(1) {
+          left: 0;
+          border-bottom-right-radius: 12px;
+          border-top-right-radius: 12px;
+        }
+
+        a:nth-of-type(2) {
+          right: 0;
+          border-bottom-left-radius: 12px;
+          border-top-left-radius: 12px;
+        }
+      }
       padding: 0 10px;
       
       > div:nth-child(1) {
