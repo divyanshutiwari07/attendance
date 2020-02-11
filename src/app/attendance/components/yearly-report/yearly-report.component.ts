@@ -166,7 +166,8 @@ export class YearlyReportComponent implements OnInit {
     if ( !currentObj ) { return ''; }
     const presentHours = parseInt(currentObj.empPresenceDetails.totalHoursEmpPresentToday.split(':')[0], 0);
     if ( presentHours < 1 ) {
-      return 'half-present';
+      // return 'half-present';
+      return 'present';
     } else {
       return 'present';
     }

@@ -61,7 +61,9 @@ export class CameraComponent implements OnInit {
   }
 
   public cameraWasSwitched(deviceId: string): void {
+    console.log('device id', deviceId);
     this.deviceId = deviceId;
+    // this.deviceId = 'rtsp://admin:awidit555@192.168.0.64:554';
   }
 
   public get triggerObservable(): Observable<void> {

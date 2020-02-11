@@ -27,7 +27,7 @@
                     <div class="capture-image" *ngIf='showCameraView'>
                         <app-camera (pictureTaken)="handleImage($event)"></app-camera>
                     </div>
-                    <!-- <div class="snapshotList" *ngIf="webcamImages">
+                    <div class="snapshotList" *ngIf="webcamImages">
                       <mat-grid-list cols="4" >
                         <mat-grid-tile
                             *ngFor="let webcamImg of webcamImages">                                
@@ -42,10 +42,10 @@
                             <div [ngfBackground]="file" style="background-size:cover;background-repeat:no-repeat;width:110px;height:110px"></div>
                         </mat-grid-tile>
                       </mat-grid-list>
-                    </div> -->
-                    <div *ngFor='let img of webcamImages'>
-                      <img [src] ='img.original.imageAsDataUrl' >
                     </div>
+                    <!-- <div *ngFor='let img of webcamImages'>
+                      <img [src] ='img.original.imageAsDataUrl' >
+                    </div> -->
                    
                     <div class="row form-data">
                       <div class="col-md-12" >                        

@@ -47,24 +47,25 @@ export class EmpRowComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log(this.employee);
     this.disableExportButton = true;
     this.imgIndex = 0;
-    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
-    if ( this.employee.registeredPhoto.length >= 2 ) {
+    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
+    if ( this.employee.registeredPhoto.photos.length >= 2 ) {
       this.showNextPreIcon = true;
     }
   }
 
   nextImg() {
-    const imgLength = this.employee.registeredPhoto.length;
+    const imgLength = this.employee.registeredPhoto.photos.length;
     this.imgIndex = this.imgIndex >= (imgLength - 1) ? 0 : this.imgIndex + 1 ;
-    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
+    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
   }
 
   previousImg() {
-    const imgLength = this.employee.registeredPhoto.length;
+    const imgLength = this.employee.registeredPhoto.photos.length;
     this.imgIndex = this.imgIndex <= 0 ? (imgLength - 1) : this.imgIndex - 1;
-    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
+    this.currentImg = this.employee.registeredPhoto.photos[this.imgIndex];
   }
 
   openVerticallyCentered(content) {

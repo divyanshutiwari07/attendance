@@ -128,7 +128,7 @@ export class TodaysReportComponent implements OnInit {
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
-      console.log('register data', response);
+      console.log('register data 1', response);
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
       console.log('register result', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
@@ -174,9 +174,11 @@ export class TodaysReportComponent implements OnInit {
 
   private addRegisteredPhotoToPresentEmpList(empList) {
     if (!this.registeredUsersData || !this.registeredUsersData.length ) { return; }
+    console.log('addregister before ', this.empList);
     this.empList = empList.map(emp => ({
-      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id).photos)
+      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id))
     }));
+    console.log('addregister', this.empList);
   }
 
   private markPresentEmployees() {

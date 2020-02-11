@@ -1,594 +1,1878 @@
 {
-    "success": true,
-    "msg": "Data Found",
-    "data": [
-      {
-        "timestamp": "19-12-2019",
-        "week": 50,
-        "day_of_week": 5,
-        "day_of_year": 353,
-        "day_of_month": 19,
-        "awi_label": "piyush",
-        "first_presence": "2019-12-19T12:39:53.049Z",
-        "last_presence": "2019-12-19T12:39:53.049Z",
+  "success": true,
+  "msg": "Data Found",
+  "data": [
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "paurush",
+      "first_presence": "2020-02-11T10:03:02.457Z",
+      "last_presence": "2020-02-11T10:11:02.217Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "paurush"
+            ],
+            "awi_blob_ids": [
+              "awi_1380"
+            ],
+            "awi_1380": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_18150_awi_1380.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "paurush",
+                "awi_descriptor": "",
+                "awi_conf": 0.9126904214046022,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d5034a337000026420b3a_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d5034a337000026420b3a_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "paurush",
+                    "awi_id": 13,
+                    "awi_conf": 0.9126904214046022,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.2847222089767456,
+                  "x": 0.503125011920929
+                },
+                {
+                  "y": 0.2847222089767456,
+                  "x": 0.559374988079071
+                },
+                {
+                  "y": 0.39027777314186096,
+                  "x": 0.559374988079071
+                },
+                {
+                  "y": 0.39027777314186096,
+                  "x": 0.503125011920929
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 3,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T10:03:02.457Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 18150,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
         "type": "auto",
-        "awi_data": {
-          "cam_no": 1,
-          "awi_app_data": {
-            "awi_name": "awi_app_data",
-            "awi_blobs": {
-              "awi_server_heat": [
-                ""
-              ],
-              "awi_blob_subclass": [
-                "Engineer"
-              ],
-              "awi_blob_names": [
-                "awi_face"
-              ],
-              "awi_blob_labels": [
-                "piyush"
-              ],
-              "awi_blob_ids": [
-                "awi_160"
-              ],
-              "awi_160": {
-                "img_base64": "http://localhost:3000/detections/48522/2183/48522_2183_5958_awi_160.jpg",
-                "classification": {
-                  "status": true,
-                  "awi_url_db": "url",
-                  "awi_max_match_idx": 0,
-                  "awi_label": "piyush",
-                  "awi_descriptor": "",
-                  "awi_conf": 0.6459776859561022,
-                  "awi_class": "awi_face",
-                  "awi_blob_db": [
-                    {
-                      "imgs": [
-                        "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
-                      ],
-                      "img_url": [
-                        "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
-                      ],
-                      "img_base64": "base64",
-                      "awi_subclass": "Engineer",
-                      "awi_severity": 1,
-                      "awi_label": "piyush",
-                      "awi_id": 2148,
-                      "awi_conf": 0.6459776859561022,
-                      "awi_class": "awi_face",
-                      "__v": 0
-                    }
-                  ],
-                  "awi_attributes": {
-                    "awi_gender": "",
-                    "awi_emotion": "",
-                    "awi_age": ""
-                  },
-                  "__v": 0
-                },
-                "awi_coords": [
-                  {
-                    "y": 0.3499999940395355,
-                    "x": 0.28437501192092896
-                  },
-                  {
-                    "y": 0.3499999940395355,
-                    "x": 0.3453125059604645
-                  },
-                  {
-                    "y": 0.45625001192092896,
-                    "x": 0.3453125059604645
-                  },
-                  {
-                    "y": 0.45625001192092896,
-                    "x": 0.28437501192092896
-                  }
-                ]
-              }
-            },
-            "awi_app_param": {
-              "awi_time_senstivity": 10,
-              "awi_time_frequency": 10,
-              "awi_space_senstivity_y": 5,
-              "awi_space_senstivity_x": 5,
-              "awi_name": "awi_app_param"
-            },
-            "awi_app": {
-              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
-              "color": "#A57E5D",
-              "awi_name": "Facial Recognition",
-              "awi_app_name": "awi_facial_recognition",
-              "awi_app_id": 1,
-              "awi_app_credits": 100,
-              "awi_app_API_key": "34"
-            }
-          },
-          "timestamp": "2019-12-19T12:39:53.049Z",
-          "location": "fd",
-          "awi_camid": 2183,
-          "awi_terminal_id": 48522,
-          "awi_client_id": 2,
-          "id": 5958,
-          "awi_severity": "awi_medium",
-          "add_to_train": false,
-          "transaction_id": "0",
-          "is_read": false,
-          "awi_site_id": 48515,
-          "s_name": "Office",
-          "__v": 0
-        }
-      },
-      {
-        "timestamp": "19-12-2019",
-        "week": 50,
-        "day_of_week": 5,
-        "day_of_year": 353,
-        "day_of_month": 19,
-        "awi_label": "vikram",
-        "first_presence": "2019-12-19T12:33:33.812Z",
-        "last_presence": "2019-12-19T12:38:52.073Z",
-        "type": "auto",
-        "awi_data": {
-          "cam_no": 1,
-          "awi_app_data": {
-            "awi_name": "awi_app_data",
-            "awi_blobs": {
-              "awi_server_heat": [
-                ""
-              ],
-              "awi_blob_subclass": [
-                "Engineer"
-              ],
-              "awi_blob_names": [
-                "awi_face"
-              ],
-              "awi_blob_labels": [
-                "vikram"
-              ],
-              "awi_blob_ids": [
-                "awi_50"
-              ],
-              "awi_50": {
-                "img_base64": "http://localhost:3000/detections/48522/2183/48522_2183_5898_awi_50.jpg",
-                "classification": {
-                  "status": true,
-                  "awi_url_db": "url",
-                  "awi_max_match_idx": 0,
-                  "awi_label": "vikram",
-                  "awi_descriptor": "",
-                  "awi_conf": 0.7245110557084891,
-                  "awi_class": "awi_face",
-                  "awi_blob_db": [
-                    {
-                      "imgs": [
-                        "http://localhost:3000/objects/5dd50d14495bfd005a62027f_0.jpg"
-                      ],
-                      "img_url": [
-                        "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d14495bfd005a62027f_0.jpg"
-                      ],
-                      "img_base64": "base64",
-                      "awi_subclass": "Engineer",
-                      "awi_severity": 2,
-                      "awi_label": "vikram",
-                      "awi_id": 2135,
-                      "awi_conf": 0.7245110557084891,
-                      "awi_class": "awi_face",
-                      "__v": 0
-                    }
-                  ],
-                  "awi_attributes": {
-                    "awi_gender": "",
-                    "awi_emotion": "",
-                    "awi_age": ""
-                  },
-                  "__v": 0
-                },
-                "awi_coords": [
-                  {
-                    "y": 0.31458333134651184,
-                    "x": 0.31718748807907104
-                  },
-                  {
-                    "y": 0.31458333134651184,
-                    "x": 0.39375001192092896
-                  },
-                  {
-                    "y": 0.4625000059604645,
-                    "x": 0.39375001192092896
-                  },
-                  {
-                    "y": 0.4625000059604645,
-                    "x": 0.31718748807907104
-                  }
-                ]
-              }
-            },
-            "awi_app_param": {
-              "awi_time_senstivity": 10,
-              "awi_time_frequency": 10,
-              "awi_space_senstivity_y": 5,
-              "awi_space_senstivity_x": 5,
-              "awi_name": "awi_app_param"
-            },
-            "awi_app": {
-              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
-              "color": "#A57E5D",
-              "awi_name": "Facial Recognition",
-              "awi_app_name": "awi_facial_recognition",
-              "awi_app_id": 1,
-              "awi_app_credits": 100,
-              "awi_app_API_key": "34"
-            }
-          },
-          "timestamp": "2019-12-19T12:33:33.812Z",
-          "location": "fd",
-          "awi_camid": 2183,
-          "awi_terminal_id": 48522,
-          "awi_client_id": 2,
-          "id": 5898,
-          "awi_severity": "awi_high",
-          "add_to_train": false,
-          "transaction_id": "0",
-          "is_read": false,
-          "awi_site_id": 48515,
-          "s_name": "Office",
-          "__v": 0
-        }
-      },
-      {
-        "timestamp": "19-12-2019",
-        "week": 50,
-        "day_of_week": 5,
-        "day_of_year": 353,
-        "day_of_month": 19,
-        "awi_label": "Taufizul",
-        "first_presence": "2019-12-19T09:34:08.687Z",
-        "last_presence": "2019-12-19T09:34:08.687Z",
-        "type": "auto",
-        "awi_data": {
-          "cam_no": 1,
-          "awi_app_data": {
-            "awi_name": "awi_app_data",
-            "awi_blobs": {
-              "awi_server_heat": [
-                ""
-              ],
-              "awi_blob_subclass": [
-                "Engineer"
-              ],
-              "awi_blob_names": [
-                "awi_face"
-              ],
-              "awi_blob_labels": [
-                "Taufizul"
-              ],
-              "awi_blob_ids": [
-                "awi_80"
-              ],
-              "awi_80": {
-                "img_base64": "http://localhost:3000/detections/48522/2193/48522_2193_5888_awi_80.jpg",
-                "classification": {
-                  "status": true,
-                  "awi_url_db": "url",
-                  "awi_max_match_idx": 0,
-                  "awi_label": "Taufizul",
-                  "awi_descriptor": "",
-                  "awi_conf": 0.6943723211326926,
-                  "awi_class": "awi_face",
-                  "awi_blob_db": [
-                    {
-                      "imgs": [
-                        "http://localhost:3000/objects/5dd50d32495bfd005a620281_0.jpg"
-                      ],
-                      "img_url": [
-                        "/home/awiros-docker/awiros-nodejs/public/objects/5dd50d32495bfd005a620281_0.jpg"
-                      ],
-                      "img_base64": "base64",
-                      "awi_subclass": "Engineer",
-                      "awi_severity": 3,
-                      "awi_label": "Taufizul",
-                      "awi_id": 2137,
-                      "awi_conf": 0.6943723211326926,
-                      "awi_class": "awi_face",
-                      "__v": 0
-                    }
-                  ],
-                  "awi_attributes": {
-                    "awi_gender": "",
-                    "awi_emotion": "",
-                    "awi_age": ""
-                  },
-                  "__v": 0
-                },
-                "awi_coords": [
-                  {
-                    "y": 0.4625000059604645,
-                    "x": 0.13593749701976776
-                  },
-                  {
-                    "y": 0.4625000059604645,
-                    "x": 0.20156249403953552
-                  },
-                  {
-                    "y": 0.59375,
-                    "x": 0.20156249403953552
-                  },
-                  {
-                    "y": 0.59375,
-                    "x": 0.13593749701976776
-                  }
-                ]
-              }
-            },
-            "awi_app_param": {
-              "awi_time_senstivity": 10,
-              "awi_time_frequency": 10,
-              "awi_space_senstivity_y": 5,
-              "awi_space_senstivity_x": 5,
-              "awi_name": "awi_app_param"
-            },
-            "awi_app": {
-              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
-              "color": "#A57E5D",
-              "awi_name": "Facial Recognition",
-              "awi_app_name": "awi_facial_recognition",
-              "awi_app_id": 1,
-              "awi_app_credits": 100,
-              "awi_app_API_key": "34"
-            }
-          },
-          "timestamp": "2019-12-19T09:34:08.687Z",
-          "location": "HW 2",
-          "awi_camid": 2193,
-          "awi_terminal_id": 48522,
-          "awi_client_id": 2,
-          "id": 5888,
-          "awi_severity": "awi_critical",
-          "add_to_train": false,
-          "transaction_id": "0",
-          "is_read": false,
-          "awi_site_id": 48515,
-          "s_name": "Office",
-          "__v": 0
-        }
-      },
-      {
-        "timestamp": "19-12-2019",
-        "week": 50,
-        "day_of_week": 5,
-        "day_of_year": 353,
-        "day_of_month": 19,
-        "awi_label": "abhishek",
-        "first_presence": "2019-12-19T12:35:53.049Z",
-        "last_presence": "2019-12-19T12:35:53.049Z",
-        "type": "auto",
-        "awi_data": {
-          "cam_no": 1,
-          "awi_app_data": {
-            "awi_name": "awi_app_data",
-            "awi_blobs": {
-              "awi_server_heat": [
-                ""
-              ],
-              "awi_blob_subclass": [
-                "Sales"
-              ],
-              "awi_blob_names": [
-                "awi_face"
-              ],
-              "awi_blob_labels": [
-                "piyush"
-              ],
-              "awi_blob_ids": [
-                "awi_160"
-              ],
-              "awi_160": {
-                "img_base64": "http://localhost:3000/detections/48522/2183/48522_2183_5958_awi_160.jpg",
-                "classification": {
-                  "status": true,
-                  "awi_url_db": "url",
-                  "awi_max_match_idx": 0,
-                  "awi_label": "piyush",
-                  "awi_descriptor": "",
-                  "awi_conf": 0.6459776859561022,
-                  "awi_class": "awi_face",
-                  "awi_blob_db": [
-                    {
-                      "imgs": [
-                        "http://localhost:3000/objects/5ddb8e919dda400215a73eea_0.jpg"
-                      ],
-                      "img_url": [
-                        "/home/awiros-docker/awiros-nodejs/public/objects/5ddb8e919dda400215a73eea_0.jpg"
-                      ],
-                      "img_base64": "base64",
-                      "awi_subclass": "Sales",
-                      "awi_severity": 1,
-                      "awi_label": "piyush",
-                      "awi_id": 2148,
-                      "awi_conf": 0.6459776859561022,
-                      "awi_class": "awi_face",
-                      "__v": 0
-                    }
-                  ],
-                  "awi_attributes": {
-                    "awi_gender": "",
-                    "awi_emotion": "",
-                    "awi_age": ""
-                  },
-                  "__v": 0
-                },
-                "awi_coords": [
-                  {
-                    "y": 0.3499999940395355,
-                    "x": 0.28437501192092896
-                  },
-                  {
-                    "y": 0.3499999940395355,
-                    "x": 0.3453125059604645
-                  },
-                  {
-                    "y": 0.45625001192092896,
-                    "x": 0.3453125059604645
-                  },
-                  {
-                    "y": 0.45625001192092896,
-                    "x": 0.28437501192092896
-                  }
-                ]
-              }
-            },
-            "awi_app_param": {
-              "awi_time_senstivity": 10,
-              "awi_time_frequency": 10,
-              "awi_space_senstivity_y": 5,
-              "awi_space_senstivity_x": 5,
-              "awi_name": "awi_app_param"
-            },
-            "awi_app": {
-              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
-              "color": "#A57E5D",
-              "awi_name": "Facial Recognition",
-              "awi_app_name": "awi_facial_recognition",
-              "awi_app_id": 1,
-              "awi_app_credits": 100,
-              "awi_app_API_key": "34"
-            }
-          },
-          "timestamp": "2019-12-19T12:39:53.049Z",
-          "location": "fd",
-          "awi_camid": 2183,
-          "awi_terminal_id": 48522,
-          "awi_client_id": 2,
-          "id": 5958,
-          "awi_severity": "awi_medium",
-          "add_to_train": false,
-          "transaction_id": "0",
-          "is_read": false,
-          "awi_site_id": 48515,
-          "s_name": "Office",
-          "__v": 0
-        }
-      },
-      {
-        "timestamp": "23-01-2020",
-        "week": 3,
-        "day_of_week": 5,
-        "day_of_year": 23,
-        "day_of_month": 23,
-        "awi_label": "Divyanshu",
-        "first_presence": "2020-01-23T06:27:46.406Z",
-        "last_presence": "2020-01-23T06:27:46.406Z",
-        "first_location": "FR-attendence_PTZ",
-        "last_location": "FR-attendence_PTZ",
-        "type": "manual",
-        "awi_data": {
-          "cam_no": 1,
-          "awi_app_data": {
-            "awi_name": "awi_app_data",
-            "awi_blobs": {
-              "awi_server_heat": [
-                ""
-              ],
-              "awi_blob_subclass": [
-                "Engineer"
-              ],
-              "awi_blob_names": [
-                "awi_face"
-              ],
-              "awi_blob_labels": [
-                "Divyanshu"
-              ],
-              "awi_blob_ids": [
-                "awi_2850"
-              ],
-              "awi_2850": {
-                "img_base64": "http://192.168.0.80:3000/detections/3/9/3_9_26249_awi_2850.jpg",
-                "classification": {
-                  "status": true,
-                  "awi_url_db": "url",
-                  "awi_max_match_idx": 0,
-                  "awi_label": "Divyanshu",
-                  "awi_descriptor": "",
-                  "awi_conf": 0.6639971624122467,
-                  "awi_class": "awi_face",
-                  "awi_blob_db": [
-                    {
-                      "imgs": [
-                        "http://192.168.0.80:3000/objects/5e171b7e3489c0003212fa72_0.jpg"
-                      ],
-                      "img_url": [
-                        "/home/awiros-docker/awiros-nodejs/public/objects/5e171b7e3489c0003212fa72_0.jpg"
-                      ],
-                      "img_base64": "base64",
-                      "awi_subclass": "Engineer",
-                      "awi_severity": 3,
-                      "awi_label": "Divyanshu",
-                      "awi_id": 17,
-                      "awi_conf": 0.6639971624122467,
-                      "awi_class": "awi_face",
-                      "__v": 0
-                    }
-                  ],
-                  "awi_attributes": {
-                    "awi_gender": "",
-                    "awi_emotion": "",
-                    "awi_age": ""
-                  },
-                  "__v": 0
-                },
-                "awi_coords": [
-                  {
-                    "y": 0.7820512652397156,
-                    "x": 0.428846150636673
-                  },
-                  {
-                    "y": 0.7820512652397156,
-                    "x": 0.4932692348957062
-                  },
-                  {
-                    "y": 0.8999999761581421,
-                    "x": 0.4932692348957062
-                  },
-                  {
-                    "y": 0.8999999761581421,
-                    "x": 0.428846150636673
-                  }
-                ]
-              }
-            },
-            "awi_app_param": {
-              "awi_time_senstivity": 10,
-              "awi_time_frequency": 10,
-              "awi_space_senstivity_y": 5,
-              "awi_space_senstivity_x": 5,
-              "awi_name": "awi_app_param"
-            },
-            "awi_app": {
-              "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
-              "color": "#A57E5D",
-              "awi_name": "Facial Recognition",
-              "awi_app_name": "awi_facial_recognition",
-              "awi_app_id": 0,
-              "awi_app_credits": 100,
-              "awi_app_API_key": "34"
-            }
-          },
-          "timestamp": "2020-01-23T06:27:46.406Z",
-          "location": "FR-attendence_PTZ",
-          "awi_camid": 9,
-          "awi_terminal_id": 3,
-          "awi_client_id": 2,
-          "id": 26249,
-          "awi_severity": "awi_critical",
-          "add_to_train": false,
-          "transaction_id": "0",
-          "is_read": false,
-          "type": "manual",
-          "awi_site_id": 4,
-          "s_name": "Awiros",
-          "__v": 0
-        }
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
       }
-    ]
-  }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "saransh",
+      "first_presence": "2020-02-11T09:37:43.735Z",
+      "last_presence": "2020-02-11T09:37:43.735Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "saransh"
+            ],
+            "awi_blob_ids": [
+              "awi_800"
+            ],
+            "awi_800": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_18092_awi_800.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "saransh",
+                "awi_descriptor": "",
+                "awi_conf": 0.7120689517250429,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d50bfa337000026420b3e_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d50bfa337000026420b3e_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "saransh",
+                    "awi_id": 17,
+                    "awi_conf": 0.7120689517250429,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.2569444477558136,
+                  "x": 0.606249988079071
+                },
+                {
+                  "y": 0.2569444477558136,
+                  "x": 0.6937500238418579
+                },
+                {
+                  "y": 0.4097222089767456,
+                  "x": 0.6937500238418579
+                },
+                {
+                  "y": 0.4097222089767456,
+                  "x": 0.606249988079071
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 3,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T09:37:43.735Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 18092,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Shivansh",
+      "first_presence": "2020-02-11T08:04:24.649Z",
+      "last_presence": "2020-02-11T08:04:24.649Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Shivansh"
+            ],
+            "awi_blob_ids": [
+              "awi_1530"
+            ],
+            "awi_1530": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17962_awi_1530.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Shivansh",
+                "awi_descriptor": "",
+                "awi_conf": 0.677703673206041,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d4f78a337000026420b36_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4f78a337000026420b36_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "Shivansh",
+                    "awi_id": 9,
+                    "awi_conf": 0.677703673206041,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.3513889014720917,
+                  "x": 0.4270833432674408
+                },
+                {
+                  "y": 0.3513889014720917,
+                  "x": 0.48750001192092896
+                },
+                {
+                  "y": 0.46388888359069824,
+                  "x": 0.48750001192092896
+                },
+                {
+                  "y": 0.46388888359069824,
+                  "x": 0.4270833432674408
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T08:04:24.649Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17962,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Salil",
+      "first_presence": "2020-02-11T07:40:37.742Z",
+      "last_presence": "2020-02-11T07:43:20.224Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Salil"
+            ],
+            "awi_blob_ids": [
+              "awi_1250"
+            ],
+            "awi_1250": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17935_awi_1250.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Salil",
+                "awi_descriptor": "",
+                "awi_conf": 0.604638004887067,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d4f64a337000026420b35_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4f64a337000026420b35_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "Salil",
+                    "awi_id": 8,
+                    "awi_conf": 0.604638004887067,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.15694443881511688,
+                  "x": 0.6635416746139526
+                },
+                {
+                  "y": 0.15694443881511688,
+                  "x": 0.6937500238418579
+                },
+                {
+                  "y": 0.21388888359069824,
+                  "x": 0.6937500238418579
+                },
+                {
+                  "y": 0.21388888359069824,
+                  "x": 0.6635416746139526
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T07:40:37.742Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17935,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Yatin",
+      "first_presence": "2020-02-11T04:10:44.529Z",
+      "last_presence": "2020-02-11T09:54:20.366Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Yatin"
+            ],
+            "awi_blob_ids": [
+              "awi_910"
+            ],
+            "awi_910": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17735_awi_910.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Yatin",
+                "awi_descriptor": "",
+                "awi_conf": 0.6131414554084413,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d50c9a337000026420b3f_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d50c9a337000026420b3f_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 3,
+                    "awi_label": "Yatin",
+                    "awi_id": 18,
+                    "awi_conf": 0.6131414554084413,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.2222222238779068,
+                  "x": 0.4645833373069763
+                },
+                {
+                  "y": 0.2222222238779068,
+                  "x": 0.512499988079071
+                },
+                {
+                  "y": 0.31388887763023376,
+                  "x": 0.512499988079071
+                },
+                {
+                  "y": 0.31388887763023376,
+                  "x": 0.4645833373069763
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T04:10:44.529Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17735,
+        "awi_severity": "awi_critical",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Divyanshu",
+      "first_presence": "2020-02-11T04:34:33.292Z",
+      "last_presence": "2020-02-11T10:08:44.190Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Divyanshu"
+            ],
+            "awi_blob_ids": [
+              "awi_1130"
+            ],
+            "awi_1130": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17758_awi_1130.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Divyanshu",
+                "awi_descriptor": "",
+                "awi_conf": 0.6607832926939057,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d505aa337000026420b3c_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d505aa337000026420b3c_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 2,
+                    "awi_label": "Divyanshu",
+                    "awi_id": 15,
+                    "awi_conf": 0.6607832926939057,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.31111112236976624,
+                  "x": 0.534375011920929
+                },
+                {
+                  "y": 0.31111112236976624,
+                  "x": 0.5843750238418579
+                },
+                {
+                  "y": 0.4027777910232544,
+                  "x": 0.5843750238418579
+                },
+                {
+                  "y": 0.4027777910232544,
+                  "x": 0.534375011920929
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T04:34:33.292Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17758,
+        "awi_severity": "awi_high",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Taufizul",
+      "first_presence": "2020-02-11T03:56:31.586Z",
+      "last_presence": "2020-02-11T10:09:00.129Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "STAFF"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Taufizul"
+            ],
+            "awi_blob_ids": [
+              "awi_770"
+            ],
+            "awi_770": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17721_awi_770.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Taufizul",
+                "awi_descriptor": "",
+                "awi_conf": 0.645266142087335,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d500ea337000026420b38_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d500ea337000026420b38_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "STAFF",
+                    "awi_severity": 3,
+                    "awi_label": "Taufizul",
+                    "awi_id": 11,
+                    "awi_conf": 0.645266142087335,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.2541666626930237,
+                  "x": 0.234375
+                },
+                {
+                  "y": 0.2541666626930237,
+                  "x": 0.2666666805744171
+                },
+                {
+                  "y": 0.3152777850627899,
+                  "x": 0.2666666805744171
+                },
+                {
+                  "y": 0.3152777850627899,
+                  "x": 0.234375
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T03:56:31.586Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17721,
+        "awi_severity": "awi_critical",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Piyush P-2",
+      "first_presence": "2020-02-11T05:01:55.474Z",
+      "last_presence": "2020-02-11T05:03:58.813Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Piyush P-2"
+            ],
+            "awi_blob_ids": [
+              "awi_1490"
+            ],
+            "awi_1490": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17794_awi_1490.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Piyush P-2",
+                "awi_descriptor": "",
+                "awi_conf": 0.6960920823061323,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d4f4fa337000026420b34_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4f4fa337000026420b34_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "Piyush P-2",
+                    "awi_id": 7,
+                    "awi_conf": 0.6960920823061323,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.1875,
+                  "x": 0.546875
+                },
+                {
+                  "y": 0.1875,
+                  "x": 0.5843750238418579
+                },
+                {
+                  "y": 0.25833332538604736,
+                  "x": 0.5843750238418579
+                },
+                {
+                  "y": 0.25833332538604736,
+                  "x": 0.546875
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T05:01:55.474Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17794,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Nayeem",
+      "first_presence": "2020-02-11T06:17:53.606Z",
+      "last_presence": "2020-02-11T10:07:12.086Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "AI"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Nayeem"
+            ],
+            "awi_blob_ids": [
+              "awi_50"
+            ],
+            "awi_50": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17814_awi_50.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Nayeem",
+                "awi_descriptor": "",
+                "awi_conf": 0.6051474546335583,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_0.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_1.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_2.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_3.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_4.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_5.jpg",
+                      "http://192.168.0.150:3000/objects/5e3d617dddcab0002a01ed9f_6.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_0.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_2.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_1.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_3.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_4.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_5.jpg",
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3d617dddcab0002a01ed9f_6.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "AI",
+                    "awi_severity": 0,
+                    "awi_label": "Nayeem",
+                    "awi_id": 97,
+                    "awi_conf": 0.6051474546335583,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.16388888657093048,
+                  "x": 0.3447916805744171
+                },
+                {
+                  "y": 0.16388888657093048,
+                  "x": 0.41354167461395264
+                },
+                {
+                  "y": 0.29027777910232544,
+                  "x": 0.41354167461395264
+                },
+                {
+                  "y": 0.29027777910232544,
+                  "x": 0.3447916805744171
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T06:17:53.606Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17814,
+        "awi_severity": "awi_low",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Komal",
+      "first_presence": "2020-02-11T04:33:42.519Z",
+      "last_presence": "2020-02-11T04:33:42.519Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "HR"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Komal"
+            ],
+            "awi_blob_ids": [
+              "awi_1080"
+            ],
+            "awi_1080": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17751_awi_1080.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Komal",
+                "awi_descriptor": "",
+                "awi_conf": 0.6728592710303485,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.150:3000/objects/5e3ba5e4833dd4002a4bc5f3_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e3ba5e4833dd4002a4bc5f3_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "HR",
+                    "awi_severity": 0,
+                    "awi_label": "Komal",
+                    "awi_id": 91,
+                    "awi_conf": 0.6728592710303485,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.23472222685813904,
+                  "x": 0.518750011920929
+                },
+                {
+                  "y": 0.23472222685813904,
+                  "x": 0.5479166507720947
+                },
+                {
+                  "y": 0.29027777910232544,
+                  "x": 0.5479166507720947
+                },
+                {
+                  "y": 0.29027777910232544,
+                  "x": 0.518750011920929
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T04:33:42.519Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17751,
+        "awi_severity": "awi_low",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Nitish",
+      "first_presence": "2020-02-11T05:05:06.872Z",
+      "last_presence": "2020-02-11T10:08:49.262Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Nitish"
+            ],
+            "awi_blob_ids": [
+              "awi_1640"
+            ],
+            "awi_1640": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17808_awi_1640.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Nitish",
+                "awi_descriptor": "",
+                "awi_conf": 0.6857179280730678,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d4f3aa337000026420b33_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4f3aa337000026420b33_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "Nitish",
+                    "awi_id": 6,
+                    "awi_conf": 0.6857179280730678,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.49861112236976624,
+                  "x": 0.6552083492279053
+                },
+                {
+                  "y": 0.49861112236976624,
+                  "x": 0.7322916388511658
+                },
+                {
+                  "y": 0.6472222208976746,
+                  "x": 0.7322916388511658
+                },
+                {
+                  "y": 0.6472222208976746,
+                  "x": 0.6552083492279053
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 1,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T05:05:06.872Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17808,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "vikram",
+      "first_presence": "2020-02-11T09:00:19.273Z",
+      "last_presence": "2020-02-11T09:00:19.273Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "vikram"
+            ],
+            "awi_blob_ids": [
+              "awi_410"
+            ],
+            "awi_410": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_18053_awi_410.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "vikram",
+                "awi_descriptor": "",
+                "awi_conf": 0.6504298271577377,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d501da337000026420b39_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d501da337000026420b39_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 2,
+                    "awi_label": "vikram",
+                    "awi_id": 12,
+                    "awi_conf": 0.6504298271577377,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.45694443583488464,
+                  "x": 0.640625
+                },
+                {
+                  "y": 0.45694443583488464,
+                  "x": 0.6968749761581421
+                },
+                {
+                  "y": 0.5611110925674438,
+                  "x": 0.6968749761581421
+                },
+                {
+                  "y": 0.5611110925674438,
+                  "x": 0.640625
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 3,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T09:00:19.273Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 18053,
+        "awi_severity": "awi_high",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Yogesh",
+      "first_presence": "2020-02-11T07:02:19.388Z",
+      "last_presence": "2020-02-11T09:54:41.227Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Engineer"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Yogesh"
+            ],
+            "awi_blob_ids": [
+              "awi_600"
+            ],
+            "awi_600": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17871_awi_600.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Yogesh",
+                "awi_descriptor": "",
+                "awi_conf": 0.6955044095528735,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d5089a337000026420b3d_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d5089a337000026420b3d_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Engineer",
+                    "awi_severity": 1,
+                    "awi_label": "Yogesh",
+                    "awi_id": 16,
+                    "awi_conf": 0.6955044095528735,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.3861111104488373,
+                  "x": 0.48750001192092896
+                },
+                {
+                  "y": 0.3861111104488373,
+                  "x": 0.5458333492279053
+                },
+                {
+                  "y": 0.49166667461395264,
+                  "x": 0.5458333492279053
+                },
+                {
+                  "y": 0.49166667461395264,
+                  "x": 0.48750001192092896
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T07:02:19.388Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17871,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Nikhil",
+      "first_presence": "2020-02-11T06:26:08.466Z",
+      "last_presence": "2020-02-11T08:18:55.377Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Sales"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Nikhil"
+            ],
+            "awi_blob_ids": [
+              "awi_120"
+            ],
+            "awi_120": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17821_awi_120.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Nikhil",
+                "awi_descriptor": "",
+                "awi_conf": 0.6605345493644428,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://192.168.0.21:3000/objects/5e1d4fa7a337000026420b37_0.jpeg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4fa7a337000026420b37_0.jpeg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Sales",
+                    "awi_severity": 1,
+                    "awi_label": "Nikhil",
+                    "awi_id": 10,
+                    "awi_conf": 0.6605345493644428,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.41527777910232544,
+                  "x": 0.6614583134651184
+                },
+                {
+                  "y": 0.41527777910232544,
+                  "x": 0.731249988079071
+                },
+                {
+                  "y": 0.5583333373069763,
+                  "x": 0.731249988079071
+                },
+                {
+                  "y": 0.5583333373069763,
+                  "x": 0.6614583134651184
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T06:26:08.466Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17821,
+        "awi_severity": "awi_medium",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    },
+    {
+      "timestamp": "11-02-2020",
+      "week": 6,
+      "day_of_week": 3,
+      "day_of_year": 42,
+      "day_of_month": 11,
+      "awi_label": "Shankar",
+      "first_presence": "2020-02-11T06:51:38.585Z",
+      "last_presence": "2020-02-11T06:51:38.585Z",
+      "first_location": "ams-ptz",
+      "last_location": "ams-ptz",
+      "type": "auto",
+      "awi_data": {
+        "cam_no": 1,
+        "awi_app_data": {
+          "awi_name": "awi_app_data",
+          "awi_blobs": {
+            "attributes": [],
+            "awi_server_heat": [
+              ""
+            ],
+            "awi_features": [
+              []
+            ],
+            "awi_blob_subclass": [
+              "Sales"
+            ],
+            "awi_blob_names": [
+              "awi_face"
+            ],
+            "awi_blob_labels": [
+              "Shankar"
+            ],
+            "awi_blob_ids": [
+              "awi_380"
+            ],
+            "awi_380": {
+              "img_base64": "http://192.168.0.150:3000/detections/3/5/3_5_17848_awi_380.jpg",
+              "classification": {
+                "status": true,
+                "awi_url_db": "url",
+                "awi_max_match_idx": 0,
+                "awi_label": "Shankar",
+                "awi_descriptor": "",
+                "awi_conf": 0.6425410785201633,
+                "awi_class": "awi_face",
+                "awi_blob_db": [
+                  {
+                    "imgs": [
+                      "http://localhost:3000/objects/5e301a99f8512c002a273d7e_0.jpg"
+                    ],
+                    "img_url": [
+                      "/home/awiros-docker/awiros-nodejs/public/objects/5e301a99f8512c002a273d7e_0.jpg"
+                    ],
+                    "img_base64": "base64",
+                    "awi_subclass": "Sales",
+                    "awi_severity": 2,
+                    "awi_label": "Shankar",
+                    "awi_id": 26,
+                    "awi_conf": 0.6425410785201633,
+                    "awi_class": "awi_face",
+                    "__v": 0
+                  }
+                ],
+                "awi_attributes": {
+                  "awi_gender": "",
+                  "awi_emotion": "",
+                  "awi_age": ""
+                },
+                "__v": 0
+              },
+              "awi_coords": [
+                {
+                  "y": 0.4486111104488373,
+                  "x": 0.6791666746139526
+                },
+                {
+                  "y": 0.4486111104488373,
+                  "x": 0.746874988079071
+                },
+                {
+                  "y": 0.5777778029441833,
+                  "x": 0.746874988079071
+                },
+                {
+                  "y": 0.5777778029441833,
+                  "x": 0.6791666746139526
+                }
+              ]
+            }
+          },
+          "awi_app_param": {
+            "awi_time_senstivity": 10,
+            "awi_time_frequency": 10,
+            "awi_space_senstivity_y": 5,
+            "awi_space_senstivity_x": 5,
+            "awi_name": "awi_app_param"
+          },
+          "awi_app": {
+            "icon": "http://192.168.0.3:3000/uploads/Group 578.png",
+            "color": "#A57E5D",
+            "awi_name": "Facial Recognition",
+            "awi_app_name": "awi_facial_recognition",
+            "awi_app_id": 2,
+            "awi_app_credits": 100,
+            "awi_app_API_key": "34"
+          }
+        },
+        "timestamp": "2020-02-11T06:51:38.585Z",
+        "location": "ams-ptz",
+        "awi_camid": 5,
+        "awi_terminal_id": 3,
+        "awi_client_id": 2,
+        "id": 17848,
+        "awi_severity": "awi_high",
+        "add_to_train": false,
+        "transaction_id": "0",
+        "is_read": false,
+        "type": "auto",
+        "awi_site_id": 4,
+        "s_name": "ams",
+        "__v": 0
+      }
+    }
+  ]
+}
