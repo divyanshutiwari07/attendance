@@ -23,18 +23,11 @@ export class WebsocketService {
 
     const observable = new Observable(observer => {
         this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
-          console.log('connect  socket');
+          // console.log('connect  socket');
           observer.next(data);
         });
-        // return () => {
-        //   console.log('disconnect socket');
-        //   this.socket.disconnect();
-        // };
     });
 
-    // disconnectSocksdet(){
-    //   this.socket.disconnect();
-    // }
 
     const observer = {
         next: (data: Object) => {
@@ -45,7 +38,7 @@ export class WebsocketService {
   }
 
   disconnectSocksdet(){
-    console.log('dissconnet');
+    // console.log('dissconnet');
     this.socket.disconnect();
   }
 

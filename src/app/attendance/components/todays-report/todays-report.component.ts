@@ -91,6 +91,7 @@ export class TodaysReportComponent implements OnInit {
     this.presentEmpSubscription = this.presentEmpService.empList$
       .subscribe(empList => {
         this.empList = empList;
+        this.presencePercentage(this.empList);
         this.addRegisteredPhotoToPresentEmpList(this.empList);
         this.allDepartmentList = this.getAllDepartmentList( this.empList );
         this.allLocationList = this.getAllLocationList(this.empList);
@@ -109,17 +110,18 @@ export class TodaysReportComponent implements OnInit {
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
-          // this.empList.push( newEmpData );
-          this.empList.unshift( newEmpData );
-          this.presentEmpService.changeList(this.empList);
-          console.log('this.empllist 116', this.empList);
-          this.addRegisteredPhotoToPresentEmpList(this.empList);
-          this.allDepartmentList = this.getAllDepartmentList( this.empList );
-          this.allLocationList = this.getAllLocationList(this.empList);
-          this.allEmpIdList = this.getAllEmpIdList(this.empList);
-          console.log('emp id ', this.allEmpIdList);
+          if ( this.checkEmpIsRegistered(newEmpData.id) ) {
+            this.empList.unshift( newEmpData );
+            this.presentEmpService.changeList(this.empList);
+            console.log('this.empllist 116', this.empList);
+            this.addRegisteredPhotoToPresentEmpList(this.empList);
+            this.allDepartmentList = this.getAllDepartmentList( this.empList );
+            this.allLocationList = this.getAllLocationList(this.empList);
+            this.allEmpIdList = this.getAllEmpIdList(this.empList);
+            console.log('emp id ', this.allEmpIdList);
+          }
         } else {
-          console.log('emp id ', this.allEmpIdList);
+          // console.log('emp id ', this.allEmpIdList);
           console.log('emp already present');
         }
       }
@@ -134,6 +136,9 @@ export class TodaysReportComponent implements OnInit {
       this.TOTAL_EMP = response.count;
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         const empList = this.extractData(res);
+        this.presencePercentage(empList);
+        console.log('updated emplist ', empList);
+        // this.checkEmpIsRegistered();
         this.presentEmpService.changeList(empList);
         console.log('present emplist', this.empList);
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
@@ -143,6 +148,18 @@ export class TodaysReportComponent implements OnInit {
         this.markPresentEmployees();
       });
     });
+  }
+
+  private presencePercentage(empList) {
+    if ( empList ) {
+      this.presentEmp = ((empList.length / this.TOTAL_EMP) * 100).toFixed(2);
+    } else {
+      this.presentEmp = '00.00';
+    }
+  }
+
+  private checkEmpIsRegistered(id) {
+     return this.registeredUsersData.find((reg) => reg.id === id );
   }
 
   private checkEmpAlreadyPresent(newId) {
@@ -174,11 +191,12 @@ export class TodaysReportComponent implements OnInit {
 
   private addRegisteredPhotoToPresentEmpList(empList) {
     if (!this.registeredUsersData || !this.registeredUsersData.length ) { return; }
-    console.log('addregister before ', this.empList);
+    // console.log('addregister before ', this.empList);
     this.empList = empList.map(emp => ({
-      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id))
+      // tslint:disable-next-line:max-line-length
+      ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id) ? this.registeredUsersData.find(user => user.id === emp.id).photos : '')
     }));
-    console.log('addregister', this.empList);
+    // console.log('addregister', this.empList);
   }
 
   private markPresentEmployees() {
@@ -237,11 +255,11 @@ export class TodaysReportComponent implements OnInit {
   private extractData(response): Array<object> {
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
-      this.presentEmp = '00.00';
+      // this.presentEmp = '00.00';
       return [];
     }
 
-    this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
+    // this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
     const data = [];
     response.data.forEach((element) => {
@@ -265,7 +283,9 @@ export class TodaysReportComponent implements OnInit {
 
       const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
       row.photo = this.getUpdatedImageUrl(img);
-      data.push(row);
+      if ( this.checkEmpIsRegistered(row.id) ) {
+        data.push(row);
+      }
     });
     return data;
   }
@@ -321,6 +341,7 @@ export class TodaysReportComponent implements OnInit {
     this.selectedTab = 'P';
     this.getPresentEmployeesDetails(this.startTime, this.endTime, (response) => {
       const empList = this.extractData(response);
+      this.presencePercentage(empList);
       this.presentEmpService.changeList(empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
@@ -465,6 +486,8 @@ export class TodaysReportComponent implements OnInit {
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       const empList = this.extractData(res);
+      console.log('selected date data', empList);
+      this.presencePercentage(empList);
       this.presentEmpService.changeList(empList);
       this.allEmpIdList = this.getAllEmpIdList(this.empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);

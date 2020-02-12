@@ -27,7 +27,7 @@ export class EmpRowComponent implements OnInit {
   private imgIndex;
   public currentImg;
   public showNextPreIcon;
-  temp;
+  // temp;
 
   private yearlyReport;
   exportAsConfig: ExportAsConfig = {
@@ -48,26 +48,33 @@ export class EmpRowComponent implements OnInit {
    }
 
   ngOnInit() {
-    console.log(this.employee);
+    // console.log(this.employee);
     this.disableExportButton = true;
     this.imgIndex = 0;
-    this.temp = [ "https://www.dailycsr.com/photo/art/grande/10192527-16625056.jpg?v=1473684171", "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg" ]
-    this.currentImg = this.temp[this.imgIndex];
-    if ( this.temp.length >= 2 ) {
+    this.checkIfRegisteredPhoto();
+    // this.temp = [ "https://www.dailycsr.com/photo/art/grande/10192527-16625056.jpg?v=1473684171", "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg" ]
+    
+  }
+
+  checkIfRegisteredPhoto() {
+    // console.log(this.employee)
+    if ( !this.employee.registeredPhoto ) { return; }
+    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
+    if ( this.employee.registeredPhoto.length >= 2 ) {
       this.showNextPreIcon = true;
     }
   }
 
   nextImg() {
-    const imgLength = this.temp.length;
+    const imgLength = this.employee.registeredPhoto.length;
     this.imgIndex = this.imgIndex >= (imgLength - 1) ? 0 : this.imgIndex + 1 ;
-    this.currentImg = this.temp[this.imgIndex];
+    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
   }
 
   previousImg() {
-    const imgLength = this.temp.length;
+    const imgLength = this.employee.registeredPhoto.length;
     this.imgIndex = this.imgIndex <= 0 ? (imgLength - 1) : this.imgIndex - 1;
-    this.currentImg = this.temp[this.imgIndex];
+    this.currentImg = this.employee.registeredPhoto[this.imgIndex];
   }
 
   openVerticallyCentered(content) {

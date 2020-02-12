@@ -135,7 +135,7 @@ export class AttendanceStatsComponent implements OnInit {
 
   private showYearlyPieChart() {
     const dataset = [this.report.year.attendancePercentage, 100 - this.report.year.attendancePercentage];
-    console.log('dataset', dataset);
+    // console.log('dataset', dataset);
     if (!this.pieChartYearly ) {
       this.pieChartYearly = new Chart('pieChartYearly', {
         type: 'pie',
@@ -338,9 +338,9 @@ export class AttendanceStatsComponent implements OnInit {
         dataset[i] = 0;
       }
     }
-    console.log('workingmonth ', workingMonthCount);
+    // console.log('workingmonth ', workingMonthCount);
     let attendancePercentage = dataset.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / workingMonthCount  ;
-    console.log('attendancePercentage', attendancePercentage);
+    // console.log('attendancePercentage', attendancePercentage);
     attendancePercentage = attendancePercentage || NaN;
     const attendancePercentageFixedNum = attendancePercentage.toFixed(2);
     this.report.year.attendancePercentage = parseFloat(attendancePercentageFixedNum);
