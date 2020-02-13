@@ -134,8 +134,9 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   private showYearlyPieChart() {
-    const dataset = [this.report.year.attendancePercentage, 100 - this.report.year.attendancePercentage];
-    // console.log('dataset', dataset);
+    const absentPercentage = (100 - this.report.year.attendancePercentage).toFixed(2);
+    const dataset = [this.report.year.attendancePercentage, parseFloat(absentPercentage)];
+
     if (!this.pieChartYearly ) {
       this.pieChartYearly = new Chart('pieChartYearly', {
         type: 'pie',
