@@ -74,7 +74,7 @@
     </div>
 </ng-template>  
 
-<ng-template #contentForImgCompare let-modal     >
+<ng-template #contentForImgCompare let-modal>
     <div class="img-comparison">
         <div class="modal-header">
             <h4 class="modal-title">Compare Image</h4>
@@ -84,8 +84,7 @@
         </div>
         <div class="modal-body img-report">
             <div class='column avatar'>
-                <div class= "{{ showNextPreIcon ? 'reg-header' : ''  }}" >Registered Photo</div>
-                <!-- <button type="button" class="btn btn-outline-dark" (click) = 'previousImg()'><i class="fa fa-angle-left" ></i></button> -->
+                <div >Registered Photo</div>
                 <div class="registered-photos-slider">
                     <a *ngIf='showNextPreIcon' class="fa fa-angle-left fa-2x " title="Previous Image" (click)="previousImg()"></a>
                     <img src={{currentImg}} alt="Avatar" class="img-fluid " onerror="src='assets/images/error_404.png';">

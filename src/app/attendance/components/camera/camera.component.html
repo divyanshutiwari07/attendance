@@ -1,7 +1,7 @@
 <div style="text-align:center">
     <div>
       <webcam [height]="350" [width]="350" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [mirrorImage]="'always'" [videoOptions]="videoOptions"  (cameraSwitched)="cameraWasSwitched($event)"
+       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [mirrorImage]="'never'" [videoOptions]="videoOptions"  (cameraSwitched)="cameraWasSwitched($event)"
        (initError)="handleInitError($event)"></webcam>
       <br/>
       <div class="actionBtn" title="Take Picture">

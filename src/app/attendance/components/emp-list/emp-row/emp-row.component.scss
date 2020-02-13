@@ -35,6 +35,9 @@
       }
     
       .column.avatar {
+        img {
+          cursor: pointer;
+        }
         > div {
           position: relative;
         }
@@ -158,9 +161,6 @@
       
       > div:nth-child(1) {
         padding-bottom: 15px;
-      }
-      .reg-header {
-        padding-left: 11.44px; 
       }
       img {
         // border: 1px solid black;
