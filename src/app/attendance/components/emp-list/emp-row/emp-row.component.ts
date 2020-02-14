@@ -52,8 +52,8 @@ export class EmpRowComponent implements OnInit {
     this.disableExportButton = true;
     this.imgIndex = 0;
     this.checkIfRegisteredPhoto();
+    // tslint:disable-next-line:max-line-length
     // this.temp = [ "https://www.dailycsr.com/photo/art/grande/10192527-16625056.jpg?v=1473684171", "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg" ]
-    
   }
 
   checkIfRegisteredPhoto() {

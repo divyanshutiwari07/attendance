@@ -19,7 +19,6 @@ import { MonthlyReportComponent } from './components/monthly-report/monthly-repo
 import { YearlyReportComponent } from './components/yearly-report/yearly-report.component';
 import { YearDropDownComponent } from './common/components/year-drop-down/year-drop-down.component';
 
-import { DataTablesModule } from 'angular-datatables';
 import { MaterialModule } from './common/material/material.module';
 import { SearchPipe } from './common/filters/search';
 import { SortPipe } from './common/filters/sort';
@@ -54,7 +53,6 @@ import { CameraComponent } from './components/camera/camera.component';
     ngfModule,
     ReactiveFormsModule,
     ExportAsModule,
-    DataTablesModule,
     MaterialModule,
     WebcamModule
   ],
