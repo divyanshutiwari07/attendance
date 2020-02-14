@@ -183,7 +183,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private getAllDepartmentList(empList) {
-    const departmentList = empList.map(a => a.department);
+    const departmentList = empList.map(a => Utils.getFirstLaterOfWordCapital(a.department));
     return  [...new Set( departmentList)].map((d) => {
       return  {id: d };
     });
