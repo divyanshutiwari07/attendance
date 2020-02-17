@@ -16,10 +16,10 @@ export class PresentEmpDataService {
     this.presentEmp = presentEmpData;
   }
 
-  public loadPresentEmployees(): Observable<any> {
+  public loadPresentEmployees(req): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
       if ( !Object.keys(this.presentEmp).length ) {
-          this.http.get(config.TODAYS_ATTENDANCE, {}).subscribe(response => {
+          this.http.get(config.TODAYS_ATTENDANCE, req).subscribe(response => {
             this.savePresentEmpData(response);
             observer.next(response);
             observer.complete();

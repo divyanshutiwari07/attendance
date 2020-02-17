@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
+
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
 
@@ -77,7 +78,7 @@ export class TodaysReportComponent implements OnInit {
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
     private auth: AuthGuard,
-    private presentEmpService: PresentEmpService
+    private presentEmpService: PresentEmpService    
   ) {}
 
   ngOnInit() {
@@ -134,10 +135,11 @@ export class TodaysReportComponent implements OnInit {
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
-      console.log('register data 1', response);
+      
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
-      console.log('register result', this.registeredUsersData);
+      
       this.TOTAL_EMP = response.count;
+      
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         const empList = this.extractData(res);
         this.presencePercentage(empList);
@@ -216,16 +218,21 @@ export class TodaysReportComponent implements OnInit {
   }
 
   getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
-    this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
-    .subscribe(
-      response => {
-        if (callBackFn) {
-          console.log('present emp today' , response);
-          callBackFn(response);
-        }
-
+    this.presentEmpService.loadPresentEmployees({'start_time': startTime, 'end_time': endTime }).subscribe(res => {
+      if (callBackFn) {
+        callBackFn(res);
       }
-    );
+    });
+    // this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
+    // .subscribe(
+    //   response => {
+    //     if (callBackFn) {
+    //       console.log('present emp today' , response);
+    //       callBackFn(response);
+    //     }
+
+    //   }
+    // );
   }
 
   private extractDataForRegisteredUsers(response): Array<object> {

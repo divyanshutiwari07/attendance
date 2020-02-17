@@ -43,7 +43,7 @@ export class PersonComponent implements OnInit {
     private userData: UserDataHomePageService,
     private notifyService: NotificationService,
     private userService: UserService,
-    private presentEmpService: PresentEmpService,
+    private presentEmpService: PresentEmpService,    
     private auth: AuthGuard) {
       this.todaysDate = new Date();
     }
@@ -79,7 +79,7 @@ export class PersonComponent implements OnInit {
   }
 
   private getPresentEmpData() {
-    this.apiService.getPresentEmployeesForDate({start_time: this.startTime, end_time: this.endTime })
+    this.presentEmpService.loadPresentEmployees({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
         console.log('prestn emp data on tab', response);
