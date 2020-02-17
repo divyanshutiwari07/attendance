@@ -1,0 +1,118 @@
+:host { 
+  background-color: #fff; 
+  display: block; 
+} 
+.person-container {
+
+  display: flex;
+  padding: 10px 30px;
+  color: #4d4e4f;
+  margin-bottom: 20px;
+
+  .form-container {
+    padding-top: 10px;
+    flex: 2;
+    min-height: 334px;
+    form {
+      width: 100%;
+    }
+    .row {
+      padding-bottom: 15px;
+    }
+  
+    .welcome {
+      h3 {
+        margin: 0;
+      }
+    }
+  
+    .user {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+  
+      .avatar img{
+        width: 120px;
+        height: 120px;
+        margin-right: 20px;
+      }
+    }
+  
+    .radio {
+  
+      input[type="radio"] {
+        vertical-align: middle;
+      }
+
+      .select-name-class {
+        margin: 0;
+        padding-top: 6px;
+      }
+
+      .is-recognized-false {
+        color: #a5afb9;
+      }
+
+      .is-recognized-true {
+        color: #a5afb9;
+      }
+
+      button{
+        border-radius: 0;   
+        width: 75px;
+      }
+      
+    }
+  
+    .coulmn {    
+      flex-direction: column;
+      justify-content: center;
+    }
+    .second{
+      padding-top: 15px;
+    }
+  
+    .radio .form-group{
+      display: flex;
+      flex-direction: row;
+    }
+  
+  }
+
+  .waiting-container {
+    flex: 2;
+    min-height: 334px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .side-info {
+    display: flex;
+    .notification {
+
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      span {
+        img{
+          vertical-align: sub;
+          height: 20px;
+        }
+      }
+      .badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        padding: 5px 7px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+      }
+    }
+
+    .reject{
+      padding-left:18px;
+    }
+  }
+}

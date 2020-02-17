@@ -1,0 +1,79 @@
+<div class="person-container">
+  
+  <div class="form-container" *ngIf="newPersonCame">
+      <div class="row">
+          <div class="col-md-12 welcome d-flex justify-content-between align-items-end">
+            <h3>Welcome {{empRecord.name}} 
+            </h3>
+            <div class="side-info" *ngIf="newPersonCame">              
+              <a data-toggle="tooltip" data-placement="left" ngbTooltip="Waiting Employees " class="notification">
+                  <span><img src="assets/images/group-icon.png" /></span>
+                  <span class="badge">{{ empQueue?.length}}</span>
+              </a>
+              <a class="reject">
+                <button type="button" (click)="rejectDetection()" class="btn btn-sm btn-outline-danger">Reject</button>
+              </a>
+              
+            </div>
+          </div>
+      
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 user">
+            <div class="avatar coulmn">
+              <img src={{empRecord.photo}} alt='error_404' onerror="src='assets/error_404.png';"  > 
+            </div>
+            <div class="coulmn">
+              <div >Time of Entrance: </div> <span> {{empRecord.inTime | date: 'yyyy/MM/dd h:mm:ss a'}} </span>
+              <div class="second">Entrance From:</div> <span> {{empRecord.location}} </span>
+            </div>
+          </div>    
+        </div>  
+      
+        <div class="row">
+            <form role="form" name='form' #personForm="ngForm">
+          
+              <div class="col-md-12">
+                  <div class="radio d-flex align-items-center">
+                    <div class="col-sm-6 p-0">
+
+                        <input type="radio" name="recognized" [(ngModel)]="person.isRecognized" (click)="person.name.name = ''" [value]="true" checked> <span class=" {{ person.isRecognized === false ? 'is-recognized-true' : '' }} " > Is this {{empRecord.name}} ? </span> 
+
+                    </div>
+                    <div >
+                      <button type="button" (click)="onVerify()" [disabled]="!person.isRecognized" class="btn btn-secondary">Verify</button>
+                    </div>
+                  </div>
+              </div>
+      
+              <div class="col-md-12">
+                <div class="radio">
+                  <div class="col-sm-6 p-0">
+
+                  <input type="radio" [(ngModel)]="person.isRecognized" [value]="false" name="not_recognized">
+                  <span class=" {{ person.isRecognized === true ? 'is-recognized-false' : '' }} " > Not {{empRecord.name}}? </span> 
+                  </div>  
+                    <div class="form-group select-name-class">
+                      <div class="col-sm-6">
+                          <select class="form-control" #name="ngModel" name="name"
+                          [(ngModel)]="person.name" [disabled]="person.isRecognized"  required>
+                            <option value="">Select Your Name</option>
+                            <option *ngFor="let a of getRegisteredUsersName;let i = index" [ngValue]="a">{{ a.name }}</option>
+                          </select>
+                      </div>
+                      <div>
+                          <button (click)="onSubmit()" class="btn btn-secondary" [disabled]="person.isRecognized">Submit</button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+      
+            </form>
+        </div>      
+  </div>
+  <div class="waiting-container" *ngIf="!newPersonCame">
+    <h3>Waiting for new person...</h3>
+  </div>
+
+</div>

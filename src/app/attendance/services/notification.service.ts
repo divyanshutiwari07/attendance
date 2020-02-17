@@ -28,6 +28,15 @@ export class NotificationService {
 
   }
 
+  showInfo(message, title) {
+    this.toastr.info(message, title , {
+      timeOut : 2000,
+      closeButton: true,
+      // enableHtml: true,
+      positionClass: 'toast-top-center'
+    });
+  }
+
 
   // showSuccessWithTimeout(message, title, timespan){
   //   this.toastr.success(message, title , {

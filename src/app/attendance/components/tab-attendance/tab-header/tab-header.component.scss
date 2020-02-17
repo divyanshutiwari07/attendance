@@ -1,0 +1,43 @@
+$topnav-background-color: #dedede;
+
+:host {
+.header {
+     
+    .navbar-nav {
+        img {
+            height: 24px;
+        }
+    }
+     .navbar-brand {
+         color: black;
+         margin-left: 3em;
+     }   
+     
+     
+     .nav-item > a {
+         color: black;
+         &:hover {
+             color: black;
+         }
+     }
+
+     .logo-style {
+         padding-left: 25em;
+     }
+
+     .navbar-nav {
+         .dropdown-toggle::after {
+             display:none;
+         }   
+         i.fa-user-circle {
+             font-size: 25px;
+         } 
+     }
+} 
+    
+}
+
+.dropdown-menu[x-placement="bottom-right"] {
+    right: 0;
+    left: auto;
+}

@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef , AfterViewInit  } from '@angular/core';
+
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
-import { isNullOrUndefined } from 'util';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
+
+import { isNullOrUndefined } from 'util';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { config } from '../../../config';
-import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportToCsv} from 'export-to-csv';
 import { AuthGuard } from 'src/app/shared';
 
@@ -79,6 +81,7 @@ export class TodaysReportComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('config', config.LIVE_STREAM_PORT);
     this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
@@ -86,7 +89,7 @@ export class TodaysReportComponent implements OnInit {
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
     this.getListOfRegisteredUsers();
-    this.sendMessage();
+    this.startSocketConnection();
     this.checkNewPresentEmp();
     this.presentEmpSubscription = this.presentEmpService.empList$
       .subscribe(empList => {
@@ -96,11 +99,12 @@ export class TodaysReportComponent implements OnInit {
         this.allDepartmentList = this.getAllDepartmentList( this.empList );
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
+        console.log('all emp id', this.allEmpIdList);
       });
   }
 
-  sendMessage() {
-    this.userData.sendMsg('Access Real Time Data from server');
+  startSocketConnection() {
+    this.userData.initConnection('Access Real Time Data from server');
   }
 
   private checkNewPresentEmp() {

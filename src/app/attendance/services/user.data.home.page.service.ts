@@ -18,7 +18,7 @@ export class UserDataHomePageService {
       }));
    }
 
-  sendMsg(msg) {
+   initConnection(msg) {
     this.messages.next(msg);
   }
 }

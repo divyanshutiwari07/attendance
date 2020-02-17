@@ -36,5 +36,13 @@ export class ApiService {
   rejectEmpAttendance(obj): Observable <any> {
     return this.http.get( config.REJECT_ATTENDANCE_URL, obj );
   }
+
+  getListOfSources(): Observable <any> {
+    return this.http.get(config.LIST_OF_SOURCES_URL, {});
+  }
+
+  verifyEmployeePresence(obj): Observable <any> {
+    return this.http.get(config.VERIFY_EMPLOYEE_PRESENCE_URL, obj);
+  }
 }
 

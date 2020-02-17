@@ -8,6 +8,10 @@
             <i class="fa fa-fw  fa-bar-chart"></i>&nbsp;
             <span>{{ 'Attendance Stats' }}</span>
         </a>
+        <a [routerLink]="['/tab-attendance']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <i class="fa fa-fw  fa-tablet "></i>&nbsp;
+          <span>{{ 'Tab View' }}</span>
+        </a>
         <a role="button" class="list-group-item" (click)="openVerticallyCentered(content)">
             <i class="fa fa-fw  fa-registered"></i>&nbsp;
             <span>{{ 'New Registration' }}</span>
