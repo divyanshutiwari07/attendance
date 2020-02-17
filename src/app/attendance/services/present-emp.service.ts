@@ -16,26 +16,22 @@ export class PresentEmpService {
 
   constructor(private http: RestClient) {}
 
-  private savePresentEmpData(presentEmpData) {
-    this.presentEmp = presentEmpData;
+  private savePresentEmpData(response) {
+    this.presentEmp = response;
   }
 
   public loadPresentEmployees(req): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
-      if ( !Object.keys(this.presentEmp).length ) {
-          this.http.get(config.TODAYS_ATTENDANCE, req).subscribe(response => {
-            this.savePresentEmpData(response);
-            observer.next(response);
-            observer.complete();
-          });
-      } else {
-        observer.next(this.presentEmp);
-      }
+      this.http.get(config.TODAYS_ATTENDANCE, req).subscribe(response => {
+        this.savePresentEmpData(response);
+        observer.next(response);
+        observer.complete();
+      });
     });
   }
   
   changeList(newEmpList) {
-    this.empListSource.next(newEmpList);
+    this.empListSource.next(newEmpList);    
   }
 
   reject(empId) {

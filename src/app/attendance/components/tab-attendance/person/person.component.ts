@@ -59,6 +59,12 @@ export class PersonComponent implements OnInit {
     this.getPresentEmpData();
     this.getRegisterUsersData();
 
+    // this.presentEmpSubscription = this.presentEmpService.empList$
+    //   .subscribe(empList => {                
+    //     this.empIds = empList.map(emp => emp.id);
+    //     console.log('presentEmpSubscription', this.empIds);
+    //   });
+
   }
 
   private getRegisterUsersData() {
@@ -86,6 +92,7 @@ export class PersonComponent implements OnInit {
         this.empListObj = PresentEmployeeListModel.ModelMap(response);
         this.empIds = this.empListObj.presentEmpIds;
         console.log('emp id', this.empIds);
+        this.presentEmpService.changeList(this.empListObj.presentEmployeeList);
 
         this.checkNewPresentEmp();
       }

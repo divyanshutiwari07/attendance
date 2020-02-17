@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
+import PresentEmployeeListModel from '../../models/present-employee-list-model';
 
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
@@ -272,32 +273,36 @@ export class TodaysReportComponent implements OnInit {
 
     // this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
-    const data = [];
-    response.data.forEach((element) => {
-      // tslint:disable-next-line:max-line-length
-      const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0, type: null};
+    
+    const empListObj = PresentEmployeeListModel.ModelMap(response);
+    const data = empListObj.presentEmployeeList;
+        // this.empIds = empListObj.presentEmpIds;
+        // console.log('emp id', this.empIds);
+    // response.data.forEach((element) => {
+    //   // tslint:disable-next-line:max-line-length
+    //   const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0, type: null};
 
-      const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-      const intime = element.first_presence;
-      const outtime = element.last_presence;
-      row.name = element.awi_label;
-      row.inTime = intime;
+    //   const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
+    //   const intime = element.first_presence;
+    //   const outtime = element.last_presence;
+    //   row.name = element.awi_label;
+    //   row.inTime = intime;
 
-      row.inTimeForCSV =  Utils.getFormattedTime(intime);
-      row.outTime = Utils.getFormattedTime(outtime);
-      row.location = element.awi_data.location;
-      row.type = element.type;
+    //   row.inTimeForCSV =  Utils.getFormattedTime(intime);
+    //   row.outTime = Utils.getFormattedTime(outtime);
+    //   row.location = element.awi_data.location;
+    //   row.type = element.type;
 
-      row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
+    //   row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
 
-      row.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+    //   row.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
 
-      const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
-      row.photo = this.getUpdatedImageUrl(img);
-      if ( this.checkEmpIsRegistered(row.id) ) {
-        data.push(row);
-      }
-    });
+    //   const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
+    //   row.photo = this.getUpdatedImageUrl(img);
+    //   if ( this.checkEmpIsRegistered(row.id) ) {
+    //     data.push(row);
+    //   }
+    // });
     return data;
   }
 
