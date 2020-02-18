@@ -1,8 +1,6 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {ApiService} from '../../services/api.service';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import * as Utils from '../../common/utils';
-import {split} from 'ts-node';
-import { isNullOrUndefined } from 'util';
+import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 
 const BACK_YEARS_COUNT = 5;

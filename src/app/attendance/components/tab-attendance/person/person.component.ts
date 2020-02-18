@@ -76,7 +76,6 @@ export class PersonComponent implements OnInit {
 
   private getListOfRegisteredUsersDetails(res) {
     if (isNullOrUndefined(res) || res.success === false) {
-      // console.log('no registered users data found');
       return [];
     }
     return res.map((a) => {

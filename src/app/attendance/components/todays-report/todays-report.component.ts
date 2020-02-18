@@ -1,21 +1,21 @@
-import { Component, OnInit, ViewChild, ElementRef , AfterViewInit  } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 
 import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
+import { UserDataHomePageService } from '../../services/user.data.home.page.service';
+import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
+
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
 import PresentNewEmployeeModel from '../../models/present-new-employee-model';
 
-import { UserDataHomePageService } from '../../services/user.data.home.page.service';
-import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
-
 import { isNullOrUndefined } from 'util';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import * as Utils from '../../common/utils';
 import { config } from '../../../config';
-import {ExportToCsv} from 'export-to-csv';
+import { ExportToCsv } from 'export-to-csv';
 import { AuthGuard } from 'src/app/shared';
 
 @Component({
@@ -126,7 +126,6 @@ export class TodaysReportComponent implements OnInit {
             console.log('emp id ', this.allEmpIdList);
           }
         } else {
-          // console.log('emp id ', this.allEmpIdList);
           console.log('emp already present');
         }
       }
@@ -195,12 +194,10 @@ export class TodaysReportComponent implements OnInit {
 
   private addRegisteredPhotoToPresentEmpList(empList) {
     if (!this.registeredUsersData || !this.registeredUsersData.length ) { return; }
-    // console.log('addregister before ', this.empList);
     this.empList = empList.map(emp => ({
       // tslint:disable-next-line:max-line-length
       ...emp , registeredPhoto: ( this.registeredUsersData.find(user => user.id === emp.id) ? this.registeredUsersData.find(user => user.id === emp.id).photos : '')
     }));
-    // console.log('addregister', this.empList);
   }
 
   private markPresentEmployees() {

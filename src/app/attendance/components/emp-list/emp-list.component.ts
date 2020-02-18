@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import {ExportToCsv} from 'export-to-csv';
+import { ExportToCsv } from 'export-to-csv';
 import * as Metadata from './../../common/metadata/metadata';
 import * as Utils from '../../common/utils';
 
@@ -76,7 +76,7 @@ export class EmpListComponent implements OnChanges {
 
   // onPageChange($event) {
   //   console.log($event);
-  //   // tslint:disable-next-line:max-line-length
+  // tslint:disable-next-line:max-line-length
   //   this.currentItemsToShow = this.employees.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
   // }
 

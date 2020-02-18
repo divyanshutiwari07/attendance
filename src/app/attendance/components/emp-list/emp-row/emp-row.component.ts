@@ -1,13 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ExportToCsv} from 'export-to-csv';
-import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ExportToCsv } from 'export-to-csv';
 import * as Utils from '../../../common/utils';
+
+import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 import { ApiService } from '../../../services/api.service';
 import { NotificationService } from '../../../services/notification.service';
 import { PresentEmpService } from '../../../services/present-emp.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import { map } from 'rxjs/operators';
 
 @Component({
   // tslint:disable-next-line:component-selector

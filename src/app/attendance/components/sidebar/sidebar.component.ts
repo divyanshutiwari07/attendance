@@ -127,7 +127,7 @@ export class SidebarComponent implements OnInit {
     }
 
     onSubmit() {
-    console.log(this.files, this.webcamImages);
+    // console.log(this.files, this.webcamImages);
     this.registerFormSubmitted = true;
     // console.log(this.registerForm);
     if (this.registerForm.valid ) {
@@ -149,9 +149,9 @@ export class SidebarComponent implements OnInit {
         }
 
         // to see the structure of the formdata
-        formData.forEach((value, key) => {
-            console.log(key, ': ', value);
-        });
+        // formData.forEach((value, key) => {
+        //     console.log(key, ': ', value);
+        // });
 
         this.apiService.register(formData)
         .subscribe(

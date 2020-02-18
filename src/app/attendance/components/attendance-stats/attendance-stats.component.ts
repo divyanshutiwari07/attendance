@@ -1,10 +1,13 @@
-import {Component, OnInit, HostListener} from '@angular/core';
-import {Chart} from 'chart.js';
-import {ApiService} from '../../services/api.service';
-import * as Utils from '../../common/utils';
+import { Component, OnInit } from '@angular/core';
+import { Chart } from 'chart.js';
+
+import { ApiService } from '../../services/api.service';
 import { NotificationService } from '../../services/notification.service';
-import { isNullOrUndefined } from 'util';
 import { UserService } from '../../services/user.service';
+
+import * as Utils from '../../common/utils';
+import { isNullOrUndefined } from 'util';
+
 
 const BACK_YEARS_COUNT = 5;
 // const TOTAL_EMP = 20;
@@ -232,6 +235,8 @@ export class AttendanceStatsComponent implements OnInit {
             custom: function(tooltip) {
               if (!tooltip) { return; }
               tooltip.displayColors = false;
+              // tooltip.backgroundColor = 'rgba(255, 255, 255)';
+              // tooltip.color = 'rgba(0, 0, 0)';
             },
             callbacks: {
               title: function() { return ''; },
