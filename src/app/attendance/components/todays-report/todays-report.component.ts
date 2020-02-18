@@ -5,6 +5,7 @@ import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
+import PresentNewEmployeeModel from '../../models/present-new-employee-model';
 
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
 import {ExportAsConfig, ExportAsService} from 'ngx-export-as';
@@ -276,34 +277,40 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractDataForNewEmp(res) {
-
-    // tslint:disable-next-line:max-line-length
-    const row = {name: null, inTime: null, outTime: null, inTimeForCSV: null, type: null, location: null, department: null , photo: null,  id: 0};
-    const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
-    const intime = res.data.timestamp;
-    const outtime = res.data.timestamp;
-
-    row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
-
-    row.inTime = intime;
-    row.inTimeForCSV =  Utils.getFormattedTime(intime);
-    row.outTime = Utils.getFormattedTime(outtime);
-    row.location = res.data.awi_facial_recognition.location;
-    row.type = 'auto';
-
-    row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
-
-    row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-
-    const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
-    row.photo = this.getUpdatedImageUrl(img);
-
-      if (row.name !== 'Unrecognized') {
-        return row;
+    const newPerson = PresentNewEmployeeModel.ModelMap(res).presentEmployee;
+      if (newPerson.name !== 'Unrecognized') {
+        return newPerson;
       } else {
         console.log('unrecognized person');
       }
-      // return row;
+
+    // tslint:disable-next-line:max-line-length
+    // const row = {name: null, inTime: null, outTime: null, inTimeForCSV: null, type: null, location: null, department: null , photo: null,  id: 0};
+    // const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
+    // const intime = res.data.timestamp;
+    // const outtime = res.data.timestamp;
+
+    // row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
+
+    // row.inTime = intime;
+    // row.inTimeForCSV =  Utils.getFormattedTime(intime);
+    // row.outTime = Utils.getFormattedTime(outtime);
+    // row.location = res.data.awi_facial_recognition.location;
+    // row.type = 'auto';
+
+    // row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
+
+    // row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+
+    // const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
+    // row.photo = this.getUpdatedImageUrl(img);
+
+    //   if (row.name !== 'Unrecognized') {
+    //     return row;
+    //   } else {
+    //     console.log('unrecognized person');
+    //   }
+
   }
 
   getUpdatedImageUrl(img_url) {

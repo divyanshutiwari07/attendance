@@ -95,8 +95,8 @@ export function getFormattedTime(date) {
     hours = hours % 12;
     hours = hours ? hours : 12;
     minutes = minutes < 10 ? '0'+minutes : minutes;
-    let strTime = hours + ':' + minutes + ':' + second + ' ' + ampm;
-    return strTime;
+    return ( padStart(hours, "0", 2) + ':' + padStart(minutes, "0", 2) + ':' + padStart(second, "0", 2) + ' ' + ampm);
+    
 }
 
 export function getFirstLaterOfWordCapital(str) {

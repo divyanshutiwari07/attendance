@@ -1,4 +1,5 @@
 import { config } from '../../config';
+import * as Utils from '../common/utils';
 
 export default class NewEmployee {
   name: string;
@@ -6,19 +7,26 @@ export default class NewEmployee {
   location: string;
   inTime: string;
   outTime: string;
+  inTimeForCSV: string;
   photo: string;
+  type: string;
   id: number;
   blobId: string;
   alertId: number;
 
   constructor(res) {
     const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
+    const intime = res.data.timestamp;
+    const outtime = res.data.timestamp;
 
     this.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
 
-    this.inTime = res.data.timestamp;
-    this.outTime = res.data.timestamp;
+
+    this.inTime = intime;
+    this.inTimeForCSV =  Utils.getFormattedTime(intime);
+    this.outTime = Utils.getFormattedTime(outtime);
     this.location = res.data.awi_facial_recognition.location;
+    this.type = 'auto';
 
     this.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
 
@@ -39,23 +47,3 @@ export default class NewEmployee {
     return url;
   }
 }
-
-// const row = {name: null, inTime: null, outTime: null, inTimeForCSV: null, type: null, location: null, department: null , photo: null,  id: 0};
-//     const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
-//     const intime = res.data.timestamp;
-//     const outtime = res.data.timestamp;
-
-//     row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
-
-//     row.inTime = intime;
-//     row.inTimeForCSV =  Utils.getFormattedTime(intime);
-//     row.outTime = Utils.getFormattedTime(outtime);
-//     row.location = res.data.awi_facial_recognition.location;
-//     row.type = 'auto';
-
-//     row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
-
-//     row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-
-//     const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
-//     row.photo = this.getUpdatedImageUrl(img);

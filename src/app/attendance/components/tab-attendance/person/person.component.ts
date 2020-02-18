@@ -105,8 +105,9 @@ export class PersonComponent implements OnInit {
 
   private checkNewPresentEmp() {
     this.userData.messages.subscribe(data => {
-      console.log('new person on tab ', data);
+      // console.log('new person on tab ', data);
       const newPerson = PresentNewEmployeeModel.ModelMap(data).presentEmployee;
+      console.log('new person on tab', newPerson);
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
       // tslint:disable-next-line:max-line-length

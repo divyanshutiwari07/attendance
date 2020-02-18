@@ -12,14 +12,14 @@
 	.app-container { 
 		display: flex; 
 		> * { 
-			margin-bottom: 20px; 
+			// margin-bottom: 20px; 
 		} 
 	} 
 
 	@media screen and (orientation:portrait) { 
 			// CSS applied when the device is in portrait mode
 			.app-container { 
-				min-height: calc(100vh - 82px);
+				min-height: calc(100vh - 86px);
 				flex-direction: column; 
  
 				::ng-deep app-live-stream { 
@@ -31,7 +31,7 @@
 	@media screen and (orientation:landscape) { 
 			// CSS applied when the device is in landscape mode 
 			.app-container { 
-				min-height: calc(100vh - 82px); 
+				min-height: calc(100vh - 86px); 
 				// margin: 0 -10px; 
  
 				::ng-deep { 
