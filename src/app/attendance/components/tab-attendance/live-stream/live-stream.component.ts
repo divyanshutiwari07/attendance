@@ -21,14 +21,14 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log('selectedLiveStreamCamera', this.selectedLiveStreamCamera);
+    // console.log('selectedLiveStreamCamera', this.selectedLiveStreamCamera);
   }
 
   getListOfSource() {
     this.apiService.getListOfSources().subscribe( response => {
-      console.log('list of sources', response);
+      // console.log('list of sources', response);
       this.liveStreamCameraInfo = this.extractCameraInfo(response);
-      console.log('cam info', this.liveStreamCameraInfo);
+      // console.log('cam info', this.liveStreamCameraInfo);
       if ( this.liveStreamCameraInfo ) {
         this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
         this.getLiveStreamCameraId();
@@ -48,7 +48,6 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
   getLiveStreamCameraId() {
     const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
-    console.log('port', port);
     this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
     console.log('livestream', this.liveStreamCamUrl );
   }

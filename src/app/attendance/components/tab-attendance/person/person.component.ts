@@ -43,7 +43,7 @@ export class PersonComponent implements OnInit {
     private userData: UserDataHomePageService,
     private notifyService: NotificationService,
     private userService: UserService,
-    private presentEmpService: PresentEmpService,    
+    private presentEmpService: PresentEmpService,
     private auth: AuthGuard) {
       this.todaysDate = new Date();
     }
@@ -60,7 +60,7 @@ export class PersonComponent implements OnInit {
     this.getRegisterUsersData();
 
     // this.presentEmpSubscription = this.presentEmpService.empList$
-    //   .subscribe(empList => {                
+    //   .subscribe(empList => {
     //     this.empIds = empList.map(emp => emp.id);
     //     console.log('presentEmpSubscription', this.empIds);
     //   });
@@ -69,14 +69,14 @@ export class PersonComponent implements OnInit {
 
   private getRegisterUsersData() {
     this.userService.loadRegisterUsers().subscribe(response => {
-          console.log('registered users data for tab', response);
+          // console.log('registered users data for tab', response);
       this.getRegisteredUsersName = this.getListOfRegisteredUsersDetails(response.data);
     });
   }
 
   private getListOfRegisteredUsersDetails(res) {
     if (isNullOrUndefined(res) || res.success === false) {
-      console.log('no registered users data found');
+      // console.log('no registered users data found');
       return [];
     }
     return res.map((a) => {
@@ -88,10 +88,10 @@ export class PersonComponent implements OnInit {
     this.presentEmpService.loadPresentEmployees({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
-        console.log('prestn emp data on tab', response);
+        // console.log('prestn emp data on tab', response);
         this.empListObj = PresentEmployeeListModel.ModelMap(response);
         this.empIds = this.empListObj.presentEmpIds;
-        console.log('emp id', this.empIds);
+        console.log('emp id on tab', this.empIds);
         this.presentEmpService.changeList(this.empListObj.presentEmployeeList);
 
         this.checkNewPresentEmp();
@@ -134,7 +134,7 @@ export class PersonComponent implements OnInit {
   }
 
   public onVerify() {
-    console.log('Verified');
+    // console.log('Verified');
     console.log(this.person);
     this.addToTheList(this.empRecord);
     this.initForm();
@@ -143,7 +143,7 @@ export class PersonComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log('Submitted');
+    // console.log('Submitted');
     console.log('person', this.person.name);
 
     if ( this.person.name.name ) {
@@ -169,11 +169,11 @@ export class PersonComponent implements OnInit {
   }
 
   public rejectDetection() {
-    console.log('rejected detection', );
+    // console.log('rejected detection', );
     console.log('emp', this.empRecord);
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
-    console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
+    // console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
     this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name})
       .subscribe(
         response => {
@@ -199,7 +199,7 @@ export class PersonComponent implements OnInit {
     if ( this.empIds ) {
       return this.empIds.includes(newId);
     } else {
-      console.log('check emp already present ');
+      // console.log('check emp already present ');
       return false;
     }
   }
@@ -213,7 +213,7 @@ export class PersonComponent implements OnInit {
       this.newPersonCame = true;
       console.log('newEmpRecord', this.empRecord);
     } else {
-      console.log('emp already present');
+      // console.log('emp already present');
       this.showNextPersonInTheQueue();
     }
   }

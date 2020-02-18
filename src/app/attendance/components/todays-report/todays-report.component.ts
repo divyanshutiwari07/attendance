@@ -79,11 +79,10 @@ export class TodaysReportComponent implements OnInit {
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
     private auth: AuthGuard,
-    private presentEmpService: PresentEmpService    
+    private presentEmpService: PresentEmpService
   ) {}
 
   ngOnInit() {
-    console.log('config', config.LIVE_STREAM_PORT);
     this.todaysDate = new Date();
     this.disableExportButton = true;
     this.selectedTab = 'P';
@@ -101,7 +100,6 @@ export class TodaysReportComponent implements OnInit {
         this.allDepartmentList = this.getAllDepartmentList( this.empList );
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
-        console.log('all emp id', this.allEmpIdList);
       });
   }
 
@@ -136,16 +134,14 @@ export class TodaysReportComponent implements OnInit {
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
-      
+
       this.registeredUsersData = this.extractDataForRegisteredUsers(response);
-      
+      console.log('register data', this.registeredUsersData);
       this.TOTAL_EMP = response.count;
-      
+
       this.getPresentEmployeesDetails(this.startTime, this.endTime, (res) => {
         const empList = this.extractData(res);
         this.presencePercentage(empList);
-        console.log('updated emplist ', empList);
-        // this.checkEmpIsRegistered();
         this.presentEmpService.changeList(empList);
         console.log('present emplist', this.empList);
         this.allDepartmentList = this.getAllDepartmentList(this.empList);
@@ -273,36 +269,9 @@ export class TodaysReportComponent implements OnInit {
 
     // this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
-    
+
     const empListObj = PresentEmployeeListModel.ModelMap(response);
     const data = empListObj.presentEmployeeList;
-        // this.empIds = empListObj.presentEmpIds;
-        // console.log('emp id', this.empIds);
-    // response.data.forEach((element) => {
-    //   // tslint:disable-next-line:max-line-length
-    //   const row = {name: null, inTime: null, inTimeForCSV: null, outTime: null, location: null, department: null, photo: null, id: 0, type: null};
-
-    //   const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
-    //   const intime = element.first_presence;
-    //   const outtime = element.last_presence;
-    //   row.name = element.awi_label;
-    //   row.inTime = intime;
-
-    //   row.inTimeForCSV =  Utils.getFormattedTime(intime);
-    //   row.outTime = Utils.getFormattedTime(outtime);
-    //   row.location = element.awi_data.location;
-    //   row.type = element.type;
-
-    //   row.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
-
-    //   row.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-
-    //   const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
-    //   row.photo = this.getUpdatedImageUrl(img);
-    //   if ( this.checkEmpIsRegistered(row.id) ) {
-    //     data.push(row);
-    //   }
-    // });
     return data;
   }
 
@@ -367,9 +336,7 @@ export class TodaysReportComponent implements OnInit {
   absent() {
     this.selectedTab = 'A';
     this.selectedDate = null;
-    console.log(this.selectedDate);
     this.markPresentEmployees();
-    // console.log('yes div 2 as btn');
   }
 
   openVerticallyCentered(content) {

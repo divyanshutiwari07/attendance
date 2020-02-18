@@ -29,9 +29,9 @@ export class PresentEmpService {
       });
     });
   }
-  
+
   changeList(newEmpList) {
-    this.empListSource.next(newEmpList);    
+    this.empListSource.next(newEmpList);
   }
 
   reject(empId) {

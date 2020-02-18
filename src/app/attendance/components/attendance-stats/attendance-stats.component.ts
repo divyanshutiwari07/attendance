@@ -46,7 +46,6 @@ export class AttendanceStatsComponent implements OnInit {
   getRegisterUserData() {
     this.userService.loadRegisterUsers().subscribe(data => {
         this.totalEmp = (<any>data).count;
-        // console.log('registerUserData1', data);
     });
   }
 
@@ -80,20 +79,16 @@ export class AttendanceStatsComponent implements OnInit {
 
   ngOnInit() {
     this.getRegisterUserData();
-    // this.checkRegisterUserDataPresent();
     this.selectedYear = this.years[0];
-    // console.log('oninit', this.selectedYear, '', this.selectedMonth.number);
     this.selectedMonth = this.months[ new Date().getMonth() ];
     this.getYearReportForAllEmployees();
 
-    // Chart.pluginService.register(Utils.getRandomColor());
   }
 
   private showMonthlyPieChart() {
     const absentPercentage = (100 - this.report.month.attendancePercentage).toFixed(2);
     const dataset = [this.report.month.attendancePercentage, parseFloat(absentPercentage)];
 
-    // console.log( 'MOnth:showMonthlyPieChart:', dataset);
     if (!this.pieChartMonthly ) {
       this.pieChartMonthly = new Chart('pieChartMonthly', {
         type: 'pie',
@@ -182,7 +177,6 @@ export class AttendanceStatsComponent implements OnInit {
     for (let i = 0; i <= dayCount - 1; i++) {
       monthLabel[i] = (i + 1).toString();
     }
-    // console.log('monthlabel', monthLabel);
     const dataset = [];
     let workingDayCountForMonth = 0;
     if (!this.chartData) { return; }
@@ -201,7 +195,6 @@ export class AttendanceStatsComponent implements OnInit {
       if ( dataset[i] ) {
         workingDayCountForMonth += 1;
         dataset[i - 1] =  ((dataset[i].count / this.totalEmp) * 100).toFixed(2);
-        // dataset[i - 1] = dataset[i].count ;
       } else {
         dataset[i] = 0;
       }
@@ -215,7 +208,6 @@ export class AttendanceStatsComponent implements OnInit {
       this.lineChartMonthly = new Chart('lineChartMonthly', {
         type: 'bar',
         data: {
-          // tslint:disable-next-line:max-line-length
           labels: monthLabel,
           datasets: [
             {
@@ -234,21 +226,6 @@ export class AttendanceStatsComponent implements OnInit {
             display: true,
             fontColor: '#000000'
           },
-          // tooltips: {
-          //   enabled: true,
-          //   mode: 'point',
-          //   callbacks: {
-          //     label: function (tooltipItem, data) {
-          //       const label = data.datasets[tooltipItem.datasetIndex].label;
-          //       const yValue = tooltipItem.yLabel;
-          //       // const xValue = tooltipItem.xLabel;
-          //       return label + ': fs' + yValue;
-          //     },
-          //     footer: function (tooltipItem, data) {
-          //       return ['new line', 'another line'];
-          //     }
-          //   }
-          // },
 
           tooltips: {
 
@@ -339,9 +316,7 @@ export class AttendanceStatsComponent implements OnInit {
         dataset[i] = 0;
       }
     }
-    // console.log('workingmonth ', workingMonthCount);
     let attendancePercentage = dataset.reduce((a, b) => parseFloat(a) + parseFloat(b), 0) / workingMonthCount  ;
-    // console.log('attendancePercentage', attendancePercentage);
     attendancePercentage = attendancePercentage || NaN;
     const attendancePercentageFixedNum = attendancePercentage.toFixed(2);
     this.report.year.attendancePercentage = parseFloat(attendancePercentageFixedNum);
@@ -402,7 +377,6 @@ export class AttendanceStatsComponent implements OnInit {
               },
               gridLines: {
                 color: '#f2f2f2',
-                // color: 'rgba(0, 0, 0, 0)',
                 drawBorder: false,
                 zeroLineColor : '#f2f2f2',
               },
@@ -429,7 +403,6 @@ export class AttendanceStatsComponent implements OnInit {
   }
 
   getYearReportForAllEmployees() {
-    // console.log('selectedyear', this.selectedYear);
     this.apiService.getChartData({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -438,13 +411,10 @@ export class AttendanceStatsComponent implements OnInit {
       if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
         this.errorToaster(response.msg);
         this.chartData = response.data;
-        // return [];
       } else {
         this.successToaster(response.msg);
         this.chartData = response.data;
-        console.log(response);
       }
-      // console.log('chart data', this.chartData);
       this.showMonthlyBarChart();
       this.showYearlyBarChart();
       this.showMonthlyPieChart();
