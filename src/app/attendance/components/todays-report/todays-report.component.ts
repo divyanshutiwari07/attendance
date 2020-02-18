@@ -231,9 +231,6 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private extractDataForRegisteredUsers(response): Array<object> {
-    if ( response.msg === 'Un-Authorized Access, expired session' ) {
-      this.auth.logOut();
-    }
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
       console.log('no registered users data found');
