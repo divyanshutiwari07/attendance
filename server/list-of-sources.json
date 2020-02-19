@@ -1,0 +1,106 @@
+{
+  "success": true,
+  "msg": "Sources found",
+  "data": [
+    {
+      "_id": "5e0db19fca44b0002dcffbcc",
+      "awi_camera": {
+        "image": "http://192.168.0.80:3000/frame/3/5/3_5.jpg",
+        "fps": "0",
+        "width": 1280,
+        "height": 720,
+        "status": true,
+        "url": "rtsp://admin:admin123@192.168.0.40:554",
+        "recheck_time": 5,
+        "name": "awi_camera",
+        "id": 5,
+        "ip_add": "localhost",
+        "cam_no": 1,
+        "stream_id": "2",
+        "port": "554",
+        "username": "none",
+        "password": "none",
+        "model": null,
+        "url_proto": "none",
+        "location": "Awiros-Attendence",
+        "physical_props": {
+          "camera_height": 12,
+          "vertical_angle": 12,
+          "fov_angle": 12,
+          "focal_length": 3.2,
+          "sensor_size": 0.12,
+          "sensor_type": "1/2.8"
+        },
+        "calibration": {
+          "awi_name": "calibration"
+        }
+      },
+      "awi_version": {
+        "type": "awi_cs",
+        "awi_name": "awi_version",
+        "seq": 1,
+        "ts_creation": "2020-01-02T09:02:23.725Z",
+        "ts_updation": "2020-01-02T09:02:23.725Z",
+        "release": "v1.0"
+      },
+      "awi_camid": 5,
+      "awi_terminal_id": 3,
+      "demo_status": false,
+      "terminal": [
+        {
+          "terminal_name": "Office"
+        }
+      ]
+    },
+    {
+      "_id": "5e0f1d064d160700328d3bc7",
+      "awi_camera": {
+        "image": "http://192.168.0.80:3000/frame/3/9/3_9.jpg",
+        "fps": "25",
+        "width": 1920,
+        "height": 1080,
+        "status": true,
+        "url": "rtsp://admin:awidit555@192.168.0.64:554",
+        "recheck_time": 5,
+        "name": "awi_camera",
+        "id": 9,
+        "ip_add": "localhost",
+        "cam_no": 1,
+        "stream_id": "2",
+        "port": "554",
+        "username": "none",
+        "password": "none",
+        "model": null,
+        "url_proto": "none",
+        "location": "FR-attendence_PTZ",
+        "physical_props": {
+          "camera_height": 12,
+          "vertical_angle": 12,
+          "fov_angle": 12,
+          "focal_length": 3.2,
+          "sensor_size": 0.12,
+          "sensor_type": "1/2.8"
+        },
+        "calibration": {
+          "awi_name": "calibration"
+        }
+      },
+      "awi_version": {
+        "type": "awi_cs",
+        "awi_name": "awi_version",
+        "seq": 1,
+        "ts_creation": "2020-01-03T10:52:54.757Z",
+        "ts_updation": "2020-01-03T10:52:54.757Z",
+        "release": "v1.0"
+      },
+      "awi_camid": 9,
+      "awi_terminal_id": 3,
+      "demo_status": false,
+      "terminal": [
+        {
+          "terminal_name": "Office"
+        }
+      ]
+    }
+  ]
+}

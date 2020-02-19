@@ -22,6 +22,7 @@ const listOfRegisteredUsers = require('./list-of-register-user.json');
 const newEmpCameInFrontOfCamera = require('./new-emp-data.json');
 const login = require('./login.json');
 const rejectAttendance = require('./reject-attendance.json');
+const listOfSources = require('./list-of-sources.json');
 
 // app.listen(3000, () => {
 //  console.log("Server running on port 3000");
@@ -71,6 +72,12 @@ app.post('/list_of_registered_users', (req, res, next) => {
 app.post('/rejectAttendance', (req, res, next) => {
     console.log("=========== Serving reject attendance response=============");
     res.json(rejectAttendance);
+})
+
+app.post('/list_of_sources', (req, res, next) => {
+    console.log(res.body);
+    console.log("=========== Serving list of sources =============");
+    res.json(listOfSources);
 })
 // io.on('connection', function (socket) {
 //     console.log('user connected');
