@@ -18,7 +18,6 @@ export class CameraSourceService {
   }
 
   changeCamera(selectedCamera: string) {
-    console.log('changemaesa', selectedCamera);
     this.selectedCameraSource.next(selectedCamera);
   }
 

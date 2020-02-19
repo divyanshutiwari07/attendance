@@ -13,6 +13,32 @@ export default class Employee {
     id: number;
 
     constructor(element) {
+
+        // if (element.awi_label === '') {
+        //     this.name = 'test';
+        //     this.inTime = '2020-02-19T07:13:20.972Z';
+        //     this.outTime = '2020-02-19T07:13:20.972Z';
+        //     this.location = 'ptz';
+        //     this.type = 'auto';
+        //     this.department = 'testing';
+        //     this.id = 136;
+        // } else {
+        //     const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
+        //     const intime = element.first_presence;
+        //     const outtime = element.last_presence;
+
+        //     this.name = element.awi_label;
+        //     this.inTime = intime;
+        //     this.inTimeForCSV =  Utils.getFormattedTime(intime);
+        //     this.outTime = Utils.getFormattedTime(outtime);
+        //     this.location = element.awi_data.location;
+        //     this.type = element.type;
+        //     this.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
+        //     this.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+        //     const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
+        //     this.photo = this.getUpdatedImageUrl(img);
+        // }
+
         const dynamicKey = element.awi_data.awi_app_data.awi_blobs.awi_blob_ids[0];
         const intime = element.first_presence;
         const outtime = element.last_presence;
@@ -21,12 +47,10 @@ export default class Employee {
         this.inTime = intime;
         this.inTimeForCSV =  Utils.getFormattedTime(intime);
         this.outTime = Utils.getFormattedTime(outtime);
-
         this.location = element.awi_data.location;
         this.type = element.type;
         this.department = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
         this.id = element.awi_data.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-
         const img = element.awi_data.awi_app_data.awi_blobs[dynamicKey].img_base64;
         this.photo = this.getUpdatedImageUrl(img);
 

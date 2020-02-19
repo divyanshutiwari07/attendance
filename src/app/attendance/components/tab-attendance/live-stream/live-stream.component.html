@@ -2,6 +2,7 @@
   <div class="selectedCam">
       <select class="form-control" #cameraId="ngModel" name="cameraId"
       [(ngModel)]="selectedLiveStreamCamera" (change)="getLiveStreamCameraId()" >
+        <option value="undefined" selected disabled>Select days</option>
         <option *ngFor="let a of liveStreamCameraInfo;let i = index" [ngValue]="a.id">{{ a.name }}</option>
       </select>
   </div>

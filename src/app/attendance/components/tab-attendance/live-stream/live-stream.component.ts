@@ -23,11 +23,6 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // console.log('selectedLiveStreamCamera', this.selectedLiveStreamCamera);
-  }
-
-  newMessage() {
-    // this.cameraSourceService.changeMessage('heello message has been changed');
   }
 
   getListOfSource() {
@@ -36,18 +31,10 @@ export class LiveStreamComponent implements OnInit, OnChanges {
       console.log('list of sources', response);
       this.liveStreamCameraInfo = this.extractCameraInfo(response);
       if ( this.liveStreamCameraInfo ) {
-        this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
+        this.selectedLiveStreamCamera = this.liveStreamCameraInfo.id;
         this.getLiveStreamCameraId();
       }
     });
-
-    // this.apiService.getListOfSources().subscribe( response => {
-    //   this.liveStreamCameraInfo = this.extractCameraInfo(response);
-    //   if ( this.liveStreamCameraInfo ) {
-    //     this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
-    //     this.getLiveStreamCameraId();
-    //   }
-    // });
   }
 
   extractCameraInfo(response) {
