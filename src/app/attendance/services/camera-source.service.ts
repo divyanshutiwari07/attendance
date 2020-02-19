@@ -11,7 +11,7 @@ export class CameraSourceService {
 
   public cameraSource = {};
 
-  private selectedCameraSource = new BehaviorSubject('default message');
+  private selectedCameraSource = new BehaviorSubject(null);
   currentCameraSource = this.selectedCameraSource.asObservable();
 
   constructor( private http: RestClient ) {

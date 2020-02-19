@@ -20,6 +20,12 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getListOfSource();
+    this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
+      if( selectedCamera !== null ) {
+        this.selectedLiveStreamCamera = selectedCamera;
+        this.getLiveStreamCameraId();
+      }
+    } );
   }
 
   ngOnChanges() {
@@ -29,29 +35,28 @@ export class LiveStreamComponent implements OnInit, OnChanges {
 
     this.cameraSourceService.loadCameraSources().subscribe(response => {
       console.log('list of sources', response);
-      this.liveStreamCameraInfo = this.extractCameraInfo(response);
-      if ( this.liveStreamCameraInfo ) {
-        this.selectedLiveStreamCamera = this.liveStreamCameraInfo.id;
-        this.getLiveStreamCameraId();
+      if (!(isNullOrUndefined(response) || response.success === false)) {
+        this.liveStreamCameraInfo = this.extractCameraInfo(response);
+        // this.getLiveStreamCameraId();
       }
     });
   }
 
-  extractCameraInfo(response) {
-    if (isNullOrUndefined(response) || response.success === false) {
-      return '';
-    } else {
-      return response.data.map((e) => {
-        return { id: e.awi_camid, name: e.awi_camera.location };
-      });
-    }
+  extractCameraInfo(response) {    
+    return response.data.map((e) => {
+      return { id: e.awi_camid, name: e.awi_camera.location };
+    });
   }
 
   getLiveStreamCameraId() {
     const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
     this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
-    console.log('livestream', this.liveStreamCamUrl );
+    console.log('livestream', this.liveStreamCamUrl );    
+  }
+
+  changeLiveStreamCameraId() {
     this.cameraSourceService.changeCamera(this.selectedLiveStreamCamera);
+    this.getLiveStreamCameraId();
   }
 
 }

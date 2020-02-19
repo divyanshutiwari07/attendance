@@ -106,10 +106,10 @@ export class TodaysReportComponent implements OnInit {
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
       });
 
-      this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
-        console.log('todays component ', selectedCamera);
-        this.selectedCamera = selectedCamera;
-      } );
+    this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
+      console.log('todays component ', selectedCamera);
+      this.selectedCamera = selectedCamera;
+    } );
   }
 
   startSocketConnection() {
