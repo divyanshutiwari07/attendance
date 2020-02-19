@@ -4,54 +4,45 @@
             <div class='column avatar'>
                 <div>
                     <img src={{employee.photo}} alt="Avatar" class="profile"
-                    (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)"  onerror="src='assets/images/error_404.png';">
-                    
+                    (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)"  onerror="src='assets/images/error_404.png';">  
                     <div *ngIf="employee.type === 'manual'" >
                         <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
                         <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
                     </div>
                 </div>
-                <!-- <img src="https://www.tutorialrepublic.com/examples/images/avatar/1.jpg" alt="Avatar"> -->
-                
-                <!-- <img src={{employee.photo}} alt="Avatar" class="profile" > -->
-                
             </div>
+
             <div class='column'>
                 <div>Employee Name: {{employee.name}}</div>
                 <div>Department: {{employee.department}}</div>
             </div>
+
             <div class='column'>
                 <div>Entry From: {{employee.location}}</div>
                 <div>Entry Time: {{employee.inTime | date: 'h:mm:ss a' }}</div>
-                <!-- <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a' }}</div> -->
-                
+                <!-- <div>Entry Time: {{employee.inTime | date: 'yyyy/MM/dd h:mm:ss a' }}</div> -->  
             </div>  
+
             <div class='column action'> 
                 <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">Yearly Attendance</button></div>
                 <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject Attendance</button></div>
             </div>
-            <!-- <div class="badges" [hidden]="employee.type !== 'manual'">
-                <span class="badge badge-pill badge-info" placement='top' ngbTooltip='Manual Entry'>Manual</span>
-            </div>
-            <div class="badges auto" [hidden]="employee.type !== 'auto'">
-                <span class="badge badge-pill badge-success" placement='top' ngbTooltip='Auto Entry'>Auto</span>
-            </div> -->
-            
         </div>
     </div>
 </div>
 
 <ng-template #content let-modal >
+
     <div class="modal-header">
         <h4 class="modal-title">Employee Report</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
         </button> 
     </div>
+
     <div class="modal-body report">
         <div class="d-flex">
             <div class='column avatar'>
-                <!-- <img src={{employee.registeredPhoto}} alt="Avatar" onerror="src='assets/images/error_404.png';"> -->
                 <img src={{currentImg}} alt="Avatar" onerror="src='assets/images/error_404.png';">
             </div>
             <div class='column col-md-8'>
@@ -68,20 +59,23 @@
             (yearlyReportResponse)="enableExportButton($event)" ></app-yearly-report>
         </div>
     </div>
+
     <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
-            <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="fileDataType === 'yearly_attendance_record'? exportEmployeeYearReport(employee.name) : exportEmployeeMonthReport(employee.name)">Export CSV</button></div>
+        <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+        <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="fileDataType === 'yearly_attendance_record'? exportEmployeeYearReport(employee.name) : exportEmployeeMonthReport(employee.name)">Export CSV</button></div>
     </div>
 </ng-template>  
 
 <ng-template #contentForImgCompare let-modal>
     <div class="img-comparison">
+
         <div class="modal-header">
             <h4 class="modal-title">Compare Image</h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
             </button> 
         </div>
+
         <div class="modal-body img-report">
             <div class='column avatar'>
                 <div >Registered Photo</div>
@@ -96,8 +90,9 @@
                 <img src={{employee.photo}} alt="Avatar" class="img-fluid" onerror="src='assets/images/error_404.png';">
             </div>
         </div>
+
         <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+            <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
         </div>
     </div>
 </ng-template>      

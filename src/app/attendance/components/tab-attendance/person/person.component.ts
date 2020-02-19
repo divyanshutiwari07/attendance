@@ -8,6 +8,7 @@ import { NotificationService } from '../../../services/notification.service';
 import { UserService } from '../../../services/user.service';
 import { ApiService } from '../../../services/api.service';
 import { PresentEmpService } from '../../../services/present-emp.service';
+import { CameraSourceService } from '../../../services/camera-source.service';
 
 import { isNullOrUndefined } from 'util';
 import { AuthGuard } from 'src/app/shared/guard';
@@ -37,6 +38,7 @@ export class PersonComponent implements OnInit {
   public getRegisteredUsersName: any = [];
   private todaysDate;
   private presentEmpSubscription;
+  private selectedCamera;
 
   constructor(
     private apiService: ApiService,
@@ -44,6 +46,7 @@ export class PersonComponent implements OnInit {
     private notifyService: NotificationService,
     private userService: UserService,
     private presentEmpService: PresentEmpService,
+    private cameraSourceService: CameraSourceService,
     private auth: AuthGuard) {
       this.todaysDate = new Date();
     }
@@ -59,11 +62,10 @@ export class PersonComponent implements OnInit {
     this.getPresentEmpData();
     this.getRegisterUsersData();
 
-    // this.presentEmpSubscription = this.presentEmpService.empList$
-    //   .subscribe(empList => {
-    //     this.empIds = empList.map(emp => emp.id);
-    //     console.log('presentEmpSubscription', this.empIds);
-    //   });
+    this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
+      console.log('live stream', selectedCamera);
+      this.selectedCamera = selectedCamera;
+    } );
 
   }
 
@@ -112,7 +114,7 @@ export class PersonComponent implements OnInit {
       // tslint:disable-next-line:max-line-length
       if (index === -1 && newPerson.name !== 'Unrecognized' && newPerson.id !== this.empRecord.id && this.empIds.indexOf( newPerson.id ) === -1 ) {
 
-          if ( this.checkEmpIsRegistered(newPerson.id) ) {
+          if ( this.checkCamIdMatched(newPerson.camId) && this.checkEmpIsRegistered(newPerson.id) ) {
             this.empQueue.push(newPerson);
           }
       } else {
@@ -131,6 +133,12 @@ export class PersonComponent implements OnInit {
 
   private checkEmpIsRegistered(id) {
     return this.getRegisteredUsersName.find((reg) => reg.id === id );
+  }
+
+  private checkCamIdMatched( camId ) {
+    if ( this.selectedCamera === camId ) {
+      return true;
+    }
   }
 
   public onVerify() {

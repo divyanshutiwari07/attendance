@@ -12,6 +12,7 @@ export default class NewEmployee {
   type: string;
   id: number;
   blobId: string;
+  camId: number;
   alertId: number;
 
   constructor(res) {
@@ -34,6 +35,8 @@ export default class NewEmployee {
 
     this.blobId = dynamicKey;
     this.alertId = res.data.awi_facial_recognition.id;
+    this.camId = res.data.awi_facial_recognition.awi_camid;
+
     const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
     this.photo = this.getUpdatedImageUrl(img);
   }

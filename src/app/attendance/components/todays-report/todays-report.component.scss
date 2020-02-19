@@ -93,6 +93,9 @@
         .mat-form {
             display: flex;
             justify-content: space-between;
+            .choose-date{
+                cursor: pointer;
+            }
         }
 
         .reg-emp-table-container {

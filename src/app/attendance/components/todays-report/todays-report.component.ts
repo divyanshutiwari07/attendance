@@ -5,6 +5,7 @@ import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
+import { CameraSourceService } from '../../services/camera-source.service';
 import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
@@ -66,6 +67,7 @@ export class TodaysReportComponent implements OnInit {
   private selectedYear;
   private selectedDate;
   private presentEmpSubscription;
+  private selectedCamera;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -80,7 +82,8 @@ export class TodaysReportComponent implements OnInit {
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
     private auth: AuthGuard,
-    private presentEmpService: PresentEmpService
+    private presentEmpService: PresentEmpService,
+    private cameraSourceService: CameraSourceService,
   ) {}
 
   ngOnInit() {
@@ -102,6 +105,11 @@ export class TodaysReportComponent implements OnInit {
         this.allLocationList = this.getAllLocationList(this.empList);
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
       });
+
+      this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
+        console.log('todays component ', selectedCamera);
+        this.selectedCamera = selectedCamera;
+      } );
   }
 
   startSocketConnection() {
@@ -115,7 +123,7 @@ export class TodaysReportComponent implements OnInit {
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
-          if ( this.checkEmpIsRegistered(newEmpData.id) ) {
+          if ( this.checkCamIdMatched(newEmpData.camId) && this.checkEmpIsRegistered(newEmpData.id) ) {
             this.empList.unshift( newEmpData );
             this.presentEmpService.changeList(this.empList);
             console.log('this.empllist 116', this.empList);
@@ -163,6 +171,12 @@ export class TodaysReportComponent implements OnInit {
 
   private checkEmpIsRegistered(id) {
      return this.registeredUsersData.find((reg) => reg.id === id );
+  }
+
+  private checkCamIdMatched( camId ) {
+    if ( this.selectedCamera === camId ) {
+      return true;
+    }
   }
 
   private checkEmpAlreadyPresent(newId) {

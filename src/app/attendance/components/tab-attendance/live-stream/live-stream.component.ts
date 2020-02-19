@@ -2,7 +2,8 @@ import { Component, OnInit, OnChanges} from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { config } from '../../../../config';
 import { isNullOrUndefined } from 'util';
-import { AuthGuard } from 'src/app/shared/guard';
+import { CameraSourceService } from '../../../services/camera-source.service';
+
 
 @Component({
   selector: 'app-live-stream',
@@ -14,7 +15,8 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   public liveStreamCameraInfo;
   public selectedLiveStreamCamera;
   public liveStreamCamUrl;
-  constructor(private apiService: ApiService, private auth: AuthGuard) { }
+
+  constructor(private apiService: ApiService, private cameraSourceService: CameraSourceService) { }
 
   ngOnInit() {
     this.getListOfSource();
@@ -24,16 +26,28 @@ export class LiveStreamComponent implements OnInit, OnChanges {
     // console.log('selectedLiveStreamCamera', this.selectedLiveStreamCamera);
   }
 
+  newMessage() {
+    // this.cameraSourceService.changeMessage('heello message has been changed');
+  }
+
   getListOfSource() {
-    this.apiService.getListOfSources().subscribe( response => {
-      // console.log('list of sources', response);
+
+    this.cameraSourceService.loadCameraSources().subscribe(response => {
+      console.log('list of sources', response);
       this.liveStreamCameraInfo = this.extractCameraInfo(response);
-      // console.log('cam info', this.liveStreamCameraInfo);
       if ( this.liveStreamCameraInfo ) {
         this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
         this.getLiveStreamCameraId();
       }
     });
+
+    // this.apiService.getListOfSources().subscribe( response => {
+    //   this.liveStreamCameraInfo = this.extractCameraInfo(response);
+    //   if ( this.liveStreamCameraInfo ) {
+    //     this.selectedLiveStreamCamera = this.liveStreamCameraInfo[0].id;
+    //     this.getLiveStreamCameraId();
+    //   }
+    // });
   }
 
   extractCameraInfo(response) {
@@ -50,6 +64,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
     const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
     this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
     console.log('livestream', this.liveStreamCamUrl );
+    this.cameraSourceService.changeCamera(this.selectedLiveStreamCamera);
   }
 
 }
