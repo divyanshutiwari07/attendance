@@ -162,7 +162,7 @@ export class SidebarComponent implements OnInit {
             }
         );
     }
-  }
+    }
 
   successToaster(message: string) {
     this.notifyService.showSuccess(message, '');

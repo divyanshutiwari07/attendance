@@ -110,7 +110,7 @@ export class TodaysReportComponent implements OnInit {
     } );
   }
 
-  startSocketConnection() {
+  private startSocketConnection() {
     this.userData.initConnection('Access Real Time Data from server');
   }
 
@@ -159,14 +159,6 @@ export class TodaysReportComponent implements OnInit {
     });
   }
 
-  private presencePercentage(empList) {
-    if ( empList && empList.length > 0 ) {
-      this.presentEmp = ((empList.length / this.TOTAL_EMP) * 100).toFixed(2);
-    } else {
-      this.presentEmp = '00.00';
-    }
-  }
-
   private checkEmpIsRegistered(id) {
      return this.registeredUsersData.find((reg) => reg.id === id );
   }
@@ -182,6 +174,14 @@ export class TodaysReportComponent implements OnInit {
       return this.allEmpIdList.includes(newId);
     } else {
       return false;
+    }
+  }
+
+  private presencePercentage(empList) {
+    if ( empList && empList.length > 0 ) {
+      this.presentEmp = ((empList.length / this.TOTAL_EMP) * 100).toFixed(2);
+    } else {
+      this.presentEmp = '00.00';
     }
   }
 
@@ -224,22 +224,16 @@ export class TodaysReportComponent implements OnInit {
     }));
   }
 
+  searchEmployee(filterValue: String) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   getPresentEmployeesDetails(startTime, endTime, callBackFn = null) {
     this.presentEmpService.loadPresentEmployees({'start_time': startTime, 'end_time': endTime }).subscribe(res => {
       if (callBackFn) {
         callBackFn(res);
       }
     });
-    // this.apiService.getPresentEmployeesForDate({'start_time': startTime, 'end_time': endTime })
-    // .subscribe(
-    //   response => {
-    //     if (callBackFn) {
-    //       console.log('present emp today' , response);
-    //       callBackFn(response);
-    //     }
-
-    //   }
-    // );
   }
 
   private extractDataForRegisteredUsers(response): Array<object> {
@@ -267,6 +261,7 @@ export class TodaysReportComponent implements OnInit {
     });
     return data;
   }
+
   private extractData(response): Array<object> {
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
@@ -289,34 +284,6 @@ export class TodaysReportComponent implements OnInit {
       } else {
         console.log('unrecognized person');
       }
-
-    // tslint:disable-next-line:max-line-length
-    // const row = {name: null, inTime: null, outTime: null, inTimeForCSV: null, type: null, location: null, department: null , photo: null,  id: 0};
-    // const dynamicKey = res.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
-    // const intime = res.data.timestamp;
-    // const outtime = res.data.timestamp;
-
-    // row.department = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_subclass;
-
-    // row.inTime = intime;
-    // row.inTimeForCSV =  Utils.getFormattedTime(intime);
-    // row.outTime = Utils.getFormattedTime(outtime);
-    // row.location = res.data.awi_facial_recognition.location;
-    // row.type = 'auto';
-
-    // row.name = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_label;
-
-    // row.id = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-
-    // const img = res.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].img_base64;
-    // row.photo = this.getUpdatedImageUrl(img);
-
-    //   if (row.name !== 'Unrecognized') {
-    //     return row;
-    //   } else {
-    //     console.log('unrecognized person');
-    //   }
-
   }
 
   getUpdatedImageUrl(img_url) {
@@ -416,16 +383,12 @@ export class TodaysReportComponent implements OnInit {
   }
 
   editUserDetails() {
-    console.log('edit user details');
+    // console.log('edit user details');
   }
 
   empData(element) {
     console.log('selectedempdata', element);
     this.selectedEmpData = element;
-  }
-
-  searchEmployee(filterValue: String) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   enableExportButton(yearlyReport) {
@@ -445,27 +408,23 @@ export class TodaysReportComponent implements OnInit {
   }
 
   selectedYearForEmp(year) {
-    console.log('year', year);
     this.selectedYear = year;
   }
 
   exportEmployeeMonthReport(fileName) {
     const empName = Utils.getFirstLaterOfWordCapital(fileName);
     const CSVfilename = empName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_Attendance_Record';
-    console.log('export monthly');
     this.exportAsService.save(this.exportAsConfig, CSVfilename).subscribe(() => {
     });
   }
 
   exportEmployeeYearReport(fileName) {
-    console.log('export yearly');
     const options = {
       fieldSeparator: ',',
       quoteStrings: '"',
       decimalSeparator: '.',
       showLabels: true,
       showTitle: false,
-      // title: 'Today\'s Present Employee',
       title: '',
       useTextFile: false,
       useBom: true,
@@ -480,19 +439,16 @@ export class TodaysReportComponent implements OnInit {
   }
 
   getEmployeeRecordForSelectedDate(selectedDate) {
-    // console.log('selectedDate', selectedDate);
     this.selectedDate = selectedDate;
     this.startTimeStamp = Utils.getStartTimeStampOfGivenDate(selectedDate);
     this.endTimeStamp = Utils.getEndTimeStampOfGivenDate(selectedDate);
     this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
       const empList = this.extractData(res);
-      console.log('selected date data', empList);
       this.presencePercentage(empList);
       this.presentEmpService.changeList(empList);
       this.allEmpIdList = this.getAllEmpIdList(this.empList);
       this.addRegisteredPhotoToPresentEmpList(this.empList);
       this.markPresentEmployees();
-      console.log('this.empList', this.empList);
     });
   }
 }
