@@ -17,6 +17,7 @@ import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
 import { config } from '../../../config';
 import { ExportToCsv } from 'export-to-csv';
 import * as Utils from '../../common/utils';
+import { RegistrationComponent } from '../registration/registration.component';
 
 @Component({
   selector: 'app-todays-report',
@@ -67,6 +68,7 @@ export class TodaysReportComponent implements OnInit {
   public allLocationList;
   public searchText;
   public fileDataType;
+  public regModalContent;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -136,6 +138,10 @@ export class TodaysReportComponent implements OnInit {
         }
       }
     });
+  }
+
+  getModalContentRef(modalContent) {
+    this.regModalContent = modalContent;
   }
 
   private getListOfRegisteredUsers() {
@@ -383,6 +389,8 @@ export class TodaysReportComponent implements OnInit {
   }
 
   editUserDetails() {
+    const modelRef = this.modalService.open(RegistrationComponent, { centered: true });
+    modelRef.componentInstance.registeredUser = this.selectedEmpData;
     // console.log('edit user details');
   }
 

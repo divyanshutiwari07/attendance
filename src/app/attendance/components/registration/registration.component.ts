@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild, TemplateRef, AfterViewInit, HostBinding } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, AfterViewInit {
+  @Input() registeredUser;
+  isEditMode:boolean = false;
 
   modalReference = null;
   registerForm: FormGroup;
@@ -26,28 +29,50 @@ export class RegistrationComponent implements OnInit {
   public webcamImages: any = [];
 
   async handleImage(webcamImage: WebcamImage) {
-      await fetch(webcamImage.imageAsDataUrl)
-          .then(res => res.blob())
-          .then(blob => {
-              const blobImage = blob;
-              this.webcamImages.push({blob: blobImage, original: webcamImage});
-          });
+      this.convertSrcToBlob(webcamImage.imageAsDataUrl)
+      .then(blob => {
+        const blobImage = blob;
+        this.webcamImages.push({blob: blobImage, original: webcamImage});
+    });;
   }
 
   constructor(
     private modalService: NgbModal,
+    public activeModal: NgbActiveModal,
     private notifyService: NotificationService,
     private apiService: ApiService,
     private formBuilder: FormBuilder
   ) {
     this.createFormControls();
     this.createForm();
-
+    
     this.registerFormSubmitted = false;
    }
 
   ngOnInit() {
     this.showCameraView = false;
+    console.log(this.registeredUser);
+    // this.getModalContentRef.emit(this.contentTpl);
+    if( this.registeredUser ) {
+      this.isEditMode = true;
+      this.files = [];
+      this.registeredUser.photos.forEach(photoSrc => {
+        this.convertSrcToBlob("https://i2.wp.com/airlinkflight.org/wp-content/uploads/2019/02/male-placeholder-image.jpeg?ssl=1").then(blob => {
+          this.files.push(blob);
+          console.log(this.files);
+        });
+      });
+      this.registerForm.patchValue({
+        label: this.registeredUser.name,
+        subClass: this.registeredUser.department
+      });
+      
+      // this.convertSrcToBlob()
+    }
+  }
+
+  ngAfterViewInit() {
+    
   }
 
   createFormControls() {
@@ -63,10 +88,14 @@ export class RegistrationComponent implements OnInit {
       });
   }
 
+  private convertSrcToBlob(url) {
+    return fetch(url).then(res => res.blob());
+  }
+
   onSubmit() {
     // console.log(this.files, this.webcamImages);
     this.registerFormSubmitted = true;
-    // console.log(this.registerForm);
+    console.log("registerForm", this.registerForm);
     if (this.registerForm.valid ) {
         const formData = new FormData();
         formData.append('awi_label', this.registerForm.get('label').value);
@@ -86,9 +115,9 @@ export class RegistrationComponent implements OnInit {
         }
 
         // to see the structure of the formdata
-        // formData.forEach((value, key) => {
-        //     console.log(key, ': ', value);
-        // });
+        formData.forEach((value, key) => {
+            console.log(key, ': ', value);
+        });
 
         this.apiService.register(formData)
         .subscribe(

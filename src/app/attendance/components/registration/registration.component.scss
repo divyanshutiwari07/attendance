@@ -1,0 +1,78 @@
+.modal-dialog {
+    width: auto;
+}
+/*modal design*/
+.modal-title {
+    font-weight:bold;
+}
+.required {
+    color: red;
+}
+
+/*browse btn*/
+.not-focusable:focus {
+    outline: none;
+    box-shadow: none;
+}   
+
+
+.btn.btn-default {
+     background-color: black;
+     margin-left: 10px;
+     color:white;
+     /*justify-content: flex-start;*/
+}
+.btn {
+     border-radius: 0;   
+}
+.btn.btn-outline-dark:hover {
+    background-color: white;
+    color:#343a40;
+    
+    /*display: flex;
+    justify-content: flex-start;*/
+
+}
+.footer-btn{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    
+    .btn {  
+        flex: 0.3;
+    }
+}
+
+.btn:hover {
+    color:white; 
+}
+
+.row {
+    padding-bottom: 12px;
+}
+.forLabel {
+    font-weight: bold;
+}
+
+select {
+    padding-left: 8px;
+    select.option :disabled {
+        color: #ced4da;
+      } 
+}
+
+.form-data {
+    padding-top: 10px;
+}
+
+// web
+.snapshotList {
+
+    text-align: center;
+    padding-bottom: 5px;
+    img {
+        max-width: 350px;
+        max-height: 350px;
+    }
+    
+}

@@ -17,6 +17,8 @@
         "/home/awiros-docker/awiros-nodejs/public/objects/5e1d4f4fa337000026420b34_0.jpeg"
       ],
       "imgs": [
+        "http://localhost:3000/objects/5e1d4f4fa337000026420b34_0.jpeg",
+        "http://localhost:3000/objects/5e1d4f4fa337000026420b34_0.jpeg",
         "http://localhost:3000/objects/5e1d4f4fa337000026420b34_0.jpeg"
       ],
       "awi_id": 7

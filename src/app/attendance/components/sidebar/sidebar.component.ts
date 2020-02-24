@@ -5,6 +5,8 @@ import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { WebcamImage } from 'ngx-webcam';
+import {RegistrationComponent} from "../registration/registration.component";
+
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -18,6 +20,7 @@ export class SidebarComponent implements OnInit {
     register: any = {};
     modalReference = null;
     registerForm: FormGroup;
+    modalContent;
     // tslint:disable-next-line:max-line-length
     severityOption: Array<object> = [ {id: 'critical', value: 'awi_critical'}, {id: 'high', value : 'awi_high'}, {id: 'medium', value : 'awi_medium'}, {id: 'low', value : 'awi_low'}];
 
@@ -117,13 +120,19 @@ export class SidebarComponent implements OnInit {
         dom.classList.toggle(this.pushRightClass);
     }
 
-    openVerticallyCentered(content) {
-        this.modalReference = this.modalService.open(content, { centered: true });
+    openVerticallyCentered() {
+        this.modalReference = this.modalService.open(RegistrationComponent, { centered: true });
         this.modalReference.result.then((data) => {
             this.resetModalData();
         }, (reason) => {
             this.resetModalData();
         });
+    }
+
+    getModalContentRef(contentRef) {
+
+        console.log("-=============", contentRef);
+        this.modalContent = contentRef;
     }
 
     onSubmit() {

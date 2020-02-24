@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExportAsModule } from 'ngx-export-as';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { AttendanceRoutingModule } from './attendance-routing.module';
 
@@ -69,6 +69,7 @@ import { RegistrationComponent } from './components/registration/registration.co
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
   bootstrap: [AttendanceComponent],
-  providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService],
+  providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService, NgbActiveModal],
+  entryComponents: [RegistrationComponent]
 })
 export class AttendanceModule { }
