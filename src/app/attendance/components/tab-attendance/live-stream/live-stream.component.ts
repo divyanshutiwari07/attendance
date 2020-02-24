@@ -21,7 +21,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.getListOfSource();
     this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
-      if( selectedCamera !== null ) {
+      if ( selectedCamera !== null ) {
         this.selectedLiveStreamCamera = selectedCamera;
         this.getLiveStreamCameraId();
       }
@@ -42,7 +42,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
     });
   }
 
-  extractCameraInfo(response) {    
+  extractCameraInfo(response) {
     return response.data.map((e) => {
       return { id: e.awi_camid, name: e.awi_camera.location };
     });
@@ -51,7 +51,7 @@ export class LiveStreamComponent implements OnInit, OnChanges {
   getLiveStreamCameraId() {
     const port = parseInt( config.LIVE_STREAM_PORT, 10 ) + this.selectedLiveStreamCamera;
     this.liveStreamCamUrl = config.LIVE_STREAM_CAMERA_URL + port;
-    console.log('livestream', this.liveStreamCamUrl );    
+    console.log('livestream', this.liveStreamCamUrl );
   }
 
   changeLiveStreamCameraId() {

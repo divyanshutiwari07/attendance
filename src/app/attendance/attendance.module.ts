@@ -31,6 +31,7 @@ import { TimeRangePipe } from './common/filters/time-range';
 import { PresentEmpService } from './services/present-emp.service';
 
 import {WebcamModule} from 'ngx-webcam';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import {WebcamModule} from 'ngx-webcam';
     SearchPipe,
     SortPipe,
     TimeRangePipe,
+    RegistrationComponent,
   ],
   imports: [
     CommonModule,

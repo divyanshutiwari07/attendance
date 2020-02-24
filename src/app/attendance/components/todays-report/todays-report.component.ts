@@ -14,10 +14,9 @@ import PresentNewEmployeeModel from '../../models/present-new-employee-model';
 import { isNullOrUndefined } from 'util';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MatTableDataSource, MatPaginator , MatSort} from '@angular/material';
-import * as Utils from '../../common/utils';
 import { config } from '../../../config';
 import { ExportToCsv } from 'export-to-csv';
-import { AuthGuard } from 'src/app/shared';
+import * as Utils from '../../common/utils';
 
 @Component({
   selector: 'app-todays-report',
@@ -42,32 +41,32 @@ export class TodaysReportComponent implements OnInit {
     this.dataSource.paginator = sort;
   }
 
+  private startTime;
+  private endTime;
+  private yearlyReport;
+  private startTimeStamp;
+  private endTimeStamp;
+  private allEmpIdList;
+  private monthlyData;
+  private selectedYear;
+  private selectedDate;
+  private selectedCamera;
+  private presentEmpSubscription;
+
   public empList = [];
   public searchedList = [];
   public selectedTab;
   public TOTAL_EMP;
   public presentEmp;
-  // public absentEmp;
-  private startTime;
-  private endTime;
   public message: string;
   public registeredUsersData;
   public selectedEmpData;
   public disableExportButton;
-  private yearlyReport;
-  private startTimeStamp;
-  private endTimeStamp;
   public todaysDate;
   public allDepartmentList;
   public allLocationList;
-  private allEmpIdList;
   public searchText;
   public fileDataType;
-  private monthlyData;
-  private selectedYear;
-  private selectedDate;
-  private presentEmpSubscription;
-  private selectedCamera;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -81,7 +80,6 @@ export class TodaysReportComponent implements OnInit {
     private modalService: NgbModal,
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
-    private auth: AuthGuard,
     private presentEmpService: PresentEmpService,
     private cameraSourceService: CameraSourceService,
   ) {}
@@ -162,7 +160,7 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private presencePercentage(empList) {
-    if ( empList ) {
+    if ( empList && empList.length > 0 ) {
       this.presentEmp = ((empList.length / this.TOTAL_EMP) * 100).toFixed(2);
     } else {
       this.presentEmp = '00.00';
@@ -358,11 +356,6 @@ export class TodaysReportComponent implements OnInit {
     this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
   }
 
-  empData(element) {
-    console.log('selectedempdata', element);
-    this.selectedEmpData = element;
-  }
-
   chooseEndDateTime() {
     if ( this.selectedDate ) {
       if ( Utils.getStartTimeStampOfGivenDate(this.todaysDate) === Utils.getStartTimeStampOfGivenDate(this.selectedDate) ) {
@@ -396,7 +389,7 @@ export class TodaysReportComponent implements OnInit {
             this.successToaster(response.msg);
 
             // this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
-            //   console.log('presentempdeta');
+            //   console.log('presentata');
             //   this.empList = this.extractData(res);
             //   this.allEmpIdList = this.getAllEmpIdList(this.empList);
             //   this.addRegisteredPhotoToPresentEmpList(this.empList);
@@ -420,6 +413,15 @@ export class TodaysReportComponent implements OnInit {
 
   deleteUser() {
     console.log('delete user');
+  }
+
+  editUserDetails() {
+    console.log('edit user details');
+  }
+
+  empData(element) {
+    console.log('selectedempdata', element);
+    this.selectedEmpData = element;
   }
 
   searchEmployee(filterValue: String) {
