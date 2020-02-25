@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, Input, ViewChild, TemplateRef, AfterViewInit, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -13,7 +13,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegistrationComponent implements OnInit, AfterViewInit {
   @Input() registeredUser;
-  isEditMode:boolean = false;
+  isEditMode = false;
 
   modalReference = null;
   registerForm: FormGroup;
@@ -22,10 +22,10 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
 
   subClass: FormControl;
   label: FormControl;
+
   public registerFormSubmitted;
   public files;
   public showCameraView;
-
   public webcamImages: any = [];
 
   async handleImage(webcamImage: WebcamImage) {
@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
       .then(blob => {
         const blobImage = blob;
         this.webcamImages.push({blob: blobImage, original: webcamImage});
-    });;
+    });
   }
 
   constructor(
@@ -45,19 +45,18 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
   ) {
     this.createFormControls();
     this.createForm();
-    
+
     this.registerFormSubmitted = false;
    }
 
   ngOnInit() {
     this.showCameraView = false;
     console.log(this.registeredUser);
-    // this.getModalContentRef.emit(this.contentTpl);
-    if( this.registeredUser ) {
+    if ( this.registeredUser ) {
       this.isEditMode = true;
       this.files = [];
       this.registeredUser.photos.forEach(photoSrc => {
-        this.convertSrcToBlob("https://i2.wp.com/airlinkflight.org/wp-content/uploads/2019/02/male-placeholder-image.jpeg?ssl=1").then(blob => {
+        this.convertSrcToBlob(photoSrc).then(blob => {
           this.files.push(blob);
           console.log(this.files);
         });
@@ -66,13 +65,10 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
         label: this.registeredUser.name,
         subClass: this.registeredUser.department
       });
-      
-      // this.convertSrcToBlob()
     }
   }
 
   ngAfterViewInit() {
-    
   }
 
   createFormControls() {
@@ -93,9 +89,8 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    // console.log(this.files, this.webcamImages);
     this.registerFormSubmitted = true;
-    console.log("registerForm", this.registerForm);
+    console.log('registerForm', this.registerForm);
     if (this.registerForm.valid ) {
         const formData = new FormData();
         formData.append('awi_label', this.registerForm.get('label').value);
@@ -103,9 +98,15 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
         formData.append('awi_severity', 'awi_low');
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
         if (this.files) {
-            this.files.reverse().forEach((file) => {
-                formData.append('file', file);
+          if ( this.registeredUser ) {
+            this.files.reverse().forEach((file, key) => {
+              formData.append('file', file, 'update-' + (key + 1) + '.jpeg');
             });
+          } else {
+            this.files.reverse().forEach((file) => {
+              formData.append('file', file);
+            });
+          }
         }
 
         if (this.webcamImages.length) {
@@ -115,15 +116,15 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
         }
 
         // to see the structure of the formdata
-        formData.forEach((value, key) => {
-            console.log(key, ': ', value);
-        });
+        // formData.forEach((value, key) => {
+        //     console.log(key, ': ', value);
+        // });
 
         this.apiService.register(formData)
         .subscribe(
             response => {
                 this.successToaster(response.msg);
-                this.modalReference.close();
+                this.activeModal.close();
                 console.log(response);
             }
         );
@@ -134,13 +135,12 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
     this.showCameraView = !this.showCameraView;
   }
 
-  resetModalData() {
-    this.showCameraView = false ;
-    this.webcamImages = [];
-    this.registerForm.reset();
-    // this.registerForm.markAsPristine();
-    this.files = null;
-  }
+  // resetModalData() {
+  //   this.showCameraView = false ;
+  //   this.webcamImages = [];
+  //   this.registerForm.reset();
+  //   this.files = null;
+  // }
 
   successToaster(message: string) {
     this.notifyService.showSuccess(message, '');

@@ -140,9 +140,9 @@ export class TodaysReportComponent implements OnInit {
     });
   }
 
-  getModalContentRef(modalContent) {
-    this.regModalContent = modalContent;
-  }
+  // getModalContentRef(modalContent) {
+  //   this.regModalContent = modalContent;
+  // }
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
