@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
     label: FormControl;
     objectPhotos: FormControl;
 
-    // public registerFormSubmitted;
+    public registerFormSubmitted;
     public files;
     public showCameraView;
     public webcamImages: any = [];
@@ -43,6 +43,7 @@ export class SidebarComponent implements OnInit {
     constructor(
         public router: Router ,
         private modalService: NgbModal,
+        private formBuilder: FormBuilder
         ) {
         this.router.events.subscribe(val => {
             if (
@@ -57,22 +58,22 @@ export class SidebarComponent implements OnInit {
         // this.createFormControls();
         // this.createForm();
 
-        // this.registerFormSubmitted = false;
+        this.registerFormSubmitted = false;
     }
 
-    // createFormControls() {
-    //     this.label = new FormControl('', Validators.required);
-    //     this.subClass = new FormControl('', Validators.required);
-    //     // this.severity = new FormControl('', Validators.required);
-    //     this.objectPhotos = new FormControl('', Validators.required);
-    // }
+    createFormControls() {
+        this.label = new FormControl('', Validators.required);
+        this.subClass = new FormControl('', Validators.required);
+        // this.severity = new FormControl('', Validators.required);
+        this.objectPhotos = new FormControl('', Validators.required);
+    }
 
-    // createForm() {
-    //     this.registerForm = new FormGroup({
-    //         label: this.label,
-    //         subClass: this.subClass,
-    //     });
-    // }
+    createForm() {
+        this.registerForm = new FormGroup({
+            label: this.label,
+            subClass: this.subClass,
+        });
+    }
 
     ngOnInit() {
         this.isActive = false;
@@ -80,6 +81,7 @@ export class SidebarComponent implements OnInit {
         this.showMenu = '';
         this.pushRightClass = 'push-right';
         this.showCameraView = false;
+        // tslint:disable-next-line:max-line-length
     }
 
 
@@ -113,15 +115,21 @@ export class SidebarComponent implements OnInit {
     openVerticallyCentered() {
         this.modalReference = this.modalService.open(RegistrationComponent, { centered: true });
         this.modalReference.result.then((data) => {
-            this.resetModalData();
+            // this.resetModalData();
         }, (reason) => {
-            this.resetModalData();
+            // this.resetModalData();
         });
     }
 
+    // getModalContentRef(contentRef) {
+
+    //     console.log("-=============", contentRef);
+    //     this.modalContent = contentRef;
+    // }
 
     // onSubmit() {
     // this.registerFormSubmitted = true;
+
     // if (this.registerForm.valid ) {
     //     const formData = new FormData();
     //     formData.append('awi_label', this.registerForm.get('label').value);
@@ -141,18 +149,18 @@ export class SidebarComponent implements OnInit {
     //     }
 
     //     // to see the structure of the formdata
-    //     // formData.forEach((value, key) => {
-    //     //     console.log(key, ': ', value);
-    //     // });
+    //     formData.forEach((value, key) => {
+    //         console.log(key, ': ', value);
+    //     });
 
-    //     // this.apiService.register(formData)
-    //     // .subscribe(
-    //     //     response => {
-    //     //         this.successToaster(response.msg);
-    //     //         this.modalReference.close();
-    //     //         console.log(response);
-    //     //     }
-    //     // );
+    //     this.apiService.register(formData)
+    //     .subscribe(
+    //         response => {
+    //             this.successToaster(response.msg);
+    //             this.modalReference.close();
+    //             console.log(response);
+    //         }
+    //     );
     //  }
     // }
 
@@ -164,11 +172,10 @@ export class SidebarComponent implements OnInit {
 //     this.showCameraView = !this.showCameraView;
 //   }
 
-  resetModalData() {
-    this.showCameraView = false ;
-    this.webcamImages = [];
-    this.registerForm.reset();
-    // this.registerForm.markAsPristine();
-    this.files = null;
-  }
+//   resetModalData() {
+//     this.showCameraView = false ;
+//     this.webcamImages = [];
+//     this.registerForm.reset();
+//     this.files = null;
+//   }
 }
