@@ -32,6 +32,7 @@ import { PresentEmpService } from './services/present-emp.service';
 
 import {WebcamModule} from 'ngx-webcam';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { AllowOnlyDirective } from './directives/allow-only-directive';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { RegistrationComponent } from './components/registration/registration.co
     SortPipe,
     TimeRangePipe,
     RegistrationComponent,
+    AllowOnlyDirective
   ],
   imports: [
     CommonModule,
@@ -68,6 +70,7 @@ import { RegistrationComponent } from './components/registration/registration.co
     WebcamModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
+  exports: [AllowOnlyDirective],
   bootstrap: [AttendanceComponent],
   providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService, NgbActiveModal],
   entryComponents: [RegistrationComponent]

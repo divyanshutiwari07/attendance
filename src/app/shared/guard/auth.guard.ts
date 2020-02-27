@@ -3,6 +3,7 @@ import { CanActivate } from '@angular/router';
 import { Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { WebsocketService } from '../../attendance/services/websocket.service';
+import { AUTH_LEVELS } from 'src/app/configs/config.common';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -25,14 +26,18 @@ export class AuthGuard implements CanActivate {
 
     logOut () {
         localStorage.removeItem('token');
+        localStorage.removeItem('userRoles');
         this.wsService.disconnectSocksdet();
         if ( isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigate(['/login']);
         }
     }
 
-    logIn(token) {
-        localStorage.setItem('token', token);
+    logIn(loginDetails) {
+        localStorage.setItem('token', loginDetails.token);
+        const roles = [ Object.keys(AUTH_LEVELS)[Object.values(AUTH_LEVELS).indexOf(loginDetails.level)] ];
+        // [loginDetails.level]
+        localStorage.setItem('userRoles', JSON.stringify(roles));
         if ( !isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigateByUrl('/attendance');
         }

@@ -25,6 +25,13 @@ const EVENTS = {
     }
 };
 
+export const AUTH_LEVELS = {
+    EMP: "levelOne",
+    AD: "levelTwo",
+    HR: "levelThree",
+    MD: "levelFour",
+};
+
 export const SOCKET_EVENTS = EVENTS[devMode];
 // console.log('socket event', SOCKET_EVENTS);
 // console.log('devmode', devMode);

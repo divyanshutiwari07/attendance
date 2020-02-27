@@ -8,18 +8,22 @@
     <div class="capture-image" *ngIf='showCameraView'>
         <app-camera (pictureTaken)="handleImage($event)"></app-camera>
     </div>
-    <div class="snapshotList" *ngIf="webcamImages">
-      <mat-grid-list cols="4" >
-        <mat-grid-tile
-            *ngFor="let webcamImg of webcamImages">                                
+    <div class="snapshotList" *ngIf="webcamImages.length">
+      <mat-grid-list cols="4">        
+        <mat-grid-tile *ngFor="let webcamImg of webcamImages">
+            <button class="btn btn-danger remove-image" placement="top" ngbTooltip="Delete Image" (click)="removeImage('webcamImages', webcamImg)">
+                <i class="fa fa-close" aria-hidden="false"></i>
+              </button>            
             <img [src]="webcamImg.original.imageAsDataUrl" style="object-fit: cover; height: inherit; width: inherit;" />
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-    <div class="snapshotList">
+    <div class="snapshotList" *ngIf="files.length">
       <mat-grid-list cols="4" >
-        <mat-grid-tile
-            *ngFor="let file of files">                                
+        <mat-grid-tile *ngFor="let file of files">
+            <button class="btn btn-danger remove-image" placement="top" ngbTooltip="Delete Image" (click)="removeImage('files', file)">
+                <i class="fa fa-close" aria-hidden="false"></i>
+              </button>            
             <div [ngfBackground]="file" style="background-size:cover;background-repeat:no-repeat;width:110px;height:110px"></div>
         </mat-grid-tile>
       </mat-grid-list>
@@ -96,7 +100,7 @@
     
     <div class="footer-btn">
       <button type="button" class="btn btn-outline-dark not-focusable " (click)="activeModal.close('Close click')" >Close</button>
-      <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid || !(files || webcamImages.length)" >Register</button>
+      <button type="submit" class="btn btn-dark" [disabled]="registerForm.invalid || !(files || webcamImages.length)" >{{isEditMode ? 'Update' : 'Register'}}</button>
     </div> 
   </form>
 </div>    
