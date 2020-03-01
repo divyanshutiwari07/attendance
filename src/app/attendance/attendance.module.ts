@@ -32,7 +32,8 @@ import { PresentEmpService } from './services/present-emp.service';
 
 import {WebcamModule} from 'ngx-webcam';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { AllowOnlyDirective } from './directives/allow-only-directive';
+import { HideIfNotDirective } from './directives/hide-if-not';
+import { DisableIfNotDirective } from './directives/disable-if-not';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { AllowOnlyDirective } from './directives/allow-only-directive';
     SortPipe,
     TimeRangePipe,
     RegistrationComponent,
-    AllowOnlyDirective
+    HideIfNotDirective,
+    DisableIfNotDirective
   ],
   imports: [
     CommonModule,
@@ -70,7 +72,7 @@ import { AllowOnlyDirective } from './directives/allow-only-directive';
     WebcamModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
-  exports: [AllowOnlyDirective],
+  exports: [HideIfNotDirective, DisableIfNotDirective],
   bootstrap: [AttendanceComponent],
   providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService, NgbActiveModal],
   entryComponents: [RegistrationComponent]

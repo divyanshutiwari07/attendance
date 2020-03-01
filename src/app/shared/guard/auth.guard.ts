@@ -35,12 +35,28 @@ export class AuthGuard implements CanActivate {
 
     logIn(loginDetails) {
         localStorage.setItem('token', loginDetails.token);
+        // const tokenDetails = this.extractUserDetailsFromToken(loginDetails.token);
         const roles = [ Object.keys(AUTH_LEVELS)[Object.values(AUTH_LEVELS).indexOf(loginDetails.level)] ];
-        // [loginDetails.level]
+        
         localStorage.setItem('userRoles', JSON.stringify(roles));
+        // if( tokenDetails ) {
+        //     localStorage.setItem('tokenDetails', JSON.stringify(tokenDetails));
+        // }
+        
         if ( !isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigateByUrl('/attendance');
         }
+    }
+
+    // private extractUserDetailsFromToken(token) {        
+    //     return window.atob(token.split('.')[1]);
+    // }
+
+    isAuthorized(allowedRoles) {
+        const userRoles = localStorage.getItem('userRoles');
+        const anyMatched = allowedRoles.filter(value => -1 !== userRoles.indexOf(value))
+        let authorized = !!anyMatched.length;
+        return authorized;
     }
 
     handleSession(response) {

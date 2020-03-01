@@ -18,6 +18,7 @@ import { config } from '../../../config';
 import { ExportToCsv } from 'export-to-csv';
 import * as Utils from '../../common/utils';
 import { RegistrationComponent } from '../registration/registration.component';
+import { AuthGuard } from 'src/app/shared';
 
 @Component({
   selector: 'app-todays-report',
@@ -26,7 +27,7 @@ import { RegistrationComponent } from '../registration/registration.component';
 })
 export class TodaysReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord', 'action' ];
+  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent' ];
   dataSource = new MatTableDataSource([]);
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
@@ -84,6 +85,7 @@ export class TodaysReportComponent implements OnInit {
     private userData: UserDataHomePageService,
     private presentEmpService: PresentEmpService,
     private cameraSourceService: CameraSourceService,
+    private auth: AuthGuard
   ) {}
 
   ngOnInit() {
@@ -110,6 +112,15 @@ export class TodaysReportComponent implements OnInit {
       console.log('todays component ', selectedCamera);
       this.selectedCamera = selectedCamera;
     } );
+
+    if( this.auth.isAuthorized([ 'AD', 'HR', 'MD']) ) {
+      this.displayedColumns.push('viewRecord');
+    }
+
+    if( this.auth.isAuthorized([ 'HR', 'MD']) ) {
+      this.displayedColumns.push('action');
+    }
+    
   }
 
   private startSocketConnection() {

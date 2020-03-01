@@ -52,7 +52,7 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <button class="btn btn-outline-secondary" (click)="exportCSV()" placement="left" ngbTooltip="Export CSV">
+            <button class="btn btn-outline-secondary" (click)="exportCSV()" placement="left" *hideIfNot="['HR', 'AD']" ngbTooltip="Export CSV">
                 <i class="fa fa-download" aria-hidden="false"></i>
             </button>
         </div>

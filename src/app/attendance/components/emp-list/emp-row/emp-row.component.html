@@ -25,7 +25,7 @@
 
             <div class='column action'> 
                 <div><button class="btn btn-outline-primary" (click)="openVerticallyCentered(content)">Yearly Attendance</button></div>
-                <div><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject Attendance</button></div>
+                <div *hideIfNot="['HR', 'MD']"><button class="btn btn-outline-danger" (click)='rejectEmployeeAttendance(employee)'>Reject Attendance</button></div>
             </div>
         </div>
     </div>

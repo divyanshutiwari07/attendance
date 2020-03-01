@@ -26,8 +26,8 @@
       </div>
     </div>
     
-    <div class="col-6 col-lg-6" *allowOnly="['EMP']">
-        <div class="card div-as-btn ">
+    <div class="col-6 col-lg-6">
+        <div class="card div-as-btn">
           <div class="card-body p-3 clearfix {{ selectedTab == 'A' ? 'selected-tab' : ''}}" (click)='absent()'>
             <div class="h5 mb-0 align-items-center d-flex justify-content-center">
             All Employees
@@ -64,7 +64,7 @@
         <mat-form-field>
           <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
         </mat-form-field>
-        <mat-form-field >
+        <mat-form-field *hideIfNot="[ 'AD', 'HR', 'MD']">
             <input #event matInput [matDatepicker]="picker" class="choose-date" (focus)="picker.open()" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker  ngDefaultControl (closed)="event.blur()"></mat-datepicker>
@@ -101,13 +101,13 @@
           <ng-container matColumnDef="action">
             <mat-header-cell class="mat-header-action" *matHeaderCellDef > Actions </mat-header-cell>
             <mat-cell class="mat-cell-action" *matCellDef="let element"> 
-              <button class="btn btn-warning reject-attendance" placement="top" ngbTooltip="Reject Attendance"  (click)="empData(element);rejectEmployeeAttendance()" >
+              <button class="btn btn-warning reject-attendance" placement="top" ngbTooltip="Reject Attendance"  (click)="empData(element);rejectEmployeeAttendance()" *hideIfNot="[ 'AD', 'HR', 'MD']">
                 <i class="fa fa-close" aria-hidden="false"></i>
               </button>
-              <button class="btn btn-danger" placement="top" ngbTooltip="Delete User" (click)="empData(element); deleteUser()">
+              <button class="btn btn-danger" placement="top" ngbTooltip="Delete User" (click)="empData(element); deleteUser()" *hideIfNot="['HR', 'MD']">
                 <i class="fa fa-trash" aria-hidden="false"></i>
               </button>
-              <button class="btn btn-primary" placement="top" ngbTooltip="Edit User" (click)="empData(element); editUserDetails()">
+              <button class="btn btn-primary" placement="top" ngbTooltip="Edit User" (click)="empData(element); editUserDetails()" *hideIfNot="['MD']">
                 <i class="fa fa-edit" aria-hidden="false"></i>
               </button> 
             </mat-cell>
@@ -149,7 +149,7 @@
           </div>
           <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
-                  <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)=" fileDataType ==='yearly_attendance_record' ? exportEmployeeYearReport(selectedEmpData.name) : exportEmployeeMonthReport(selectedEmpData.name) ">Export CSV</button></div>
+                  <div><button class="btn btn-outline-primary" [disabled]="disableExportButton" (click)=" fileDataType ==='yearly_attendance_record' ? exportEmployeeYearReport(selectedEmpData.name) : exportEmployeeMonthReport(selectedEmpData.name)">Export CSV</button></div>
           </div>
       </ng-template>
       
