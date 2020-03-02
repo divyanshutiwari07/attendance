@@ -1,7 +1,7 @@
 {
   "success": true,
   "msg": "login successfully",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXdpX2NsaWVudF9pZCI6MiwiYXdpcm9zIjoicGl5dXNoQGF3aWRpdC5jb20iLCJsZXZlbCI6ImF3aV91c2VyIiwiaWF0IjoxNTc0NDE1MzU1LCJleHAiOjE1NzQ1MDE3NTV9.uFkIrv3bK167iJncOI-xnKQQj7Kw3Wcwe3YpLftdM3w",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiYXdpX2NsaWVudF9pZCI6MiwiYXdpcm9zIjoiZGVtb0Bhd2lyb3MuY29tIiwibGV2ZWwiOiJhd2lfdXNlciIsImlhdCI6MTU4MzEyNzQzMSwiZXhwIjoxNTgzMjEzODMxfQ.lSjk7-kvM4tqd0uKmB-paMRErtOzhGL2mqvRRoE6sFU",
   "level": "levelOne"
 
 }

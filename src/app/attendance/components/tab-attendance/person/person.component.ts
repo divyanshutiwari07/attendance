@@ -143,11 +143,25 @@ export class PersonComponent implements OnInit {
 
   public onVerify() {
     // console.log('Verified');
-    console.log(this.person);
-    this.addToTheList(this.empRecord);
-    this.initForm();
-    this.showNextPersonInTheQueue();
+    // console.log('on verify', this.person.name);
+    // console.log(this.person);
+    // this.addToTheList(this.empRecord);
+    // this.initForm();
+    // this.showNextPersonInTheQueue();
 
+
+    // tslint:disable-next-line:max-line-length
+    this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.empRecord.name, verify_user_event: true}).subscribe( response => {
+      console.log('verify emp presence', response);
+      if ( response.success === true ) {
+        this.successToaster(response.msg);
+        this.addToTheList(this.empRecord);
+        this.initForm();
+        this.showNextPersonInTheQueue();
+      } else {
+        this.errorToaster(response.msg);
+      }
+    });
   }
 
   public onSubmit() {

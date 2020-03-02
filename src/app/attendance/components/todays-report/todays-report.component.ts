@@ -133,8 +133,12 @@ export class TodaysReportComponent implements OnInit {
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
+          // if ( true ) {
           if ( this.checkCamIdMatched(newEmpData.camId) && this.checkEmpIsRegistered(newEmpData.id) ) {
+          // if (  this.rejectEmpAtRealTime(newEmpData.id) ) {
+            console.log('new1', this.empList );
             this.empList.unshift( newEmpData );
+            console.log('new2', this.empList );
             this.presentEmpService.changeList(this.empList);
             console.log('this.empllist 116', this.empList);
             this.addRegisteredPhotoToPresentEmpList(this.empList);
@@ -149,6 +153,11 @@ export class TodaysReportComponent implements OnInit {
       }
     });
   }
+  // rejectEmpAtRealTime(newEmpId) {
+  //    this.presentEmpService.reject(newEmpId);
+  //    return true;
+  // }
+
 
   // getModalContentRef(modalContent) {
   //   this.regModalContent = modalContent;
