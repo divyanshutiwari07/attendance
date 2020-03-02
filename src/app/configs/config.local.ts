@@ -1,6 +1,6 @@
 import * as COMMON from './config.common';
 
-const LOCAL_API_PORT = '3000';
+const LOCAL_API_PORT = '5000';
 
 export const LOCAL_HOST_SERVER = 'http://localhost:' + LOCAL_API_PORT;
 

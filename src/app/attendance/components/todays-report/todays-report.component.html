@@ -64,7 +64,7 @@
         <mat-form-field>
           <input (keyup) = "searchEmployee($event.target.value)" matInput placeholder="Search Employee">
         </mat-form-field>
-        <mat-form-field *hideIfNot="[ 'AD', 'HR', 'MD']">
+        <mat-form-field>
             <input #event matInput [matDatepicker]="picker" class="choose-date" (focus)="picker.open()" (dateInput)="getEmployeeRecordForSelectedDate(event.value)" placeholder="Choose date">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker  #picker  ngDefaultControl (closed)="event.blur()"></mat-datepicker>
@@ -101,15 +101,15 @@
           <ng-container matColumnDef="action">
             <mat-header-cell class="mat-header-action" *matHeaderCellDef > Actions </mat-header-cell>
             <mat-cell class="mat-cell-action" *matCellDef="let element"> 
-              <button class="btn btn-warning reject-attendance" placement="top" ngbTooltip="Reject Attendance"  (click)="empData(element);rejectEmployeeAttendance()" *hideIfNot="[ 'AD', 'HR', 'MD']">
+              <button class="btn btn-warning reject-attendance" placement="top" ngbTooltip="Reject Attendance"  (click)="empData(element);rejectEmployeeAttendance()">
                 <i class="fa fa-close" aria-hidden="false"></i>
               </button>
-              <button class="btn btn-danger" placement="top" ngbTooltip="Delete User" (click)="empData(element); deleteUser()" *hideIfNot="['HR', 'MD']">
+              <button class="btn btn-danger" placement="top" ngbTooltip="Delete User" (click)="empData(element); deleteUser()">
                 <i class="fa fa-trash" aria-hidden="false"></i>
               </button>
-              <button class="btn btn-primary" placement="top" ngbTooltip="Edit User" (click)="empData(element); editUserDetails()" *hideIfNot="['MD']">
+              <!-- <button class="btn btn-primary" placement="top" ngbTooltip="Edit User" (click)="empData(element); editUserDetails()">
                 <i class="fa fa-edit" aria-hidden="false"></i>
-              </button> 
+              </button>  -->
             </mat-cell>
           </ng-container>
 

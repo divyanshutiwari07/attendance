@@ -6,30 +6,31 @@ import { AuthGuard } from 'src/app/shared';
     selector: '[hideIfNot]'
 })
 export class HideIfNotDirective implements OnInit, AfterViewInit {
-    @Input('hideIfNot') allowedRoles: string[];    
-    
+    // *hideIfNot="['HR', 'AD']"
+    @Input('hideIfNot') allowedRoles: string[];
+
     constructor(private templateRef: TemplateRef<any>,
         private viewContainer: ViewContainerRef,
         private auth: AuthGuard) {
-            
+
     }
 
     ngOnInit(): void {
-        this.applyPermission();
+        // this.applyPermission();
     }
 
     ngAfterViewInit(): void {
-        if( this.allowedRoles.some(val => Object.keys(AUTH_LEVELS).indexOf(val) === -1) ) {
-            throw console.error("Error: Not a valid role, Valid roles are: ", Object.keys( AUTH_LEVELS ));            
-        }
+        // if ( this.allowedRoles.some(val => Object.keys(AUTH_LEVELS).indexOf(val) === -1) ) {
+        //     throw console.error('Error: Not a valid role, Valid roles are: ', Object.keys( AUTH_LEVELS ));
+        // }
     }
 
-    private applyPermission(): void {
-        if (this.auth.isAuthorized(this.allowedRoles)) {
-            this.viewContainer.createEmbeddedView(this.templateRef);
-        } else {
-            this.viewContainer.clear();
-        }
-    }
+    // private applyPermission(): void {
+    //     if (this.auth.isAuthorized(this.allowedRoles)) {
+    //         this.viewContainer.createEmbeddedView(this.templateRef);
+    //     } else {
+    //         this.viewContainer.clear();
+    //     }
+    // }
 
 }

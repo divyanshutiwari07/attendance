@@ -29,8 +29,8 @@ const listOfSources = require('./list-of-sources.json');
 // });
 
 // Initialize our websocket server on port 5000
-server.listen(3000, () => {
-    console.log("started on port 3000");
+server.listen(5000, () => {
+    console.log("started on port 5000");
 });
 
 app.post("/employee-attendance", (req, res, next) => {

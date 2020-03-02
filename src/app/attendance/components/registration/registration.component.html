@@ -8,7 +8,7 @@
     <div class="capture-image" *ngIf='showCameraView'>
         <app-camera (pictureTaken)="handleImage($event)"></app-camera>
     </div>
-    <div class="snapshotList" *ngIf="webcamImages.length">
+    <div class="snapshotList" *ngIf="webcamImages">
       <mat-grid-list cols="4">        
         <mat-grid-tile *ngFor="let webcamImg of webcamImages">
             <button class="btn btn-danger remove-image" placement="top" ngbTooltip="Delete Image" (click)="removeImage('webcamImages', webcamImg)">
@@ -18,7 +18,7 @@
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-    <div class="snapshotList" *ngIf="files.length">
+    <div class="snapshotList" *ngIf="files">
       <mat-grid-list cols="4" >
         <mat-grid-tile *ngFor="let file of files">
             <button class="btn btn-danger remove-image" placement="top" ngbTooltip="Delete Image" (click)="removeImage('files', file)">

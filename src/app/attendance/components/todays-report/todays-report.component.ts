@@ -27,7 +27,7 @@ import { AuthGuard } from 'src/app/shared';
 })
 export class TodaysReportComponent implements OnInit {
 
-  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent' ];
+  displayedColumns: string[] = ['photo', 'name', 'department',  'isPresent', 'viewRecord', 'action' ];
   dataSource = new MatTableDataSource([]);
 
   @ViewChild(MatSort, {static: false}) set matSort(sort: MatSort) {
@@ -113,14 +113,13 @@ export class TodaysReportComponent implements OnInit {
       this.selectedCamera = selectedCamera;
     } );
 
-    if( this.auth.isAuthorized([ 'AD', 'HR', 'MD']) ) {
-      this.displayedColumns.push('viewRecord');
-    }
+    // if ( this.auth.isAuthorized([ 'AD', 'HR', 'MD']) ) {
+    //   this.displayedColumns.push('viewRecord');
+    // }
 
-    if( this.auth.isAuthorized([ 'HR', 'MD']) ) {
-      this.displayedColumns.push('action');
-    }
-    
+    // if ( this.auth.isAuthorized([ 'HR', 'MD']) ) {
+    //   this.displayedColumns.push('action');
+    // }
   }
 
   private startSocketConnection() {

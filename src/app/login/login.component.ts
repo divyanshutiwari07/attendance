@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         this.apiService.login(this.loginDetails).subscribe((loginRes) => {
 
             if ( loginRes.success ) {
+                console.log(loginRes);
                 this.auth.logIn(loginRes);
                 this.successToaster(loginRes.msg);
             } else {

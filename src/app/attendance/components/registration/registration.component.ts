@@ -56,7 +56,7 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
       this.isEditMode = true;
       this.files = [];
       this.registeredUser.photos.forEach(photoSrc => {
-        photoSrc = "https://i2.wp.com/airlinkflight.org/wp-content/uploads/2019/02/male-placeholder-image.jpeg?ssl=1";
+        // photoSrc = "https://i2.wp.com/airlinkflight.org/wp-content/uploads/2019/02/male-placeholder-image.jpeg?ssl=1";
         this.convertSrcToBlob(photoSrc).then(blob => {
           this.files.push(blob);
           console.log(this.files);
@@ -100,13 +100,13 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
         formData.append('awi_subclass', this.registerForm.get('subClass').value);
         if (this.files) {
           const reversedFiles = [...this.files].reverse();
-          reversedFiles.forEach((file, key) => {            
-            if( !file.name ) {              
+          reversedFiles.forEach((file, key) => {
+            if ( !file.name ) {
               formData.append('file', file, 'update-' + (key + 1) + '.jpeg');
             } else {
               formData.append('file', file);
             }
-          });          
+          });
         }
 
         if (this.webcamImages.length) {
@@ -120,14 +120,14 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
             console.log(key, ': ', value);
         });
 
-        // this.apiService.register(formData)
-        // .subscribe(
-        //     response => {
-        //         this.successToaster(response.msg);
-        //         this.activeModal.close();
-        //         console.log(response);
-        //     }
-        // );
+        this.apiService.register(formData)
+        .subscribe(
+            response => {
+                this.successToaster(response.msg);
+                this.activeModal.close();
+                console.log(response);
+            }
+        );
     }
   }
 
