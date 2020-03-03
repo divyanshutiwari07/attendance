@@ -10,7 +10,7 @@ $topnav-background-color: #212529;
     left: 235px;
     width: 222px;
     margin-left: -235px;
-    margin-bottom: 48px;
+    // margin-bottom: 48px;
     border: none;
     border-radius: 0;
     overflow-y: auto;
@@ -145,7 +145,7 @@ $topnav-background-color: #212529;
 }
 @media screen and (max-width: 992px) {
     .sidebar {
-        top: 106px;
+        top: 60px;
         left: 0px;
     }
 }

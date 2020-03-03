@@ -45,15 +45,15 @@ export class SidebarComponent implements OnInit {
         private modalService: NgbModal,
         private formBuilder: FormBuilder
         ) {
-        this.router.events.subscribe(val => {
-            if (
-                val instanceof NavigationEnd &&
-                window.innerWidth <= 992 &&
-                this.isToggled()
-            ) {
-                this.toggleSidebar();
-            }
-        });
+        // this.router.events.subscribe(val => {
+        //     if (
+        //         val instanceof NavigationEnd &&
+        //         window.innerWidth <= 992 &&
+        //         this.isToggled()
+        //     ) {
+        //         this.toggleSidebar();
+        //     }
+        // });
 
         // this.createFormControls();
         // this.createForm();
@@ -76,12 +76,15 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isActive = true;
-        this.collapsed = true;
+        // this.isActive = true;
+        // this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
         this.showCameraView = false;
         // tslint:disable-next-line:max-line-length
+
+        // emit by default collapse
+        this.toggleCollapsed();
     }
 
 
@@ -102,15 +105,15 @@ export class SidebarComponent implements OnInit {
         this.collapsedEvent.emit(this.collapsed);
     }
 
-    isToggled(): boolean {
-        const dom: Element = document.querySelector('body');
-        return dom.classList.contains(this.pushRightClass);
-    }
+    // isToggled(): boolean {
+    //     const dom: Element = document.querySelector('body');
+    //     return dom.classList.contains(this.pushRightClass);
+    // }
 
-    toggleSidebar() {
-        const dom: any = document.querySelector('body');
-        dom.classList.toggle(this.pushRightClass);
-    }
+    // toggleSidebar() {
+    //     const dom: any = document.querySelector('body');
+    //     dom.classList.toggle(this.pushRightClass);
+    // }
 
     openVerticallyCentered() {
         this.modalReference = this.modalService.open(RegistrationComponent, { centered: true });

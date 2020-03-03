@@ -1,4 +1,4 @@
-<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
+<nav class="sidebar" id="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <div class="list-group">
         <a [routerLink]="['/todays-report']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa fa-file"></i>&nbsp;
@@ -19,8 +19,8 @@
         <hr >        
         
     </div>
-    <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
+    <!-- <div class="toggle-button" [ngClass]="{collapsed: collapsed}" (click)="toggleCollapsed()">
         <i class="fa fa-fw fa-angle-double-{{collapsed?'right':'left'}}"></i>&nbsp;
         <span>{{ 'Collapse Sidebar' }}</span>
-    </div>
+    </div> -->
 </nav>
