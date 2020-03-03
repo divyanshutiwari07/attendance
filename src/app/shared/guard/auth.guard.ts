@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
     logOut () {
         localStorage.removeItem('token');
         localStorage.removeItem('userRoles');
-        this.wsService.disconnectSocksdet();
+        this.wsService.disconnectSocket();
         if ( isNullOrUndefined(localStorage.getItem('token')) ) {
             this.router.navigate(['/login']);
         }

@@ -196,7 +196,7 @@ export class PersonComponent implements OnInit {
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
     // console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
-    this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name})
+    this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name, id: this.empRecord.name})
       .subscribe(
         response => {
           console.log('rejectDatarespone' , response);

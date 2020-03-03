@@ -76,8 +76,8 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.isActive = false;
-        this.collapsed = false;
+        this.isActive = true;
+        this.collapsed = true;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
         this.showCameraView = false;

@@ -5,14 +5,15 @@ import * as Rx from 'rxjs';
 import { config } from '../../config';
 import {SOCKET_EVENTS} from '../../config';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class WebsocketService {
+export class WebsocketRejectService {
 
   private socket;
 
-  constructor( ) {}
+  constructor() { }
 
   connect(): Rx.Subject<MessageEvent> {
     const token = localStorage.getItem('token');
@@ -22,7 +23,7 @@ export class WebsocketService {
     this.socket = io(config.SERVER_ADDRESS_REALTIME);
 
     const observable = new Observable(observer => {
-        this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
+        this.socket.on('event_reject_attendance', (data) => {
           // console.log('connect  socket');
           observer.next(data);
         });
@@ -41,5 +42,4 @@ export class WebsocketService {
     this.socket.disconnect();
     // console.log('disconnet')
   }
-
 }

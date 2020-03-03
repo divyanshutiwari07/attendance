@@ -7,6 +7,9 @@
         justify-content: space-between;
         align-items: center;
         margin-top: 10px;
+        .h1 {
+            font-size: 28px;
+        }
         > * {
             width: 33.33%;
         }
@@ -27,6 +30,7 @@
             padding: 2px 15px;
             border-radius: 4px;
             background-color: #fff;
+            font-size: 24px;
             box-shadow: 
             0 5px 4px -4px rgba(0, 0, 0, 0.2), 
             0 5px 9px 1px rgba(0, 0, 0, 0.14), 
@@ -40,8 +44,9 @@
             display: flex;
             align-items: baseline;  
             font-size: 18px;
-            h3 {
+            h1 {
                 padding-right: 15px;
+                font-size: 28px;
             }
         }
     }

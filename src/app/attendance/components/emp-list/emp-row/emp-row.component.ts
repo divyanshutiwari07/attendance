@@ -88,7 +88,7 @@ export class EmpRowComponent implements OnInit {
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
 
-    this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': emp.name})
+    this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': emp.name, 'id': emp.id})
     .subscribe(
       response => {
         if ( response.success ) {

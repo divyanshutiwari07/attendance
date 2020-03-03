@@ -1,10 +1,11 @@
-// $topnav-background-color: #222;
-$topnav-background-color: #dedede;
+$topnav-background-color: #fff;
+// $topnav-background-color: #dedede;
 
 :host {
     .navbar {
-        // padding: 35px;
-        border-bottom: 2px solid black;
+        box-shadow: 6 0.46875rem 0.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 21.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+        min-height: 105px;
+        border-bottom: 1px solid rgba(0,0,0,.2);
         background-color: $topnav-background-color;
         .navbar-brand {
             color: black;

@@ -98,6 +98,8 @@ export class TodaysReportComponent implements OnInit {
     this.getListOfRegisteredUsers();
     this.startSocketConnection();
     this.checkNewPresentEmp();
+    this.checkNewRejectedEmp();
+
     this.presentEmpSubscription = this.presentEmpService.empList$
       .subscribe(empList => {
         this.empList = empList;
@@ -127,14 +129,14 @@ export class TodaysReportComponent implements OnInit {
   }
 
   private checkNewPresentEmp() {
-    this.userData.messages.subscribe(data => {
+    this.userData.detailsChangedMessages.subscribe(data => {
       console.log('Data' , data);
       const newEmpData = this.extractDataForNewEmp(data);
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
           // if ( true ) {
-          if ( this.checkCamIdMatched(newEmpData.camId) && this.checkEmpIsRegistered(newEmpData.id) ) {
+          if ( this.checkEmpIsRegistered(newEmpData.id) ) {
           // if (  this.rejectEmpAtRealTime(newEmpData.id) ) {
             console.log('new1', this.empList );
             this.empList.unshift( newEmpData );
@@ -151,6 +153,13 @@ export class TodaysReportComponent implements OnInit {
           console.log('emp already present');
         }
       }
+    });
+  }
+
+  private checkNewRejectedEmp() {
+    this.userData.rejectMessages.subscribe(rejectedData => {
+      this.presentEmpService.reject(rejectedData.data.id);
+      console.log('rejected data as real time', rejectedData.data);
     });
   }
   // rejectEmpAtRealTime(newEmpId) {
@@ -373,7 +382,8 @@ export class TodaysReportComponent implements OnInit {
     const endTime = this.chooseEndDateTime();
 
     if ( this.checkEmpAlreadyPresent(this.selectedEmpData.id) ) {
-      this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': this.selectedEmpData.name})
+      // tslint:disable-next-line:max-line-length
+      this.apiService.rejectEmpAttendance({'start_time': startTime, 'end_time': endTime, 'awi_label': this.selectedEmpData.name, 'id': this.selectedEmpData.id})
       .subscribe(
         response => {
           console.log('rejectDatarespone' , response);

@@ -2,6 +2,7 @@ $topnav-background-color: #212529;
 // $topnav-background-color: #3b566e;
 
 .sidebar {
+    margin-top: 44px;
     border-radius: 0;
     position: fixed;
     z-index: 1000;
@@ -25,6 +26,7 @@ $topnav-background-color: #212529;
     transition: all 0.2s ease-in-out;
     // border-top: 1px solid rgba(255,255,255,0.3);
     .list-group {
+        border-right: 1px solid rgba(0,0,0,.2);
         a.list-group-item {
             background: $topnav-background-color;
             border: 0;
@@ -39,7 +41,8 @@ $topnav-background-color: #212529;
         }
         a:hover {
             // background: darken($topnav-background-color, 5%);
-            background-color: #dedede ;
+            // background-color: #dedede ;
+            background-color: #fff ;
             color: black;
             // color: #fff;
         }
@@ -47,7 +50,8 @@ $topnav-background-color: #212529;
             
             // background: darken($topnav-background-color, 5%);
             // color: #fff;
-            background-color: #dedede ;
+            // background-color: #dedede ;
+            background-color: #fff ;
             color: black;
         }
         .header-fields {
