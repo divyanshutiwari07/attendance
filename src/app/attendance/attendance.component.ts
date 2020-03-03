@@ -14,7 +14,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   receiveCollapsed($event) {
-    this.collapedSideBar = !$event;
+    this.collapedSideBar = $event;
   }
 
 }
