@@ -70,6 +70,7 @@ export class TodaysReportComponent implements OnInit {
   public searchText;
   public fileDataType;
   public regModalContent;
+  public showExportButton;
 
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
@@ -446,6 +447,11 @@ export class TodaysReportComponent implements OnInit {
 
   selectedYearForEmp(year) {
     this.selectedYear = year;
+  }
+
+  toggleExportButton(showExportButton) {
+    console.log('toggle button', showExportButton);
+    this.showExportButton = showExportButton;
   }
 
   exportEmployeeMonthReport(fileName) {

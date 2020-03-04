@@ -39,8 +39,6 @@ export class EmpListComponent implements OnChanges {
   ngOnChanges() {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
-
-    // console.log('this.employees', this.employees);
     // this.currentItemsToShow = this.employees;
 
   }

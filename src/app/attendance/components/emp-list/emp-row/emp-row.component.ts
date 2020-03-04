@@ -17,6 +17,8 @@ import { PresentEmpService } from '../../../services/present-emp.service';
 export class EmpRowComponent implements OnInit {
 
   @Input() employee: any = {};
+  @Input() employeesLength: number;
+
   empRecord: any = [];
   public disableExportButton;
   public fileDataType;
@@ -26,6 +28,7 @@ export class EmpRowComponent implements OnInit {
   private imgIndex;
   public currentImg;
   public showNextPreIcon;
+  public showExportButton;
   // temp;
 
   private yearlyReport;
@@ -47,7 +50,7 @@ export class EmpRowComponent implements OnInit {
    }
 
   ngOnInit() {
-    // console.log(this.employee);
+    console.log('empoloyee 51 on emp row', this.employee);
     this.disableExportButton = true;
     this.imgIndex = 0;
     this.checkIfRegisteredPhoto();
@@ -105,6 +108,7 @@ export class EmpRowComponent implements OnInit {
   enableExportButton(yearlyReport) {
     this.disableExportButton = false;
     this.yearlyReport = yearlyReport;
+    console.log('yeatly report emp row', this.yearlyReport);
   }
 
   employeeMonthlyReportData(monthlyData) {
@@ -113,6 +117,11 @@ export class EmpRowComponent implements OnInit {
 
   selectedYearForEmp(year) {
     this.selectedYear = year;
+  }
+
+  toggleExportButton(showExportButton) {
+    console.log('toggle button', showExportButton);
+    this.showExportButton = showExportButton;
   }
 
   checkDataMonthlyOrYearly(dataType) {

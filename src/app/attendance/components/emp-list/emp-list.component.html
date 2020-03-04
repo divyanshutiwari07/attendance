@@ -51,7 +51,7 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <div>
+        <div *ngIf="employees?.length > 0">
             <button class="btn btn-outline-secondary" (click)="exportCSV()" placement="left" ngbTooltip="Export CSV">
                 <i class="fa fa-download" aria-hidden="false"></i>
             </button>

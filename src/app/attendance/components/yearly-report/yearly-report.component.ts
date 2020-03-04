@@ -21,6 +21,7 @@ export class YearlyReportComponent implements OnInit {
   @Output() checkDataMonthlyOrYearly: EventEmitter<any> = new EventEmitter<any>();
   @Output() employeeMonthlyReportData: EventEmitter<any> = new EventEmitter<any>();
   @Output() selectedYearForEmp: EventEmitter<any> = new EventEmitter<any>();
+  @Output() toggleExportButton: EventEmitter<any> = new EventEmitter<any>();
 
 
   public reportMode;
@@ -31,6 +32,7 @@ export class YearlyReportComponent implements OnInit {
   public selectedYear;
   public years = [];
   public showSpinner;
+  public showExportButton;
   private checkMonthlyOrYearly;
 
   constructor(private apiService: ApiService, private notifyService: NotificationService) {
@@ -41,7 +43,7 @@ export class YearlyReportComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.showExportButton = false;
     this.selectedYear = this.years[0];
     this.reportMode = 'Y';
     this.checkMonthlyOrYearly = 'yearly_attendance_record';
@@ -70,7 +72,6 @@ export class YearlyReportComponent implements OnInit {
 
   getEmployeeRecordForYear() {
     this.fetching = 1;
-    // console.log('selected year on year ', this.selectedYear)
     this.apiService.getPresentEmployeesForYear({
       'start_time': this.selectedYear.startTimeStamp,
       'end_time': this.selectedYear.endTimeStamp,
@@ -78,10 +79,11 @@ export class YearlyReportComponent implements OnInit {
     }).subscribe((response) => {
       if ( response.success === true ) {
         this.successToaster(response.msg);
+        this.showExportButton = true;
+        this.toggleExportButton.emit(this.showExportButton);
       }
       this.fetching = 0;
       this.employeeYearReport = this.addPresentEmpDuration(response.data);
-      // console.log(this.employeeYearReport);
       this.checkDataMonthlyOrYearly.emit(this.checkMonthlyOrYearly);
       this.selectedYearForEmp.emit(this.selectedYear);
       this.genrateFormattedReport();
@@ -125,7 +127,6 @@ export class YearlyReportComponent implements OnInit {
       formattedYearReport.presentCount += 1;
     });
     this.formattedYearReport = formattedYearReport;
-    // console.log("this.formattedYearReport", this.formattedYearReport);
     this.generateAttendanceTable();
   }
 
@@ -143,7 +144,6 @@ export class YearlyReportComponent implements OnInit {
 
     });
     this.yearlyReportResponse.emit(this.attendanceTable);
-    // console.log("this.attendanceTable", this.attendanceTable);
   }
 
   getMonthReport(month) {
