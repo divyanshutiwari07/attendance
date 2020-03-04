@@ -55,6 +55,7 @@ export class PersonComponent implements OnInit {
   ngOnInit() {
     this.startSocketConnection();
     this.initForm();
+    this.checkNewRejectedEmp();
 
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
@@ -106,6 +107,7 @@ export class PersonComponent implements OnInit {
 
   private checkNewPresentEmp() {
     this.userData.messages.subscribe(data => {
+      console.log('empid', this.empIds);
       // console.log('new person on tab ', data);
       const newPerson = PresentNewEmployeeModel.ModelMap(data).presentEmployee;
       console.log('new person on tab', newPerson);
@@ -131,6 +133,13 @@ export class PersonComponent implements OnInit {
     );
   }
 
+  private checkNewRejectedEmp() {
+    this.userData.rejectMessages.subscribe(rejectedData => {
+      this.removeIdFromTheList(rejectedData);
+      console.log('rejected data as real time on tab', rejectedData.data);
+    });
+  }
+
   private checkEmpIsRegistered(id) {
     return this.getRegisteredUsersName.find((reg) => reg.id === id );
   }
@@ -145,7 +154,7 @@ export class PersonComponent implements OnInit {
     // console.log('Verified');
     // console.log('on verify', this.person.name);
     // console.log(this.person);
-    // this.addToTheList(this.empRecord);
+    // this.addIdToTheList(this.empRecord);
     // this.initForm();
     // this.showNextPersonInTheQueue();
 
@@ -155,7 +164,7 @@ export class PersonComponent implements OnInit {
       console.log('verify emp presence', response);
       if ( response.success === true ) {
         this.successToaster(response.msg);
-        this.addToTheList(this.empRecord);
+        this.addIdToTheList(this.empRecord);
         this.initForm();
         this.showNextPersonInTheQueue();
       } else {
@@ -177,7 +186,7 @@ export class PersonComponent implements OnInit {
           console.log('verify emp presence', response);
           if ( response.success === true ) {
             this.successToaster(response.msg);
-            this.addToTheList(this.person.name);
+            this.addIdToTheList(this.person.name);
             this.initForm();
             this.showNextPersonInTheQueue();
           } else {
@@ -196,7 +205,7 @@ export class PersonComponent implements OnInit {
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
     // console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
-    this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name, id: this.empRecord.name})
+    this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name, id: this.empRecord.id})
       .subscribe(
         response => {
           console.log('rejectDatarespone' , response);
@@ -212,9 +221,14 @@ export class PersonComponent implements OnInit {
       );
   }
 
-  private addToTheList(newPerson) {
+  private addIdToTheList(newPerson) {
     this.empIds.push(newPerson.id);
-    console.log('addToTheList called: new Emp Ids', this.empIds);
+    console.log('addIdToTheList called: new Emp Ids', this.empIds);
+  }
+
+  private removeIdFromTheList(newRejectedPerson) {
+    this.empIds = this.empIds.filter(emp => emp.id !== newRejectedPerson.id);
+    console.log('after rejected empids', this.empIds);
   }
 
   private checkEmpAlreadyPresent(newId) {
