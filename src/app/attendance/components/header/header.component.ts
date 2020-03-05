@@ -47,4 +47,13 @@ export class HeaderComponent implements OnInit {
         this.auth.logOut();
     }
 
+    // firstLocation() {
+    //     console.log('first location');
+    //     window.location.reload(true);
+    // }
+
+    // secondLocation() {
+    //     console.log('second Location');
+    // }
+
 }

@@ -1,5 +1,11 @@
 .attendance-stats {
 	min-width: 1025px;
+	.header {
+		margin: 10px 0px 22px 0px;
+		h1{
+			font-size: 28px;
+		}
+	}
 	.row{
 		display: flex;
 		width: 100%;

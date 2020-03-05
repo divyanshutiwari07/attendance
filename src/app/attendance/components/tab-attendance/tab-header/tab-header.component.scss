@@ -2,7 +2,10 @@ $topnav-background-color: #dedede;
 
 :host {
 .header {
-     
+    margin: 10px 0px 22px 0px;
+    h1{
+        font-size: 28px;
+    }
     .navbar-nav {
         img {
             height: 24px;

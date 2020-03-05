@@ -142,14 +142,15 @@
                   [empName]="selectedEmpData.name" 
                   (yearlyReportResponse)="enableExportButton($event)"
                   (checkDataMonthlyOrYearly)='checkDataMonthlyOrYearly($event)'
-                  (selectedYearForEmp) = 'selectedYearForEmp($event)'
                   (toggleExportButton) = 'toggleExportButton($event)'
+                  (selectedYearForEmp) = 'selectedYearForEmp($event)'
+                  
                   (employeeMonthlyReportData) = 'employeeMonthlyReportData($event)'
                   ></app-yearly-report>
               </div>
           </div>
           <div class="modal-footer">
-                  <div><button *ngIf="showExportButton" class="btn btn-outline-primary" [disabled]="disableExportButton" (click)=" fileDataType ==='yearly_attendance_record' ? exportEmployeeYearReport(selectedEmpData.name) : exportEmployeeMonthReport(selectedEmpData.name)">Export CSV</button></div>
+                  <div><button *ngIf="showExportButton"  class="btn btn-outline-primary" [disabled]="disableExportButton" (click)=" fileDataType ==='yearly_attendance_record' ? exportEmployeeYearReport(selectedEmpData.name) : exportEmployeeMonthReport(selectedEmpData.name)">Export CSV</button></div>
                   <button  type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
           </div>
       </ng-template>
