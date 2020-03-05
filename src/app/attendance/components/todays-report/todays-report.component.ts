@@ -53,6 +53,7 @@ export class TodaysReportComponent implements OnInit {
   private selectedYear;
   private selectedDate;
   private selectedCamera;
+  private modalReference;
   private presentEmpSubscription;
 
   public empList = [];
@@ -355,7 +356,14 @@ export class TodaysReportComponent implements OnInit {
   }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
+    this.modalReference = this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
+    this.modalReference.result.then((data) => {
+      this.showExportButton = false;
+      console.log('close modal emp row 1', this.showExportButton)
+    }, (reason) => {
+      this.showExportButton = false;
+      console.log('close modal emp row 2', this.showExportButton )
+    });
   }
 
   chooseEndDateTime() {

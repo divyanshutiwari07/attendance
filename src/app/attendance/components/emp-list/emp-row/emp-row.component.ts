@@ -29,6 +29,7 @@ export class EmpRowComponent implements OnInit {
   public currentImg;
   public showNextPreIcon;
   public showExportButton;
+  private modalReference = null;
   // temp;
 
   private yearlyReport;
@@ -80,7 +81,14 @@ export class EmpRowComponent implements OnInit {
   }
 
   openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
+    this.modalReference = this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
+    this.modalReference.result.then((data) => {
+      this.showExportButton = false;
+      console.log('close modal emp row 1', this.showExportButton)
+    }, (reason) => {
+      this.showExportButton = false;
+      console.log('close modal emp row 2', this.showExportButton )
+    });
   }
 
   openVerticallyCenteredForImgCompare(contentForImgCompare) {
