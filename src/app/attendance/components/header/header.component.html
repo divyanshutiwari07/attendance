@@ -4,10 +4,6 @@
     </button>
     <span class='navbar-brand'><img src='../../../../assets//images/fram-logo-latest.png'></span>
     <div class="navbar-collapse d-flex">
-        <!-- <div class="logo-style">
-            <span> Powered By </span>
-            <img src='../../../../assets/images/Awiros_logo.svg'>
-        </div> -->
         <!-- <div>
             <button mat-stroked-button [matMenuTriggerFor]="menu">Select Location <mat-icon>arrow_drop_down</mat-icon></button>
             <mat-menu #menu="matMenu" >
@@ -18,28 +14,17 @@
             </mat-menu>
         </div> -->
         
-
         <ul class="navbar-nav ml-auto">                
             <li class="nav-item dropdown" placement="bottom-right" ngbDropdown >
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle >
                     <i class="fa fa-user-circle"></i>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu> 
-                    <!-- <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-user"></i> {{ 'Profile' }}
-                    </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' }}
-                    </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
-                        <i class="fa fa-fw fa-gear"></i> {{ 'Settings' }}
-                    </a> -->
                     <a class="dropdown-item" (click)="onLoggedout()">
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' }}
                     </a>
                 </div>
             </li>
         </ul>
-        
     </div>
 </nav>

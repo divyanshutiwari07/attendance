@@ -1,7 +1,5 @@
 <div class="col-md-12 monthly-report">
     <div class="header d-flex">
-        <!-- <div class="column">Total leaves this month: 6%</div> -->
-        <!-- <div class="column">{{monthReport.month}}</div> -->
         <div class="column">Total Attendance in {{monthReport.month}}: {{monthReport.report.length}}</div>
     </div>
     <div class="record table-responsive">
@@ -15,9 +13,6 @@
                     <th>Exit Location</th>
                     <th>Total Duration</th>
                 </tr>
-                <!-- <tr>
-                    <th>Total Hours in Month</th>
-                </tr> -->
             </thead>
             <tbody>
                 <tr *ngFor="let day of formattedReport" >

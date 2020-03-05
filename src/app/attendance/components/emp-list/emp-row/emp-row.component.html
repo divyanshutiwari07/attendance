@@ -7,7 +7,6 @@
                     (click)="openVerticallyCenteredForImgCompare(contentForImgCompare)"  onerror="src='assets/images/error_404.png';">  
                     <div *ngIf="employee.type === 'manual'" >
                         <img src="assets/images/user-edit.png" class="notify-badge" alt="" placement='left' ngbTooltip='Manual Entry'> 
-                        <!-- <span class="notify-badge fas fa-user-edit" placement='top' ngbTooltip='Manual Entry'></span>  -->
                     </div>
                 </div>
             </div>
@@ -36,7 +35,7 @@
     <div class="modal-header">
         <h4 class="modal-title">Employee Report</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
         </button> 
     </div>
 
@@ -96,4 +95,4 @@
             <button type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
         </div>
     </div>
-</ng-template>      
+</ng-template>

@@ -19,20 +19,19 @@ export class EmpRowComponent implements OnInit {
   @Input() employee: any = {};
   @Input() employeesLength: number;
 
-  empRecord: any = [];
-  public disableExportButton;
-  public fileDataType;
   private monthlyData;
   private selectedYear;
   private todaysDate;
   private imgIndex;
+  private modalReference = null;
+  private yearlyReport;
+
+  public disableExportButton;
+  public fileDataType;
   public currentImg;
   public showNextPreIcon;
   public showExportButton;
-  private modalReference = null;
-  // temp;
 
-  private yearlyReport;
   exportAsConfig: ExportAsConfig = {
     type: 'csv',
     elementId: 'employee_report',
@@ -45,22 +44,18 @@ export class EmpRowComponent implements OnInit {
       private notifyService: NotificationService,
       private presentEmpService: PresentEmpService,
     ) {
-    this.todaysDate = new Date();
-    this.showNextPreIcon = false;
-
+      this.todaysDate = new Date();
+      this.showNextPreIcon = false;
    }
 
   ngOnInit() {
-    console.log('empoloyee 51 on emp row', this.employee);
     this.disableExportButton = true;
     this.imgIndex = 0;
+
     this.checkIfRegisteredPhoto();
-    // tslint:disable-next-line:max-line-length
-    // this.temp = [ "https://www.dailycsr.com/photo/art/grande/10192527-16625056.jpg?v=1473684171", "https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg" ]
   }
 
   checkIfRegisteredPhoto() {
-    // console.log(this.employee)
     if ( !this.employee.registeredPhoto ) { return; }
     this.currentImg = this.employee.registeredPhoto[this.imgIndex];
     if ( this.employee.registeredPhoto.length >= 2 ) {
@@ -84,10 +79,8 @@ export class EmpRowComponent implements OnInit {
     this.modalReference = this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
     this.modalReference.result.then((data) => {
       this.showExportButton = false;
-      console.log('close modal emp row 1', this.showExportButton)
     }, (reason) => {
       this.showExportButton = false;
-      console.log('close modal emp row 2', this.showExportButton )
     });
   }
 
@@ -110,7 +103,10 @@ export class EmpRowComponent implements OnInit {
         }
       }
     );
+  }
 
+  selectedYearForEmp(year) {
+    this.selectedYear = year;
   }
 
   enableExportButton(yearlyReport) {
@@ -119,17 +115,12 @@ export class EmpRowComponent implements OnInit {
     console.log('yeatly report emp row', this.yearlyReport);
   }
 
+  toggleExportButton(showExportButton) {
+    this.showExportButton = showExportButton;
+  }
+
   employeeMonthlyReportData(monthlyData) {
     this.monthlyData = monthlyData;
-  }
-
-  selectedYearForEmp(year) {
-    this.selectedYear = year;
-  }
-
-  toggleExportButton(showExportButton) {
-    console.log('toggle button', showExportButton);
-    this.showExportButton = showExportButton;
   }
 
   checkDataMonthlyOrYearly(dataType) {
@@ -143,8 +134,6 @@ export class EmpRowComponent implements OnInit {
       decimalSeparator: '.',
       showLabels: true,
       showTitle: false,
-      // title: 'Today\'s Present Employee',
-      // title: '',
       useTextFile: false,
       useBom: true,
       filename: null,
@@ -161,7 +150,7 @@ export class EmpRowComponent implements OnInit {
     const empName = Utils.getFirstLaterOfWordCapital(fileName);
     const CSVfilename = empName + '_' + this.monthlyData.month + '_' + this.monthlyData.year.year + '_Attendance_Record';
     this.exportAsService.save(this.exportAsConfig, CSVfilename ).subscribe(() => {
-        });
+      });
   }
 
   errorToaster(message: string) {

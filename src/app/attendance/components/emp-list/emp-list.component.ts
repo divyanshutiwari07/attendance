@@ -15,20 +15,19 @@ export class EmpListComponent implements OnChanges {
   @Input() allDepartmentList: Array<object>;
   @Input() allLocationList: Array<object>;
 
+  private todaysDate;
+
   public selectedDepartment;
   public selectedLocation;
   public selectedList;
   public selectedTime;
   public departments;
   public locations;
-  private todaysDate;
   public selectedEntryType;
-  private csvDate;
 
-
-  sortByList = Metadata.getSortOptions();
-  arrivalTimes = Metadata.getTimeRange();
-  filterByType = Metadata.getManualFilterOptions();
+  sortByList    = Metadata.getSortOptions();
+  arrivalTimes  = Metadata.getTimeRange();
+  filterByType  = Metadata.getManualFilterOptions();
   currentItemsToShow = [];
 
   constructor() {
@@ -40,12 +39,10 @@ export class EmpListComponent implements OnChanges {
     this.departments = this.allDepartmentList;
     this.locations = this.allLocationList;
     // this.currentItemsToShow = this.employees;
-
   }
 
 
   exportCSV() {
-    // console.log('this.employees', this.employees);
     if (this.employees.length !== 0) {
       const options = {
         fieldSeparator: ',',
@@ -53,7 +50,6 @@ export class EmpListComponent implements OnChanges {
         decimalSeparator: '.',
         showLabels: true,
         showTitle: false,
-        // title: 'Today\'s Present Employee',
         title: '',
         useTextFile: false,
         useBom: true,
@@ -69,7 +65,6 @@ export class EmpListComponent implements OnChanges {
 
       csvExporter.generateCsv(Utils.getFormattedCSVdata(this.employees , mapTo));
     }
-
   }
 
   // onPageChange($event) {

@@ -37,10 +37,8 @@ export class HeaderComponent implements OnInit {
         const dom: any = document.querySelector('body');
         dom.classList.toggle(this.pushRightClass);
 
-        // dom.classList.toggle("sidebar-collapsed");
-
-        document.getElementById("main_container").classList.toggle("collapsed");
-        document.getElementById("sidebar").classList.toggle("collapsed");
+        document.getElementById('main_container').classList.toggle('collapsed');
+        document.getElementById('sidebar').classList.toggle('collapsed');
     }
 
     onLoggedout() {

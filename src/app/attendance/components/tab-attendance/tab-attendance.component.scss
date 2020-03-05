@@ -1,16 +1,10 @@
 .app {
 	color: #4d4e4f;	
-	// color: #f8f9fa;	
-	
-
 	.app-container { 
 		display: flex; 
-		// margin: 0 -10px;
-		 
 	} 
 
 	@media screen and (orientation:portrait) { 
-			// CSS applied when the device is in portrait mode
 			.app-container { 
 				min-height: calc(100vh - 135px);
 				flex-direction: column; 
@@ -25,7 +19,6 @@
 	} 
 
 	@media screen and (orientation:landscape) { 
-			// CSS applied when the device is in landscape mode 
 			.app-container { 
 				min-height: calc(100vh - 135px); 
 				margin: 0 -10px; 
@@ -34,7 +27,6 @@
 					> * { 
 						flex-basis: 50%; 
 						padding: 0 10px; 
-						// background-clip: content-box; 
 					}					 
 				}				 
 			}			 

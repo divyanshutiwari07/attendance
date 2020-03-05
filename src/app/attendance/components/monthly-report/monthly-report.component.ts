@@ -19,7 +19,6 @@ export class MonthlyReportComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // console.log(this.monthReport);
     this.days = Utils.getDateObjectsInMonth( parseInt(Utils.getMonthNumber(this.monthReport.month), 0) - 1, this.monthReport.year.year);
     const monthReport = [];
     this.days.forEach((day) => {
@@ -29,22 +28,13 @@ export class MonthlyReportComponent implements OnInit {
       } else {
         monthReport.push({day_of_month: day.getDate()});
       }
-      // console.log('data ' + this.formattedReport);
     });
     this.formattedReport = monthReport;
-    // console.log('formate', this.formattedReport);
-    // this.getTotalHoursEmpPresentForMonth();
   }
 
   getTotalHoursEmpPresentForMonth() {
     const time = this.monthReport.report.reduce(( a, count) => a + count.empPresenceDetails.timeDuration, 0);
-    // console.log("getTotalHoursEmpPresentForMonth", time);
     return Utils.getTimeFromMilliseconds(time);
-
-    // const hours = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[0], 0) , 0);
-    // const min = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[1], 0) , 0);
-    // const sec = this.monthReport.report.reduce(( a, count) => a + parseInt(count.totalHoursEmpPresentToday.split(':')[2], 0) , 0);
-    // return hours + ':' + min + ':' + sec;
   }
 
   checkIfPresentOnThisDate(day, monthName) {

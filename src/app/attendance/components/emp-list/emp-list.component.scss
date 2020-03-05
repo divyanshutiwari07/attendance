@@ -2,20 +2,13 @@
     display: flex;
     justify-content: space-between;
     padding-bottom: 10px;
-    // border-bottom: 1px solid #bbb;
 
     .column {
         display: flex;
         align-items: center;
-        // flex: .7;
     }
-    // .column.heading {
-        // flex: .5;
-    // }
     .column.filters {
         button {
-            // height: 33px;
-            // padding-bottom: 27px;
             height: 31px;
             width: 33px;
             position: relative;
@@ -24,31 +17,20 @@
                 bottom: 25%;
                 right: 25%;
             }
-        }        
+        }
+
         > * {
                 margin-right: 7px;
             }
-            
-        // div {
-        //     width: 140px;
-        //     height: 25px;
-        //     border-radius: 8px;
-        //     box-shadow: 0 2px 3px 0 rgba(150,118,118,.05);
-        //     border: 1px solid rgba(0,0,0,.15);
-        //     background-color: #fff;
-        //     padding-left: 10px;
-        //     vertical-align: middle;
-        //     font-family: Roboto;
-        //     font-size: 13px;    
-        // }
-        
     }
+
     .column.sort {
         justify-content: center;
         > * {
             margin-right: 7px;
         }
     }
+    
     .column.action {
         flex: 0.4;
         justify-content: flex-end;

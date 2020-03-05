@@ -1,5 +1,4 @@
 $topnav-background-color: #212529;
-// $topnav-background-color: #3b566e;
 
 .sidebar {
     margin-top: 44px;
@@ -10,7 +9,6 @@ $topnav-background-color: #212529;
     left: 235px;
     width: 222px;
     margin-left: -235px;
-    // margin-bottom: 48px;
     border: none;
     border-radius: 0;
     overflow-y: auto;
@@ -24,7 +22,6 @@ $topnav-background-color: #212529;
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    // border-top: 1px solid rgba(255,255,255,0.3);
     .list-group {
         border-right: 1px solid rgba(0,0,0,.2);
         a.list-group-item {
@@ -32,7 +29,6 @@ $topnav-background-color: #212529;
             border: 0;
             border-radius: 0;
             cursor: pointer;
-            // color: black;
             color: white;
             text-decoration: none;
             .fa {
@@ -40,17 +36,11 @@ $topnav-background-color: #212529;
             }
         }
         a:hover {
-            // background: darken($topnav-background-color, 5%);
-            // background-color: #dedede ;
             background-color: #fff ;
             color: black;
-            // color: #fff;
         }
         a.router-link-active {
             
-            // background: darken($topnav-background-color, 5%);
-            // color: #fff;
-            // background-color: #dedede ;
             background-color: #fff ;
             color: black;
         }
@@ -113,8 +103,6 @@ $topnav-background-color: #212529;
             }
         }
     }
-
-
 }
 
 .nested-menu {

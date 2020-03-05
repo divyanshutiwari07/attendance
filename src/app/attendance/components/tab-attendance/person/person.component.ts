@@ -21,6 +21,16 @@ import * as Utils from '../../../common/utils';
 })
 export class PersonComponent implements OnInit {
 
+  private startTime: number;
+  private endTime: number;
+  private todaysDate;
+  private selectedCamera;
+  private presentEmpSubscription;
+
+  public empListObj: PresentEmployeeListModel;
+  public empIds;
+  public empQueue = [];
+  public getRegisteredUsersName: any = [];
   public newPersonCame;
   public empRecord: any = {};
   public person = {
@@ -30,15 +40,6 @@ export class PersonComponent implements OnInit {
     },
     isRecognized: true,
   };
-  private startTime: number;
-  private endTime: number;
-  public empListObj: PresentEmployeeListModel;
-  public empIds;
-  public empQueue = [];
-  public getRegisteredUsersName: any = [];
-  private todaysDate;
-  private presentEmpSubscription;
-  private selectedCamera;
 
   constructor(
     private apiService: ApiService,
@@ -53,26 +54,22 @@ export class PersonComponent implements OnInit {
 
 
   ngOnInit() {
-    this.startSocketConnection();
-    this.initForm();
-    this.checkNewRejectedEmp();
-
     this.startTime = new Date().setHours(0, 0, 0, 0);
     this.endTime = new Date().setHours(23, 59, 59, 999);
 
+    this.startSocketConnection();
+    this.initForm();
+    this.checkNewRejectedEmp();
     this.getPresentEmpData();
     this.getRegisterUsersData();
 
     this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
-      console.log('live stream', selectedCamera);
       this.selectedCamera = selectedCamera;
     } );
-
   }
 
   private getRegisterUsersData() {
     this.userService.loadRegisterUsers().subscribe(response => {
-          // console.log('registered users data for tab', response);
       this.getRegisteredUsersName = this.getListOfRegisteredUsersDetails(response.data);
     });
   }
@@ -90,12 +87,10 @@ export class PersonComponent implements OnInit {
     this.presentEmpService.loadPresentEmployees({start_time: this.startTime, end_time: this.endTime })
     .subscribe(
       response => {
-        // console.log('prestn emp data on tab', response);
         this.empListObj = PresentEmployeeListModel.ModelMap(response);
         this.empIds = this.empListObj.presentEmpIds;
         console.log('emp id on tab', this.empIds);
         this.presentEmpService.changeList(this.empListObj.presentEmployeeList);
-
         this.checkNewPresentEmp();
       }
     );
@@ -108,9 +103,7 @@ export class PersonComponent implements OnInit {
   private checkNewPresentEmp() {
     this.userData.messages.subscribe(data => {
       console.log('empid', this.empIds);
-      // console.log('new person on tab ', data);
       const newPerson = PresentNewEmployeeModel.ModelMap(data).presentEmployee;
-      console.log('new person on tab', newPerson);
       const index = this.empQueue.findIndex((e) => e.id === newPerson.id);
 
       // tslint:disable-next-line:max-line-length
@@ -120,7 +113,6 @@ export class PersonComponent implements OnInit {
             this.empQueue.push(newPerson);
           }
       } else {
-
           console.log('emp already present line 120');
       }
       console.log('Queue Status', this.empQueue);
@@ -151,14 +143,6 @@ export class PersonComponent implements OnInit {
   }
 
   public onVerify() {
-    // console.log('Verified');
-    // console.log('on verify', this.person.name);
-    // console.log(this.person);
-    // this.addIdToTheList(this.empRecord);
-    // this.initForm();
-    // this.showNextPersonInTheQueue();
-
-
     // tslint:disable-next-line:max-line-length
     this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.empRecord.name, verify_user_event: true}).subscribe( response => {
       console.log('verify emp presence', response);
@@ -174,7 +158,6 @@ export class PersonComponent implements OnInit {
   }
 
   public onSubmit() {
-    // console.log('Submitted');
     console.log('person', this.person.name);
 
     if ( this.person.name.name ) {
@@ -200,11 +183,9 @@ export class PersonComponent implements OnInit {
   }
 
   public rejectDetection() {
-    // console.log('rejected detection', );
     console.log('emp', this.empRecord);
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
-    // console.log('name', this.empRecord.name, 'starttime', startTime, 'endTime', endTime);
     this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name, id: this.empRecord.id})
       .subscribe(
         response => {
@@ -213,7 +194,6 @@ export class PersonComponent implements OnInit {
             this.successToaster(response.msg);
             this.initForm();
             this.showNextPersonInTheQueue();
-
           } else {
             this.errorToaster(response.msg);
           }
@@ -235,7 +215,6 @@ export class PersonComponent implements OnInit {
     if ( this.empIds ) {
       return this.empIds.includes(newId);
     } else {
-      // console.log('check emp already present ');
       return false;
     }
   }
@@ -249,7 +228,6 @@ export class PersonComponent implements OnInit {
       this.newPersonCame = true;
       console.log('newEmpRecord', this.empRecord);
     } else {
-      // console.log('emp already present');
       this.showNextPersonInTheQueue();
     }
   }

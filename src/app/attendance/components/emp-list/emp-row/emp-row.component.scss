@@ -1,19 +1,19 @@
 .emp-detail{
   padding-bottom: 10px;
+
   .emp-card {
     border-radius: 8px;
-    // box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
     box-shadow: 
       0 5px 4px -4px rgba(0, 0, 0, 0.2), 
       0 5px 9px 1px rgba(0, 0, 0, 0.14), 
       0 3px 10px 2px rgba(0, 0, 0, 0.12);
+
     .emp-body {
       min-height: 110px;
       padding: 5px 25px;  
       display: flex;
       flex-direction: row;
       border-radius: 8px;
-      // border-bottom: 2px solid #bbb;
     
       .column {
         display: flex;
@@ -28,6 +28,7 @@
       .column.action div{
         display: flex;
         justify-content: center;
+
         button {
           height: 30px;
           padding: 3px 7px 1px 7px;
@@ -43,11 +44,8 @@
         }
         flex: 0.5;
         align-items: center;  
-
         position:relative;
-        // padding-top:20px;
-        // display:inline-block;
-        
+
         .notify-badge{
           position: absolute;
           left: -8px;
@@ -68,29 +66,25 @@
         }
       }
     }
-
-    // .emp-body.manual-attendance {
-    //   background-color: gainsboro;
-    // }
   }
 }
 
-
-
 .report {
   padding: 8px 25px;  
+
   .d-flex {
     padding: 8px 17px;
-    
     .column.avatar {
       display: flex;
       flex: 0.07; 
+
       img {
         border-radius: 8px;
         width: 60px;
         height: 60px;
       }
     }
+
     .column {
       display: flex;
       flex: 1;
@@ -100,6 +94,7 @@
         padding: 9px 0px;
       }
     }
+
     .report-data {
       margin-top: 20px;
     }
@@ -108,9 +103,8 @@
 
 .modal-footer {
   .btn-outline-dark {
-    // border-radius: 0;  
-    // width: 100px;   
     margin-right: 9px;
+
     &:hover {
       background-color: white;
       color:#343a40;
@@ -126,6 +120,7 @@
   .img-report {
     display: flex;  
     justify-content: space-around;
+
     .column.avatar {
       .registered-photos-slider {
         position: relative;
@@ -163,34 +158,18 @@
         padding-bottom: 15px;
       }
       img {
-        // border: 1px solid black;
         height: 265px;
-        // width: 250px;
       }
     }
   }
-
 }
-// [_ngtost-c12]  instead of ng-deep
 
 ::ng-deep .modal-xl-custom {
   .modal-dialog {
-    // overflow-y: initial !important;
     max-width: 90%; 
     width: 90%;
   }
-
-  // .modal-body{
-  //   overflow-x: hidden;
-  //   max-height: calc(100vh - 200px);
-  //   overflow-y: auto;
-  // }
-
-  // @media only screen and (max-width: 1250px) {
-  //   .modal-body{
-  //     overflow-x: auto;
-  //   }
-  // }
 }
+
 
   

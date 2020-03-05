@@ -37,7 +37,6 @@ export class LiveStreamComponent implements OnInit, OnChanges {
       console.log('list of sources', response);
       if (!(isNullOrUndefined(response) || response.success === false)) {
         this.liveStreamCameraInfo = this.extractCameraInfo(response);
-        // this.getLiveStreamCameraId();
       }
     });
   }

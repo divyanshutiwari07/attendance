@@ -18,7 +18,7 @@ export function padStart(str, pad, length) {
 }
 
 export function getMonthName(monthNumber) {
-    const date = new Date(1970, parseInt(monthNumber) - 1, 1);  // 2009-11-10
+    const date = new Date(1970, parseInt(monthNumber) - 1, 1); 
     return date.toLocaleString('default', { month: 'short' });
 }
 
@@ -64,9 +64,7 @@ export function getRandomColor() {
           for (let i = 0; i < chart.config.data.datasets[0].data.length; i++) {
             const color = 'rgba(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',';
               backgroundColor.push(color + '.6)');
-            //   borderColor.push(color + '5)');
             borderColor.push('rgba(0,0,0,0.5)');
-            //   borderColor: 'rgba(0,0,0,1)',
           }
           chart.config.data.datasets[0].backgroundColor = backgroundColor;
           chart.config.data.datasets[0].borderColor = borderColor;
@@ -82,7 +80,6 @@ export function getFormattedDate(date) {
     const mm = String(formattedDate.getMonth() + 1).padStart(2, '0');
     const yyyy = formattedDate.getFullYear();
     formattedDate = dd + '-' + mm + '-' + yyyy;
-    // console.log(formattedDate);
     return formattedDate;
 }
 

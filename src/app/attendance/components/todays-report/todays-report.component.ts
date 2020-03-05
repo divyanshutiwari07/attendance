@@ -5,7 +5,6 @@ import { NotificationService } from '../../services/notification.service';
 import { UserService } from '../../services/user.service';
 import { PresentEmpService } from '../../services/present-emp.service';
 import { UserDataHomePageService } from '../../services/user.data.home.page.service';
-import { CameraSourceService } from '../../services/camera-source.service';
 import { ExportAsConfig, ExportAsService } from 'ngx-export-as';
 
 import PresentEmployeeListModel from '../../models/present-employee-list-model';
@@ -86,7 +85,6 @@ export class TodaysReportComponent implements OnInit {
     private exportAsService: ExportAsService,
     private userData: UserDataHomePageService,
     private presentEmpService: PresentEmpService,
-    private cameraSourceService: CameraSourceService,
     private auth: AuthGuard
   ) {}
 
@@ -112,11 +110,6 @@ export class TodaysReportComponent implements OnInit {
         this.allEmpIdList = this.getAllEmpIdList(this.empList);
       });
 
-    this.cameraSourceService.currentCameraSource.subscribe( selectedCamera => {
-      console.log('todays component ', selectedCamera);
-      this.selectedCamera = selectedCamera;
-    } );
-
     // if ( this.auth.isAuthorized([ 'AD', 'HR', 'MD']) ) {
     //   this.displayedColumns.push('viewRecord');
     // }
@@ -137,14 +130,9 @@ export class TodaysReportComponent implements OnInit {
       console.log('newData' , newEmpData);
       if ( newEmpData ) {
         if ( !this.checkEmpAlreadyPresent( newEmpData.id ) ) {
-          // if ( true ) {
           if ( this.checkEmpIsRegistered(newEmpData.id) ) {
-          // if (  this.rejectEmpAtRealTime(newEmpData.id) ) {
-            console.log('new1', this.empList );
             this.empList.unshift( newEmpData );
-            console.log('new2', this.empList );
             this.presentEmpService.changeList(this.empList);
-            console.log('this.empllist 116', this.empList);
             this.addRegisteredPhotoToPresentEmpList(this.empList);
             this.allDepartmentList = this.getAllDepartmentList( this.empList );
             this.allLocationList = this.getAllLocationList(this.empList);
@@ -161,18 +149,8 @@ export class TodaysReportComponent implements OnInit {
   private checkNewRejectedEmp() {
     this.userData.rejectMessages.subscribe(rejectedData => {
       this.presentEmpService.reject(rejectedData.data.id);
-      console.log('rejected data as real time', rejectedData.data);
     });
   }
-  // rejectEmpAtRealTime(newEmpId) {
-  //    this.presentEmpService.reject(newEmpId);
-  //    return true;
-  // }
-
-
-  // getModalContentRef(modalContent) {
-  //   this.regModalContent = modalContent;
-  // }
 
   private getListOfRegisteredUsers() {
     this.userService.loadRegisterUsers().subscribe(response => {
@@ -197,12 +175,6 @@ export class TodaysReportComponent implements OnInit {
 
   private checkEmpIsRegistered(id) {
      return this.registeredUsersData.find((reg) => reg.id === id );
-  }
-
-  private checkCamIdMatched( camId ) {
-    if ( this.selectedCamera === camId ) {
-      return true;
-    }
   }
 
   private checkEmpAlreadyPresent(newId) {
@@ -301,11 +273,9 @@ export class TodaysReportComponent implements OnInit {
   private extractData(response): Array<object> {
     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
       this.errorToaster(response.msg);
-      // this.presentEmp = '00.00';
       return [];
     }
 
-    // this.presentEmp = ((response.data.length / this.TOTAL_EMP) * 100).toFixed(2);
     this.successToaster(response.msg);
 
     const empListObj = PresentEmployeeListModel.ModelMap(response);
@@ -359,10 +329,8 @@ export class TodaysReportComponent implements OnInit {
     this.modalReference = this.modalService.open(content, { centered: true, windowClass: 'modal-xl-custom' });
     this.modalReference.result.then((data) => {
       this.showExportButton = false;
-      console.log('close modal emp row 1', this.showExportButton)
     }, (reason) => {
       this.showExportButton = false;
-      console.log('close modal emp row 2', this.showExportButton )
     });
   }
 
@@ -398,19 +366,9 @@ export class TodaysReportComponent implements OnInit {
           console.log('rejectDatarespone' , response);
           if ( response.success ) {
             this.successToaster(response.msg);
-
-            // this.getPresentEmployeesDetails(this.startTimeStamp, this.endTimeStamp, (res) => {
-            //   console.log('presentata');
-            //   this.empList = this.extractData(res);
-            //   this.allEmpIdList = this.getAllEmpIdList(this.empList);
-            //   this.addRegisteredPhotoToPresentEmpList(this.empList);
-            //   this.markPresentEmployees();
-            //   console.log('this.empList', this.empList);
-            // });
             this.presentEmpService.reject(this.selectedEmpData.id);
             this.markPresentEmployees();
             this.allEmpIdList = this.getAllEmpIdList(this.empList);
-
           } else {
             this.errorToaster(response.msg);
           }
@@ -429,7 +387,6 @@ export class TodaysReportComponent implements OnInit {
   editUserDetails() {
     const modelRef = this.modalService.open(RegistrationComponent, { centered: true });
     modelRef.componentInstance.registeredUser = this.selectedEmpData;
-    // console.log('edit user details');
   }
 
   empData(element) {
