@@ -60,6 +60,7 @@ export class PersonComponent implements OnInit {
     this.startSocketConnection();
     this.initForm();
     this.checkNewRejectedEmp();
+    this.checkNewUpdatedEmp();
     this.getPresentEmpData();
     this.getRegisterUsersData();
 
@@ -127,8 +128,20 @@ export class PersonComponent implements OnInit {
 
   private checkNewRejectedEmp() {
     this.userData.rejectMessages.subscribe(rejectedData => {
-      this.removeIdFromTheList(rejectedData);
+      this.removeIdFromTheList(rejectedData.data.id);
+      this.removeEmpFromTheList(rejectedData.data.id);
       console.log('rejected data as real time on tab', rejectedData.data);
+    });
+  }
+
+  private checkNewUpdatedEmp() {
+    this.userData.detailsChangedMessages.subscribe(updatedEmpData => {
+      console.log('updated datan  res', updatedEmpData);
+      const dynamicKey = updatedEmpData.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
+      // tslint:disable-next-line:max-line-length
+      const updatedData = updatedEmpData.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+      console.log('updated data', updatedData);
+      this.removeEmpFromTheList(updatedData);
     });
   }
 
@@ -209,6 +222,25 @@ export class PersonComponent implements OnInit {
   private removeIdFromTheList(newRejectedPerson) {
     this.empIds = this.empIds.filter(emp => emp.id !== newRejectedPerson.id);
     console.log('after rejected empids', this.empIds);
+  }
+
+  private removeEmpFromTheList(newRejectedPersonId) {
+    console.log('empRecord', this.empRecord);
+    console.log('emp queue', this.empQueue);
+    if ( this.empRecord && this.empRecord.id === newRejectedPersonId ) {
+      this.empRecord = {};
+      if ( !this.empQueue ) {
+        this.newPersonCame = false;
+      }
+    } else {
+      console.log('rejected emp from person list ');
+    }
+    // else {
+    //   this.empQueue = this.empQueue.filter( (empQ) => {
+    //     return empQ.id !== newRejectedPerson.id;
+    //   });
+    // }
+
   }
 
   private checkEmpAlreadyPresent(newId) {
