@@ -1,0 +1,15 @@
+.visitor-history-modal {
+
+  .modal-body {
+    .avatar > img {
+      height: 80px;
+    }
+  }
+}
+
+::ng-deep .modal-xl-custom {
+  .modal-dialog {
+    max-width: 90%;
+    width: 90%;
+  }
+}

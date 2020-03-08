@@ -38,6 +38,9 @@ import { VisitorManagementComponent } from './components/visitor-management/visi
 import { ExpectedVisitorsComponent } from './components/visitor-management/expected-visitors/expected-visitors.component';
 import { ArrivedVisitorsComponent } from './components/visitor-management/arrived-visitors/arrived-visitors.component';
 import { UnrecognizedVisitorsComponent } from './components/visitor-management/unrecognized-visitors/unrecognized-visitors.component';
+import { VisitorHistoryModalComponent } from './components/visitor-management/history-modal/visitor-history-modal.component';
+import { VisitorHistoryYearlyComponent } from './components/visitor-management/yearly-history/visitor-history-yearly.component';
+import { MonthlyHistoryComponent } from './components/visitor-management/yearly-history/monthly-history/monthly-history.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { UnrecognizedVisitorsComponent } from './components/visitor-management/u
     VisitorManagementComponent,
     ExpectedVisitorsComponent,
     ArrivedVisitorsComponent,
-    UnrecognizedVisitorsComponent
+    UnrecognizedVisitorsComponent,
+    VisitorHistoryModalComponent,
+    VisitorHistoryYearlyComponent,
+    MonthlyHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -82,6 +88,6 @@ import { UnrecognizedVisitorsComponent } from './components/visitor-management/u
   exports: [HideIfNotDirective, DisableIfNotDirective],
   bootstrap: [AttendanceComponent],
   providers: [SearchPipe, SortPipe, TimeRangePipe, PresentEmpService, NgbActiveModal],
-  entryComponents: [RegistrationComponent]
+  entryComponents: [RegistrationComponent, VisitorHistoryModalComponent]
 })
 export class AttendanceModule { }
