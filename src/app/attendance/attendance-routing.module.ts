@@ -7,6 +7,7 @@ import { TodaysReportComponent } from './components/todays-report/todays-report.
 import { AttendanceComponent } from './attendance.component';
 import { AttendanceStatsComponent } from './components/attendance-stats/attendance-stats.component';
 import { TabAttendanceComponent } from './components/tab-attendance/tab-attendance.component';
+import { VisitorManagementComponent } from './components/visitor-management/visitor-management.component';
 
 const routes: Routes = [
     {
@@ -18,6 +19,7 @@ const routes: Routes = [
         { path: 'todays-report', component: TodaysReportComponent},
         { path: 'attendance-stats', component: AttendanceStatsComponent },
         { path: 'tab-attendance', component: TabAttendanceComponent },
+        { path: 'visitor-management', component: VisitorManagementComponent },
       ]
   }
 ];

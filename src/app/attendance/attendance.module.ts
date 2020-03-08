@@ -34,6 +34,7 @@ import {WebcamModule} from 'ngx-webcam';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HideIfNotDirective } from './directives/hide-if-not';
 import { DisableIfNotDirective } from './directives/disable-if-not';
+import { VisitorManagementComponent } from './components/visitor-management/visitor-management.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { DisableIfNotDirective } from './directives/disable-if-not';
     TimeRangePipe,
     RegistrationComponent,
     HideIfNotDirective,
-    DisableIfNotDirective
+    DisableIfNotDirective,
+    VisitorManagementComponent
   ],
   imports: [
     CommonModule,
