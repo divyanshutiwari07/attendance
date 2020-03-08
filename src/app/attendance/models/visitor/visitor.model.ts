@@ -12,7 +12,7 @@ export default class Visitor {
         this.id = element.id;
         this.name = element.name;
         this.entryTime = element.entryTime;
-        this.location = element.location;
+        this.location = element.entryLocation;
         this.photo = element.photo;
         this.hereToVisit = element.hereToVisit;
         this.purposeOfVisit = element.purposeOfVisit;

@@ -1,9 +1,48 @@
 .visitor-col-header {
   margin-bottom: 20px;
+
+
+  .mat-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    > span {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 8px;
+      }
+    }
+
+    .left-icon {
+      height: 20px;
+    }
+
+    .top-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #dd3cfd;
+    }
+
+    .heading-bar {
+      width: 30%;
+      background-color: #dd3cfd;
+      color: #fff;
+      padding: 3px;
+      border-radius: 3px;
+    }
+  }
+
+
 }
 
 .visitor-col-body {
   .person-card {
+    margin-bottom: 1rem;
+
     .mat-card-header {
       margin-bottom: 10px;
 

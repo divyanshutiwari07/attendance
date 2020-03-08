@@ -8,14 +8,15 @@ import {VisitorService} from '../../../services/visitor.service';
 })
 export class ArrivedVisitorsComponent implements OnInit {
 
-  visitorList: [];
+  visitorList: any [];
 
-  constructor(private visitorService: VisitorService) { }
+  constructor(private visitorService: VisitorService) {
+
+  }
 
   ngOnInit() {
-    this.visitorService.loadArrivedVisitors({}).subscribe(visitors => {
-      this.visitorList = visitors;
-      console.log(visitors);
+    this.visitorService.loadArrivedVisitors({}).subscribe((list) => {
+      this.visitorList = list;
     });
   }
 
