@@ -35,7 +35,9 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HideIfNotDirective } from './directives/hide-if-not';
 import { DisableIfNotDirective } from './directives/disable-if-not';
 import { VisitorManagementComponent } from './components/visitor-management/visitor-management.component';
-
+import { ExpectedVisitorsComponent } from './components/visitor-management/expected-visitors/expected-visitors.component';
+import { ArrivedVisitorsComponent } from './components/visitor-management/arrived-visitors/arrived-visitors.component';
+import { UnrecognizedVisitorsComponent } from './components/visitor-management/unrecognized-visitors/unrecognized-visitors.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,10 @@ import { VisitorManagementComponent } from './components/visitor-management/visi
     RegistrationComponent,
     HideIfNotDirective,
     DisableIfNotDirective,
-    VisitorManagementComponent
+    VisitorManagementComponent,
+    ExpectedVisitorsComponent,
+    ArrivedVisitorsComponent,
+    UnrecognizedVisitorsComponent
   ],
   imports: [
     CommonModule,
