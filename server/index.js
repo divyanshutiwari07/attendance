@@ -24,6 +24,9 @@ const login = require('./login.json');
 const rejectAttendance = require('./reject-attendance.json');
 const listOfSources = require('./list-of-sources.json');
 
+const arrivedVisitors = require("./arrived-visitors");
+const expectedVisitors = require("./expected-visitors");
+
 // app.listen(3000, () => {
 //  console.log("Server running on port 3000");
 // });
@@ -79,6 +82,16 @@ app.post('/list_of_sources', (req, res, next) => {
     console.log("=========== Serving list of sources =============");
     res.json(listOfSources);
 })
+
+app.post('/arrived-visitors', (req, res, next) => {
+    console.log("=========== Serving arrived visitors =============");
+    res.json(arrivedVisitors);
+});
+
+app.post('/expected-visitors', (req, res, next) => {
+    console.log("=========== Serving expected visitors=============");
+    res.json(expectedVisitors);
+});
 // io.on('connection', function (socket) {
 //     console.log('user connected');
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {VisitorService} from '../../../services/visitor.service';
 
 @Component({
   selector: 'app-arrived-visitors',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArrivedVisitorsComponent implements OnInit {
 
-  constructor() { }
+  visitorList: [];
+
+  constructor(private visitorService: VisitorService) { }
 
   ngOnInit() {
+    this.visitorService.loadArrivedVisitors({}).subscribe(visitors => {
+      this.visitorList = visitors;
+      console.log(visitors);
+    });
   }
 
 }

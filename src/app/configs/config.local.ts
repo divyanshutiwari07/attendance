@@ -18,4 +18,6 @@ export const config = {
     REJECT_ATTENDANCE_URL : LOCAL_HOST_SERVER + '/rejectAttendance',
     VERIFY_EMPLOYEE_PRESENCE_URL: LOCAL_HOST_SERVER + '/verify',
     LIST_OF_SOURCES_URL: LOCAL_HOST_SERVER + '/list_of_sources',
+    ARRIVED_VISITORS: LOCAL_HOST_SERVER + '/arrived-visitors',
+    EXPECTED_VISITORS: LOCAL_HOST_SERVER + '/expected-visitors',
 };

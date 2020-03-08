@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "msg": "Data Found",
+  "data": [
+    {
+      "id": 2342,
+      "photo": "https://i0.wp.com/w.media/wp-content/uploads/2018/01/placeholderhead.jpg",
+      "name": "John Carry",
+      "entryTime": "2020-12-26T10:02:05.100Z",
+      "entryLocation": "Front gate 12",
+      "hereToVisit": "Just to do some stuff",
+      "purposeOfVisit": "Meeting with PM for new project"
+    },
+    {
+      "id": 2349,
+      "photo": "https://i0.wp.com/w.media/wp-content/uploads/2018/01/placeholderhead.jpg",
+      "name": "Scarlett Rose",
+      "entryTime": "2020-12-26T10:02:05.100Z",
+      "entryLocation": "Lobby area gate",
+      "hereToVisit": "Just to do some stuff",
+      "purposeOfVisit": "Meeting with PM for new project"
+    },
+    {
+      "id": 2542,
+      "photo": "https://i0.wp.com/w.media/wp-content/uploads/2018/01/placeholderhead.jpg",
+      "name": "Manoj Vaajpayee",
+      "entryTime": "2020-12-26T10:02:05.100Z",
+      "entryLocation": "Reception no 2",
+      "hereToVisit": "Just to do some stuff",
+      "purposeOfVisit": "Meeting with PM for new project"
+    }
+  ]
+}
