@@ -32,6 +32,8 @@ export const AUTH_LEVELS = {
     MD: "levelFour",
 };
 
+export const BACK_YEAR_COUNT = 5;
+
 export const SOCKET_EVENTS = EVENTS[devMode];
 // console.log('socket event', SOCKET_EVENTS);
 // console.log('devmode', devMode);

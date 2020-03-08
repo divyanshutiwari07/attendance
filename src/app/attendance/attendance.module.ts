@@ -40,7 +40,6 @@ import { ArrivedVisitorsComponent } from './components/visitor-management/arrive
 import { UnrecognizedVisitorsComponent } from './components/visitor-management/unrecognized-visitors/unrecognized-visitors.component';
 import { VisitorHistoryModalComponent } from './components/visitor-management/history-modal/visitor-history-modal.component';
 import { VisitorHistoryYearlyComponent } from './components/visitor-management/yearly-history/visitor-history-yearly.component';
-import { MonthlyHistoryComponent } from './components/visitor-management/yearly-history/monthly-history/monthly-history.component';
 
 @NgModule({
   declarations: [
@@ -70,8 +69,7 @@ import { MonthlyHistoryComponent } from './components/visitor-management/yearly-
     ArrivedVisitorsComponent,
     UnrecognizedVisitorsComponent,
     VisitorHistoryModalComponent,
-    VisitorHistoryYearlyComponent,
-    MonthlyHistoryComponent
+    VisitorHistoryYearlyComponent
   ],
   imports: [
     CommonModule,

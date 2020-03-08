@@ -1,1 +1,39 @@
-<p>viisitor-history-yearly works!</p>
+<div class="yearly-history">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let month of months">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{month}}
+                </mat-panel-title>
+                <!--                <mat-panel-description>-->
+                <!--                    Type your name and age-->
+                <!--                </mat-panel-description>-->
+            </mat-expansion-panel-header>
+
+            <table class="table" id="employee_report">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Entry Time</th>
+                    <th>Location</th>
+                    <th>Exit Time</th>
+                    <th>Here to meet</th>
+                    <th>Purpose of visit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>20</td>
+                    <td>12:12 AM</td>
+                    <td>Front Gate</td>
+                    <td>Exit Time</td>
+                    <td>Mr Sunil</td>
+                    <td>New Project meeting </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+
+</div>

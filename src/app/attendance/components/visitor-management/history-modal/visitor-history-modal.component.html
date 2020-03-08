@@ -12,8 +12,14 @@
                 <img src={{currentImg}} alt="Avatar" onerror="src='assets/images/error_404.png';">
             </div>
             <div class='column col-md-8'>
-                <div>Employee Name: {{visitor.name}} </div>
+                <div>Visitor Name: {{visitor.name}} </div>
                 <div>Department: {{visitor.department}} </div>
+            </div>
+            <div class="col-md-2">
+                <select class=" form-control" [(ngModel)]='selectedYear' name='year' id='year' required>
+                    <option value="" disabled="true" hidden>Select year</option>
+                    <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+                </select>
             </div>
         </div>
         <div class="report-data">

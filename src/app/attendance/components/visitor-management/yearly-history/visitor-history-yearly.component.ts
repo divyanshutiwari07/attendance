@@ -10,7 +10,11 @@ export class VisitorHistoryYearlyComponent implements OnInit {
   @Input() visitor: string;
   @Input() selectedYear: string;
 
-  constructor() { }
+  public months: any [];
+
+  constructor() {
+    this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun' , 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  }
 
   ngOnInit() {
   }
