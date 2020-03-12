@@ -139,9 +139,10 @@ export class PersonComponent implements OnInit {
       console.log('updated datan  res', updatedEmpData);
       const dynamicKey = updatedEmpData.data.awi_facial_recognition.awi_app_data.awi_blobs.awi_blob_ids[0];
       // tslint:disable-next-line:max-line-length
-      const updatedData = updatedEmpData.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
-      console.log('updated data', updatedData);
-      this.removeEmpFromTheList(updatedData);
+      const updatedDataId = updatedEmpData.data.awi_facial_recognition.awi_app_data.awi_blobs[dynamicKey].classification.awi_blob_db[0].awi_id;
+      console.log('updated data id', updatedDataId);
+      this.addIdToTheList(updatedDataId);
+      this.removeEmpFromTheList(updatedDataId);
     });
   }
 
@@ -161,7 +162,7 @@ export class PersonComponent implements OnInit {
       console.log('verify emp presence', response);
       if ( response.success === true ) {
         this.successToaster(response.msg);
-        this.addIdToTheList(this.empRecord);
+        this.addIdToTheList(this.empRecord.id);
         // this.initForm();
         // this.showNextPersonInTheQueue();
       } else {
@@ -178,11 +179,11 @@ export class PersonComponent implements OnInit {
         this.successToaster(this.person.name.name + ' Already Present!');
       } else {
         // tslint:disable-next-line:max-line-length
-        this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name}).subscribe( response => {
+        this.apiService.verifyEmployeePresence({id : this.empRecord.alertId, blob_id: this.empRecord.blobId, awi_label: this.person.name.name, updated_id: this.person.name.id}).subscribe( response => {
           console.log('verify emp presence', response);
           if ( response.success === true ) {
             this.successToaster(response.msg);
-            this.addIdToTheList(this.person.name);
+            this.addIdToTheList(this.person.name.id);
             // this.initForm();
             // this.showNextPersonInTheQueue();
           } else {
@@ -196,7 +197,7 @@ export class PersonComponent implements OnInit {
   }
 
   public rejectDetection() {
-    console.log('emp', this.empRecord);
+    // console.log('emp', this.empRecord);
     const startTime = Utils.getStartTimeStampOfGivenDate(this.todaysDate);
     const endTime = Utils.getCurrentTimeStampOfGivenDate( this.todaysDate );
     this.apiService.rejectEmpAttendance({start_time: startTime, end_time: endTime, awi_label: this.empRecord.name, id: this.empRecord.id})
@@ -214,8 +215,8 @@ export class PersonComponent implements OnInit {
       );
   }
 
-  private addIdToTheList(newPerson) {
-    this.empIds.push(newPerson.id);
+  private addIdToTheList(newPersonId) {
+    this.empIds.push(newPersonId);
     console.log('addIdToTheList called: new Emp Ids', this.empIds);
   }
 
@@ -230,13 +231,15 @@ export class PersonComponent implements OnInit {
     if ( this.empRecord && this.empRecord.id === newRejectedPersonId ) {
       this.empRecord = {};
       // this.newPersonCame = false;
-      if ( this.empRecord ) {
-        console.log('empRecord after null before ', this.empRecord, this.empQueue);
-      }
+
+      console.log('empRecord after null before ', this.empRecord, this.empQueue);
       this.initForm();
       this.showNextPersonInTheQueue();
       console.log('empRecord after null after ', this.empRecord, this.empQueue);
-    } else {
+    } else if ( this.empQueue ) {
+      console.log( 'empqueue 239', this.empQueue);
+      this.empQueue = this.empQueue.filter(empQ => empQ.id !== newRejectedPersonId);
+      console.log( 'empqueue 241', this.empQueue);
       console.log('rejected emp from person list ');
     }
     // else {
