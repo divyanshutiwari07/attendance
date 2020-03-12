@@ -21,16 +21,16 @@ export class VisitorService {
 
     public loadArrivedVisitors(req): Observable<any> {
         return Observable.create((observer: Observer<any>) => {
-            this.http.get(config.ARRIVED_VISITORS, req).subscribe(response => {
-                if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
-                    return [];
-                } else {
-                    const visitorListObj = VisitorListModel.ModelMap(response);
-                    observer.next(visitorListObj.getList());
-                    this.changeArrivedList(visitorListObj.getList());
-                }
-                observer.complete();
-            });
+            // this.http.get(config.ARRIVED_VISITORS, req).subscribe(response => {
+            //     if (isNullOrUndefined(response) || isNullOrUndefined(response.data) || response.success === false) {
+            //         return [];
+            //     } else {
+            //         const visitorListObj = VisitorListModel.ModelMap(response);
+            //         observer.next(visitorListObj.getList());
+            //         this.changeArrivedList(visitorListObj.getList());
+            //     }
+            //     observer.complete();
+            // });
         });
     }
 

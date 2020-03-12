@@ -1,4 +1,4 @@
-<div class="visitor-history-modal">
+<!-- <div class="visitor-history-modal">
     <div class="modal-header">
         <h4 class="modal-title">Visitor History</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -26,18 +26,52 @@
             <app-viisitor-history-yearly
                     [visitor]="visitor.name"
                     (selectedYear)='2019'></app-viisitor-history-yearly>
-            <!--        <app-yearly-report-->
-            <!--                [empName]="visitor.name"-->
-            <!--                (checkDataMonthlyOrYearly)='checkDataMonthlyOrYearly($event)'-->
-            <!--                (employeeMonthlyReportData) = 'employeeMonthlyReportData($event)'-->
-            <!--                (selectedYearForEmp) = 'selectedYearForEmp($event)'-->
-            <!--                (toggleExportButton) = 'toggleExportButton($event)'-->
-            <!--                (yearlyReportResponse)="enableExportButton($event)" ></app-yearly-report>-->
         </div>
     </div>
 
     <div class="modal-footer">
         <div><button *ngIf="showExportButton" class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="fileDataType === 'yearly_attendance_record'? exportEmployeeYearReport(visitor.name) : exportEmployeeMonthReport(visitor.name)">Export CSV</button></div>
+        <button  type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
+    </div>
+
+
+</div> -->
+
+
+<div class="visitor-history-modal">
+    <div class="modal-header">
+        <h4 class="modal-title">Visitor History</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body report">
+        <div class="d-flex">
+            <div class='column avatar'>
+                <img src="https://i0.wp.com/w.media/wp-content/uploads/2018/01/placeholderhead.jpg" alt="Avatar" onerror="src='assets/images/error_404.png';">
+            </div>
+            <div class='column col-md-8'>
+                <div>Visitor Name: Rakesh Sharma </div>
+                <div>Organization:  </div>
+                <div>Phone Number: 7232564854 </div>
+            </div>
+            <div class="col-md-2">
+                <select class=" form-control" [(ngModel)]='selectedYear' name='year' id='year' required>
+                    <option value="" disabled="true" hidden>Select year</option>
+                    <option *ngFor="let year of years" [ngValue]="year">{{year.year}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="report-data">
+            <app-viisitor-history-yearly
+                    [visitor]="'Rakesh Sharma'"
+                    (selectedYear)='2019'></app-viisitor-history-yearly>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <!-- <div><button *ngIf="showExportButton" class="btn btn-outline-primary" [disabled]="disableExportButton" (click)="fileDataType === 'yearly_attendance_record'? exportEmployeeYearReport(visitor.name) : exportEmployeeMonthReport(visitor.name)">Export CSV</button></div> -->
         <button  type="button" class="btn btn-outline-dark  " (click)="modal.close('Close click');">Close</button>
     </div>
 

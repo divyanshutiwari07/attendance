@@ -162,8 +162,8 @@ export class PersonComponent implements OnInit {
       if ( response.success === true ) {
         this.successToaster(response.msg);
         this.addIdToTheList(this.empRecord);
-        this.initForm();
-        this.showNextPersonInTheQueue();
+        // this.initForm();
+        // this.showNextPersonInTheQueue();
       } else {
         this.errorToaster(response.msg);
       }
@@ -183,8 +183,8 @@ export class PersonComponent implements OnInit {
           if ( response.success === true ) {
             this.successToaster(response.msg);
             this.addIdToTheList(this.person.name);
-            this.initForm();
-            this.showNextPersonInTheQueue();
+            // this.initForm();
+            // this.showNextPersonInTheQueue();
           } else {
             this.errorToaster(response.msg);
           }
@@ -205,8 +205,8 @@ export class PersonComponent implements OnInit {
           console.log('rejectDatarespone' , response);
           if ( response.success ) {
             this.successToaster(response.msg);
-            this.initForm();
-            this.showNextPersonInTheQueue();
+            // this.initForm();
+            // this.showNextPersonInTheQueue();
           } else {
             this.errorToaster(response.msg);
           }
@@ -229,9 +229,13 @@ export class PersonComponent implements OnInit {
     console.log('emp queue', this.empQueue);
     if ( this.empRecord && this.empRecord.id === newRejectedPersonId ) {
       this.empRecord = {};
-      if ( !this.empQueue ) {
-        this.newPersonCame = false;
+      // this.newPersonCame = false;
+      if ( this.empRecord ) {
+        console.log('empRecord after null before ', this.empRecord, this.empQueue);
       }
+      this.initForm();
+      this.showNextPersonInTheQueue();
+      console.log('empRecord after null after ', this.empRecord, this.empQueue);
     } else {
       console.log('rejected emp from person list ');
     }
