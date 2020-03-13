@@ -184,8 +184,8 @@ export class PersonComponent implements OnInit {
           if ( response.success === true ) {
             this.successToaster(response.msg);
             this.addIdToTheList(this.person.name.id);
-            // this.initForm();
-            // this.showNextPersonInTheQueue();
+            this.initForm();
+            this.showNextPersonInTheQueue();
           } else {
             this.errorToaster(response.msg);
           }

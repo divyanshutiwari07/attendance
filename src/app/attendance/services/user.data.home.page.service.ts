@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { WebsocketService } from './websocket.service';
-import { WebsocketRejectService } from './websocket-reject.service';
-import { WebsocketDetailsChangedService } from './websocket-details-changed.service';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SOCKET_EVENTS } from '../../config';
 
 @Injectable({
   providedIn: 'root'
@@ -15,23 +14,21 @@ export class UserDataHomePageService {
   detailsChangedMessages: Subject<any>;
 
   constructor(
-    private wsService: WebsocketService,
-    private wsRejectService: WebsocketRejectService,
-    private wsDetailsChangedService: WebsocketDetailsChangedService) {
+    private wsService: WebsocketService) {
     this.messages = <Subject<any>>wsService
-      .connect()
+      .connect(SOCKET_EVENTS.NEW_SERVER_EVENT)
       .pipe(map((response: any): any => {
         return response;
       }));
 
-    this.rejectMessages = <Subject<any>>wsRejectService
-      .connect()
+    this.rejectMessages = <Subject<any>>wsService
+      .connect('event_reject_attendance')
       .pipe(map((response: any): any => {
         return response;
       }));
 
-    this.detailsChangedMessages = <Subject<any>>wsDetailsChangedService
-      .connect()
+    this.detailsChangedMessages = <Subject<any>>wsService
+      .connect('event_details_changed')
       .pipe(map((response: any): any => {
         return response;
       }));

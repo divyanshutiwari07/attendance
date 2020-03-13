@@ -14,7 +14,7 @@ export class WebsocketService {
 
   constructor( ) {}
 
-  connect(): Rx.Subject<MessageEvent> {
+  connect(socketEvent): Rx.Subject<MessageEvent> {
     const token = localStorage.getItem('token');
     const payload = token.split('.')[1];
     const obj = window.atob(payload);
@@ -22,7 +22,7 @@ export class WebsocketService {
     this.socket = io(config.SERVER_ADDRESS_REALTIME);
 
     const observable = new Observable(observer => {
-        this.socket.on(SOCKET_EVENTS.NEW_SERVER_EVENT, (data) => {
+        this.socket.on(socketEvent, (data) => {
           // console.log('connect  socket');
           observer.next(data);
         });
@@ -43,3 +43,5 @@ export class WebsocketService {
   }
 
 }
+// event_details_changed
+// event_reject_attendance
