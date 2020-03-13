@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 0px 10px -1px rgba(0,0,0,.2), 0 1px 3px 0 rgba(21, 15, 15, 0.14), 0 1px 3px 0 rgba(0,0,0,.12);
 
     > span {
       display: flex;
@@ -42,6 +43,7 @@
 .visitor-col-body {
   .person-card {
     margin-bottom: 1rem;
+    box-shadow: 0 0px 10px -1px rgba(0,0,0,.2), 0 1px 3px 0 rgba(21, 15, 15, 0.14), 0 1px 3px 0 rgba(0,0,0,.12);
 
     .mat-card-header {
       margin-bottom: 10px;
@@ -77,10 +79,4 @@
   }
 }
 
-::ng-deep .modal-xl-custom {
-  .modal-dialog {
-    max-width: 90%;
-    width: 90%;
-  }
-}
 

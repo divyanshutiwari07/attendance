@@ -17,7 +17,7 @@ export class VisitorHistoryModalComponent implements OnInit {
   constructor(
       public modal: NgbActiveModal
   ) {
-    if( !this.years ) {
+    if ( !this.years ) {
       this.years = [];
       this.initializeYearDropdown();
     }
